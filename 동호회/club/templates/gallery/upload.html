@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}사진 업로드{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0"><i class="bi bi-upload"></i> 사진 업로드 - {{ album.title }}</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="photos" class="form-label">사진 선택 <span class="text-danger">*</span></label>
+                        <input type="file" class="form-control" id="photos" name="photos" accept="image/*" multiple required>
+                        <small class="text-muted">여러 장의 사진을 동시에 선택할 수 있습니다. (jpg, png, gif)</small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="caption" class="form-label">설명</label>
+                        <input type="text" class="form-control" id="caption" name="caption" placeholder="사진 설명 (선택)">
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">업로드</button>
+                        <a href="{{ url_for('gallery.album', album_id=album.id) }}" class="btn btn-outline-secondary">취소</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

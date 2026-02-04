@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ schedule.title }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="mb-0"><i class="bi bi-calendar-event"></i> {{ schedule.title }}</h4>
+                {% if current_user.is_staff() %}
+                <div>
+                    <a href="{{ url_for('schedule.edit', schedule_id=schedule.id) }}" class="btn btn-sm btn-outline-primary">수정</a>
+                    <form action="{{ url_for('schedule.delete', schedule_id=schedule.id) }}" method="POST" class="d-inline" onsubmit="return confirm('일정을 삭제하시겠습니까?');">
+                        <button type="submit" class="btn btn-sm btn-outline-danger">삭제</button>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <table class="table table-borderless">
+                    <tr>
+                        <th width="100"><i class="bi bi-calendar"></i> 날짜</th>
+                        <td>{{ schedule.event_date.strftime('%Y년 %m월 %d일') }}</td>
+                    </tr>
+                    {% if schedule.start_time %}
+                    <tr>
+                        <th><i class="bi bi-clock"></i> 시간</th>
+                        <td>{{ schedule.start_time }}{% if schedule.end_time %} ~ {{ schedule.end_time }}{% endif %}</td>
+                    </tr>
+                    {% endif %}
+                    {% if schedule.location %}
+                    <tr>
+                        <th><i class="bi bi-geo-alt"></i> 장소</th>
+                        <td>{{ schedule.location }}</td>
+                    </tr>
+                    {% endif %}
+                    {% if schedule.max_participants %}
+                    <tr>
+                        <th><i class="bi bi-people"></i> 정원</th>
+                        <td>{{ schedule.max_participants }}명</td>
+                    </tr>
+                    {% endif %}
+                </table>
+                {% if schedule.description %}
+                <hr>
+                <div style="white-space: pre-wrap;">{{ schedule.description }}</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- 참석 응답 -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="bi bi-check-circle"></i> 참석 응답</h5>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('schedule.attend', schedule_id=schedule.id) }}" method="POST">
+                    <div class="btn-group w-100" role="group">
+                        <input type="radio" class="btn-check" name="status" id="attending" value="attending" {% if my_attendance and my_attendance.status == 'attending' %}checked{% endif %}>
+                        <label class="btn btn-outline-success" for="attending">
+                            <i class="bi bi-check-lg"></i> 참석
+                        </label>
+
+                        <input type="radio" class="btn-check" name="status" id="not_attending" value="not_attending" {% if my_attendance and my_attendance.status == 'not_attending' %}checked{% endif %}>
+                        <label class="btn btn-outline-danger" for="not_attending">
+                            <i class="bi bi-x-lg"></i> 불참
+                        </label>
+
+                        <input type="radio" class="btn-check" name="status" id="maybe" value="maybe" {% if my_attendance and my_attendance.status == 'maybe' %}checked{% endif %}>
+                        <label class="btn btn-outline-warning" for="maybe">
+                            <i class="bi bi-question-lg"></i> 미정
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mt-3">응답 저장</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 참석 현황 -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="bi bi-people"></i> 참석 현황</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h6 class="text-success"><i class="bi bi-check-circle"></i> 참석 ({{ attending|length }})</h6>
+                        <ul class="list-unstyled">
+                            {% for a in attending %}
+                            <li><a href="{{ url_for('members.profile', user_id=a.user.id) }}">{{ a.user.nickname }}</a></li>
+                            {% else %}
+                            <li class="text-muted">없음</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h6 class="text-danger"><i class="bi bi-x-circle"></i> 불참 ({{ not_attending|length }})</h6>
+                        <ul class="list-unstyled">
+                            {% for a in not_attending %}
+                            <li><a href="{{ url_for('members.profile', user_id=a.user.id) }}">{{ a.user.nickname }}</a></li>
+                            {% else %}
+                            <li class="text-muted">없음</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h6 class="text-warning"><i class="bi bi-question-circle"></i> 미정 ({{ maybe|length }})</h6>
+                        <ul class="list-unstyled">
+                            {% for a in maybe %}
+                            <li><a href="{{ url_for('members.profile', user_id=a.user.id) }}">{{ a.user.nickname }}</a></li>
+                            {% else %}
+                            <li class="text-muted">없음</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <a href="{{ url_for('schedule.index') }}" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> 일정 목록
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

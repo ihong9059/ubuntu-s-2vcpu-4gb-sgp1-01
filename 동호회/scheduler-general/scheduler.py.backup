@@ -1,0 +1,556 @@
+# -*- coding: utf-8 -*-
+"""
+일반화된 배드민턴 대진표 스케줄러
+- 동적 인원 입력
+- 동적 코트 수
+- **팀 간 실력 차이는 1등급 이내** (합계 점수 차이 1 이하)
+"""
+
+import random
+from dataclasses import dataclass, field
+from typing import List, Dict, Set, Tuple
+from collections import defaultdict
+
+# 등급별 점수 (A=5, B=4, C=3, D=2, E=1)
+GRADE_SCORE = {'A': 5, 'B': 4, 'C': 3, 'D': 2, 'E': 1}
+
+
+@dataclass
+class Player:
+    """선수 정보"""
+    name: str
+    gender: str  # 'M' or 'F'
+    grade: str   # 'A', 'B', 'C', 'D', 'E'
+    team: str    # 'blue' or 'white'
+
+    @property
+    def id(self):
+        return f"{self.team}_{self.gender}_{self.grade}_{self.name}"
+
+
+@dataclass
+class Match:
+    """경기 정보"""
+    match_type: str  # 'MD', 'WD', 'XD'
+    team1: Tuple[str, str]  # (player1_id, player2_id) - 청팀
+    team2: Tuple[str, str]  # (player1_id, player2_id) - 백팀
+    court: int = 0
+    round_num: int = 0
+
+    def get_players(self) -> Set[str]:
+        return {self.team1[0], self.team1[1], self.team2[0], self.team2[1]}
+
+
+class DynamicScheduler:
+    """동적 대진표 생성기"""
+
+    def __init__(self, players: List[Player], num_courts: int = 6):
+        self.players = players
+        self.num_courts = num_courts
+        self.matches: List[Match] = []
+
+        # 선수 분류
+        self.blue_males: List[Player] = []
+        self.blue_females: List[Player] = []
+        self.white_males: List[Player] = []
+        self.white_females: List[Player] = []
+
+        for p in players:
+            if p.team == 'blue':
+                if p.gender == 'M':
+                    self.blue_males.append(p)
+                else:
+                    self.blue_females.append(p)
+            else:
+                if p.gender == 'M':
+                    self.white_males.append(p)
+                else:
+                    self.white_females.append(p)
+
+        # 추적용 변수
+        self.player_games: Dict[str, int] = defaultdict(int)
+        self.partners: Dict[str, Set[str]] = defaultdict(set)
+        self.opponents: Dict[str, Set[str]] = defaultdict(set)
+        self.last_game_order: Dict[str, int] = defaultdict(lambda: -999)
+
+        # 이름으로 선수 찾기
+        self.player_by_name: Dict[str, Player] = {p.name: p for p in players}
+
+        # 목표 경기 수 계산
+        self._calculate_target_games()
+
+    def _get_team_score(self, team: Tuple[str, str]) -> int:
+        """팀 합계 점수 계산 (2명)"""
+        score = 0
+        for name in team:
+            player = self.player_by_name.get(name)
+            if player:
+                score += GRADE_SCORE.get(player.grade, 3)
+        return score
+
+    def _is_balanced_match(self, team1: Tuple[str, str], team2: Tuple[str, str], max_diff: int = 1) -> bool:
+        """두 팀의 실력 차이가 max_diff 이내인지 확인"""
+        score1 = self._get_team_score(team1)
+        score2 = self._get_team_score(team2)
+        return abs(score1 - score2) <= max_diff
+
+    def _calculate_target_games(self):
+        """인원 수에 따른 목표 경기 수 계산"""
+        total = len(self.players)
+
+        if total <= 20:
+            self.min_games = 3
+            self.max_games = 4
+        elif total <= 40:
+            self.min_games = 4
+            self.max_games = 5
+        else:
+            self.min_games = 4
+            self.max_games = 5
+
+        # 인원이 적으면 중복 허용
+        self.allow_duplicate_opponents = total <= 24
+        self.allow_duplicate_partners = total <= 16
+
+    def _can_pair(self, p1: str, p2: str) -> bool:
+        """두 선수가 파트너가 될 수 있는지"""
+        if self.allow_duplicate_partners:
+            # 최대 2번까지 허용
+            return list(self.partners[p1]).count(p2) < 2 if p2 in self.partners[p1] else True
+        return p2 not in self.partners[p1]
+
+    def _can_oppose(self, players1: Tuple[str, str], players2: Tuple[str, str]) -> bool:
+        """두 팀이 상대할 수 있는지"""
+        if self.allow_duplicate_opponents:
+            return True  # 인원 적을 때는 상대 중복 허용
+        for p1 in players1:
+            for p2 in players2:
+                if p2 in self.opponents[p1]:
+                    return False
+        return True
+
+    def _needs_game(self, player_name: str) -> bool:
+        """선수가 더 경기가 필요한지"""
+        return self.player_games[player_name] < self.max_games
+
+    def _can_add_match(self, match: Match) -> bool:
+        """경기 추가 가능 여부 - max_games 초과 방지"""
+        for p in match.get_players():
+            if self.player_games[p] >= self.max_games:
+                return False
+        return True
+
+    def _add_match(self, match: Match) -> bool:
+        """경기 추가"""
+        if not self._can_add_match(match):
+            return False
+
+        self.matches.append(match)
+
+        for p in match.team1:
+            self.player_games[p] += 1
+            self.partners[p].add(match.team1[0] if match.team1[1] == p else match.team1[1])
+            self.opponents[p].add(match.team2[0])
+            self.opponents[p].add(match.team2[1])
+
+        for p in match.team2:
+            self.player_games[p] += 1
+            self.partners[p].add(match.team2[0] if match.team2[1] == p else match.team2[1])
+            self.opponents[p].add(match.team1[0])
+            self.opponents[p].add(match.team1[1])
+
+        return True
+
+    def _get_players_by_grade(self, players: List[Player], grade: str) -> List[Player]:
+        """특정 등급의 선수 반환"""
+        return [p for p in players if p.grade == grade]
+
+    def generate(self):
+        """대진표 생성"""
+        self.matches = []
+        self.player_games = defaultdict(int)
+        self.partners = defaultdict(set)
+        self.opponents = defaultdict(set)
+
+        # 1. 같은 등급 남자복식 + 혼합복식
+        self._generate_same_grade_matches()
+
+        # 2. 상하급 페어 남자복식 + 혼합복식
+        self._generate_mixed_grade_matches()
+
+        # 3. 여자복식
+        self._generate_womens_doubles()
+
+        # 4. 부족한 경기 채우기
+        self._fill_remaining_games()
+
+        # 5. 코트 및 순서 배정
+        self._assign_courts_and_order()
+
+        return self.matches
+
+    def _generate_same_grade_matches(self):
+        """같은 등급 매치 생성"""
+        grades = ['A', 'B', 'C', 'D', 'E']
+
+        for grade in grades:
+            blue_m = self._get_players_by_grade(self.blue_males, grade)
+            white_m = self._get_players_by_grade(self.white_males, grade)
+            blue_f = self._get_players_by_grade(self.blue_females, grade)
+            white_f = self._get_players_by_grade(self.white_females, grade)
+
+            random.shuffle(blue_m)
+            random.shuffle(white_m)
+            random.shuffle(blue_f)
+            random.shuffle(white_f)
+
+            # 남자복식: 같은 등급 2명씩
+            i = 0
+            while i + 1 < len(blue_m) and i + 1 < len(white_m):
+                if self._can_pair(blue_m[i].name, blue_m[i+1].name) and \
+                   self._can_pair(white_m[i].name, white_m[i+1].name):
+                    team1 = (blue_m[i].name, blue_m[i+1].name)
+                    team2 = (white_m[i].name, white_m[i+1].name)
+                    # 실력 균형 검증 추가
+                    if self._can_oppose(team1, team2) and self._is_balanced_match(team1, team2):
+                        self._add_match(Match('MD', team1, team2))
+                i += 2
+
+            # 혼합복식: 같은 등급 남+여
+            for bm in blue_m:
+                for wf in white_f:
+                    if self._needs_game(bm.name) and self._needs_game(wf.name):
+                        for wm in white_m:
+                            for bf in blue_f:
+                                if self._needs_game(wm.name) and self._needs_game(bf.name):
+                                    if self._can_pair(bm.name, bf.name) and \
+                                       self._can_pair(wm.name, wf.name):
+                                        team1 = (bm.name, bf.name)
+                                        team2 = (wm.name, wf.name)
+                                        # 실력 균형 검증 추가
+                                        if self._can_oppose(team1, team2) and self._is_balanced_match(team1, team2):
+                                            self._add_match(Match('XD', team1, team2))
+                                            break
+                            else:
+                                continue
+                            break
+
+    def _generate_mixed_grade_matches(self):
+        """상하급 페어 매치 생성 (실력 차이 1등급 이내)"""
+        # 1등급 차이만 허용하는 조합
+        grade_pairs = [('A', 'B'), ('B', 'C'), ('C', 'D'), ('D', 'E')]
+
+        for high, low in grade_pairs:
+            blue_high = self._get_players_by_grade(self.blue_males, high)
+            blue_low = self._get_players_by_grade(self.blue_males, low)
+            white_high = self._get_players_by_grade(self.white_males, high)
+            white_low = self._get_players_by_grade(self.white_males, low)
+
+            random.shuffle(blue_high)
+            random.shuffle(blue_low)
+            random.shuffle(white_high)
+            random.shuffle(white_low)
+
+            # 남자복식
+            for bh in blue_high:
+                for bl in blue_low:
+                    if self._needs_game(bh.name) and self._needs_game(bl.name):
+                        if self._can_pair(bh.name, bl.name):
+                            for wh in white_high:
+                                for wl in white_low:
+                                    if self._needs_game(wh.name) and self._needs_game(wl.name):
+                                        if self._can_pair(wh.name, wl.name):
+                                            team1 = (bh.name, bl.name)
+                                            team2 = (wh.name, wl.name)
+                                            # 실력 균형 검증 추가
+                                            if self._can_oppose(team1, team2) and self._is_balanced_match(team1, team2):
+                                                self._add_match(Match('MD', team1, team2))
+                                                break
+                                else:
+                                    continue
+                                break
+
+    def _generate_womens_doubles(self):
+        """여자복식 생성 (실력 균형 유지)"""
+        blue_f = self.blue_females.copy()
+        white_f = self.white_females.copy()
+
+        random.shuffle(blue_f)
+        random.shuffle(white_f)
+
+        # 실력 균형 맞는 조합 찾기
+        for b1 in blue_f:
+            for b2 in blue_f:
+                if b1.name >= b2.name or not self._can_pair(b1.name, b2.name):
+                    continue
+                team1 = (b1.name, b2.name)
+                for w1 in white_f:
+                    for w2 in white_f:
+                        if w1.name >= w2.name or not self._can_pair(w1.name, w2.name):
+                            continue
+                        team2 = (w1.name, w2.name)
+                        if self._can_oppose(team1, team2) and self._is_balanced_match(team1, team2):
+                            if self._needs_game(b1.name) and self._needs_game(b2.name) and \
+                               self._needs_game(w1.name) and self._needs_game(w2.name):
+                                self._add_match(Match('WD', team1, team2))
+
+    def _fill_remaining_games(self):
+        """부족한 경기 채우기"""
+        max_attempts = 1000
+        attempt = 0
+        last_match_count = len(self.matches)
+        stall_count = 0
+
+        while attempt < max_attempts:
+            # 경기가 부족한 선수 찾기 (경기 수가 적은 순으로)
+            need_games = [p for p in self.players if self.player_games[p.name] < self.min_games]
+            if not need_games:
+                break
+
+            # 경기 수가 가장 적은 선수 우선
+            need_games.sort(key=lambda p: self.player_games[p.name])
+            player = need_games[0]
+
+            success = False
+            if player.gender == 'F':
+                # 여성: 혼합복식 우선 시도, 실패시 여자복식
+                success = self._try_add_mixed_for_female(player)
+                if not success:
+                    success = self._try_add_womens_doubles(player)
+            else:
+                # 남성: 남자복식 우선 시도, 실패시 혼합복식
+                success = self._try_add_mens_doubles(player)
+                if not success:
+                    success = self._try_add_mixed_for_male(player)
+
+            # 진행 확인 (교착 상태 감지)
+            if len(self.matches) == last_match_count:
+                stall_count += 1
+                if stall_count > 50:
+                    # 교착 상태 - 다른 선수로 시도
+                    random.shuffle(need_games)
+                    stall_count = 0
+            else:
+                last_match_count = len(self.matches)
+                stall_count = 0
+
+            attempt += 1
+
+    def _try_add_mens_doubles(self, player: Player):
+        """남자복식 추가 시도 (실력 균형 유지)"""
+        same_team = self.blue_males if player.team == 'blue' else self.white_males
+        other_team = self.white_males if player.team == 'blue' else self.blue_males
+
+        # 파트너 조건 완화: 같은 팀, 본인 제외, 파트너 가능
+        partners = [p for p in same_team if p.name != player.name and
+                    self._can_pair(player.name, p.name)]
+
+        if not partners:
+            return False
+
+        # 경기 수가 적은 순으로 정렬
+        partners.sort(key=lambda p: self.player_games[p.name])
+
+        # 상대방도 경기 수 적은 순으로
+        opponents = [p for p in other_team]
+        opponents.sort(key=lambda p: self.player_games[p.name])
+
+        for partner in partners:
+            team1_raw = (player.name, partner.name)
+            for o1 in opponents:
+                for o2 in opponents:
+                    if o1.name != o2.name and self._can_pair(o1.name, o2.name):
+                        team2_raw = (o1.name, o2.name)
+                        if player.team == 'white':
+                            team1, team2 = team2_raw, team1_raw
+                        else:
+                            team1, team2 = team1_raw, team2_raw
+                        # 실력 균형 검증 추가
+                        if self._can_oppose(team1, team2) and self._is_balanced_match(team1, team2):
+                            self._add_match(Match('MD', team1, team2))
+                            return True
+        return False
+
+    def _try_add_mixed_for_male(self, player: Player):
+        """혼합복식 추가 (남성 기준) - 실력 균형 유지"""
+        same_team_f = self.blue_females if player.team == 'blue' else self.white_females
+        other_team_m = self.white_males if player.team == 'blue' else self.blue_males
+        other_team_f = self.white_females if player.team == 'blue' else self.blue_females
+
+        partners = [p for p in same_team_f if self._can_pair(player.name, p.name)]
+
+        if not partners:
+            return False
+
+        partners.sort(key=lambda p: self.player_games[p.name])
+
+        opp_males = list(other_team_m)
+        opp_females = list(other_team_f)
+
+        opp_males.sort(key=lambda p: self.player_games[p.name])
+        opp_females.sort(key=lambda p: self.player_games[p.name])
+
+        for partner in partners:
+            team1_raw = (player.name, partner.name)
+            for om in opp_males:
+                for of in opp_females:
+                    if self._can_pair(om.name, of.name):
+                        team2_raw = (om.name, of.name)
+                        if player.team == 'white':
+                            team1, team2 = team2_raw, team1_raw
+                        else:
+                            team1, team2 = team1_raw, team2_raw
+                        # 실력 균형 검증 추가
+                        if self._can_oppose(team1, team2) and self._is_balanced_match(team1, team2):
+                            self._add_match(Match('XD', team1, team2))
+                            return True
+        return False
+
+    def _try_add_mixed_for_female(self, player: Player):
+        """혼합복식 추가 (여성 기준) - 실력 균형 유지"""
+        same_team_m = self.blue_males if player.team == 'blue' else self.white_males
+        other_team_m = self.white_males if player.team == 'blue' else self.blue_males
+        other_team_f = self.white_females if player.team == 'blue' else self.blue_females
+
+        partners = [p for p in same_team_m if self._can_pair(player.name, p.name)]
+
+        if not partners:
+            return False
+
+        partners.sort(key=lambda p: self.player_games[p.name])
+
+        opp_males = list(other_team_m)
+        opp_females = list(other_team_f)
+
+        opp_males.sort(key=lambda p: self.player_games[p.name])
+        opp_females.sort(key=lambda p: self.player_games[p.name])
+
+        for partner in partners:
+            team1_raw = (partner.name, player.name)
+            for om in opp_males:
+                for of in opp_females:
+                    if self._can_pair(om.name, of.name):
+                        team2_raw = (om.name, of.name)
+                        if player.team == 'white':
+                            team1, team2 = team2_raw, team1_raw
+                        else:
+                            team1, team2 = team1_raw, team2_raw
+                        # 실력 균형 검증 추가
+                        if self._can_oppose(team1, team2) and self._is_balanced_match(team1, team2):
+                            self._add_match(Match('XD', team1, team2))
+                            return True
+        return False
+
+    def _try_add_womens_doubles(self, player: Player):
+        """여자복식 추가 시도 (실력 균형 유지)"""
+        same_team = self.blue_females if player.team == 'blue' else self.white_females
+        other_team = self.white_females if player.team == 'blue' else self.blue_females
+
+        partners = [p for p in same_team if p.name != player.name and
+                    self._can_pair(player.name, p.name)]
+
+        if not partners:
+            return False
+
+        partners.sort(key=lambda p: self.player_games[p.name])
+
+        opponents = list(other_team)
+        opponents.sort(key=lambda p: self.player_games[p.name])
+
+        for partner in partners:
+            team1_raw = (player.name, partner.name)
+            for o1 in opponents:
+                for o2 in opponents:
+                    if o1.name != o2.name and self._can_pair(o1.name, o2.name):
+                        team2_raw = (o1.name, o2.name)
+                        if player.team == 'white':
+                            team1, team2 = team2_raw, team1_raw
+                        else:
+                            team1, team2 = team1_raw, team2_raw
+                        # 실력 균형 검증 추가
+                        if self._can_oppose(team1, team2) and self._is_balanced_match(team1, team2):
+                            self._add_match(Match('WD', team1, team2))
+                            return True
+        return False
+
+    def _assign_courts_and_order(self):
+        """코트 배정 및 라운드 정하기 - 라운드별 동시 진행"""
+        random.shuffle(self.matches)
+
+        rounds = []
+        player_last_round = {}
+        unassigned = self.matches[:]
+
+        while unassigned:
+            current_round = {}
+            round_players = set()
+            round_num = len(rounds) + 1
+
+            for court in range(1, self.num_courts + 1):
+                best_match = None
+                best_score = -float('inf')
+
+                for match in unassigned:
+                    if match in current_round.values():
+                        continue
+                    players = match.get_players()
+                    if any(p in round_players for p in players):
+                        continue
+
+                    score = 0
+                    for p in players:
+                        last_round = player_last_round.get(p, -10)
+                        gap = round_num - last_round
+                        if gap >= 2:
+                            score += 2
+                        elif gap == 1:
+                            score -= 3
+
+                    if score > best_score:
+                        best_score = score
+                        best_match = match
+
+                if best_match:
+                    current_round[court] = best_match
+                    for p in best_match.get_players():
+                        round_players.add(p)
+                        player_last_round[p] = round_num
+                    unassigned.remove(best_match)
+                    best_match.court = court
+                    best_match.round_num = round_num
+
+            if current_round:
+                rounds.append(current_round)
+            elif unassigned:
+                match = unassigned.pop(0)
+                round_num = len(rounds) + 1
+                match.court = 1
+                match.round_num = round_num
+                for p in match.get_players():
+                    player_last_round[p] = round_num
+                rounds.append({1: match})
+
+        self.matches.sort(key=lambda m: (m.round_num, m.court))
+
+    def get_stats(self) -> Dict:
+        """통계 반환"""
+        by_type = defaultdict(int)
+        by_court = defaultdict(int)
+
+        for m in self.matches:
+            by_type[m.match_type] += 1
+            by_court[m.court] += 1
+
+        games = list(self.player_games.values())
+
+        return {
+            'total_matches': len(self.matches),
+            'by_type': dict(by_type),
+            'by_court': dict(by_court),
+            'player_games': dict(self.player_games),
+            'min_games': min(games) if games else 0,
+            'max_games': max(games) if games else 0,
+            'target_min': self.min_games,
+            'target_max': self.max_games,
+            'total_rounds': max((m.round_num for m in self.matches), default=0),
+        }

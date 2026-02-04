@@ -1,0 +1,27 @@
+# System and config files
+.bash_history
+.bashrc
+.profile
+.ssh/
+.config/
+.cache/
+.npm/
+.pm2/
+.claude/
+.claude.json*
+.digitalocean_dbaas_credentials
+.gitconfig
+.wget-hsts
+.cloud-locale-test.skip
+.EasyOCR/
+
+# Node modules and Python
+**/node_modules/
+**/__pycache__/
+**/*.pyc
+**/.env
+**/venv/
+**/.venv/
+
+# Uploads and temp
+uploads/

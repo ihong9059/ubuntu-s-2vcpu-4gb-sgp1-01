@@ -1,0 +1,591 @@
+{% extends 'base.html' %}
+
+{% block title %}테스트 결과{% endblock %}
+
+{% block content %}
+<style>
+/* AI 분석 결과 스타일 */
+.analysis-content {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #333;
+}
+.analysis-content h1 {
+    font-size: 1.5rem;
+    color: #0d6efd;
+    border-bottom: 3px solid #0d6efd;
+    padding-bottom: 10px;
+    margin: 25px 0 15px 0;
+}
+.analysis-content h2 {
+    font-size: 1.25rem;
+    color: #6610f2;
+    margin: 20px 0 12px 0;
+    padding-left: 10px;
+    border-left: 4px solid #6610f2;
+}
+.analysis-content h3 {
+    font-size: 1.1rem;
+    color: #555;
+    margin: 15px 0 10px 0;
+}
+.analysis-content p {
+    margin: 10px 0;
+}
+.analysis-content ul, .analysis-content ol {
+    margin: 10px 0;
+    padding-left: 25px;
+}
+.analysis-content li {
+    margin: 8px 0;
+}
+.analysis-content strong {
+    color: #0d6efd;
+}
+.analysis-content blockquote {
+    background: linear-gradient(135deg, #f8f9ff 0%, #fff5f5 100%);
+    border-left: 4px solid #0d6efd;
+    padding: 15px 20px;
+    margin: 15px 0;
+    border-radius: 0 10px 10px 0;
+    font-style: italic;
+}
+.analysis-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 0.9rem;
+}
+.analysis-content th {
+    background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+.analysis-content td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+}
+.analysis-content tr:nth-child(even) {
+    background: #f8f9ff;
+}
+.analysis-content code {
+    background: #f0f0f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+.analysis-content pre {
+    background: #2d3748;
+    color: #e2e8f0;
+    padding: 15px;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin: 15px 0;
+}
+.analysis-content pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+}
+.analysis-content hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, #0d6efd, #6610f2);
+    margin: 25px 0;
+}
+</style>
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0"><i class="bi bi-clipboard-data"></i> 메타인지 테스트 결과</h4>
+            </div>
+            <div class="card-body">
+                <!-- 학생 정보 -->
+                <div class="alert alert-light border mb-4">
+                    <div class="row">
+                        <div class="col-md-3"><strong>이름:</strong> <span id="studentName">-</span></div>
+                        <div class="col-md-3"><strong>학년:</strong> 고<span id="studentGrade">-</span></div>
+                        <div class="col-md-3"><strong>희망계열:</strong> <span id="studentCareer">-</span></div>
+                        <div class="col-md-3"><strong>목표:</strong> <span id="studentGoal">-</span></div>
+                    </div>
+                </div>
+
+                <!-- 종합 점수 -->
+                <div class="row mb-4">
+                    <div class="col-md-4 text-center">
+                        <div class="card bg-primary text-white">
+                            <div class="card-body">
+                                <h6>종합 메타인지 점수</h6>
+                                <h1 id="totalScore" class="display-4">-</h1>
+                                <p class="mb-0" id="totalLevel">-</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="card bg-info text-white">
+                            <div class="card-body">
+                                <h6>메타인지 유형</h6>
+                                <h2 id="metacogType" class="display-6">-</h2>
+                                <p class="mb-0" id="typeDesc">-</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="card bg-secondary text-white">
+                            <div class="card-body">
+                                <h6>자기인식 정확도</h6>
+                                <h2 id="awarenessType" class="display-6">-</h2>
+                                <p class="mb-0" id="awarenessDesc">-</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 영역별 점수 -->
+                <h5 class="mb-3"><i class="bi bi-bar-chart"></i> 영역별 점수</h5>
+                <div class="table-responsive mb-4">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th>영역</th>
+                                <th>점수</th>
+                                <th>수준</th>
+                                <th>그래프</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1. 자기인식 정확도</strong></td>
+                                <td id="score1">-</td>
+                                <td id="level1">-</td>
+                                <td><div class="progress"><div class="progress-bar bg-primary" id="bar1" style="width: 0%"></div></div></td>
+                            </tr>
+                            <tr>
+                                <td><strong>2. 학습전략 인식</strong></td>
+                                <td id="score2">-</td>
+                                <td id="level2">-</td>
+                                <td><div class="progress"><div class="progress-bar bg-success" id="bar2" style="width: 0%"></div></div></td>
+                            </tr>
+                            <tr>
+                                <td><strong>3. 계획/목표설정</strong></td>
+                                <td id="score3">-</td>
+                                <td id="level3">-</td>
+                                <td><div class="progress"><div class="progress-bar bg-info" id="bar3" style="width: 0%"></div></div></td>
+                            </tr>
+                            <tr>
+                                <td><strong>4. 자기점검 능력</strong></td>
+                                <td id="score4">-</td>
+                                <td id="level4">-</td>
+                                <td><div class="progress"><div class="progress-bar bg-warning" id="bar4" style="width: 0%"></div></div></td>
+                            </tr>
+                            <tr>
+                                <td><strong>5. 자기조절 능력</strong></td>
+                                <td id="score5">-</td>
+                                <td id="level5">-</td>
+                                <td><div class="progress"><div class="progress-bar bg-danger" id="bar5" style="width: 0%"></div></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 세부 분석 -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <strong><i class="bi bi-hand-thumbs-up"></i> 강점 영역</strong>
+                            </div>
+                            <div class="card-body">
+                                <ul id="strengths" class="mb-0">
+                                    <li>분석 중...</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-light">
+                                <strong><i class="bi bi-exclamation-triangle"></i> 개선 필요 영역</strong>
+                            </div>
+                            <div class="card-body">
+                                <ul id="weaknesses" class="mb-0">
+                                    <li>분석 중...</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 학습전략 세부 점수 (테스트2) -->
+                <div class="card mb-4">
+                    <div class="card-header bg-light">
+                        <strong><i class="bi bi-pie-chart"></i> 학습전략 세부 분석</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-3">
+                                <div class="border rounded p-2">
+                                    <small class="text-muted">계획 전략</small>
+                                    <h4 id="planningScore" class="mb-0">-</h4>
+                                    <small>/25점</small>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="border rounded p-2">
+                                    <small class="text-muted">점검 전략</small>
+                                    <h4 id="monitoringScore" class="mb-0">-</h4>
+                                    <small>/25점</small>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="border rounded p-2">
+                                    <small class="text-muted">조절 전략</small>
+                                    <h4 id="regulatingScore" class="mb-0">-</h4>
+                                    <small>/25점</small>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="border rounded p-2">
+                                    <small class="text-muted">인지 전략</small>
+                                    <h4 id="cognitiveScore" class="mb-0">-</h4>
+                                    <small>/25점</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI 자동 분석 -->
+        <div class="card shadow-sm mb-4 border-primary">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="bi bi-robot"></i> AI 자동 분석</h5>
+            </div>
+            <div class="card-body">
+                <p class="text-muted">
+                    아래 버튼을 클릭하면 AI가 자동으로 메타인지 테스트 결과를 분석하여 맞춤형 학습 코칭을 제공합니다.
+                </p>
+                <button class="btn btn-primary btn-lg" id="analyzeBtn" onclick="analyzeWithAI()">
+                    <i class="bi bi-cpu"></i> AI에게 자세한 분석 받기
+                </button>
+
+                <div id="loadingContainer" class="mt-4" style="display: none;">
+                    <div class="d-flex align-items-center">
+                        <div class="spinner-border text-primary me-3" role="status">
+                            <span class="visually-hidden">분석 중...</span>
+                        </div>
+                        <div>
+                            <span class="text-primary fw-bold">AI가 분석 중입니다...</span>
+                            <p class="text-muted small mb-0">분석에 1~2분 정도 소요됩니다. 잠시만 기다려주세요.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="analysisResultContainer" class="mt-4" style="display: none;">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <strong class="text-success"><i class="bi bi-check-circle"></i> AI 분석 결과</strong>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="copyAnalysis()">
+                            <i class="bi bi-clipboard"></i> 복사하기
+                        </button>
+                    </div>
+                    <div id="analysisResult" class="analysis-content border rounded p-4 bg-white shadow-sm" style="max-height: 600px; overflow-y: auto;"></div>
+                </div>
+
+                <div id="errorContainer" class="mt-4" style="display: none;">
+                    <div class="alert alert-danger" id="errorMessage"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI 분석 프롬프트 생성 (수동) -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-dark text-white">
+                <h5 class="mb-0"><i class="bi bi-magic"></i> AI 분석 프롬프트 생성 (수동)</h5>
+            </div>
+            <div class="card-body">
+                <p class="text-muted">
+                    직접 ChatGPT나 다른 AI에 복사하여 사용하고 싶다면 아래 버튼을 클릭하세요.
+                </p>
+                <button class="btn btn-dark" onclick="generateAIPrompt()">
+                    <i class="bi bi-file-text"></i> 프롬프트 생성
+                </button>
+
+                <div id="promptContainer" class="mt-4" style="display: none;">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <strong>생성된 프롬프트:</strong>
+                        <button class="btn btn-sm btn-outline-primary" onclick="copyPrompt()">
+                            <i class="bi bi-clipboard"></i> 복사하기
+                        </button>
+                    </div>
+                    <textarea id="aiPrompt" class="form-control" rows="15" readonly></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- 레이더 차트 분석 바로가기 -->
+        <div class="card shadow-sm mb-4 border-primary">
+            <div class="card-body text-center py-4">
+                <h5 class="mb-3"><i class="bi bi-diagram-3"></i> 시각적 분석 결과를 확인하세요!</h5>
+                <p class="text-muted mb-3">레이더 차트(방사형 그래프)로 메타인지 5대 영역의 균형을 한눈에 파악할 수 있습니다.</p>
+                <a href="/analysis" class="btn btn-primary btn-lg">
+                    <i class="bi bi-graph-up"></i> 레이더 차트 분석 보기
+                </a>
+            </div>
+        </div>
+
+        <!-- 버튼 -->
+        <div class="d-flex justify-content-between mb-5">
+            <a href="/" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> 처음으로
+            </a>
+            <button class="btn btn-primary" onclick="saveResults()">
+                <i class="bi bi-download"></i> 결과 저장하기
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+// 페이지 로드 시 결과 표시
+document.addEventListener('DOMContentLoaded', function() {
+    const studentInfo = JSON.parse(localStorage.getItem('studentInfo') || '{}');
+    const testResults = JSON.parse(localStorage.getItem('testResults') || '{}');
+
+    // 학생 정보 표시
+    document.getElementById('studentName').textContent = studentInfo.name || '-';
+    document.getElementById('studentGrade').textContent = studentInfo.grade || '-';
+    document.getElementById('studentCareer').textContent = studentInfo.career || '-';
+    document.getElementById('studentGoal').textContent = studentInfo.goal || '-';
+
+    // 영역별 점수 계산 및 표시
+    const test1 = testResults.test1 || {};
+    const test2 = testResults.test2 || {};
+    const test3 = testResults.test3 || {};
+    const test4 = testResults.test4 || {};
+    const test5 = testResults.test5 || {};
+
+    // 영역 1: 자기인식 정확도 (0-100점)
+    const score1 = test1.score || 0;
+    document.getElementById('score1').textContent = score1 + '점';
+    document.getElementById('level1').textContent = getLevel(score1, 100);
+    document.getElementById('bar1').style.width = score1 + '%';
+    document.getElementById('awarenessType').textContent = test1.type || '-';
+    document.getElementById('awarenessDesc').textContent = getAwarenessDesc(test1.type);
+
+    // 영역 2: 학습전략 인식 (0-100점)
+    const score2 = test2.total || 0;
+    document.getElementById('score2').textContent = score2 + '점';
+    document.getElementById('level2').textContent = getLevel(score2, 100);
+    document.getElementById('bar2').style.width = score2 + '%';
+    document.getElementById('planningScore').textContent = test2.planning || 0;
+    document.getElementById('monitoringScore').textContent = test2.monitoring || 0;
+    document.getElementById('regulatingScore').textContent = test2.regulating || 0;
+    document.getElementById('cognitiveScore').textContent = test2.cognitive || 0;
+
+    // 영역 3: 계획/목표설정 (0-100점)
+    const score3 = test3.score || 0;
+    document.getElementById('score3').textContent = score3 + '점';
+    document.getElementById('level3').textContent = getLevel(score3, 100);
+    document.getElementById('bar3').style.width = score3 + '%';
+
+    // 영역 4: 자기점검 능력 (0-36점 → 100점 환산)
+    const score4Raw = test4.score || 0;
+    const score4 = Math.round((score4Raw / 36) * 100);
+    document.getElementById('score4').textContent = score4Raw + '/36점';
+    document.getElementById('level4').textContent = getLevel(score4, 100);
+    document.getElementById('bar4').style.width = score4 + '%';
+
+    // 영역 5: 자기조절 능력 (0-20점 → 100점 환산)
+    const score5Raw = test5.score || 0;
+    const score5 = Math.round((score5Raw / 20) * 100);
+    document.getElementById('score5').textContent = score5Raw + '/20점';
+    document.getElementById('level5').textContent = getLevel(score5, 100);
+    document.getElementById('bar5').style.width = score5 + '%';
+
+    // 종합 점수 계산
+    const totalScore = Math.round((score1 + score2 + score3 + score4 + score5) / 5);
+    document.getElementById('totalScore').textContent = totalScore + '점';
+    document.getElementById('totalLevel').textContent = getTotalLevel(totalScore);
+
+    // 메타인지 유형 판정
+    const metacogType = determineMetacogType(score1, score2, score3, score4, score5);
+    document.getElementById('metacogType').textContent = metacogType.type;
+    document.getElementById('typeDesc').textContent = metacogType.desc;
+
+    // 강점/약점 분석
+    analyzeStrengthsWeaknesses([
+        {name: '자기인식 정확도', score: score1},
+        {name: '학습전략 인식', score: score2},
+        {name: '계획/목표설정', score: score3},
+        {name: '자기점검 능력', score: score4},
+        {name: '자기조절 능력', score: score5}
+    ]);
+});
+
+function getLevel(score, max) {
+    const percent = (score / max) * 100;
+    if (percent >= 80) return '상';
+    if (percent >= 60) return '중';
+    return '하';
+}
+
+function getTotalLevel(score) {
+    if (score >= 80) return '우수 (상위권)';
+    if (score >= 60) return '보통 (개선 필요)';
+    return '미흡 (집중 관리 필요)';
+}
+
+function getAwarenessDesc(type) {
+    switch(type) {
+        case '정확형': return '자기 실력을 정확히 파악';
+        case '과대평가형': return '실력보다 자신감이 높음';
+        case '과소평가형': return '실력보다 자신감이 낮음';
+        default: return '-';
+    }
+}
+
+function determineMetacogType(s1, s2, s3, s4, s5) {
+    const avg = (s1 + s2 + s3 + s4 + s5) / 5;
+    const planning = (s2 + s3) / 2;  // 계획 관련
+    const awareness = s1;             // 인식 관련
+
+    if (avg >= 70) {
+        return {type: '전략형', desc: '체계적 학습자'};
+    } else if (planning >= 60 && awareness < 60) {
+        return {type: '노력형', desc: '열심히 하나 방향 점검 필요'};
+    } else if (awareness >= 60 && planning < 60) {
+        return {type: '직관형', desc: '감은 있으나 계획 부족'};
+    } else {
+        return {type: '혼란형', desc: '체계적 학습법 필요'};
+    }
+}
+
+function analyzeStrengthsWeaknesses(scores) {
+    scores.sort((a, b) => b.score - a.score);
+
+    const strengthsList = document.getElementById('strengths');
+    const weaknessesList = document.getElementById('weaknesses');
+
+    strengthsList.innerHTML = '';
+    weaknessesList.innerHTML = '';
+
+    // 상위 2개 = 강점
+    for (let i = 0; i < 2; i++) {
+        const li = document.createElement('li');
+        li.textContent = `${scores[i].name} (${scores[i].score}점)`;
+        strengthsList.appendChild(li);
+    }
+
+    // 하위 2개 = 약점
+    for (let i = scores.length - 1; i >= scores.length - 2; i--) {
+        const li = document.createElement('li');
+        li.textContent = `${scores[i].name} (${scores[i].score}점)`;
+        weaknessesList.appendChild(li);
+    }
+}
+
+function generateAIPrompt() {
+    const studentInfo = JSON.parse(localStorage.getItem('studentInfo') || '{}');
+    const testResults = JSON.parse(localStorage.getItem('testResults') || '{}');
+
+    fetch('/generate_prompt', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            student_info: studentInfo,
+            test_results: testResults
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('aiPrompt').value = data.prompt;
+        document.getElementById('promptContainer').style.display = 'block';
+    });
+}
+
+function copyPrompt() {
+    const promptText = document.getElementById('aiPrompt');
+    promptText.select();
+    document.execCommand('copy');
+    alert('프롬프트가 복사되었습니다. AI에 붙여넣기 하세요.');
+}
+
+function analyzeWithAI() {
+    const studentInfo = JSON.parse(localStorage.getItem('studentInfo') || '{}');
+    const testResults = JSON.parse(localStorage.getItem('testResults') || '{}');
+
+    // UI 상태 변경
+    document.getElementById('analyzeBtn').disabled = true;
+    document.getElementById('loadingContainer').style.display = 'block';
+    document.getElementById('analysisResultContainer').style.display = 'none';
+    document.getElementById('errorContainer').style.display = 'none';
+
+    fetch('/analyze_with_ai', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            student_info: studentInfo,
+            test_results: testResults
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('loadingContainer').style.display = 'none';
+        document.getElementById('analyzeBtn').disabled = false;
+
+        if (data.status === 'success') {
+            // 마크다운을 HTML로 변환
+            document.getElementById('analysisResult').innerHTML = marked.parse(data.analysis);
+            document.getElementById('analysisResultContainer').style.display = 'block';
+        } else {
+            document.getElementById('errorMessage').textContent = data.message || '분석 중 오류가 발생했습니다.';
+            document.getElementById('errorContainer').style.display = 'block';
+        }
+    })
+    .catch(error => {
+        document.getElementById('loadingContainer').style.display = 'none';
+        document.getElementById('analyzeBtn').disabled = false;
+        document.getElementById('errorMessage').textContent = '서버 연결 오류: ' + error.message;
+        document.getElementById('errorContainer').style.display = 'block';
+    });
+}
+
+function copyAnalysis() {
+    const analysisText = document.getElementById('analysisResult').innerText;
+    navigator.clipboard.writeText(analysisText).then(() => {
+        alert('분석 결과가 복사되었습니다!');
+    }).catch(() => {
+        const textarea = document.createElement('textarea');
+        textarea.value = analysisText;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        alert('분석 결과가 복사되었습니다!');
+    });
+}
+
+function saveResults() {
+    const studentInfo = JSON.parse(localStorage.getItem('studentInfo') || '{}');
+    const testResults = JSON.parse(localStorage.getItem('testResults') || '{}');
+
+    fetch('/save_complete', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            student_info: studentInfo,
+            test_results: testResults
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            alert('결과가 저장되었습니다.\n파일: ' + data.filename);
+        }
+    });
+}
+</script>
+{% endblock %}

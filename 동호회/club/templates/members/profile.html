@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ user.nickname }} 프로필{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body text-center py-5">
+                {% if user.profile_image %}
+                <img src="{{ url_for('static', filename=user.profile_image) }}" class="rounded-circle mb-3" width="150" height="150" style="object-fit: cover;">
+                {% else %}
+                <div class="rounded-circle bg-secondary d-inline-flex align-items-center justify-content-center mb-3" style="width: 150px; height: 150px;">
+                    <i class="bi bi-person text-white" style="font-size: 4rem;"></i>
+                </div>
+                {% endif %}
+
+                <h2>{{ user.nickname }}</h2>
+                <p class="text-muted">{{ user.name }}</p>
+
+                <div class="mb-3">
+                    <span class="badge bg-{{ 'primary' if user.grade == 'A' else 'success' if user.grade == 'B' else 'warning' if user.grade == 'C' else 'secondary' }} fs-6">{{ user.grade }}급</span>
+                    <span class="badge bg-{{ 'info' if user.gender == 'M' else 'danger' }} fs-6">{{ '남성' if user.gender == 'M' else '여성' }}</span>
+                    {% if user.role != 'member' %}
+                    <span class="badge bg-dark fs-6">{{ '관리자' if user.role == 'admin' else '운영진' }}</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <ul class="list-group list-group-flush">
+                {% if user.introduction %}
+                <li class="list-group-item">
+                    <strong><i class="bi bi-chat-quote"></i> 자기소개</strong>
+                    <p class="mb-0 mt-2" style="white-space: pre-wrap;">{{ user.introduction }}</p>
+                </li>
+                {% endif %}
+                <li class="list-group-item d-flex justify-content-between">
+                    <span><i class="bi bi-calendar"></i> 가입일</span>
+                    <span>{{ user.joined_at.strftime('%Y-%m-%d') }}</span>
+                </li>
+                {% if user.last_login %}
+                <li class="list-group-item d-flex justify-content-between">
+                    <span><i class="bi bi-clock"></i> 최근 접속</span>
+                    <span>{{ user.last_login.strftime('%Y-%m-%d %H:%M') }}</span>
+                </li>
+                {% endif %}
+            </ul>
+
+            {% if current_user.id == user.id %}
+            <div class="card-footer text-center">
+                <a href="{{ url_for('members.edit_profile') }}" class="btn btn-primary">프로필 수정</a>
+            </div>
+            {% endif %}
+
+            {% if current_user.is_staff() and current_user.id != user.id %}
+            <div class="card-footer">
+                <div class="row g-2">
+                    <div class="col-md-6">
+                        <form action="{{ url_for('members.update_grade', user_id=user.id) }}" method="POST" class="d-flex gap-2">
+                            <select name="grade" class="form-select">
+                                <option value="A" {% if user.grade == 'A' %}selected{% endif %}>A급</option>
+                                <option value="B" {% if user.grade == 'B' %}selected{% endif %}>B급</option>
+                                <option value="C" {% if user.grade == 'C' %}selected{% endif %}>C급</option>
+                                <option value="D" {% if user.grade == 'D' %}selected{% endif %}>D급</option>
+                                <option value="E" {% if user.grade == 'E' %}selected{% endif %}>E급</option>
+                            </select>
+                            <button type="submit" class="btn btn-outline-primary">등급 변경</button>
+                        </form>
+                    </div>
+                    {% if current_user.is_admin() %}
+                    <div class="col-md-6">
+                        <form action="{{ url_for('members.update_role', user_id=user.id) }}" method="POST" class="d-flex gap-2">
+                            <select name="role" class="form-select">
+                                <option value="member" {% if user.role == 'member' %}selected{% endif %}>일반회원</option>
+                                <option value="staff" {% if user.role == 'staff' %}selected{% endif %}>운영진</option>
+                                <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>관리자</option>
+                            </select>
+                            <button type="submit" class="btn btn-outline-warning">권한 변경</button>
+                        </form>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

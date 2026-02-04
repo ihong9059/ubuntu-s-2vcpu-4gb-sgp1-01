@@ -1,0 +1,343 @@
+{% extends 'base.html' %}
+
+{% block title %}영역 4: 자기점검 능력{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <!-- 진행 상태 -->
+        <div class="progress mb-4" style="height: 25px;">
+            <div class="progress-bar" role="progressbar" style="width: 80%;">
+                4 / 5 영역
+            </div>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">
+                    <span class="badge bg-light text-primary me-2">영역 4</span>
+                    자기점검 능력
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <h5><i class="bi bi-info-circle"></i> 안내</h5>
+                    <p class="mb-0">
+                        다음은 학습 상황에서 자신을 점검하는 능력을 알아보는 질문입니다.<br>
+                        각 문항에 대해 평소 자신의 모습과 가장 가까운 것을 선택해 주세요.
+                    </p>
+                </div>
+
+                <form id="test4Form">
+                    <!-- A. 이해 점검 -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <strong><i class="bi bi-book"></i> A. 이해 점검</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <p class="fw-bold">1. 새로운 내용을 배울 때, 나는...</p>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="u1" value="1" id="u1_1">
+                                    <label class="form-check-label" for="u1_1">그냥 읽거나 듣고 넘어간다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="u1" value="2" id="u1_2">
+                                    <label class="form-check-label" for="u1_2">이해가 안 되면 다시 한번 본다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="u1" value="3" id="u1_3">
+                                    <label class="form-check-label" for="u1_3">스스로 "이해했나?" 확인하며 공부한다</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <p class="fw-bold">2. 문제를 읽을 때, 나는...</p>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="u2" value="1" id="u2_1">
+                                    <label class="form-check-label" for="u2_1">빠르게 읽고 바로 푼다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="u2" value="2" id="u2_2">
+                                    <label class="form-check-label" for="u2_2">무엇을 묻는지 파악하려고 노력한다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="u2" value="3" id="u2_3">
+                                    <label class="form-check-label" for="u2_3">핵심 정보를 표시하고 조건을 정리한 후 푼다</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <p class="fw-bold">3. 이해가 안 되는 부분이 있을 때, 나는...</p>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="u3" value="1" id="u3_1">
+                                    <label class="form-check-label" for="u3_1">그냥 넘어간다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="u3" value="2" id="u3_2">
+                                    <label class="form-check-label" for="u3_2">표시해두고 나중에 물어본다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="u3" value="3" id="u3_3">
+                                    <label class="form-check-label" for="u3_3">왜 이해가 안 되는지 파악하고 다른 방법을 찾아본다</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- B. 전략 사용 -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <strong><i class="bi bi-gear"></i> B. 전략 사용</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <p class="fw-bold">4. 어려운 문제를 만났을 때, 나는...</p>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="s1" value="1" id="s1_1">
+                                    <label class="form-check-label" for="s1_1">바로 답을 본다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="s1" value="2" id="s1_2">
+                                    <label class="form-check-label" for="s1_2">일단 내가 아는 방법으로 시도해본다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="s1" value="3" id="s1_3">
+                                    <label class="form-check-label" for="s1_3">여러 가지 접근법을 생각해보고 시도한다</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <p class="fw-bold">5. 공부할 때 필요한 개념이 떠오르지 않으면, 나는...</p>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="s2" value="1" id="s2_1">
+                                    <label class="form-check-label" for="s2_1">그냥 포기하고 다음으로 넘어간다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="s2" value="2" id="s2_2">
+                                    <label class="form-check-label" for="s2_2">교과서나 노트를 찾아본다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="s2" value="3" id="s2_3">
+                                    <label class="form-check-label" for="s2_3">관련 개념을 체계적으로 복습하고 연결지어 이해한다</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <p class="fw-bold">6. 한 가지 방법으로 막혔을 때, 나는...</p>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="s3" value="1" id="s3_1">
+                                    <label class="form-check-label" for="s3_1">같은 방법으로 계속 시도하거나 포기한다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="s3" value="2" id="s3_2">
+                                    <label class="form-check-label" for="s3_2">잠시 쉬었다가 다시 해본다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="s3" value="3" id="s3_3">
+                                    <label class="form-check-label" for="s3_3">왜 안 되는지 분석하고 다른 접근법을 시도한다</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- C. 오류 감지 -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <strong><i class="bi bi-bug"></i> C. 오류 감지</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <p class="fw-bold">7. 문제를 풀고 나서, 나는...</p>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="e1" value="1" id="e1_1">
+                                    <label class="form-check-label" for="e1_1">바로 다음 문제로 넘어간다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="e1" value="2" id="e1_2">
+                                    <label class="form-check-label" for="e1_2">답이 맞는지 확인만 한다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="e1" value="3" id="e1_3">
+                                    <label class="form-check-label" for="e1_3">풀이 과정까지 검토하고 다른 풀이도 생각해본다</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <p class="fw-bold">8. 틀린 문제가 있으면, 나는...</p>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="e2" value="1" id="e2_1">
+                                    <label class="form-check-label" for="e2_1">정답만 확인하고 넘어간다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="e2" value="2" id="e2_2">
+                                    <label class="form-check-label" for="e2_2">해설을 보고 이해한다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="e2" value="3" id="e2_3">
+                                    <label class="form-check-label" for="e2_3">왜 틀렸는지 원인을 분석하고 오답노트에 정리한다</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <p class="fw-bold">9. 내 답에 대한 확신이...</p>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="e3" value="1" id="e3_1">
+                                    <label class="form-check-label" for="e3_1">별로 없거나, 항상 자신있다 (둘 중 하나)</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="e3" value="2" id="e3_2">
+                                    <label class="form-check-label" for="e3_2">어느 정도인지 대략 알 수 있다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="e3" value="3" id="e3_3">
+                                    <label class="form-check-label" for="e3_3">확실한 것, 애매한 것, 모르는 것을 명확히 구분할 수 있다</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- D. 자기 조절 -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <strong><i class="bi bi-heart-pulse"></i> D. 자기 조절</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <p class="fw-bold">10. 공부하다가 짜증이 나거나 힘들 때, 나는...</p>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="c1" value="1" id="c1_1">
+                                    <label class="form-check-label" for="c1_1">그냥 그만둔다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="c1" value="2" id="c1_2">
+                                    <label class="form-check-label" for="c1_2">억지로 참고 계속한다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="c1" value="3" id="c1_3">
+                                    <label class="form-check-label" for="c1_3">잠시 쉬며 감정을 조절하고 다시 시작한다</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <p class="fw-bold">11. 문제가 안 풀릴 때, 나는...</p>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="c2" value="1" id="c2_1">
+                                    <label class="form-check-label" for="c2_1">빨리 포기한다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="c2" value="2" id="c2_2">
+                                    <label class="form-check-label" for="c2_2">조금 더 노력해본다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="c2" value="3" id="c2_3">
+                                    <label class="form-check-label" for="c2_3">끝까지 시도하고, 그래도 안 되면 다음에 다시 도전한다</label>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <p class="fw-bold">12. 모르는 것에 대해, 나는...</p>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="c3" value="1" id="c3_1">
+                                    <label class="form-check-label" for="c3_1">모른다는 것을 숨기거나 인정하기 싫다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="c3" value="2" id="c3_2">
+                                    <label class="form-check-label" for="c3_2">모르면 모른다고 하지만 적극적으로 질문하진 않는다</label>
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="c3" value="3" id="c3_3">
+                                    <label class="form-check-label" for="c3_3">모르는 것을 인정하고 적극적으로 질문하거나 찾아본다</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="/test3" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> 이전 영역
+                        </a>
+                        <div>
+                            <button type="button" class="btn btn-warning me-2" onclick="autoFillTest()">
+                                <i class="bi bi-lightning"></i> 테스트모드 (90점)
+                            </button>
+                            <button type="button" class="btn btn-primary btn-lg" onclick="submitTest4()">
+                                다음 영역으로 <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function autoFillTest() {
+    // 모든 문항에 최고점(3점) 선택
+    const questions = ['u1', 'u2', 'u3', 's1', 's2', 's3', 'e1', 'e2', 'e3', 'c1', 'c2', 'c3'];
+    questions.forEach(q => {
+        document.querySelector(`input[name="${q}"][value="3"]`).checked = true;
+    });
+    submitTest4();
+}
+
+function submitTest4() {
+    // 모든 문항 응답 확인
+    const questions = ['u1', 'u2', 'u3', 's1', 's2', 's3', 'e1', 'e2', 'e3', 'c1', 'c2', 'c3'];
+    for (let q of questions) {
+        if (!document.querySelector(`input[name="${q}"]:checked`)) {
+            alert('모든 문항에 응답해 주세요.');
+            return;
+        }
+    }
+
+    // 영역별 점수 계산
+    let understanding = 0;  // 이해 점검 (u1-u3)
+    let strategy = 0;       // 전략 사용 (s1-s3)
+    let errorDetection = 0; // 오류 감지 (e1-e3)
+    let selfControl = 0;    // 자기 조절 (c1-c3)
+
+    ['u1', 'u2', 'u3'].forEach(q => {
+        understanding += parseInt(document.querySelector(`input[name="${q}"]:checked`).value);
+    });
+    ['s1', 's2', 's3'].forEach(q => {
+        strategy += parseInt(document.querySelector(`input[name="${q}"]:checked`).value);
+    });
+    ['e1', 'e2', 'e3'].forEach(q => {
+        errorDetection += parseInt(document.querySelector(`input[name="${q}"]:checked`).value);
+    });
+    ['c1', 'c2', 'c3'].forEach(q => {
+        selfControl += parseInt(document.querySelector(`input[name="${q}"]:checked`).value);
+    });
+
+    const totalScore = understanding + strategy + errorDetection + selfControl;
+
+    // 결과 저장
+    const result = {
+        score: totalScore,
+        understanding: understanding,
+        strategy: strategy,
+        error_detection: errorDetection,
+        self_control: selfControl
+    };
+
+    // localStorage에 저장
+    let testResults = JSON.parse(localStorage.getItem('testResults') || '{}');
+    testResults.test4 = result;
+    localStorage.setItem('testResults', JSON.stringify(testResults));
+
+    // 서버에도 저장
+    fetch('/save_result', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({test_name: 'test4', result: result})
+    }).then(() => {
+        playNextSound(); // 다음 영역 알림음
+        setTimeout(() => {
+            window.location.href = '/test5';
+        }, 300);
+    });
+}
+</script>
+{% endblock %}

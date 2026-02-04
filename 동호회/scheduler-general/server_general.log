@@ -1,0 +1,19 @@
+============================================================
+배드민턴 대진표 생성기 (일반화 버전)
+============================================================
+http://localhost:5002
+============================================================
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7001
+ * Running on http://178.128.90.37:7001
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 108-524-061
+121.137.66.41 - - [01/Feb/2026 02:02:31] "GET / HTTP/1.1" 200 -
+121.137.66.41 - - [01/Feb/2026 02:02:31] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+121.137.66.41 - - [01/Feb/2026 02:02:32] "GET / HTTP/1.1" 200 -
+27.0.238.70 - - [01/Feb/2026 02:02:38] "GET / HTTP/1.1" 200 -

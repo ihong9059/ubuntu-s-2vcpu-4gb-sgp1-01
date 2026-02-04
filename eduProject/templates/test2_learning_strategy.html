@@ -1,0 +1,378 @@
+{% extends 'base.html' %}
+
+{% block title %}영역 2: 학습전략 인식{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <!-- 진행 상태 -->
+        <div class="progress mb-4" style="height: 25px;">
+            <div class="progress-bar" role="progressbar" style="width: 40%;">
+                2 / 5 영역
+            </div>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">
+                    <span class="badge bg-light text-primary me-2">영역 2</span>
+                    학습전략 인식 설문
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <h5><i class="bi bi-info-circle"></i> 안내</h5>
+                    <p class="mb-0">
+                        평소 학습 습관에 대한 질문입니다.<br>
+                        각 문항을 읽고 자신에게 해당하는 정도를 솔직하게 선택해 주세요.
+                    </p>
+                </div>
+
+                <form id="test2Form">
+                    <!-- A. 계획 전략 (5문항) -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <strong><i class="bi bi-calendar-check"></i> A. 계획 전략</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th style="width: 50%">문항</th>
+                                            <th class="text-center">전혀<br>아님</th>
+                                            <th class="text-center">아님</th>
+                                            <th class="text-center">보통</th>
+                                            <th class="text-center">그렇다</th>
+                                            <th class="text-center">매우<br>그렇다</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1. 나는 공부를 시작하기 전에 무엇을 공부할지 계획을 세운다.</td>
+                                            <td class="text-center"><input type="radio" name="q1" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q1" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q1" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q1" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q1" value="5" class="form-check-input"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2. 나는 시험 전 공부 일정을 미리 정해둔다.</td>
+                                            <td class="text-center"><input type="radio" name="q2" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q2" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q2" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q2" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q2" value="5" class="form-check-input"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3. 나는 과목별로 공부 시간을 배분한다.</td>
+                                            <td class="text-center"><input type="radio" name="q3" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q3" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q3" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q3" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q3" value="5" class="form-check-input"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4. 나는 목표 성적을 정하고 공부한다.</td>
+                                            <td class="text-center"><input type="radio" name="q4" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q4" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q4" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q4" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q4" value="5" class="form-check-input"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>5. 나는 하루 공부량을 정해놓고 실천한다.</td>
+                                            <td class="text-center"><input type="radio" name="q5" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q5" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q5" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q5" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q5" value="5" class="form-check-input"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- B. 점검 전략 (5문항) -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <strong><i class="bi bi-search"></i> B. 점검 전략</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th style="width: 50%">문항</th>
+                                            <th class="text-center">전혀<br>아님</th>
+                                            <th class="text-center">아님</th>
+                                            <th class="text-center">보통</th>
+                                            <th class="text-center">그렇다</th>
+                                            <th class="text-center">매우<br>그렇다</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>6. 나는 공부하면서 내가 이해했는지 스스로 확인한다.</td>
+                                            <td class="text-center"><input type="radio" name="q6" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q6" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q6" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q6" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q6" value="5" class="form-check-input"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>7. 나는 문제를 풀고 나서 왜 틀렸는지 분석한다.</td>
+                                            <td class="text-center"><input type="radio" name="q7" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q7" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q7" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q7" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q7" value="5" class="form-check-input"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>8. 나는 어려운 부분을 표시해두고 다시 본다.</td>
+                                            <td class="text-center"><input type="radio" name="q8" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q8" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q8" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q8" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q8" value="5" class="form-check-input"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>9. 나는 시험 후 오답을 정리한다.</td>
+                                            <td class="text-center"><input type="radio" name="q9" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q9" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q9" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q9" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q9" value="5" class="form-check-input"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>10. 나는 공부한 내용을 떠올려보며 복습한다.</td>
+                                            <td class="text-center"><input type="radio" name="q10" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q10" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q10" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q10" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q10" value="5" class="form-check-input"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- C. 조절 전략 (5문항) -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <strong><i class="bi bi-sliders"></i> C. 조절 전략</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th style="width: 50%">문항</th>
+                                            <th class="text-center">전혀<br>아님</th>
+                                            <th class="text-center">아님</th>
+                                            <th class="text-center">보통</th>
+                                            <th class="text-center">그렇다</th>
+                                            <th class="text-center">매우<br>그렇다</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>11. 공부가 잘 안 되면 방법을 바꿔본다.</td>
+                                            <td class="text-center"><input type="radio" name="q11" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q11" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q11" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q11" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q11" value="5" class="form-check-input"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>12. 이해가 안 되면 다른 자료를 찾아본다.</td>
+                                            <td class="text-center"><input type="radio" name="q12" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q12" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q12" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q12" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q12" value="5" class="form-check-input"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>13. 집중이 안 되면 휴식을 취하고 다시 시작한다.</td>
+                                            <td class="text-center"><input type="radio" name="q13" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q13" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q13" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q13" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q13" value="5" class="form-check-input"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>14. 시간이 부족하면 우선순위를 정해 공부한다.</td>
+                                            <td class="text-center"><input type="radio" name="q14" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q14" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q14" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q14" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q14" value="5" class="form-check-input"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>15. 성적이 안 오르면 원인을 찾아 개선한다.</td>
+                                            <td class="text-center"><input type="radio" name="q15" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q15" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q15" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q15" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q15" value="5" class="form-check-input"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- D. 인지 전략 (5문항) -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <strong><i class="bi bi-lightbulb"></i> D. 인지 전략</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th style="width: 50%">문항</th>
+                                            <th class="text-center">전혀<br>아님</th>
+                                            <th class="text-center">아님</th>
+                                            <th class="text-center">보통</th>
+                                            <th class="text-center">그렇다</th>
+                                            <th class="text-center">매우<br>그렇다</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>16. 나는 중요한 내용에 밑줄을 긋거나 표시한다.</td>
+                                            <td class="text-center"><input type="radio" name="q16" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q16" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q16" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q16" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q16" value="5" class="form-check-input"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>17. 나는 내용을 요약하거나 정리노트를 만든다.</td>
+                                            <td class="text-center"><input type="radio" name="q17" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q17" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q17" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q17" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q17" value="5" class="form-check-input"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>18. 나는 새로운 내용을 기존 지식과 연결지어 이해한다.</td>
+                                            <td class="text-center"><input type="radio" name="q18" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q18" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q18" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q18" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q18" value="5" class="form-check-input"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>19. 나는 개념을 나만의 말로 바꿔서 설명할 수 있다.</td>
+                                            <td class="text-center"><input type="radio" name="q19" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q19" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q19" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q19" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q19" value="5" class="form-check-input"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>20. 나는 그림이나 도표를 활용해서 공부한다.</td>
+                                            <td class="text-center"><input type="radio" name="q20" value="1" class="form-check-input" required></td>
+                                            <td class="text-center"><input type="radio" name="q20" value="2" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q20" value="3" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q20" value="4" class="form-check-input"></td>
+                                            <td class="text-center"><input type="radio" name="q20" value="5" class="form-check-input"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="/test1" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> 이전 영역
+                        </a>
+                        <div>
+                            <button type="button" class="btn btn-warning me-2" onclick="autoFillTest()">
+                                <i class="bi bi-lightning"></i> 테스트모드 (90점)
+                            </button>
+                            <button type="button" class="btn btn-primary btn-lg" onclick="submitTest2()">
+                                다음 영역으로 <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function autoFillTest() {
+    // 모든 문항에 "매우 그렇다" (5점) 선택
+    for (let i = 1; i <= 20; i++) {
+        document.querySelector(`input[name="q${i}"][value="5"]`).checked = true;
+    }
+    submitTest2();
+}
+
+function submitTest2() {
+    // 모든 문항 응답 확인
+    for (let i = 1; i <= 20; i++) {
+        const answer = document.querySelector(`input[name="q${i}"]:checked`);
+        if (!answer) {
+            alert(`${i}번 문항에 응답해 주세요.`);
+            return;
+        }
+    }
+
+    // 영역별 점수 계산
+    let planning = 0;    // 계획 전략 (1-5)
+    let monitoring = 0;  // 점검 전략 (6-10)
+    let regulating = 0;  // 조절 전략 (11-15)
+    let cognitive = 0;   // 인지 전략 (16-20)
+
+    for (let i = 1; i <= 5; i++) {
+        planning += parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
+    }
+    for (let i = 6; i <= 10; i++) {
+        monitoring += parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
+    }
+    for (let i = 11; i <= 15; i++) {
+        regulating += parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
+    }
+    for (let i = 16; i <= 20; i++) {
+        cognitive += parseInt(document.querySelector(`input[name="q${i}"]:checked`).value);
+    }
+
+    const total = planning + monitoring + regulating + cognitive;
+
+    // 결과 저장
+    const result = {
+        total: total,
+        planning: planning,
+        monitoring: monitoring,
+        regulating: regulating,
+        cognitive: cognitive
+    };
+
+    // localStorage에 저장
+    let testResults = JSON.parse(localStorage.getItem('testResults') || '{}');
+    testResults.test2 = result;
+    localStorage.setItem('testResults', JSON.stringify(testResults));
+
+    // 서버에도 저장
+    fetch('/save_result', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({test_name: 'test2', result: result})
+    }).then(() => {
+        playNextSound(); // 다음 영역 알림음
+        setTimeout(() => {
+            window.location.href = '/test3';
+        }, 300);
+    });
+}
+</script>
+{% endblock %}

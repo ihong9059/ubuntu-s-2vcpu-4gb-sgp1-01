@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Words - 영어 단어 학습</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=pxbXEbQF"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        * { font-family: 'Noto Sans KR', sans-serif; }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .main-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 헤더 스타일 */
+        .header {
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .stat-badge {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-right: 8px;
+        }
+
+        .stat-badge i {
+            margin-right: 5px;
+        }
+
+        /* 카드 스타일 */
+        .game-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .card-header-custom {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-body-custom {
+            padding: 25px;
+        }
+
+        /* 메뉴 버튼 */
+        .menu-btn {
+            background: linear-gradient(145deg, #f8f9ff, #fff);
+            border: 2px solid #e9ecef;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .menu-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+
+        .menu-btn .icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .menu-btn h4 {
+            margin: 0;
+            color: #333;
+        }
+
+        .menu-btn p {
+            margin: 5px 0 0;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        /* 플래시카드 */
+        .flashcard {
+            background: linear-gradient(145deg, #f8f9ff, #fff);
+            border: 3px solid #667eea;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .flashcard:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .flashcard .word {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .flashcard .meaning {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .flashcard .example {
+            font-size: 1rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        .flashcard .category-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+        }
+
+        .flashcard .level-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #22c55e;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+        }
+
+        /* 퀴즈 옵션 */
+        .quiz-option {
+            background: #f8f9ff;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1.1rem;
+        }
+
+        .quiz-option:hover {
+            border-color: #667eea;
+            background: #f0f2ff;
+        }
+
+        .quiz-option.correct {
+            background: #dcfce7;
+            border-color: #22c55e;
+            color: #166534;
+        }
+
+        .quiz-option.wrong {
+            background: #fee2e2;
+            border-color: #ef4444;
+            color: #991b1b;
+        }
+
+        .quiz-option.disabled {
+            pointer-events: none;
+        }
+
+        /* 진행 바 */
+        .progress-custom {
+            height: 10px;
+            border-radius: 10px;
+            background: #e9ecef;
+        }
+
+        .progress-custom .progress-bar {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 10px;
+        }
+
+        /* 버튼 */
+        .btn-gradient {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            color: white;
+        }
+
+        /* 결과 화면 */
+        .result-emoji {
+            font-size: 5rem;
+            margin-bottom: 20px;
+        }
+
+        .result-score {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 레벨업 모달 */
+        .level-up-animation {
+            animation: levelUp 0.5s ease-out;
+        }
+
+        @keyframes levelUp {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* XP 바 */
+        .xp-bar {
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+
+        .xp-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #fbbf24, #f59e0b);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        /* 숨김 */
+        .hidden { display: none !important; }
+
+        /* 발음 버튼 */
+        .speak-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin: 10px 0;
+        }
+
+        .speak-btn:hover {
+            background: #764ba2;
+            transform: scale(1.1);
+        }
+
+        /* 스트릭 */
+        .streak-fire {
+            color: #f59e0b;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* 모바일 최적화 */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 10px;
+            }
+            .flashcard .word {
+                font-size: 2rem;
+            }
+            .flashcard .meaning {
+                font-size: 1.2rem;
+            }
+            .stat-badge {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- 헤더 -->
+        <div class="header">
+            <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <div>
+                    <span class="stat-badge"><i class="bi bi-fire streak-fire"></i> <span id="streak">0</span>일</span>
+                    <span class="stat-badge"><i class="bi bi-star-fill"></i> Lv.<span id="level">1</span></span>
+                    <span class="stat-badge"><i class="bi bi-lightning-fill"></i> <span id="xp">0</span> XP</span>
+                </div>
+                <div>
+                    <span class="stat-badge"><i class="bi bi-trophy-fill"></i> <span id="totalScore">0</span>점</span>
+                </div>
+            </div>
+            <div class="xp-bar mt-2">
+                <div class="xp-bar-fill" id="xpBar" style="width: 0%"></div>
+            </div>
+            <small class="text-muted d-block text-end mt-1">다음 레벨까지 <span id="xpToNext">100</span> XP</small>
+        </div>
+
+        <!-- 메인 메뉴 -->
+        <div id="mainMenu" class="game-card">
+            <div class="card-header-custom">
+                <h2><i class="bi bi-book"></i> English Words</h2>
+                <p class="mb-0">재미있게 영어 단어 학습하기!</p>
+                <small class="opacity-75">v1.0.5</small>
+            </div>
+            <div class="card-body-custom">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="menu-btn" onclick="startFlashcard()">
+                            <div class="icon">📚</div>
+                            <h4>플래시카드</h4>
+                            <p>단어 암기하기</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="menu-btn" onclick="startQuiz()">
+                            <div class="icon">🎯</div>
+                            <h4>퀴즈</h4>
+                            <p>실력 테스트</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="menu-btn" onclick="showProgress()">
+                            <div class="icon">📊</div>
+                            <h4>진행 상황</h4>
+                            <p>학습 현황 보기</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="menu-btn" onclick="showSettings()">
+                            <div class="icon">⚙️</div>
+                            <h4>설정</h4>
+                            <p>레벨 선택</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 소리 활성화 버튼 -->
+                <div id="soundEnable" class="mt-3 p-3 bg-warning bg-opacity-25 rounded-3 text-center">
+                    <button class="btn btn-warning" onclick="enableSound()">
+                        <i class="bi bi-volume-up-fill"></i> 소리 켜기 (먼저 클릭!)
+                    </button>
+                </div>
+
+                <!-- 오늘의 목표 -->
+                <div class="mt-4 p-3 bg-light rounded-3">
+                    <h6><i class="bi bi-flag-fill text-primary"></i> 오늘의 목표</h6>
+                    <div class="progress progress-custom mb-2">
+                        <div class="progress-bar" id="dailyProgress" style="width: 0%"></div>
+                    </div>
+                    <small class="text-muted"><span id="todayLearned">0</span> / <span id="dailyGoal">20</span> 단어 학습</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- 플래시카드 모드 -->
+        <div id="flashcardMode" class="game-card hidden">
+            <div class="card-header-custom">
+                <div class="d-flex justify-content-between align-items-center">
+                    <button class="btn btn-light btn-sm" onclick="goHome()"><i class="bi bi-arrow-left"></i> 홈</button>
+                    <span><span id="fcCurrent">1</span> / <span id="fcTotal">10</span></span>
+                    <span class="badge bg-light text-dark" id="fcCategory">카테고리</span>
+                </div>
+            </div>
+            <div class="card-body-custom">
+                <div class="flashcard" id="flashcard" onclick="flipCard()">
+                    <span class="level-badge" id="fcLevel">Lv.1</span>
+                    <span class="category-badge" id="fcCategoryBadge">동물</span>
+                    <div id="cardFront">
+                        <div class="word" id="fcWord">apple</div>
+                        <button class="speak-btn" onclick="event.stopPropagation(); speakWord()">
+                            <i class="bi bi-volume-up-fill"></i>
+                        </button>
+                        <small class="text-muted">카드를 탭하여 뜻 보기</small>
+                    </div>
+                    <div id="cardBack" class="hidden">
+                        <div class="meaning" id="fcMeaning">사과</div>
+                        <div class="d-flex justify-content-center gap-2 my-2">
+                            <button class="speak-btn" onclick="event.stopPropagation(); speakWord()" title="단어 발음">
+                                <i class="bi bi-volume-up-fill"></i>
+                            </button>
+                            <button class="speak-btn" onclick="event.stopPropagation(); speakExample()" title="예문 듣기" style="background: #22c55e;">
+                                <i class="bi bi-chat-quote-fill"></i>
+                            </button>
+                        </div>
+                        <div class="example" id="fcExample">"I eat an apple."</div>
+                        <small class="text-muted">🔊 단어 | 💬 예문</small>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <button class="btn btn-outline-danger" onclick="markUnknown()">
+                        <i class="bi bi-x-lg"></i> 모르겠어요
+                    </button>
+                    <button class="btn btn-success" onclick="markKnown()">
+                        <i class="bi bi-check-lg"></i> 알겠어요! (+10 XP)
+                    </button>
+                </div>
+
+                <div class="progress progress-custom mt-3">
+                    <div class="progress-bar" id="fcProgress" style="width: 10%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 퀴즈 모드 -->
+        <div id="quizMode" class="game-card hidden">
+            <div class="card-header-custom">
+                <div class="d-flex justify-content-between align-items-center">
+                    <button class="btn btn-light btn-sm" onclick="goHome()"><i class="bi bi-arrow-left"></i> 홈</button>
+                    <span><span id="qCurrent">1</span> / <span id="qTotal">10</span></span>
+                    <span class="badge bg-success"><i class="bi bi-check"></i> <span id="qScore">0</span></span>
+                </div>
+            </div>
+            <div class="card-body-custom">
+                <div class="text-center mb-4">
+                    <button class="speak-btn" onclick="speakQuizWord()">
+                        <i class="bi bi-volume-up-fill"></i>
+                    </button>
+                    <h3 class="mt-2" id="quizWord">apple</h3>
+                    <p class="text-muted">위 단어의 뜻은?</p>
+                </div>
+
+                <div id="quizOptions">
+                    <!-- 옵션들이 여기에 동적으로 생성됩니다 -->
+                </div>
+
+                <div id="quizFeedback" class="hidden mt-3 p-3 rounded-3">
+                    <p id="feedbackText" class="mb-2"></p>
+                    <small id="feedbackExample" class="text-muted"></small>
+                </div>
+
+                <button id="nextQuizBtn" class="btn btn-gradient w-100 mt-3 hidden" onclick="nextQuiz()">
+                    다음 문제 <i class="bi bi-arrow-right"></i>
+                </button>
+
+                <div class="progress progress-custom mt-3">
+                    <div class="progress-bar" id="qProgress" style="width: 10%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 플래시카드 완료 -->
+        <div id="flashcardComplete" class="game-card hidden">
+            <div class="card-body-custom text-center">
+                <div class="result-emoji">📚</div>
+                <h2>학습 완료!</h2>
+                <p class="text-muted mb-4">
+                    <span id="fcLearnedCount">0</span>개 단어를 학습했습니다
+                </p>
+
+                <div class="p-3 bg-light rounded-3 mb-4">
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <h4 class="text-success mb-0">+<span id="fcEarnedXP">0</span></h4>
+                            <small class="text-muted">획득 XP</small>
+                        </div>
+                        <div>
+                            <h4 class="text-primary mb-0"><span id="fcStudiedCount">20</span>개</h4>
+                            <small class="text-muted">학습 단어</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button class="btn btn-gradient btn-lg" onclick="startQuizFromFlashcard()">
+                        <i class="bi bi-lightning-fill"></i> 방금 학습한 단어로 퀴즈!
+                    </button>
+                    <button class="btn btn-outline-primary" onclick="goHome()">
+                        <i class="bi bi-house"></i> 홈으로
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 퀴즈 결과 -->
+        <div id="quizResult" class="game-card hidden">
+            <div class="card-body-custom text-center">
+                <div class="result-emoji" id="resultEmoji">🎉</div>
+                <h2 id="resultTitle">훌륭해요!</h2>
+                <div class="result-score" id="resultScore">8/10</div>
+                <p class="text-muted mb-4">정답률 <span id="resultPercent">80</span>%</p>
+
+                <div class="p-3 bg-light rounded-3 mb-4">
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <h4 class="text-success mb-0">+<span id="earnedXP">100</span></h4>
+                            <small class="text-muted">획득 XP</small>
+                        </div>
+                        <div>
+                            <h4 class="text-primary mb-0">+<span id="earnedScore">80</span></h4>
+                            <small class="text-muted">획득 점수</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button class="btn btn-outline-primary flex-fill" onclick="goHome()">
+                        <i class="bi bi-house"></i> 홈으로
+                    </button>
+                    <button class="btn btn-gradient flex-fill" onclick="startQuiz()">
+                        <i class="bi bi-arrow-repeat"></i> 다시 도전
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 진행 상황 -->
+        <div id="progressView" class="game-card hidden">
+            <div class="card-header-custom">
+                <div class="d-flex justify-content-between align-items-center">
+                    <button class="btn btn-light btn-sm" onclick="goHome()"><i class="bi bi-arrow-left"></i> 홈</button>
+                    <h5 class="mb-0">학습 진행 상황</h5>
+                    <span></span>
+                </div>
+            </div>
+            <div class="card-body-custom">
+                <div class="mb-4">
+                    <h6>전체 진행률</h6>
+                    <div class="progress progress-custom" style="height: 20px;">
+                        <div class="progress-bar" id="totalProgress" style="width: 0%"></div>
+                    </div>
+                    <small class="text-muted"><span id="learnedWords">0</span> / 500 단어 학습</small>
+                </div>
+
+                <h6>레벨별 진행</h6>
+                <div id="levelProgress">
+                    <!-- 레벨별 진행률이 여기에 표시됩니다 -->
+                </div>
+
+                <div class="mt-4 p-3 bg-light rounded-3">
+                    <h6><i class="bi bi-graph-up text-success"></i> 학습 통계</h6>
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <h4 id="statDays">0</h4>
+                            <small class="text-muted">학습일</small>
+                        </div>
+                        <div class="col-4">
+                            <h4 id="statQuizzes">0</h4>
+                            <small class="text-muted">퀴즈 완료</small>
+                        </div>
+                        <div class="col-4">
+                            <h4 id="statAccuracy">0%</h4>
+                            <small class="text-muted">정답률</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 설정 -->
+        <div id="settingsView" class="game-card hidden">
+            <div class="card-header-custom">
+                <div class="d-flex justify-content-between align-items-center">
+                    <button class="btn btn-light btn-sm" onclick="goHome()"><i class="bi bi-arrow-left"></i> 홈</button>
+                    <h5 class="mb-0">설정</h5>
+                    <span></span>
+                </div>
+            </div>
+            <div class="card-body-custom">
+                <h6>학습 레벨 선택</h6>
+                <div class="mb-3" id="levelSelect">
+                    <!-- 레벨 선택 버튼이 여기에 표시됩니다 -->
+                </div>
+
+                <h6 class="mt-4">일일 목표</h6>
+                <div class="btn-group w-100" role="group">
+                    <input type="radio" class="btn-check" name="dailyGoal" id="goal10" value="10">
+                    <label class="btn btn-outline-primary" for="goal10">10개</label>
+                    <input type="radio" class="btn-check" name="dailyGoal" id="goal20" value="20" checked>
+                    <label class="btn btn-outline-primary" for="goal20">20개</label>
+                    <input type="radio" class="btn-check" name="dailyGoal" id="goal30" value="30">
+                    <label class="btn btn-outline-primary" for="goal30">30개</label>
+                </div>
+
+                <h6 class="mt-4">퀴즈 문제 수</h6>
+                <div class="btn-group w-100" role="group">
+                    <input type="radio" class="btn-check" name="quizCount" id="quiz10" value="10" checked>
+                    <label class="btn btn-outline-primary" for="quiz10">10문제</label>
+                    <input type="radio" class="btn-check" name="quizCount" id="quiz20" value="20">
+                    <label class="btn btn-outline-primary" for="quiz20">20문제</label>
+                    <input type="radio" class="btn-check" name="quizCount" id="quiz30" value="30">
+                    <label class="btn btn-outline-primary" for="quiz30">30문제</label>
+                </div>
+
+                <button class="btn btn-gradient w-100 mt-4" onclick="saveSettings()">
+                    <i class="bi bi-check-lg"></i> 저장
+                </button>
+
+                <hr class="my-4">
+
+                <button class="btn btn-outline-danger w-100" onclick="resetProgress()">
+                    <i class="bi bi-trash"></i> 진행 상황 초기화
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="words.js"></script>
+    <script>
+        // ===== 게임 상태 =====
+        let gameState = {
+            xp: 0,
+            level: 1,
+            totalScore: 0,
+            streak: 0,
+            lastStudyDate: null,
+            todayLearned: 0,
+            dailyGoal: 20,
+            quizCount: 10,
+            selectedLevels: [1, 2, 3, 4, 5],
+            learnedWords: [],
+            quizzesCompleted: 0,
+            totalCorrect: 0,
+            totalAnswered: 0
+        };
+
+        // 플래시카드 상태
+        let fcState = {
+            words: [],
+            currentIndex: 0,
+            isFlipped: false,
+            studiedWords: [],  // 학습한 단어들
+            earnedXP: 0        // 획득한 XP
+        };
+
+        // 퀴즈 상태
+        let quizState = {
+            words: [],
+            currentIndex: 0,
+            score: 0,
+            answered: false,
+            currentWord: null
+        };
+
+        // ===== 초기화 =====
+        function init() {
+            loadGameState();
+            updateUI();
+            checkStreak();
+        }
+
+        function loadGameState() {
+            const saved = localStorage.getItem('englishWordsGame');
+            if (saved) {
+                gameState = { ...gameState, ...JSON.parse(saved) };
+            }
+        }
+
+        function saveGameState() {
+            localStorage.setItem('englishWordsGame', JSON.stringify(gameState));
+        }
+
+        function checkStreak() {
+            const today = new Date().toDateString();
+            if (gameState.lastStudyDate !== today) {
+                const yesterday = new Date();
+                yesterday.setDate(yesterday.getDate() - 1);
+                if (gameState.lastStudyDate === yesterday.toDateString()) {
+                    // 연속 학습 유지
+                } else if (gameState.lastStudyDate !== null) {
+                    gameState.streak = 0; // 스트릭 리셋
+                }
+                gameState.todayLearned = 0;
+            }
+        }
+
+        // ===== UI 업데이트 =====
+        function updateUI() {
+            document.getElementById('level').textContent = gameState.level;
+            document.getElementById('xp').textContent = gameState.xp;
+            document.getElementById('totalScore').textContent = gameState.totalScore;
+            document.getElementById('streak').textContent = gameState.streak;
+            document.getElementById('todayLearned').textContent = gameState.todayLearned;
+            document.getElementById('dailyGoal').textContent = gameState.dailyGoal;
+
+            // XP 바 업데이트
+            const xpForLevel = gameState.level * 100;
+            const xpProgress = (gameState.xp % xpForLevel) / xpForLevel * 100;
+            document.getElementById('xpBar').style.width = xpProgress + '%';
+            document.getElementById('xpToNext').textContent = xpForLevel - (gameState.xp % xpForLevel);
+
+            // 일일 목표 진행률
+            const dailyProgress = Math.min((gameState.todayLearned / gameState.dailyGoal) * 100, 100);
+            document.getElementById('dailyProgress').style.width = dailyProgress + '%';
+        }
+
+        function addXP(amount) {
+            gameState.xp += amount;
+            const xpForLevel = gameState.level * 100;
+
+            while (gameState.xp >= xpForLevel * gameState.level) {
+                gameState.level++;
+                showLevelUp();
+            }
+
+            updateUI();
+            saveGameState();
+        }
+
+        function showLevelUp() {
+            alert(`🎉 레벨업! Level ${gameState.level} 달성!`);
+        }
+
+        // ===== 네비게이션 =====
+        function goHome() {
+            hideAll();
+            document.getElementById('mainMenu').classList.remove('hidden');
+            updateUI();
+        }
+
+        function hideAll() {
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('flashcardMode').classList.add('hidden');
+            document.getElementById('flashcardComplete').classList.add('hidden');
+            document.getElementById('quizMode').classList.add('hidden');
+            document.getElementById('quizResult').classList.add('hidden');
+            document.getElementById('progressView').classList.add('hidden');
+            document.getElementById('settingsView').classList.add('hidden');
+        }
+
+        // ===== 플래시카드 =====
+        function startFlashcard() {
+            hideAll();
+            document.getElementById('flashcardMode').classList.remove('hidden');
+
+            // 선택된 레벨의 단어 필터링
+            fcState.words = wordDatabase.filter(w => gameState.selectedLevels.includes(w.level));
+            shuffleArray(fcState.words);
+            fcState.words = fcState.words.slice(0, 20); // 20개만
+            fcState.currentIndex = 0;
+            fcState.isFlipped = false;
+            fcState.studiedWords = [];  // 학습한 단어 초기화
+            fcState.earnedXP = 0;       // 획득 XP 초기화
+
+            showFlashcard();
+        }
+
+        function showFlashcard() {
+            const word = fcState.words[fcState.currentIndex];
+            document.getElementById('fcWord').textContent = word.word;
+            document.getElementById('fcMeaning').textContent = word.meaning;
+            document.getElementById('fcExample').textContent = `"${word.example}"`;
+            document.getElementById('fcLevel').textContent = `Lv.${word.level}`;
+            document.getElementById('fcCategoryBadge').textContent = word.category;
+            document.getElementById('fcCurrent').textContent = fcState.currentIndex + 1;
+            document.getElementById('fcTotal').textContent = fcState.words.length;
+
+            // 카드 앞면 보이기
+            document.getElementById('cardFront').classList.remove('hidden');
+            document.getElementById('cardBack').classList.add('hidden');
+            fcState.isFlipped = false;
+
+            // 진행률
+            const progress = ((fcState.currentIndex + 1) / fcState.words.length) * 100;
+            document.getElementById('fcProgress').style.width = progress + '%';
+        }
+
+        function flipCard() {
+            fcState.isFlipped = !fcState.isFlipped;
+            if (fcState.isFlipped) {
+                document.getElementById('cardFront').classList.add('hidden');
+                document.getElementById('cardBack').classList.remove('hidden');
+            } else {
+                document.getElementById('cardFront').classList.remove('hidden');
+                document.getElementById('cardBack').classList.add('hidden');
+            }
+        }
+
+        function markKnown() {
+            const word = fcState.words[fcState.currentIndex];
+            if (!gameState.learnedWords.includes(word.word)) {
+                gameState.learnedWords.push(word.word);
+            }
+            // 학습한 단어 추적
+            fcState.studiedWords.push(word);
+            fcState.earnedXP += 10;
+
+            addXP(10);
+            gameState.totalScore += 10;
+            gameState.todayLearned++;
+            gameState.lastStudyDate = new Date().toDateString();
+            if (gameState.todayLearned === 1) gameState.streak++;
+            saveGameState();
+            nextFlashcard();
+        }
+
+        function markUnknown() {
+            // 모르는 단어도 퀴즈 대상에 포함
+            const word = fcState.words[fcState.currentIndex];
+            fcState.studiedWords.push(word);
+            nextFlashcard();
+        }
+
+        function nextFlashcard() {
+            fcState.currentIndex++;
+            if (fcState.currentIndex >= fcState.words.length) {
+                showFlashcardComplete();
+            } else {
+                showFlashcard();
+            }
+        }
+
+        function showFlashcardComplete() {
+            hideAll();
+            document.getElementById('flashcardComplete').classList.remove('hidden');
+
+            const learnedCount = fcState.studiedWords.filter(w =>
+                gameState.learnedWords.includes(w.word)
+            ).length;
+
+            document.getElementById('fcLearnedCount').textContent = learnedCount;
+            document.getElementById('fcEarnedXP').textContent = fcState.earnedXP;
+            document.getElementById('fcStudiedCount').textContent = fcState.studiedWords.length;
+        }
+
+        function startQuizFromFlashcard() {
+            hideAll();
+            document.getElementById('quizMode').classList.remove('hidden');
+
+            // 방금 학습한 단어로 퀴즈!
+            quizState.words = [...fcState.studiedWords];
+            shuffleArray(quizState.words);
+            quizState.currentIndex = 0;
+            quizState.score = 0;
+            quizState.answered = false;
+
+            document.getElementById('qTotal').textContent = quizState.words.length;
+            showQuiz();
+        }
+
+        function speakWord() {
+            const word = fcState.words[fcState.currentIndex];
+            speak(word.word);
+        }
+
+        function speakExample() {
+            const word = fcState.words[fcState.currentIndex];
+            speak(word.example);
+        }
+
+        // ===== 퀴즈 =====
+        function startQuiz() {
+            hideAll();
+            document.getElementById('quizMode').classList.remove('hidden');
+
+            // 선택된 레벨의 단어 필터링
+            quizState.words = wordDatabase.filter(w => gameState.selectedLevels.includes(w.level));
+            shuffleArray(quizState.words);
+            quizState.words = quizState.words.slice(0, gameState.quizCount);
+            quizState.currentIndex = 0;
+            quizState.score = 0;
+            quizState.answered = false;
+
+            showQuiz();
+        }
+
+        function showQuiz() {
+            const word = quizState.words[quizState.currentIndex];
+            quizState.currentWord = word;
+            quizState.answered = false;
+
+            document.getElementById('quizWord').textContent = word.word;
+            document.getElementById('qCurrent').textContent = quizState.currentIndex + 1;
+            document.getElementById('qTotal').textContent = quizState.words.length;
+            document.getElementById('qScore').textContent = quizState.score;
+
+            // 옵션 생성
+            const options = generateOptions(word);
+            const optionsHtml = options.map((opt, i) => `
+                <div class="quiz-option" onclick="selectAnswer(${i}, '${opt.replace(/'/g, "\\'")}')">${opt}</div>
+            `).join('');
+            document.getElementById('quizOptions').innerHTML = optionsHtml;
+
+            // 피드백 숨기기
+            document.getElementById('quizFeedback').classList.add('hidden');
+            document.getElementById('nextQuizBtn').classList.add('hidden');
+
+            // 진행률
+            const progress = ((quizState.currentIndex + 1) / quizState.words.length) * 100;
+            document.getElementById('qProgress').style.width = progress + '%';
+        }
+
+        function generateOptions(correctWord) {
+            const options = [correctWord.meaning];
+            const otherWords = wordDatabase.filter(w => w.meaning !== correctWord.meaning);
+            shuffleArray(otherWords);
+
+            for (let i = 0; i < 3 && i < otherWords.length; i++) {
+                options.push(otherWords[i].meaning);
+            }
+
+            shuffleArray(options);
+            return options;
+        }
+
+        function selectAnswer(index, selected) {
+            if (quizState.answered) return;
+            quizState.answered = true;
+
+            const correct = quizState.currentWord.meaning;
+            const options = document.querySelectorAll('.quiz-option');
+
+            options.forEach((opt, i) => {
+                opt.classList.add('disabled');
+                if (opt.textContent === correct) {
+                    opt.classList.add('correct');
+                } else if (i === index && selected !== correct) {
+                    opt.classList.add('wrong');
+                }
+            });
+
+            const feedback = document.getElementById('quizFeedback');
+            const feedbackText = document.getElementById('feedbackText');
+            const feedbackExample = document.getElementById('feedbackExample');
+
+            gameState.totalAnswered++;
+
+            if (selected === correct) {
+                quizState.score++;
+                gameState.totalCorrect++;
+                feedback.className = 'mt-3 p-3 rounded-3 bg-success bg-opacity-10';
+                feedbackText.innerHTML = '<i class="bi bi-check-circle-fill text-success"></i> 정답입니다! +20 XP';
+                // 축하 효과!
+                celebrate();
+            } else {
+                feedback.className = 'mt-3 p-3 rounded-3 bg-danger bg-opacity-10';
+                feedbackText.innerHTML = `<i class="bi bi-x-circle-fill text-danger"></i> 오답! 정답: ${correct}`;
+            }
+
+            feedbackExample.textContent = `예문: ${quizState.currentWord.example}`;
+            feedback.classList.remove('hidden');
+            document.getElementById('nextQuizBtn').classList.remove('hidden');
+
+            saveGameState();
+        }
+
+        function nextQuiz() {
+            quizState.currentIndex++;
+            if (quizState.currentIndex >= quizState.words.length) {
+                showQuizResult();
+            } else {
+                showQuiz();
+            }
+        }
+
+        function showQuizResult() {
+            hideAll();
+            document.getElementById('quizResult').classList.remove('hidden');
+
+            const total = quizState.words.length;
+            const score = quizState.score;
+            const percent = Math.round((score / total) * 100);
+            const earnedXP = score * 20;
+            const earnedScore = score * 10;
+
+            // 결과에 따른 이모지
+            let emoji = '😢';
+            let title = '다시 도전해보세요!';
+            if (percent >= 90) { emoji = '🏆'; title = '완벽해요!'; }
+            else if (percent >= 70) { emoji = '🎉'; title = '훌륭해요!'; }
+            else if (percent >= 50) { emoji = '👍'; title = '잘했어요!'; }
+
+            document.getElementById('resultEmoji').textContent = emoji;
+            document.getElementById('resultTitle').textContent = title;
+            document.getElementById('resultScore').textContent = `${score}/${total}`;
+            document.getElementById('resultPercent').textContent = percent;
+            document.getElementById('earnedXP').textContent = earnedXP;
+            document.getElementById('earnedScore').textContent = earnedScore;
+
+            // XP 및 점수 추가
+            addXP(earnedXP);
+            gameState.totalScore += earnedScore;
+            gameState.quizzesCompleted++;
+            gameState.todayLearned += score;
+            gameState.lastStudyDate = new Date().toDateString();
+            if (gameState.todayLearned <= score) gameState.streak++;
+
+            saveGameState();
+        }
+
+        function speakQuizWord() {
+            speak(quizState.currentWord.word);
+        }
+
+        // ===== 진행 상황 =====
+        function showProgress() {
+            hideAll();
+            document.getElementById('progressView').classList.remove('hidden');
+
+            const learned = gameState.learnedWords.length;
+            const total = 500;
+            const percent = Math.round((learned / total) * 100);
+
+            document.getElementById('learnedWords').textContent = learned;
+            document.getElementById('totalProgress').style.width = percent + '%';
+
+            // 레벨별 진행률
+            let levelHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                const levelWords = wordDatabase.filter(w => w.level === i);
+                const learnedInLevel = levelWords.filter(w => gameState.learnedWords.includes(w.word)).length;
+                const levelPercent = Math.round((learnedInLevel / levelWords.length) * 100);
+
+                levelHtml += `
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <small>레벨 ${i}: ${levelStats[i].name}</small>
+                            <small>${learnedInLevel}/${levelWords.length}</small>
+                        </div>
+                        <div class="progress progress-custom" style="height: 8px;">
+                            <div class="progress-bar" style="width: ${levelPercent}%"></div>
+                        </div>
+                    </div>
+                `;
+            }
+            document.getElementById('levelProgress').innerHTML = levelHtml;
+
+            // 통계
+            document.getElementById('statDays').textContent = gameState.streak;
+            document.getElementById('statQuizzes').textContent = gameState.quizzesCompleted;
+            const accuracy = gameState.totalAnswered > 0
+                ? Math.round((gameState.totalCorrect / gameState.totalAnswered) * 100)
+                : 0;
+            document.getElementById('statAccuracy').textContent = accuracy + '%';
+        }
+
+        // ===== 설정 =====
+        function showSettings() {
+            hideAll();
+            document.getElementById('settingsView').classList.remove('hidden');
+
+            // 레벨 선택 버튼 생성
+            let levelHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                const checked = gameState.selectedLevels.includes(i) ? 'checked' : '';
+                levelHtml += `
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="level${i}" value="${i}" ${checked}>
+                        <label class="form-check-label" for="level${i}">Lv.${i} ${levelStats[i].name}</label>
+                    </div>
+                `;
+            }
+            document.getElementById('levelSelect').innerHTML = levelHtml;
+
+            // 일일 목표
+            document.getElementById(`goal${gameState.dailyGoal}`).checked = true;
+
+            // 퀴즈 문제 수
+            document.getElementById(`quiz${gameState.quizCount}`).checked = true;
+        }
+
+        function saveSettings() {
+            // 레벨 선택 저장
+            gameState.selectedLevels = [];
+            for (let i = 1; i <= 5; i++) {
+                if (document.getElementById(`level${i}`).checked) {
+                    gameState.selectedLevels.push(i);
+                }
+            }
+            if (gameState.selectedLevels.length === 0) {
+                gameState.selectedLevels = [1];
+            }
+
+            // 일일 목표
+            const goalRadio = document.querySelector('input[name="dailyGoal"]:checked');
+            gameState.dailyGoal = parseInt(goalRadio.value);
+
+            // 퀴즈 문제 수
+            const quizRadio = document.querySelector('input[name="quizCount"]:checked');
+            gameState.quizCount = parseInt(quizRadio.value);
+
+            saveGameState();
+            alert('설정이 저장되었습니다!');
+            goHome();
+        }
+
+        function resetProgress() {
+            if (confirm('정말 모든 진행 상황을 초기화하시겠습니까?')) {
+                localStorage.removeItem('englishWordsGame');
+                location.reload();
+            }
+        }
+
+        // ===== 유틸리티 =====
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        let soundEnabled = false;
+        let audioContext = null;
+
+        // 축하 효과
+        function celebrate() {
+            // 팡파레 화면 (컨페티)
+            if (typeof confetti !== 'undefined') {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#667eea', '#764ba2', '#f59e0b', '#22c55e', '#ef4444']
+                });
+            }
+
+            // 축하 멜로디
+            playFanfare();
+        }
+
+        function playFanfare() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+            const duration = 0.15;
+
+            notes.forEach((freq, i) => {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                oscillator.frequency.value = freq;
+                oscillator.type = 'sine';
+
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime + i * duration);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + i * duration + duration);
+
+                oscillator.start(audioContext.currentTime + i * duration);
+                oscillator.stop(audioContext.currentTime + i * duration + duration);
+            });
+        }
+
+        function enableSound() {
+            // 모바일에서 오디오 활성화
+            soundEnabled = true;
+
+            // ResponsiveVoice 활성화
+            if (typeof responsiveVoice !== 'undefined') {
+                responsiveVoice.speak("Sound enabled", "US English Female", {
+                    volume: 1,
+                    onend: function() {
+                        document.getElementById('soundEnable').innerHTML =
+                            '<span class="text-success"><i class="bi bi-check-circle-fill"></i> 소리가 활성화되었습니다!</span>';
+                    }
+                });
+            } else {
+                // Web Speech API 활성화
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance("Sound enabled");
+                    utterance.lang = 'en-US';
+                    utterance.onend = function() {
+                        document.getElementById('soundEnable').innerHTML =
+                            '<span class="text-success"><i class="bi bi-check-circle-fill"></i> 소리가 활성화되었습니다!</span>';
+                    };
+                    speechSynthesis.speak(utterance);
+                }
+            }
+        }
+
+        function speak(text) {
+            if (!soundEnabled) {
+                alert('먼저 메인 화면에서 "소리 켜기" 버튼을 눌러주세요!');
+                return;
+            }
+
+            // ResponsiveVoice 사용 (모바일 호환)
+            if (typeof responsiveVoice !== 'undefined') {
+                responsiveVoice.cancel();
+                responsiveVoice.speak(text, "US English Female", {
+                    pitch: 1,
+                    rate: 0.9,
+                    volume: 1
+                });
+            } else {
+                // 폴백: Web Speech API
+                if ('speechSynthesis' in window) {
+                    speechSynthesis.cancel();
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.lang = 'en-US';
+                    utterance.rate = 0.8;
+                    speechSynthesis.speak(utterance);
+                }
+            }
+        }
+
+        // 초기화 실행
+        init();
+    </script>
+</body>
+</html>

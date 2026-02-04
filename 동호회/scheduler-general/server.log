@@ -1,0 +1,33 @@
+============================================================
+배드민턴 대진표 생성기 (일반화 버전)
+============================================================
+http://localhost:5002
+============================================================
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7001
+ * Running on http://178.128.90.37:7001
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 399-017-404
+121.137.66.41 - - [01/Feb/2026 07:22:17] "GET / HTTP/1.1" 200 -
+121.137.66.41 - - [01/Feb/2026 07:22:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+121.137.66.41 - - [01/Feb/2026 07:22:28] "POST /api/generate HTTP/1.1" 200 -
+121.137.66.41 - - [01/Feb/2026 07:22:28] "GET /api/schedule HTTP/1.1" 200 -
+121.137.66.41 - - [01/Feb/2026 07:22:52] "GET / HTTP/1.1" 200 -
+121.137.66.41 - - [01/Feb/2026 07:24:03] "POST /api/generate HTTP/1.1" 200 -
+121.137.66.41 - - [01/Feb/2026 07:24:03] "GET /api/schedule HTTP/1.1" 200 -
+121.137.66.41 - - [01/Feb/2026 07:25:37] "POST /api/generate HTTP/1.1" 200 -
+121.137.66.41 - - [01/Feb/2026 07:25:37] "GET /api/schedule HTTP/1.1" 200 -
+127.0.0.1 - - [01/Feb/2026 07:31:26] "GET /api/schedule HTTP/1.1" 200 -
+127.0.0.1 - - [01/Feb/2026 07:32:05] "GET /api/players HTTP/1.1" 200 -
+69.164.217.74 - - [01/Feb/2026 07:34:46] "GET / HTTP/1.1" 200 -
+172.236.228.224 - - [01/Feb/2026 07:34:50] "GET / HTTP/1.1" 200 -
+121.137.66.41 - - [01/Feb/2026 07:38:39] "GET / HTTP/1.1" 200 -
+121.137.66.41 - - [01/Feb/2026 07:39:16] "POST /api/generate HTTP/1.1" 200 -
+121.137.66.41 - - [01/Feb/2026 07:39:16] "GET /api/schedule HTTP/1.1" 200 -
+121.137.66.41 - - [01/Feb/2026 07:40:32] "GET /api/player/민수 HTTP/1.1" 200 -
+27.0.238.118 - - [01/Feb/2026 07:44:03] "GET / HTTP/1.1" 200 -

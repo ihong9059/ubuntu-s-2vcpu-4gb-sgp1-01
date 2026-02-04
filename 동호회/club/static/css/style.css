@@ -1,0 +1,201 @@
+/* 배드민턴 동호회 스타일 */
+
+:root {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --info-color: #0dcaf0;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+}
+
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* 네비게이션 */
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+/* 카드 */
+.card {
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    font-weight: 600;
+}
+
+/* 테이블 */
+.table {
+    margin-bottom: 0;
+}
+
+.table th {
+    font-weight: 600;
+    background-color: #f8f9fa;
+}
+
+/* 버튼 */
+.btn {
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* 배지 */
+.badge {
+    font-weight: 500;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+/* 폼 */
+.form-control, .form-select {
+    border-radius: 8px;
+    padding: 10px 14px;
+    border: 1px solid #dee2e6;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+/* 알림 */
+.alert {
+    border-radius: 10px;
+    border: none;
+}
+
+/* 페이지네이션 */
+.pagination .page-link {
+    border-radius: 8px;
+    margin: 0 2px;
+    border: none;
+    color: var(--secondary-color);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--primary-color);
+}
+
+/* 목록 그룹 */
+.list-group-item {
+    border-left: none;
+    border-right: none;
+    padding: 12px 16px;
+}
+
+.list-group-item:first-child {
+    border-top: none;
+}
+
+.list-group-item:last-child {
+    border-bottom: none;
+}
+
+/* 드롭다운 */
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.dropdown-item {
+    border-radius: 6px;
+    padding: 8px 12px;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}
+
+/* 푸터 */
+footer {
+    border-top: 1px solid #eee;
+}
+
+/* 프로필 이미지 */
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* 게시글 내용 */
+.post-content {
+    line-height: 1.8;
+    word-break: break-word;
+}
+
+/* 회원 카드 호버 효과 무효화 */
+.col-md-6 > a > .card:hover,
+.col-md-4 > a > .card:hover,
+.col-lg-3 > a > .card:hover,
+.col-lg-4 > a > .card:hover {
+    transform: none;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+    }
+
+    .table-responsive {
+        font-size: 0.9rem;
+    }
+}
+
+/* 스크롤바 스타일 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}

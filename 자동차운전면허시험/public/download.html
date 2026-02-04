@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>운전면허시험 앱 다운로드</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; }
+        .download-card { background: white; border-radius: 20px; padding: 40px; max-width: 500px; margin: 50px auto; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .app-icon { width: 120px; height: 120px; border-radius: 25px; margin-bottom: 20px; }
+        .download-btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; padding: 15px 40px; font-size: 1.2rem; border-radius: 30px; }
+        .download-btn:hover { transform: scale(1.05); }
+        .step { background: #f8f9fa; border-radius: 10px; padding: 15px; margin: 10px 0; }
+        .step-num { background: #667eea; color: white; width: 30px; height: 30px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="download-card text-center">
+            <img src="/images/logo.jpg" alt="운전면허시험" class="app-icon">
+            <h2 class="mb-3">운전면허시험</h2>
+            <p class="text-muted mb-4">한국 운전면허 필기시험 학습 앱<br>500문제 문제은행 + 모의시험</p>
+            
+            <a href="/DrivingLicense.apk" class="btn btn-primary download-btn mb-4">
+                📥 APK 다운로드
+            </a>
+            
+            <div class="text-start mt-4">
+                <h5 class="mb-3">📱 설치 방법</h5>
+                <div class="step">
+                    <span class="step-num">1</span>
+                    위 버튼을 눌러 APK 다운로드
+                </div>
+                <div class="step">
+                    <span class="step-num">2</span>
+                    다운로드된 파일 열기
+                </div>
+                <div class="step">
+                    <span class="step-num">3</span>
+                    "출처를 알 수 없는 앱" 설치 허용
+                </div>
+                <div class="step">
+                    <span class="step-num">4</span>
+                    설치 완료 후 앱 실행
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            <small class="text-muted">
+                버전: 1.0 | 크기: ~50KB<br>
+                Android 8.0 이상 지원
+            </small>
+        </div>
+    </div>
+</body>
+</html>

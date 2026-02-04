@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block title %}배드민턴 동호회 - 홈{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- 환영 메시지 -->
+    <div class="col-12 mb-4">
+        <div class="card bg-primary text-white">
+            <div class="card-body text-center py-5">
+                <h1 class="display-4"><i class="bi bi-trophy"></i> 배드민턴 동호회</h1>
+                <p class="lead mb-0">함께 즐기는 건강한 배드민턴 생활</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 공지사항 -->
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="bi bi-megaphone"></i> 공지사항</h5>
+                <a href="{{ url_for('board.list', board_type='notice') }}" class="btn btn-sm btn-outline-primary">더보기</a>
+            </div>
+            <div class="card-body">
+                {% if notices %}
+                <ul class="list-group list-group-flush">
+                    {% for post in notices %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a href="{{ url_for('board.view', board_type='notice', post_id=post.id) }}" class="text-decoration-none text-truncate">
+                            {{ post.title }}
+                        </a>
+                        <small class="text-muted">{{ post.created_at.strftime('%m/%d') }}</small>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p class="text-muted text-center mb-0">공지사항이 없습니다.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- 최근 게시글 -->
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="bi bi-chat-dots"></i> 자유게시판</h5>
+                <a href="{{ url_for('board.list', board_type='free') }}" class="btn btn-sm btn-outline-primary">더보기</a>
+            </div>
+            <div class="card-body">
+                {% if recent_posts %}
+                <ul class="list-group list-group-flush">
+                    {% for post in recent_posts %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a href="{{ url_for('board.view', board_type='free', post_id=post.id) }}" class="text-decoration-none text-truncate">
+                            {{ post.title }}
+                        </a>
+                        <small class="text-muted">{{ post.author.nickname }}</small>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p class="text-muted text-center mb-0">게시글이 없습니다.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- 다가오는 일정 -->
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="bi bi-calendar-event"></i> 다가오는 일정</h5>
+                <a href="{{ url_for('schedule.index') }}" class="btn btn-sm btn-outline-primary">더보기</a>
+            </div>
+            <div class="card-body">
+                {% if upcoming_schedules %}
+                <ul class="list-group list-group-flush">
+                    {% for schedule in upcoming_schedules %}
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('schedule.view', schedule_id=schedule.id) }}" class="text-decoration-none">
+                                {{ schedule.title }}
+                            </a>
+                            <span class="badge bg-primary">{{ schedule.event_date.strftime('%m/%d') }}</span>
+                        </div>
+                        {% if schedule.location %}
+                        <small class="text-muted"><i class="bi bi-geo-alt"></i> {{ schedule.location }}</small>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p class="text-muted text-center mb-0">예정된 일정이 없습니다.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- 최근 앨범 -->
+    <div class="col-md-6 mb-4">
+        <div class="card h-100">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="bi bi-images"></i> 최근 앨범</h5>
+                <a href="{{ url_for('gallery.index') }}" class="btn btn-sm btn-outline-primary">더보기</a>
+            </div>
+            <div class="card-body">
+                {% if recent_albums %}
+                <div class="row g-2">
+                    {% for album in recent_albums %}
+                    <div class="col-6">
+                        <a href="{{ url_for('gallery.album', album_id=album.id) }}" class="text-decoration-none">
+                            <div class="card">
+                                {% if album.cover_image %}
+                                <img src="{{ url_for('static', filename=album.cover_image) }}" class="card-img-top" alt="{{ album.title }}" style="height: 100px; object-fit: cover;">
+                                {% else %}
+                                <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center" style="height: 100px;">
+                                    <i class="bi bi-image text-white fs-1"></i>
+                                </div>
+                                {% endif %}
+                                <div class="card-body p-2">
+                                    <small class="text-truncate d-block">{{ album.title }}</small>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-muted text-center mb-0">앨범이 없습니다.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,634 @@
+{% extends 'base.html' %}
+
+{% block title %}결과 분석 - 레이더 차트{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-11">
+        <!-- 학생 정보 헤더 -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="bi bi-graph-up"></i> 메타인지 특성 분석</h4>
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h5><i class="bi bi-person-fill"></i> <span id="studentName">학생</span></h5>
+                        <p class="text-muted mb-0">
+                            고등학교 <span id="studentGrade">2</span>학년 |
+                            희망계열: <span id="studentCareer">-</span> |
+                            목표: <span id="studentGoal">-</span>
+                        </p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <span class="badge bg-primary fs-5">종합 점수: <span id="totalScore">0</span>점</span>
+                        <span class="badge bg-info fs-5 ms-2">유형: <span id="metacogType">-</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- 레이더 차트 -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-light">
+                        <strong><i class="bi bi-diagram-3"></i> 메타인지 5대 영역 분석</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container" style="position: relative; height: 400px;">
+                            <canvas id="radarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 평균 비교 차트 -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-light">
+                        <strong><i class="bi bi-bar-chart-fill"></i> 평균 대비 비교</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container" style="position: relative; height: 400px;">
+                            <canvas id="comparisonChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 학습전략 세부 분석 레이더 -->
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-light">
+                        <strong><i class="bi bi-gear-fill"></i> 학습전략 세부 분석</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container" style="position: relative; height: 350px;">
+                            <canvas id="strategyRadarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 자기점검 세부 분석 -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-light">
+                        <strong><i class="bi bi-search"></i> 자기점검 능력 세부 분석</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container" style="position: relative; height: 350px;">
+                            <canvas id="monitoringRadarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 영역별 상세 점수 테이블 -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-light">
+                <strong><i class="bi bi-table"></i> 영역별 상세 점수</strong>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>영역</th>
+                                <th class="text-center">점수</th>
+                                <th class="text-center">환산점수 (100점)</th>
+                                <th class="text-center">수준</th>
+                                <th class="text-center">평균 대비</th>
+                                <th>해석</th>
+                            </tr>
+                        </thead>
+                        <tbody id="scoreTableBody">
+                            <!-- JavaScript로 채움 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 종합 분석 코멘트 -->
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-success text-white">
+                <strong><i class="bi bi-chat-square-text"></i> 종합 분석 코멘트</strong>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-success"><i class="bi bi-hand-thumbs-up-fill"></i> 강점</h6>
+                        <ul id="strengthsList" class="mb-3">
+                            <!-- JavaScript로 채움 -->
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="text-danger"><i class="bi bi-exclamation-triangle-fill"></i> 개선 필요</h6>
+                        <ul id="weaknessesList" class="mb-3">
+                            <!-- JavaScript로 채움 -->
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <div id="overallComment" class="alert alert-info mb-0">
+                    <!-- JavaScript로 채움 -->
+                </div>
+            </div>
+        </div>
+
+        <!-- 버튼 -->
+        <div class="d-flex justify-content-between mb-5">
+            <a href="/result" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> 결과 페이지로
+            </a>
+            <div>
+                <button class="btn btn-outline-primary me-2" onclick="printPage()">
+                    <i class="bi bi-printer"></i> 인쇄하기
+                </button>
+                <button class="btn btn-primary" onclick="downloadChart()">
+                    <i class="bi bi-download"></i> 차트 이미지 저장
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+// 전역 변수
+let radarChart, comparisonChart, strategyRadarChart, monitoringRadarChart;
+
+// 평균 데이터 (샘플 - 실제 서비스에서는 DB에서 가져옴)
+const averageScores = {
+    selfAwareness: 55,
+    learningStrategy: 60,
+    planning: 50,
+    selfMonitoring: 58,
+    selfRegulation: 55
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+    const studentInfo = JSON.parse(localStorage.getItem('studentInfo') || '{}');
+    const testResults = JSON.parse(localStorage.getItem('testResults') || '{}');
+
+    // 학생 정보 표시
+    document.getElementById('studentName').textContent = studentInfo.name || '학생';
+    document.getElementById('studentGrade').textContent = studentInfo.grade || '2';
+    document.getElementById('studentCareer').textContent = studentInfo.career || '미정';
+    document.getElementById('studentGoal').textContent = studentInfo.goal || '미정';
+
+    // 점수 계산
+    const test1 = testResults.test1 || {};
+    const test2 = testResults.test2 || {};
+    const test3 = testResults.test3 || {};
+    const test4 = testResults.test4 || {};
+    const test5 = testResults.test5 || {};
+
+    const scores = {
+        selfAwareness: test1.score || 0,
+        learningStrategy: test2.total || 0,
+        planning: test3.score || 0,
+        selfMonitoring: Math.round((test4.score || 0) / 36 * 100),
+        selfRegulation: Math.round((test5.score || 0) / 20 * 100)
+    };
+
+    const totalScore = Math.round(
+        (scores.selfAwareness + scores.learningStrategy + scores.planning +
+         scores.selfMonitoring + scores.selfRegulation) / 5
+    );
+
+    document.getElementById('totalScore').textContent = totalScore;
+
+    // 메타인지 유형 판정
+    const metacogType = determineMetacogType(scores);
+    document.getElementById('metacogType').textContent = metacogType;
+
+    // 레이더 차트 생성
+    createRadarChart(scores);
+    createComparisonChart(scores);
+    createStrategyRadarChart(test2);
+    createMonitoringRadarChart(test4);
+
+    // 테이블 생성
+    createScoreTable(scores, test1, test2, test3, test4, test5);
+
+    // 분석 코멘트 생성
+    generateAnalysisComments(scores, metacogType);
+});
+
+function createRadarChart(scores) {
+    const ctx = document.getElementById('radarChart').getContext('2d');
+
+    radarChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['자기인식\n정확도', '학습전략\n인식', '계획/목표\n설정', '자기점검\n능력', '자기조절\n능력'],
+            datasets: [{
+                label: '나의 메타인지',
+                data: [
+                    scores.selfAwareness,
+                    scores.learningStrategy,
+                    scores.planning,
+                    scores.selfMonitoring,
+                    scores.selfRegulation
+                ],
+                backgroundColor: 'rgba(54, 162, 235, 0.3)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 3,
+                pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                pointBorderColor: '#fff',
+                pointRadius: 6,
+                pointHoverRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    max: 100,
+                    min: 0,
+                    ticks: {
+                        stepSize: 20,
+                        font: { size: 11 }
+                    },
+                    pointLabels: {
+                        font: { size: 13, weight: 'bold' },
+                        color: '#333'
+                    },
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.1)'
+                    },
+                    angleLines: {
+                        color: 'rgba(0, 0, 0, 0.1)'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        font: { size: 14 },
+                        padding: 20
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.dataset.label + ': ' + context.raw + '점';
+                        }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function createComparisonChart(scores) {
+    const ctx = document.getElementById('comparisonChart').getContext('2d');
+
+    comparisonChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['자기인식\n정확도', '학습전략\n인식', '계획/목표\n설정', '자기점검\n능력', '자기조절\n능력'],
+            datasets: [
+                {
+                    label: '나의 점수',
+                    data: [
+                        scores.selfAwareness,
+                        scores.learningStrategy,
+                        scores.planning,
+                        scores.selfMonitoring,
+                        scores.selfRegulation
+                    ],
+                    backgroundColor: 'rgba(54, 162, 235, 0.3)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                    pointRadius: 5
+                },
+                {
+                    label: '평균 점수',
+                    data: [
+                        averageScores.selfAwareness,
+                        averageScores.learningStrategy,
+                        averageScores.planning,
+                        averageScores.selfMonitoring,
+                        averageScores.selfRegulation
+                    ],
+                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                    borderColor: 'rgba(255, 159, 64, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(255, 159, 64, 1)',
+                    pointRadius: 5
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    max: 100,
+                    min: 0,
+                    ticks: {
+                        stepSize: 20,
+                        font: { size: 10 }
+                    },
+                    pointLabels: {
+                        font: { size: 12, weight: 'bold' }
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { font: { size: 13 } }
+                }
+            }
+        }
+    });
+}
+
+function createStrategyRadarChart(test2) {
+    const ctx = document.getElementById('strategyRadarChart').getContext('2d');
+
+    // 25점 만점을 100점으로 환산
+    const planning = Math.round((test2.planning || 0) / 25 * 100);
+    const monitoring = Math.round((test2.monitoring || 0) / 25 * 100);
+    const regulating = Math.round((test2.regulating || 0) / 25 * 100);
+    const cognitive = Math.round((test2.cognitive || 0) / 25 * 100);
+
+    strategyRadarChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['계획 전략', '점검 전략', '조절 전략', '인지 전략'],
+            datasets: [{
+                label: '학습전략 세부',
+                data: [planning, monitoring, regulating, cognitive],
+                backgroundColor: 'rgba(75, 192, 192, 0.3)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+                pointRadius: 5
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: { stepSize: 20 },
+                    pointLabels: { font: { size: 12, weight: 'bold' } }
+                }
+            },
+            plugins: {
+                legend: { position: 'bottom' }
+            }
+        }
+    });
+}
+
+function createMonitoringRadarChart(test4) {
+    const ctx = document.getElementById('monitoringRadarChart').getContext('2d');
+
+    // 9점 만점을 100점으로 환산
+    const understanding = Math.round((test4.understanding || 0) / 9 * 100);
+    const strategy = Math.round((test4.strategy || 0) / 9 * 100);
+    const errorDetection = Math.round((test4.error_detection || 0) / 9 * 100);
+    const selfControl = Math.round((test4.self_control || 0) / 9 * 100);
+
+    monitoringRadarChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['이해 점검', '전략 사용', '오류 감지', '자기 조절'],
+            datasets: [{
+                label: '자기점검 세부',
+                data: [understanding, strategy, errorDetection, selfControl],
+                backgroundColor: 'rgba(153, 102, 255, 0.3)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 2,
+                pointBackgroundColor: 'rgba(153, 102, 255, 1)',
+                pointRadius: 5
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: { stepSize: 20 },
+                    pointLabels: { font: { size: 12, weight: 'bold' } }
+                }
+            },
+            plugins: {
+                legend: { position: 'bottom' }
+            }
+        }
+    });
+}
+
+function createScoreTable(scores, test1, test2, test3, test4, test5) {
+    const tbody = document.getElementById('scoreTableBody');
+
+    const areas = [
+        {
+            name: '1. 자기인식 정확도',
+            raw: test1.score + '점',
+            converted: scores.selfAwareness,
+            avg: averageScores.selfAwareness,
+            desc: test1.type === '정확형' ? '자신의 실력을 정확히 파악함' :
+                  test1.type === '과대평가형' ? '실력보다 자신감이 높음, 객관적 점검 필요' :
+                  '실력보다 자신감이 낮음, 자신감 향상 필요'
+        },
+        {
+            name: '2. 학습전략 인식',
+            raw: test2.total + '점/100점',
+            converted: scores.learningStrategy,
+            avg: averageScores.learningStrategy,
+            desc: scores.learningStrategy >= 70 ? '효과적인 학습전략을 잘 활용함' :
+                  scores.learningStrategy >= 50 ? '기본적인 전략은 있으나 강화 필요' :
+                  '체계적인 학습전략 교육 필요'
+        },
+        {
+            name: '3. 계획/목표설정',
+            raw: test3.score + '점/100점',
+            converted: scores.planning,
+            avg: averageScores.planning,
+            desc: scores.planning >= 70 ? '구체적이고 현실적인 계획 수립 가능' :
+                  scores.planning >= 50 ? '계획 수립 능력 보완 필요' :
+                  '계획 수립 훈련 집중 필요'
+        },
+        {
+            name: '4. 자기점검 능력',
+            raw: (test4.score || 0) + '점/36점',
+            converted: scores.selfMonitoring,
+            avg: averageScores.selfMonitoring,
+            desc: scores.selfMonitoring >= 70 ? '학습 과정을 효과적으로 점검함' :
+                  scores.selfMonitoring >= 50 ? '자기점검 습관 강화 필요' :
+                  '메타인지적 점검 훈련 필요'
+        },
+        {
+            name: '5. 자기조절 능력',
+            raw: (test5.score || 0) + '점/20점',
+            converted: scores.selfRegulation,
+            avg: averageScores.selfRegulation,
+            desc: scores.selfRegulation >= 70 ? '어려움에 전략적으로 대처함' :
+                  scores.selfRegulation >= 50 ? '대처 전략 다양화 필요' :
+                  '문제 상황 대처 훈련 필요'
+        }
+    ];
+
+    tbody.innerHTML = '';
+
+    areas.forEach(area => {
+        const level = area.converted >= 70 ? '상' : area.converted >= 50 ? '중' : '하';
+        const levelClass = area.converted >= 70 ? 'success' : area.converted >= 50 ? 'warning' : 'danger';
+        const diff = area.converted - area.avg;
+        const diffText = diff > 0 ? `+${diff}점` : `${diff}점`;
+        const diffClass = diff > 0 ? 'text-success' : diff < 0 ? 'text-danger' : 'text-muted';
+
+        tbody.innerHTML += `
+            <tr>
+                <td><strong>${area.name}</strong></td>
+                <td class="text-center">${area.raw}</td>
+                <td class="text-center"><strong>${area.converted}점</strong></td>
+                <td class="text-center"><span class="badge bg-${levelClass}">${level}</span></td>
+                <td class="text-center ${diffClass}"><strong>${diffText}</strong></td>
+                <td><small>${area.desc}</small></td>
+            </tr>
+        `;
+    });
+}
+
+function generateAnalysisComments(scores, metacogType) {
+    const scoreArray = [
+        { name: '자기인식 정확도', score: scores.selfAwareness },
+        { name: '학습전략 인식', score: scores.learningStrategy },
+        { name: '계획/목표설정', score: scores.planning },
+        { name: '자기점검 능력', score: scores.selfMonitoring },
+        { name: '자기조절 능력', score: scores.selfRegulation }
+    ];
+
+    // 정렬
+    scoreArray.sort((a, b) => b.score - a.score);
+
+    // 강점 (상위 2개)
+    const strengthsList = document.getElementById('strengthsList');
+    strengthsList.innerHTML = '';
+    for (let i = 0; i < 2; i++) {
+        strengthsList.innerHTML += `<li><strong>${scoreArray[i].name}</strong> (${scoreArray[i].score}점) - ${getStrengthComment(scoreArray[i].name)}</li>`;
+    }
+
+    // 약점 (하위 2개)
+    const weaknessesList = document.getElementById('weaknessesList');
+    weaknessesList.innerHTML = '';
+    for (let i = scoreArray.length - 1; i >= scoreArray.length - 2; i--) {
+        weaknessesList.innerHTML += `<li><strong>${scoreArray[i].name}</strong> (${scoreArray[i].score}점) - ${getWeaknessComment(scoreArray[i].name)}</li>`;
+    }
+
+    // 종합 코멘트
+    const overallComment = document.getElementById('overallComment');
+    overallComment.innerHTML = getOverallComment(metacogType, scoreArray);
+}
+
+function getStrengthComment(area) {
+    const comments = {
+        '자기인식 정확도': '자신의 실력을 객관적으로 파악하는 능력이 우수합니다.',
+        '학습전략 인식': '효과적인 학습 방법을 알고 활용하고 있습니다.',
+        '계획/목표설정': '체계적인 계획을 세우고 목표를 관리할 수 있습니다.',
+        '자기점검 능력': '학습 과정을 스스로 점검하고 조절할 수 있습니다.',
+        '자기조절 능력': '어려운 상황에서도 적절히 대처할 수 있습니다.'
+    };
+    return comments[area] || '';
+}
+
+function getWeaknessComment(area) {
+    const comments = {
+        '자기인식 정확도': '자신의 실력을 더 객관적으로 파악하는 연습이 필요합니다.',
+        '학습전략 인식': '다양한 학습 전략을 배우고 적용해 보세요.',
+        '계획/목표설정': '구체적인 계획 수립과 실천 훈련이 필요합니다.',
+        '자기점검 능력': '학습 과정에서 스스로를 점검하는 습관을 기르세요.',
+        '자기조절 능력': '어려움에 대처하는 다양한 전략을 개발해 보세요.'
+    };
+    return comments[area] || '';
+}
+
+function getOverallComment(metacogType, scoreArray) {
+    const avgScore = Math.round(scoreArray.reduce((sum, s) => sum + s.score, 0) / 5);
+
+    let comment = `<strong><i class="bi bi-lightbulb"></i> ${metacogType} 학습자</strong><br><br>`;
+
+    if (metacogType === '전략형') {
+        comment += `전반적으로 메타인지 능력이 우수합니다. 자기주도적 학습이 가능하며, 목표를 향해 체계적으로 나아갈 수 있습니다. 더 높은 목표에 도전하고, 자신만의 학습 방법을 심화시켜 보세요.`;
+    } else if (metacogType === '노력형') {
+        comment += `열심히 노력하는 학습자입니다. 다만 자신의 현재 위치를 더 정확히 파악하고, 노력의 방향을 점검할 필요가 있습니다. 정기적인 자기 점검과 피드백을 통해 효율성을 높여보세요.`;
+    } else if (metacogType === '직관형') {
+        comment += `학습에 대한 감각이 있지만, 체계적인 계획과 전략이 부족합니다. 직관에 의존하기보다 구체적인 계획을 세우고 실천하는 습관을 기르면 성적 향상에 큰 도움이 됩니다.`;
+    } else {
+        comment += `아직 자신에게 맞는 학습 방법을 찾지 못한 상태입니다. 하지만 걱정하지 마세요! 체계적인 학습 전략을 배우고, 작은 목표부터 하나씩 달성해 나가면 충분히 개선될 수 있습니다.`;
+    }
+
+    comment += `<br><br><strong>평균 점수: ${avgScore}점</strong> - `;
+    if (avgScore >= 70) {
+        comment += '자기주도 학습 준비가 잘 되어 있습니다.';
+    } else if (avgScore >= 50) {
+        comment += '일부 영역에서 보완이 필요합니다.';
+    } else {
+        comment += '전반적인 메타인지 향상 프로그램 참여를 권장합니다.';
+    }
+
+    return comment;
+}
+
+function determineMetacogType(scores) {
+    const avg = (scores.selfAwareness + scores.learningStrategy + scores.planning +
+                 scores.selfMonitoring + scores.selfRegulation) / 5;
+    const planning = (scores.learningStrategy + scores.planning) / 2;
+    const awareness = scores.selfAwareness;
+
+    if (avg >= 70) return '전략형';
+    if (planning >= 60 && awareness < 60) return '노력형';
+    if (awareness >= 60 && planning < 60) return '직관형';
+    return '혼란형';
+}
+
+function printPage() {
+    window.print();
+}
+
+function downloadChart() {
+    const canvas = document.getElementById('radarChart');
+    const link = document.createElement('a');
+    link.download = '메타인지_분석_차트.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+}
+</script>
+
+<style>
+@media print {
+    .btn, .navbar, footer {
+        display: none !important;
+    }
+    .card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+}
+</style>
+{% endblock %}

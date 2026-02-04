@@ -1,0 +1,828 @@
+{% extends 'base.html' %}
+
+{% block title %}대진표 생성{% endblock %}
+
+{% block extra_css %}
+<style>
+    .grade-input {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .grade-input label {
+        width: 80px;
+        font-weight: bold;
+    }
+    .grade-input input {
+        width: 70px;
+        text-align: center;
+    }
+    .player-symbol {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 20px;
+        margin: 3px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .player-symbol:hover {
+        transform: scale(1.05);
+    }
+    .player-symbol.male {
+        background: #e3f2fd;
+        border: 2px solid #2196f3;
+        color: #1565c0;
+    }
+    .player-symbol.female {
+        background: #fce4ec;
+        border: 2px solid #e91e63;
+        color: #c2185b;
+    }
+    .player-symbol.assigned {
+        opacity: 0.5;
+    }
+    .player-symbol.selected {
+        box-shadow: 0 0 0 3px #ffc107;
+    }
+    .match-table th, .match-table td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 8px !important;
+    }
+    .team-display {
+        padding: 8px 12px;
+        border-radius: 6px;
+        margin: 2px;
+        font-weight: 500;
+    }
+    .team-display.mixed {
+        background: linear-gradient(135deg, #e3f2fd 50%, #fce4ec 50%);
+    }
+    .team-display.male {
+        background: #e3f2fd;
+    }
+    .team-display.female {
+        background: #fce4ec;
+    }
+    .mapping-section {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+    .mapping-item {
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        border-bottom: 1px solid #eee;
+    }
+    .mapping-item:last-child {
+        border-bottom: none;
+    }
+    .mapping-symbol {
+        width: 60px;
+        font-weight: bold;
+    }
+    .mapping-input {
+        flex: 1;
+    }
+    .stats-badge {
+        font-size: 0.85rem;
+        padding: 4px 8px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h3><i class="bi bi-table"></i> 대진표 생성</h3>
+    <a href="{{ url_for('match.index') }}" class="btn btn-outline-secondary">목록</a>
+</div>
+
+<div class="row">
+    <!-- Step 1: 인원 설정 -->
+    <div class="col-lg-4 mb-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="bi bi-1-circle"></i> 등급별 인원 설정</h5>
+            </div>
+            <div class="card-body">
+                <h6 class="text-primary"><i class="bi bi-gender-male"></i> 남성</h6>
+                <div class="ps-2 mb-3">
+                    <div class="grade-input">
+                        <label>A급:</label>
+                        <input type="number" class="form-control form-control-sm" id="maleA" value="0" min="0" max="20">
+                    </div>
+                    <div class="grade-input">
+                        <label>B급:</label>
+                        <input type="number" class="form-control form-control-sm" id="maleB" value="0" min="0" max="20">
+                    </div>
+                    <div class="grade-input">
+                        <label>C급:</label>
+                        <input type="number" class="form-control form-control-sm" id="maleC" value="0" min="0" max="20">
+                    </div>
+                    <div class="grade-input">
+                        <label>D급:</label>
+                        <input type="number" class="form-control form-control-sm" id="maleD" value="0" min="0" max="20">
+                    </div>
+                    <div class="grade-input">
+                        <label>E급:</label>
+                        <input type="number" class="form-control form-control-sm" id="maleE" value="0" min="0" max="20">
+                    </div>
+                </div>
+
+                <h6 class="text-danger"><i class="bi bi-gender-female"></i> 여성</h6>
+                <div class="ps-2 mb-3">
+                    <div class="grade-input">
+                        <label>A급:</label>
+                        <input type="number" class="form-control form-control-sm" id="femaleA" value="0" min="0" max="20">
+                    </div>
+                    <div class="grade-input">
+                        <label>B급:</label>
+                        <input type="number" class="form-control form-control-sm" id="femaleB" value="0" min="0" max="20">
+                    </div>
+                    <div class="grade-input">
+                        <label>C급:</label>
+                        <input type="number" class="form-control form-control-sm" id="femaleC" value="0" min="0" max="20">
+                    </div>
+                    <div class="grade-input">
+                        <label>D급:</label>
+                        <input type="number" class="form-control form-control-sm" id="femaleD" value="0" min="0" max="20">
+                    </div>
+                    <div class="grade-input">
+                        <label>E급:</label>
+                        <input type="number" class="form-control form-control-sm" id="femaleE" value="0" min="0" max="20">
+                    </div>
+                </div>
+
+                <div class="alert alert-info py-2 mb-3">
+                    <small>
+                        <strong>합계:</strong>
+                        남 <span id="totalMale">0</span>명 /
+                        여 <span id="totalFemale">0</span>명 /
+                        총 <span id="totalAll">0</span>명
+                    </small>
+                </div>
+
+                <button class="btn btn-outline-secondary w-100 mb-2" onclick="loadSampleData()">
+                    <i class="bi bi-lightning"></i> 테스트 데이터 입력
+                </button>
+                <button class="btn btn-primary w-100" onclick="generatePlayers()">
+                    <i class="bi bi-people"></i> 참가자 기호 생성
+                </button>
+            </div>
+        </div>
+
+        <!-- 경기 설정 -->
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="bi bi-gear"></i> 경기 설정</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">코트 수</label>
+                    <input type="number" class="form-control" id="courtCount" value="4" min="1" max="10" onchange="updateRounds()" oninput="updateRounds()">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">경기 유형별 게임수</label>
+                    <div class="row g-2">
+                        <div class="col-4">
+                            <label class="form-label small text-info"><i class="bi bi-gender-male"></i> 남자복식</label>
+                            <input type="number" class="form-control form-control-sm" id="maleGames" value="10" min="0" max="100" onchange="updateRounds()" oninput="updateRounds()">
+                        </div>
+                        <div class="col-4">
+                            <label class="form-label small text-success"><i class="bi bi-gender-ambiguous"></i> 혼합복식</label>
+                            <input type="number" class="form-control form-control-sm" id="mixedGames" value="15" min="0" max="100" onchange="updateRounds()" oninput="updateRounds()">
+                        </div>
+                        <div class="col-4">
+                            <label class="form-label small text-danger"><i class="bi bi-gender-female"></i> 여자복식</label>
+                            <input type="number" class="form-control form-control-sm" id="femaleGames" value="5" min="0" max="100" onchange="updateRounds()" oninput="updateRounds()">
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-secondary py-2 mb-3">
+                    <small>
+                        <strong>총 게임수:</strong> <span id="totalGames">30</span>경기 |
+                        <strong>예상 라운드:</strong> <span id="expectedRounds">8</span>라운드
+                    </small>
+                </div>
+                <button class="btn btn-success w-100" onclick="generateSchedule()" id="generateBtn" disabled>
+                    <i class="bi bi-play"></i> 대진표 생성
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 2 & 3: 대진표 결과 -->
+    <div class="col-lg-8">
+        <!-- 생성된 참가자 기호 -->
+        <div class="card mb-3" id="playersCard" style="display: none;">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0"><i class="bi bi-2-circle"></i> 참가자 기호</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-primary"><i class="bi bi-gender-male"></i> 남성</h6>
+                        <div id="maleSymbols" class="mb-3"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="text-danger"><i class="bi bi-gender-female"></i> 여성</h6>
+                        <div id="femaleSymbols"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 대진표 -->
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="bi bi-3-circle"></i> 대진표</h5>
+                <div>
+                    <button class="btn btn-outline-primary btn-sm me-1" onclick="showMappingModal()" id="mappingBtn" style="display: none;">
+                        <i class="bi bi-person-badge"></i> 사람 매칭
+                    </button>
+                    <button class="btn btn-success btn-sm" onclick="saveSchedule()" id="saveBtn" disabled>
+                        <i class="bi bi-save"></i> 저장
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div id="scheduleResult" class="text-center text-muted py-5">
+                    <i class="bi bi-info-circle fs-1"></i>
+                    <p class="mt-3">1. 등급별 인원을 입력하고 "참가자 기호 생성" 클릭<br>
+                    2. "대진표 생성" 클릭하여 대진표 생성<br>
+                    3. 필요시 "사람 매칭"으로 실제 이름 연결</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 통계 -->
+        <div class="card mt-3" id="statsCard" style="display: none;">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="bi bi-bar-chart"></i> 경기 통계</h5>
+            </div>
+            <div class="card-body">
+                <div id="statsContent"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 사람 매칭 모달 -->
+<div class="modal fade" id="mappingModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-person-badge"></i> 기호에 사람 매칭</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info">
+                    <small>각 기호에 실제 참가자 이름을 입력하세요. 빈칸은 기호 그대로 표시됩니다.</small>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-primary mb-3"><i class="bi bi-gender-male"></i> 남성</h6>
+                        <div id="maleMappings" class="mapping-section"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="text-danger mb-3"><i class="bi bi-gender-female"></i> 여성</h6>
+                        <div id="femaleMappings" class="mapping-section"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-primary" onclick="applyMapping()">적용</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let players = [];
+let generatedSchedule = null;
+let playerMapping = {};
+
+// 등급 점수 (실력 균형용)
+const GRADE_SCORE = { 'A': 5, 'B': 4, 'C': 3, 'D': 2, 'E': 1 };
+
+// 페이지 로드 후 이벤트 리스너 등록
+document.addEventListener('DOMContentLoaded', function() {
+    // 등급별 인원 입력 필드에만 이벤트 리스너 등록
+    ['A', 'B', 'C', 'D', 'E'].forEach(g => {
+        const maleInput = document.getElementById('male' + g);
+        const femaleInput = document.getElementById('female' + g);
+        if (maleInput) {
+            maleInput.addEventListener('change', updateTotals);
+            maleInput.addEventListener('input', updateTotals);
+        }
+        if (femaleInput) {
+            femaleInput.addEventListener('change', updateTotals);
+            femaleInput.addEventListener('input', updateTotals);
+        }
+    });
+    updateTotals();
+    updateRounds();
+});
+
+function updateRounds() {
+    const maleGames = parseInt(document.getElementById('maleGames').value) || 0;
+    const mixedGames = parseInt(document.getElementById('mixedGames').value) || 0;
+    const femaleGames = parseInt(document.getElementById('femaleGames').value) || 0;
+    const courts = parseInt(document.getElementById('courtCount').value) || 4;
+
+    const totalGames = maleGames + mixedGames + femaleGames;
+    const expectedRounds = Math.ceil(totalGames / courts);
+
+    document.getElementById('totalGames').textContent = totalGames;
+    document.getElementById('expectedRounds').textContent = expectedRounds;
+}
+
+function updateTotals() {
+    let maleTotal = 0, femaleTotal = 0;
+    ['A', 'B', 'C', 'D', 'E'].forEach(g => {
+        const maleInput = document.getElementById('male' + g);
+        const femaleInput = document.getElementById('female' + g);
+        maleTotal += parseInt(maleInput ? maleInput.value : 0) || 0;
+        femaleTotal += parseInt(femaleInput ? femaleInput.value : 0) || 0;
+    });
+    document.getElementById('totalMale').textContent = maleTotal;
+    document.getElementById('totalFemale').textContent = femaleTotal;
+    document.getElementById('totalAll').textContent = maleTotal + femaleTotal;
+}
+
+function loadSampleData() {
+    // 테스트용 샘플 데이터: 남 20명, 여 10명
+    const sampleData = {
+        male: { A: 3, B: 5, C: 6, D: 4, E: 2 },
+        female: { A: 1, B: 2, C: 4, D: 2, E: 1 }
+    };
+
+    ['A', 'B', 'C', 'D', 'E'].forEach(g => {
+        document.getElementById('male' + g).value = sampleData.male[g];
+        document.getElementById('female' + g).value = sampleData.female[g];
+    });
+
+    updateTotals();
+
+    // 자동으로 참가자 기호 생성
+    generatePlayers();
+}
+
+function generatePlayers() {
+    players = [];
+    playerMapping = {};
+
+    ['A', 'B', 'C', 'D', 'E'].forEach(grade => {
+        const maleCount = parseInt(document.getElementById('male' + grade).value) || 0;
+        const femaleCount = parseInt(document.getElementById('female' + grade).value) || 0;
+
+        for (let i = 1; i <= maleCount; i++) {
+            const symbol = grade.toLowerCase() + i;
+            players.push({
+                id: symbol,
+                symbol: symbol,
+                gender: 'M',
+                grade: grade,
+                score: GRADE_SCORE[grade]
+            });
+        }
+        for (let i = 1; i <= femaleCount; i++) {
+            const symbol = grade.toLowerCase() + "'" + i;
+            players.push({
+                id: symbol,
+                symbol: symbol,
+                gender: 'F',
+                grade: grade,
+                score: GRADE_SCORE[grade]
+            });
+        }
+    });
+
+    if (players.length < 4) {
+        alert('최소 4명의 참가자가 필요합니다.');
+        return;
+    }
+
+    displayPlayers();
+    document.getElementById('playersCard').style.display = 'block';
+    document.getElementById('generateBtn').disabled = false;
+}
+
+function displayPlayers() {
+    const males = players.filter(p => p.gender === 'M');
+    const females = players.filter(p => p.gender === 'F');
+
+    let maleHtml = '';
+    let femaleHtml = '';
+
+    ['A', 'B', 'C', 'D', 'E'].forEach(grade => {
+        const gradeMales = males.filter(p => p.grade === grade);
+        const gradeFemales = females.filter(p => p.grade === grade);
+
+        if (gradeMales.length > 0) {
+            gradeMales.forEach(p => {
+                maleHtml += `<span class="player-symbol male">${p.symbol}</span>`;
+            });
+        }
+        if (gradeFemales.length > 0) {
+            gradeFemales.forEach(p => {
+                femaleHtml += `<span class="player-symbol female">${p.symbol}</span>`;
+            });
+        }
+    });
+
+    document.getElementById('maleSymbols').innerHTML = maleHtml || '<span class="text-muted">없음</span>';
+    document.getElementById('femaleSymbols').innerHTML = femaleHtml || '<span class="text-muted">없음</span>';
+}
+
+function generateSchedule() {
+    if (players.length < 4) {
+        alert('먼저 참가자 기호를 생성하세요.');
+        return;
+    }
+
+    const courts = parseInt(document.getElementById('courtCount').value);
+    const maleGames = parseInt(document.getElementById('maleGames').value) || 0;
+    const mixedGames = parseInt(document.getElementById('mixedGames').value) || 0;
+    const femaleGames = parseInt(document.getElementById('femaleGames').value) || 0;
+    const totalGames = maleGames + mixedGames + femaleGames;
+
+    if (totalGames === 0) {
+        alert('경기 수를 입력해주세요.');
+        return;
+    }
+
+    const rounds = Math.ceil(totalGames / courts);
+
+    generatedSchedule = generateBalancedSchedule(players, courts, rounds);
+    displaySchedule(generatedSchedule);
+    displayStats(generatedSchedule);
+
+    document.getElementById('saveBtn').disabled = false;
+    document.getElementById('mappingBtn').style.display = 'inline-block';
+    document.getElementById('statsCard').style.display = 'block';
+}
+
+function generateBalancedSchedule(players, courts, maxRounds) {
+    const matches = [];
+    const playerGames = {};
+    const pairHistory = {};  // 같은 팀 기록
+    const opponentHistory = {};  // 상대 기록
+
+    // 경기 유형별 목표 게임수 가져오기
+    const targetMaleGames = parseInt(document.getElementById('maleGames').value) || 0;
+    const targetMixedGames = parseInt(document.getElementById('mixedGames').value) || 0;
+    const targetFemaleGames = parseInt(document.getElementById('femaleGames').value) || 0;
+    const totalTargetGames = targetMaleGames + targetMixedGames + targetFemaleGames;
+
+    players.forEach(p => {
+        playerGames[p.id] = 0;
+        pairHistory[p.id] = {};
+        opponentHistory[p.id] = {};
+    });
+
+    const males = players.filter(p => p.gender === 'M');
+    const females = players.filter(p => p.gender === 'F');
+
+    // 경기 유형 카운터
+    let matchTypeCount = { mixed: 0, male: 0, female: 0 };
+
+    // 라운드 수 계산
+    const calculatedRounds = Math.ceil(totalTargetGames / courts);
+
+    for (let round = 1; round <= calculatedRounds; round++) {
+        const usedInRound = new Set();
+
+        for (let court = 1; court <= courts; court++) {
+            // 총 게임수 도달하면 종료
+            const currentTotal = matchTypeCount.mixed + matchTypeCount.male + matchTypeCount.female;
+            if (currentTotal >= totalTargetGames) break;
+
+            // 아직 이번 라운드에서 경기하지 않은 선수들
+            const availableMales = males.filter(p => !usedInRound.has(p.id))
+                .sort((a, b) => playerGames[a.id] - playerGames[b.id]);
+            const availableFemales = females.filter(p => !usedInRound.has(p.id))
+                .sort((a, b) => playerGames[a.id] - playerGames[b.id]);
+
+            let match = null;
+
+            // 가능한 경기 유형 확인
+            const canMixed = availableMales.length >= 2 && availableFemales.length >= 2;
+            const canMale = availableMales.length >= 4;
+            const canFemale = availableFemales.length >= 4;
+
+            if (!canMixed && !canMale && !canFemale) continue;
+
+            // 남은 게임수 계산
+            const remainMale = targetMaleGames - matchTypeCount.male;
+            const remainMixed = targetMixedGames - matchTypeCount.mixed;
+            const remainFemale = targetFemaleGames - matchTypeCount.female;
+
+            // 우선순위: 남은 게임수가 많은 유형 우선 (가능한 경우에만)
+            let selectedType = null;
+
+            // 남은 게임이 있는 유형 중에서 선택
+            if (remainMale > 0 && canMale && remainMale >= remainMixed && remainMale >= remainFemale) {
+                selectedType = 'male';
+            } else if (remainFemale > 0 && canFemale && remainFemale >= remainMixed && remainFemale > remainMale) {
+                selectedType = 'female';
+            } else if (remainMixed > 0 && canMixed) {
+                selectedType = 'mixed';
+            } else if (remainMale > 0 && canMale) {
+                selectedType = 'male';
+            } else if (remainFemale > 0 && canFemale) {
+                selectedType = 'female';
+            } else if (remainMixed > 0 && canMixed) {
+                selectedType = 'mixed';
+            }
+
+            // 목표 게임수를 채웠으면 다른 유형으로
+            if (!selectedType) {
+                if (canMale && remainMale > 0) selectedType = 'male';
+                else if (canFemale && remainFemale > 0) selectedType = 'female';
+                else if (canMixed && remainMixed > 0) selectedType = 'mixed';
+            }
+
+            if (!selectedType) continue;
+
+            // 경기 생성
+            if (selectedType === 'mixed' && canMixed && matchTypeCount.mixed < targetMixedGames) {
+                match = createMixedMatch(availableMales, availableFemales, pairHistory, opponentHistory);
+                matchTypeCount.mixed++;
+            } else if (selectedType === 'male' && canMale && matchTypeCount.male < targetMaleGames) {
+                match = createSameGenderMatch(availableMales, 'M', pairHistory, opponentHistory);
+                matchTypeCount.male++;
+            } else if (selectedType === 'female' && canFemale && matchTypeCount.female < targetFemaleGames) {
+                match = createSameGenderMatch(availableFemales, 'F', pairHistory, opponentHistory);
+                matchTypeCount.female++;
+            }
+
+            if (match) {
+                match.round = round;
+                match.court = court;
+                matches.push(match);
+
+                // 기록 업데이트
+                match.team1Players.concat(match.team2Players).forEach(p => {
+                    usedInRound.add(p.id);
+                    playerGames[p.id]++;
+                });
+
+                // 팀 기록
+                updatePairHistory(pairHistory, match.team1Players[0], match.team1Players[1]);
+                updatePairHistory(pairHistory, match.team2Players[0], match.team2Players[1]);
+
+                // 상대 기록
+                match.team1Players.forEach(p1 => {
+                    match.team2Players.forEach(p2 => {
+                        updateOpponentHistory(opponentHistory, p1, p2);
+                    });
+                });
+            }
+        }
+    }
+
+    return { matches, players, settings: { courts, rounds: calculatedRounds }, playerGames };
+}
+
+function createMixedMatch(males, females, pairHistory, opponentHistory) {
+    // 실력 균형을 맞추기 위해 상위 남+하위 여 vs 하위 남+상위 여
+    const sortedMales = [...males].sort((a, b) => b.score - a.score);
+    const sortedFemales = [...females].sort((a, b) => b.score - a.score);
+
+    // 팀1: 상위 남성 + 하위 여성
+    // 팀2: 하위 남성 + 상위 여성
+    let team1 = [sortedMales[0], sortedFemales[sortedFemales.length - 1]];
+    let team2 = [sortedMales[1], sortedFemales[0]];
+
+    // 팀 점수 균형 조정
+    const team1Score = team1[0].score + team1[1].score;
+    const team2Score = team2[0].score + team2[1].score;
+
+    // 점수 차이가 크면 조정
+    if (Math.abs(team1Score - team2Score) > 2 && sortedFemales.length > 2) {
+        team1 = [sortedMales[0], sortedFemales[1]];
+        team2 = [sortedMales[1], sortedFemales[0]];
+    }
+
+    return {
+        team1: team1.map(p => getDisplayName(p)).join(' & '),
+        team2: team2.map(p => getDisplayName(p)).join(' & '),
+        team1Players: team1,
+        team2Players: team2,
+        type: 'mixed',
+        team1Score: team1[0].score + team1[1].score,
+        team2Score: team2[0].score + team2[1].score
+    };
+}
+
+function createSameGenderMatch(players, gender, pairHistory, opponentHistory) {
+    // 실력 균형: 1+4 vs 2+3 (점수순)
+    const sorted = [...players].sort((a, b) => b.score - a.score);
+
+    let team1 = [sorted[0], sorted[3]];
+    let team2 = [sorted[1], sorted[2]];
+
+    return {
+        team1: team1.map(p => getDisplayName(p)).join(' & '),
+        team2: team2.map(p => getDisplayName(p)).join(' & '),
+        team1Players: team1,
+        team2Players: team2,
+        type: gender === 'M' ? 'male' : 'female',
+        team1Score: team1[0].score + team1[1].score,
+        team2Score: team2[0].score + team2[1].score
+    };
+}
+
+function updatePairHistory(history, p1, p2) {
+    if (!history[p1.id][p2.id]) history[p1.id][p2.id] = 0;
+    if (!history[p2.id][p1.id]) history[p2.id][p1.id] = 0;
+    history[p1.id][p2.id]++;
+    history[p2.id][p1.id]++;
+}
+
+function updateOpponentHistory(history, p1, p2) {
+    if (!history[p1.id][p2.id]) history[p1.id][p2.id] = 0;
+    if (!history[p2.id][p1.id]) history[p2.id][p1.id] = 0;
+    history[p1.id][p2.id]++;
+    history[p2.id][p1.id]++;
+}
+
+function getDisplayName(player) {
+    return playerMapping[player.id] || player.symbol;
+}
+
+function displaySchedule(schedule) {
+    let html = '<div class="table-responsive"><table class="table table-bordered match-table">';
+    html += '<thead class="table-light"><tr><th style="width:60px;">라운드</th>';
+
+    for (let c = 1; c <= schedule.settings.courts; c++) {
+        html += `<th>코트 ${c}</th>`;
+    }
+    html += '</tr></thead><tbody>';
+
+    const byRound = {};
+    schedule.matches.forEach(m => {
+        if (!byRound[m.round]) byRound[m.round] = {};
+        byRound[m.round][m.court] = m;
+    });
+
+    const maxRound = Math.max(...schedule.matches.map(m => m.round), 0);
+    for (let r = 1; r <= maxRound; r++) {
+        html += `<tr><td><strong>${r}</strong></td>`;
+        for (let c = 1; c <= schedule.settings.courts; c++) {
+            const match = byRound[r] && byRound[r][c];
+            if (match) {
+                const team1Display = match.team1Players.map(p => getDisplayName(p)).join(' & ');
+                const team2Display = match.team2Players.map(p => getDisplayName(p)).join(' & ');
+                html += `<td>
+                    <div class="team-display ${match.type}">${team1Display}</div>
+                    <div class="my-1 text-muted small">vs</div>
+                    <div class="team-display ${match.type}">${team2Display}</div>
+                </td>`;
+            } else {
+                html += '<td class="text-muted">-</td>';
+            }
+        }
+        html += '</tr>';
+    }
+
+    html += '</tbody></table></div>';
+    document.getElementById('scheduleResult').innerHTML = html;
+}
+
+function displayStats(schedule) {
+    const playerGames = schedule.playerGames;
+    const matchTypes = { male: 0, female: 0, mixed: 0 };
+
+    schedule.matches.forEach(m => matchTypes[m.type]++);
+
+    let html = '<div class="row">';
+
+    // 경기 유형별 통계
+    html += '<div class="col-md-4 mb-3">';
+    html += '<h6>경기 유형</h6>';
+    html += `<span class="badge bg-info stats-badge me-1">혼합복식 ${matchTypes.mixed}경기</span>`;
+    html += `<span class="badge bg-primary stats-badge me-1">남자복식 ${matchTypes.male}경기</span>`;
+    html += `<span class="badge bg-danger stats-badge">여자복식 ${matchTypes.female}경기</span>`;
+    html += '</div>';
+
+    // 개인별 경기수
+    html += '<div class="col-md-8">';
+    html += '<h6>개인별 경기수</h6>';
+    html += '<div class="d-flex flex-wrap">';
+
+    const sortedPlayers = [...players].sort((a, b) => {
+        if (a.gender !== b.gender) return a.gender === 'M' ? -1 : 1;
+        if (a.grade !== b.grade) return a.grade.localeCompare(b.grade);
+        return a.symbol.localeCompare(b.symbol);
+    });
+
+    sortedPlayers.forEach(p => {
+        const games = playerGames[p.id] || 0;
+        const displayName = getDisplayName(p);
+        const colorClass = p.gender === 'M' ? 'bg-primary' : 'bg-danger';
+        html += `<span class="badge ${colorClass} stats-badge me-1 mb-1">${displayName}: ${games}경기</span>`;
+    });
+
+    html += '</div></div></div>';
+
+    document.getElementById('statsContent').innerHTML = html;
+}
+
+function showMappingModal() {
+    const males = players.filter(p => p.gender === 'M');
+    const females = players.filter(p => p.gender === 'F');
+
+    let maleHtml = '';
+    let femaleHtml = '';
+
+    males.forEach(p => {
+        maleHtml += `<div class="mapping-item">
+            <span class="mapping-symbol player-symbol male">${p.symbol}</span>
+            <input type="text" class="form-control form-control-sm mapping-input"
+                   id="map_${p.id}" placeholder="이름 입력" value="${playerMapping[p.id] || ''}">
+        </div>`;
+    });
+
+    females.forEach(p => {
+        femaleHtml += `<div class="mapping-item">
+            <span class="mapping-symbol player-symbol female">${p.symbol}</span>
+            <input type="text" class="form-control form-control-sm mapping-input"
+                   id="map_${p.id}" placeholder="이름 입력" value="${playerMapping[p.id] || ''}">
+        </div>`;
+    });
+
+    document.getElementById('maleMappings').innerHTML = maleHtml || '<p class="text-muted">없음</p>';
+    document.getElementById('femaleMappings').innerHTML = femaleHtml || '<p class="text-muted">없음</p>';
+
+    new bootstrap.Modal(document.getElementById('mappingModal')).show();
+}
+
+function applyMapping() {
+    players.forEach(p => {
+        const input = document.getElementById('map_' + p.id);
+        if (input && input.value.trim()) {
+            playerMapping[p.id] = input.value.trim();
+        } else {
+            delete playerMapping[p.id];
+        }
+    });
+
+    // 대진표 다시 표시
+    if (generatedSchedule) {
+        displaySchedule(generatedSchedule);
+        displayStats(generatedSchedule);
+    }
+
+    bootstrap.Modal.getInstance(document.getElementById('mappingModal')).hide();
+}
+
+function saveSchedule() {
+    if (!generatedSchedule) return;
+
+    const title = prompt('대진표 제목을 입력하세요:', `대진표 ${new Date().toLocaleDateString()}`);
+    if (!title) return;
+
+    // 저장용 데이터 준비
+    const saveData = {
+        title: title,
+        match_data: generatedSchedule.matches.map(m => ({
+            round: m.round,
+            court: m.court,
+            team1: m.team1Players.map(p => playerMapping[p.id] || p.symbol).join(' & '),
+            team2: m.team2Players.map(p => playerMapping[p.id] || p.symbol).join(' & '),
+            type: m.type
+        })),
+        players_data: players.map(p => ({
+            id: p.id,
+            symbol: p.symbol,
+            name: playerMapping[p.id] || p.symbol,
+            gender: p.gender,
+            grade: p.grade
+        })),
+        settings: generatedSchedule.settings
+    };
+
+    fetch('{{ url_for("match.save") }}', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(saveData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            alert('저장되었습니다.');
+            window.location.href = '{{ url_for("match.index") }}';
+        } else {
+            alert('저장 실패: ' + data.message);
+        }
+    });
+}
+
+</script>
+{% endblock %}

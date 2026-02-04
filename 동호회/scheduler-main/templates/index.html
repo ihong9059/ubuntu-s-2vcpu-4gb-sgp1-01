@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배드민턴 대진표</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><ellipse cx='50' cy='75' rx='18' ry='18' fill='%23fff' stroke='%23333' stroke-width='2'/><path d='M32 20 L50 75 L68 20 Q50 35 32 20Z' fill='%23fff' stroke='%23333' stroke-width='2'/><line x1='38' y1='30' x2='62' y2='30' stroke='%23333' stroke-width='1.5'/><line x1='35' y1='40' x2='65' y2='40' stroke='%23333' stroke-width='1.5'/><line x1='34' y1='50' x2='66' y2='50' stroke='%23333' stroke-width='1.5'/><line x1='36' y1='60' x2='64' y2='60' stroke='%23333' stroke-width='1.5'/></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 30px 0;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #00d2ff;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            color: #aaa;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 30px 0;
+        }
+        .tab-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+        .tab-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        .tab-btn.active {
+            background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* 코트 뷰 */
+        .courts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+        .court {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+        .court-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .court-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #00d2ff;
+        }
+        .court-count {
+            background: rgba(0,210,255,0.2);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9em;
+        }
+        .match {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 12px;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .match-order {
+            width: 30px;
+            height: 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        .match-type {
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        .match-type.MD { background: #3498db; }
+        .match-type.WD { background: #e74c3c; }
+        .match-type.XD { background: #9b59b6; }
+        .match-teams {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .team {
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+        .team.blue {
+            background: rgba(52, 152, 219, 0.3);
+            border: 1px solid #3498db;
+        }
+        .team.white {
+            background: rgba(236, 240, 241, 0.3);
+            border: 1px solid #ecf0f1;
+        }
+        .vs {
+            color: #f39c12;
+            font-weight: bold;
+        }
+
+        /* 선수 뷰 */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        .team-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+        }
+        .team-section.blue-team {
+            border: 2px solid #3498db;
+        }
+        .team-section.white-team {
+            border: 2px solid #ecf0f1;
+        }
+        .team-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .team-title.blue { color: #3498db; }
+        .team-title.white { color: #ecf0f1; }
+        .grade-group {
+            margin: 15px 0;
+        }
+        .grade-label {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #f39c12;
+        }
+        .player-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .player-chip {
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .player-chip.male {
+            background: rgba(52, 152, 219, 0.3);
+            border: 1px solid #3498db;
+        }
+        .player-chip.female {
+            background: rgba(231, 76, 60, 0.3);
+            border: 1px solid #e74c3c;
+        }
+        .player-chip:hover {
+            transform: scale(1.05);
+        }
+        .player-games {
+            font-size: 0.8em;
+            opacity: 0.7;
+            margin-left: 5px;
+        }
+
+        /* 선수 상세 모달 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.show {
+            display: flex;
+        }
+        .modal-content {
+            background: #1a1a2e;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .modal-title {
+            font-size: 1.5em;
+            color: #00d2ff;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .player-match {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        /* 통계 뷰 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .stats-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+        }
+        .stats-card h3 {
+            color: #00d2ff;
+            margin-bottom: 15px;
+        }
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-regenerate {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #f39c12, #e74c3c);
+            color: #fff;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 20px auto;
+            display: block;
+            transition: all 0.3s;
+        }
+        .btn-regenerate:hover {
+            transform: scale(1.05);
+        }
+
+        /* 도움말 버튼 */
+        .help-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.4);
+            z-index: 100;
+            transition: all 0.3s;
+        }
+        .help-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* 도움말 모달 */
+        .help-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+        }
+        .help-modal.show {
+            display: flex;
+        }
+        .help-content {
+            background: #1a1a2e;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 900px;
+            width: 95%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 2px solid rgba(0, 210, 255, 0.3);
+            margin: 20px;
+        }
+        .help-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+        .help-title {
+            font-size: 1.8em;
+            color: #00d2ff;
+        }
+        .help-close {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2em;
+            cursor: pointer;
+        }
+        .help-section {
+            margin: 25px 0;
+        }
+        .help-section h3 {
+            color: #f39c12;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        .help-section p {
+            line-height: 1.8;
+            color: #ccc;
+        }
+        .help-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .help-table th, .help-table td {
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 12px;
+            text-align: left;
+        }
+        .help-table th {
+            background: rgba(0, 210, 255, 0.2);
+            color: #00d2ff;
+        }
+        .help-table tr:nth-child(even) {
+            background: rgba(255,255,255,0.05);
+        }
+        .help-list {
+            list-style: none;
+            padding: 0;
+        }
+        .help-list li {
+            padding: 8px 0;
+            color: #ccc;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .help-list li:before {
+            content: "* ";
+            color: #2ecc71;
+        }
+
+        @media (max-width: 768px) {
+            .players-grid {
+                grid-template-columns: 1fr;
+            }
+            .courts-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>배드민턴 대진표</h1>
+            <p>청백전 | 총 50명 | 코트 6개</p>
+        </header>
+
+        <div class="stats-bar" id="statsBar">
+            <!-- 동적으로 채워짐 -->
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="courts">라운드별 대진표</button>
+            <button class="tab-btn" data-tab="players">선수 목록</button>
+            <button class="tab-btn" data-tab="stats">통계</button>
+        </div>
+
+        <div id="courts" class="tab-content active">
+            <div class="courts-container" id="courtsContainer">
+                <!-- 동적으로 채워짐 -->
+            </div>
+        </div>
+
+        <div id="players" class="tab-content">
+            <div class="players-grid" id="playersGrid">
+                <!-- 동적으로 채워짐 -->
+            </div>
+        </div>
+
+        <div id="stats" class="tab-content">
+            <div class="stats-grid" id="statsGrid">
+                <!-- 동적으로 채워짐 -->
+            </div>
+            <button class="btn-regenerate" onclick="regenerate()">대진표 재생성</button>
+        </div>
+    </div>
+
+    <!-- 선수 상세 모달 -->
+    <div class="modal" id="playerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">선수명</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modalBody">
+                <!-- 동적으로 채워짐 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 도움말 버튼 -->
+    <button class="help-btn" onclick="showHelp()">?</button>
+
+    <!-- 도움말 모달 -->
+    <div class="help-modal" id="helpModal">
+        <div class="help-content">
+            <div class="help-header">
+                <h2 class="help-title">배드민턴 대진표 사용 설명서</h2>
+                <button class="help-close" onclick="closeHelp()">&times;</button>
+            </div>
+
+            <div class="help-section">
+                <h3>1. 개요</h3>
+                <p>이 시스템은 50명의 배드민턴 동호회 회원을 대상으로 청백전 대진표를 자동 생성합니다.
+                   6개 코트에서 진행되며, 모든 선수가 4~5경기를 할 수 있도록 배정됩니다.</p>
+            </div>
+
+            <div class="help-section">
+                <h3>2. 경기 종류</h3>
+                <table class="help-table">
+                    <tr>
+                        <th>종류</th>
+                        <th>코드</th>
+                        <th>색상</th>
+                        <th>설명</th>
+                    </tr>
+                    <tr>
+                        <td>남자복식</td>
+                        <td>MD</td>
+                        <td style="color:#3498db;">파란색</td>
+                        <td>남자 2명 vs 남자 2명</td>
+                    </tr>
+                    <tr>
+                        <td>여자복식</td>
+                        <td>WD</td>
+                        <td style="color:#e74c3c;">빨간색</td>
+                        <td>여자 2명 vs 여자 2명</td>
+                    </tr>
+                    <tr>
+                        <td>혼합복식</td>
+                        <td>XD</td>
+                        <td style="color:#9b59b6;">보라색</td>
+                        <td>남녀 1명씩 vs 남녀 1명씩</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="help-section">
+                <h3>3. 대진표 규칙</h3>
+                <ul class="help-list">
+                    <li>모든 경기는 청팀 vs 백팀으로 진행됩니다</li>
+                    <li>같은 팀끼리 파트너가 됩니다 (청+청 vs 백+백)</li>
+                    <li>모든 선수는 4~5경기를 하게 됩니다</li>
+                    <li>가능한 한 같은 파트너/상대와 중복되지 않도록 합니다</li>
+                    <li style="background: linear-gradient(90deg, rgba(243,156,18,0.3), rgba(231,76,60,0.3)); padding: 10px; border-radius: 8px; border-left: 4px solid #f39c12; margin: 10px 0;">
+                        <strong style="color: #f39c12; font-size: 1.1em;">⭐ 핵심 규칙:</strong>
+                        <span style="color: #fff;">같은 급수끼리 남자복식 1경기 + 혼합복식 1경기씩 진행</span>
+                    </li>
+                    <li>상급자+하급자 페어 경기는 상대팀도 동일한 등급 조합으로 매칭 (예: A+C vs A+C)</li>
+                </ul>
+            </div>
+
+            <div class="help-section">
+                <h3>4. 화면 구성</h3>
+                <table class="help-table">
+                    <tr>
+                        <th>탭</th>
+                        <th>설명</th>
+                    </tr>
+                    <tr>
+                        <td>코트별 대진표</td>
+                        <td>각 코트에서 진행될 경기 순서를 보여줍니다. 경기 순서, 종류, 대진이 표시됩니다.</td>
+                    </tr>
+                    <tr>
+                        <td>선수 목록</td>
+                        <td>청/백팀별로 선수를 등급별로 구분해서 보여줍니다. 선수 이름 옆에 경기 수가 표시됩니다.</td>
+                    </tr>
+                    <tr>
+                        <td>통계</td>
+                        <td>경기 종류별, 코트별, 선수별 경기 수 분포를 확인할 수 있습니다.</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="help-section">
+                <h3>5. 선수 정보</h3>
+                <table class="help-table">
+                    <tr>
+                        <th>표시</th>
+                        <th>설명</th>
+                    </tr>
+                    <tr>
+                        <td style="color:#3498db;">파란색 칩</td>
+                        <td>남자 선수</td>
+                    </tr>
+                    <tr>
+                        <td style="color:#e74c3c;">빨간색 칩</td>
+                        <td>여자 선수</td>
+                    </tr>
+                    <tr>
+                        <td>(숫자)</td>
+                        <td>해당 선수의 총 경기 수</td>
+                    </tr>
+                </table>
+                <p style="margin-top:10px;">선수 이름을 클릭하면 해당 선수의 전체 경기 목록을 확인할 수 있습니다.</p>
+            </div>
+
+            <div class="help-section">
+                <h3>6. 대진표 재생성</h3>
+                <p>통계 탭에서 "대진표 재생성" 버튼을 클릭하면 새로운 대진표가 생성됩니다.
+                   매번 다른 조합으로 생성되므로, 원하는 대진표가 나올 때까지 재생성할 수 있습니다.</p>
+            </div>
+
+            <div class="help-section">
+                <h3>7. 선수 구성</h3>
+                <p>현재 등록된 50명의 선수는 다음과 같이 구성되어 있습니다:</p>
+                <table class="help-table">
+                    <tr>
+                        <th>팀</th>
+                        <th>인원</th>
+                        <th>남자</th>
+                        <th>여자</th>
+                    </tr>
+                    <tr>
+                        <td>청팀</td>
+                        <td>25명</td>
+                        <td>15명</td>
+                        <td>10명</td>
+                    </tr>
+                    <tr>
+                        <td>백팀</td>
+                        <td>25명</td>
+                        <td>15명</td>
+                        <td>10명</td>
+                    </tr>
+                    <tr>
+                        <td><strong>합계</strong></td>
+                        <td><strong>50명</strong></td>
+                        <td><strong>30명</strong></td>
+                        <td><strong>20명</strong></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let scheduleData = null;
+        let playersData = null;
+
+        // 탭 전환
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // 데이터 로드
+        async function loadData() {
+            try {
+                const [schedRes, playersRes] = await Promise.all([
+                    fetch('/api/schedule'),
+                    fetch('/api/players')
+                ]);
+                scheduleData = await schedRes.json();
+                playersData = await playersRes.json();
+
+                renderStats();
+                renderCourts();
+                renderPlayers();
+                renderStatsTab();
+            } catch (error) {
+                console.error('데이터 로드 오류:', error);
+            }
+        }
+
+        // 상단 통계
+        function renderStats() {
+            const stats = scheduleData.stats;
+            document.getElementById('statsBar').innerHTML = `
+                <div class="stat-item">
+                    <div class="stat-value">${stats.total}</div>
+                    <div class="stat-label">총 경기</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">${stats.by_type.MD || 0}</div>
+                    <div class="stat-label">남자복식</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">${stats.by_type.WD || 0}</div>
+                    <div class="stat-label">여자복식</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">${stats.by_type.XD || 0}</div>
+                    <div class="stat-label">혼합복식</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">${stats.total_rounds}</div>
+                    <div class="stat-label">총 라운드</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">${stats.min_games}-${stats.max_games}</div>
+                    <div class="stat-label">개인 경기수</div>
+                </div>
+            `;
+        }
+
+        // 라운드별 대진표
+        function renderCourts() {
+            const matches = scheduleData.matches;
+            const rounds = {};
+
+            // 라운드별로 그룹화
+            matches.forEach(m => {
+                if (!rounds[m.round]) rounds[m.round] = [];
+                rounds[m.round].push(m);
+            });
+
+            const totalRounds = scheduleData.stats.total_rounds;
+            let html = '';
+            for (let round = 1; round <= totalRounds; round++) {
+                const roundMatches = rounds[round] || [];
+                html += `
+                    <div class="court">
+                        <div class="court-header">
+                            <span class="court-name">라운드 ${round}</span>
+                            <span class="court-count">${roundMatches.length}경기</span>
+                        </div>
+                `;
+
+                // 코트 순으로 정렬
+                roundMatches.sort((a, b) => a.court - b.court);
+                roundMatches.forEach(m => {
+                    html += `
+                        <div class="match">
+                            <span class="match-order">코트${m.court}</span>
+                            <span class="match-type ${m.type}">${m.type_name.substring(0, 2)}</span>
+                            <div class="match-teams">
+                                <span class="team blue">${m.team1.join(' + ')}</span>
+                                <span class="vs">vs</span>
+                                <span class="team white">${m.team2.join(' + ')}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += '</div>';
+            }
+
+            document.getElementById('courtsContainer').innerHTML = html;
+        }
+
+        // 선수 목록
+        function renderPlayers() {
+            const players = playersData.players;
+            const playerGames = scheduleData.player_games;
+
+            // 팀별로 분류
+            const blueTeam = players.filter(p => p.team === '청');
+            const whiteTeam = players.filter(p => p.team === '백');
+
+            function renderTeamSection(team, teamClass, title) {
+                const grades = ['A', 'B', 'C', 'D', 'E'];
+                let html = `
+                    <div class="team-section ${teamClass}">
+                        <h2 class="team-title ${teamClass.split('-')[0]}">${title}</h2>
+                `;
+
+                grades.forEach(grade => {
+                    const gradePlayers = team.filter(p => p.grade === grade);
+                    if (gradePlayers.length === 0) return;
+
+                    html += `
+                        <div class="grade-group">
+                            <div class="grade-label">${grade}급</div>
+                            <div class="player-list">
+                    `;
+
+                    gradePlayers.forEach(p => {
+                        const games = playerGames[p.id] || 0;
+                        const genderClass = p.gender === 'M' ? 'male' : 'female';
+                        html += `
+                            <span class="player-chip ${genderClass}" onclick="showPlayerDetail('${p.id}')">
+                                ${p.id}<span class="player-games">(${games})</span>
+                            </span>
+                        `;
+                    });
+
+                    html += '</div></div>';
+                });
+
+                html += '</div>';
+                return html;
+            }
+
+            document.getElementById('playersGrid').innerHTML =
+                renderTeamSection(blueTeam, 'blue-team', '청팀 (25명)') +
+                renderTeamSection(whiteTeam, 'white-team', '백팀 (25명)');
+        }
+
+        // 통계 탭
+        function renderStatsTab() {
+            const stats = scheduleData.stats;
+            const playerGames = scheduleData.player_games;
+
+            // 경기수별 선수 분포
+            const gamesDist = {};
+            Object.values(playerGames).forEach(g => {
+                gamesDist[g] = (gamesDist[g] || 0) + 1;
+            });
+
+            let html = `
+                <div class="stats-card">
+                    <h3>경기 종류별</h3>
+                    <div class="stats-row"><span>남자복식</span><span>${stats.by_type.MD || 0}경기</span></div>
+                    <div class="stats-row"><span>여자복식</span><span>${stats.by_type.WD || 0}경기</span></div>
+                    <div class="stats-row"><span>혼합복식</span><span>${stats.by_type.XD || 0}경기</span></div>
+                </div>
+                <div class="stats-card">
+                    <h3>코트별 경기수</h3>
+            `;
+
+            for (let i = 1; i <= 6; i++) {
+                html += `<div class="stats-row"><span>코트 ${i}</span><span>${stats.by_court[i] || 0}경기</span></div>`;
+            }
+
+            html += `
+                </div>
+                <div class="stats-card">
+                    <h3>선수별 경기수 분포</h3>
+            `;
+
+            Object.keys(gamesDist).sort((a, b) => a - b).forEach(g => {
+                html += `<div class="stats-row"><span>${g}경기</span><span>${gamesDist[g]}명</span></div>`;
+            });
+
+            html += '</div>';
+
+            document.getElementById('statsGrid').innerHTML = html;
+        }
+
+        // 선수 상세
+        async function showPlayerDetail(playerId) {
+            try {
+                const res = await fetch(`/api/player/${playerId}`);
+                const data = await res.json();
+
+                document.getElementById('modalTitle').textContent = `${playerId} (${data.total_games}경기)`;
+
+                let html = '';
+                data.matches.forEach((m, i) => {
+                    html += `
+                        <div class="player-match">
+                            <div><strong>경기 ${i + 1}</strong> - 라운드${m.round} / 코트${m.court}</div>
+                            <div>종류: ${m.type_name}</div>
+                            <div>팀: ${m.team}팀 | 파트너: ${m.partner}</div>
+                            <div>상대: ${m.opponents.join(' + ')}</div>
+                        </div>
+                    `;
+                });
+
+                document.getElementById('modalBody').innerHTML = html;
+                document.getElementById('playerModal').classList.add('show');
+            } catch (error) {
+                console.error('선수 정보 로드 오류:', error);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('playerModal').classList.remove('show');
+        }
+
+        // 대진표 재생성
+        async function regenerate() {
+            if (!confirm('대진표를 새로 생성하시겠습니까?')) return;
+
+            try {
+                await fetch('/api/regenerate', { method: 'POST' });
+                await loadData();
+                alert('대진표가 재생성되었습니다!');
+            } catch (error) {
+                console.error('재생성 오류:', error);
+            }
+        }
+
+        // 도움말 모달
+        function showHelp() {
+            document.getElementById('helpModal').classList.add('show');
+        }
+
+        function closeHelp() {
+            document.getElementById('helpModal').classList.remove('show');
+        }
+
+        // 모달 바깥 클릭 시 닫기
+        document.getElementById('playerModal').addEventListener('click', (e) => {
+            if (e.target.id === 'playerModal') closeModal();
+        });
+
+        document.getElementById('helpModal').addEventListener('click', (e) => {
+            if (e.target.id === 'helpModal') closeHelp();
+        });
+
+        // 초기 로드
+        loadData();
+    </script>
+</body>
+</html>

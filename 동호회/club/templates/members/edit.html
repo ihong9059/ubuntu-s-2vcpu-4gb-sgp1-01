@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}프로필 수정{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="mb-0"><i class="bi bi-pencil"></i> 프로필 수정</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    <div class="text-center mb-4">
+                        {% if current_user.profile_image %}
+                        <img src="{{ url_for('static', filename=current_user.profile_image) }}" class="rounded-circle mb-3" width="120" height="120" style="object-fit: cover;">
+                        {% else %}
+                        <div class="rounded-circle bg-secondary d-inline-flex align-items-center justify-content-center mb-3" style="width: 120px; height: 120px;">
+                            <i class="bi bi-person text-white" style="font-size: 3rem;"></i>
+                        </div>
+                        {% endif %}
+                        <div>
+                            <label for="profile_image" class="btn btn-outline-primary btn-sm">
+                                <i class="bi bi-camera"></i> 사진 변경
+                            </label>
+                            <input type="file" id="profile_image" name="profile_image" accept="image/*" class="d-none">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nickname" class="form-label">닉네임</label>
+                        <input type="text" class="form-control" id="nickname" name="nickname" value="{{ current_user.nickname }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">전화번호</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" value="{{ current_user.phone or '' }}" placeholder="010-0000-0000">
+                    </div>
+                    <div class="mb-3">
+                        <label for="introduction" class="form-label">자기소개</label>
+                        <textarea class="form-control" id="introduction" name="introduction" rows="4" placeholder="자신을 소개해주세요.">{{ current_user.introduction or '' }}</textarea>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary">저장</button>
+                        <a href="{{ url_for('members.profile', user_id=current_user.id) }}" class="btn btn-outline-secondary">취소</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

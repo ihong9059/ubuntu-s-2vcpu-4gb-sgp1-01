@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메타인지 분류 체계</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body { background: #f8f9fa; }
+        .doc-container { max-width: 900px; margin: 0 auto; }
+        .doc-header { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 40px; border-radius: 0 0 20px 20px; margin-bottom: 30px; }
+        .doc-card { background: white; border-radius: 15px; padding: 30px; margin-bottom: 25px; box-shadow: 0 2px 15px rgba(0,0,0,0.08); }
+        .doc-card h2 { color: #f5576c; border-bottom: 3px solid #f5576c; padding-bottom: 10px; margin-bottom: 20px; }
+        .model-box { background: linear-gradient(135deg, #fff5f5, #fff0f5); border: 2px solid #f5576c; border-radius: 15px; padding: 25px; margin: 20px 0; }
+        .table thead { background: linear-gradient(135deg, #f093fb, #f5576c); color: white; }
+        .category-card { border-left: 4px solid #f5576c; background: #fff; padding: 20px; margin: 10px 0; border-radius: 0 10px 10px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .nav-doc { position: fixed; top: 20px; right: 20px; z-index: 1000; }
+        @media print { .nav-doc { display: none; } body { background: white; } }
+    </style>
+</head>
+<body>
+    <div class="nav-doc">
+        <a href="index.html" class="btn btn-danger"><i class="bi bi-house"></i> 목록</a>
+        <button onclick="window.print()" class="btn btn-outline-secondary"><i class="bi bi-printer"></i></button>
+    </div>
+
+    <div class="doc-header text-center">
+        <h1><i class="bi bi-diagram-3"></i> 메타인지 분류 체계</h1>
+        <h3 class="fw-light mt-2">고등학교 2학년 학습 맥락</h3>
+    </div>
+
+    <div class="doc-container px-3">
+        <!-- 2대 영역 모델 -->
+        <div class="doc-card">
+            <h2><i class="bi bi-1-circle-fill"></i> 2대 영역 모델 (Schraw & Dennison)</h2>
+
+            <div class="model-box">
+                <div class="row text-center">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-header bg-primary text-white">
+                                <h5 class="mb-0"><i class="bi bi-book"></i> 메타인지적 지식</h5>
+                            </div>
+                            <div class="card-body">
+                                <span class="badge bg-primary m-1">선언적 지식</span>
+                                <span class="badge bg-primary m-1">절차적 지식</span>
+                                <span class="badge bg-primary m-1">조건적 지식</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-header bg-success text-white">
+                                <h5 class="mb-0"><i class="bi bi-gear"></i> 메타인지적 조절</h5>
+                            </div>
+                            <div class="card-body">
+                                <span class="badge bg-success m-1">계획</span>
+                                <span class="badge bg-success m-1">점검</span>
+                                <span class="badge bg-success m-1">평가</span>
+                                <span class="badge bg-success m-1">조절</span>
+                                <span class="badge bg-success m-1">정보관리</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="mt-4"><i class="bi bi-bookmark"></i> 메타인지적 지식 세부 설명</h4>
+            <div class="category-card">
+                <h5 class="text-primary">선언적 지식 (Declarative Knowledge)</h5>
+                <p class="mb-0">자신의 학습자로서의 특성, 전략에 대한 지식</p>
+                <small class="text-muted">예: "나는 아침에 집중이 잘 된다", "요약 정리가 암기에 효과적이다"</small>
+            </div>
+            <div class="category-card">
+                <h5 class="text-primary">절차적 지식 (Procedural Knowledge)</h5>
+                <p class="mb-0">전략을 어떻게 사용하는지에 대한 지식</p>
+                <small class="text-muted">예: "마인드맵을 그리는 방법", "오답노트 작성 순서"</small>
+            </div>
+            <div class="category-card">
+                <h5 class="text-primary">조건적 지식 (Conditional Knowledge)</h5>
+                <p class="mb-0">언제, 왜 특정 전략을 사용하는지에 대한 지식</p>
+                <small class="text-muted">예: "수학은 문제풀이, 국어는 지문 분석이 중요하다"</small>
+            </div>
+
+            <h4 class="mt-4"><i class="bi bi-sliders"></i> 메타인지적 조절 세부 설명</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="category-card">
+                        <h6 class="text-success"><i class="bi bi-calendar-check"></i> 계획 (Planning)</h6>
+                        <p class="mb-0 small">학습 목표 설정, 시간 배분</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="category-card">
+                        <h6 class="text-success"><i class="bi bi-eye"></i> 점검 (Monitoring)</h6>
+                        <p class="mb-0 small">학습 과정 중 이해도 확인</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="category-card">
+                        <h6 class="text-success"><i class="bi bi-check-circle"></i> 평가 (Evaluation)</h6>
+                        <p class="mb-0 small">학습 결과 점검</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="category-card">
+                        <h6 class="text-success"><i class="bi bi-arrow-repeat"></i> 조절 (Regulation)</h6>
+                        <p class="mb-0 small">전략 수정 및 조정</p>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="category-card">
+                        <h6 class="text-success"><i class="bi bi-folder"></i> 정보관리 (Information Management)</h6>
+                        <p class="mb-0 small">학습 자료 조직 및 관리</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5영역 모델 -->
+        <div class="doc-card">
+            <h2><i class="bi bi-2-circle-fill"></i> 학습 맥락에서 자주 사용되는 5영역</h2>
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%">영역</th>
+                            <th>설명</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="badge bg-primary"><i class="bi bi-calendar3"></i> 계획 (Planning)</span></td>
+                            <td>학습 목표 설정, 시간 배분</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge bg-info"><i class="bi bi-search"></i> 점검 (Monitoring)</span></td>
+                            <td>학습 과정 중 이해도 확인</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge bg-success"><i class="bi bi-sliders"></i> 조절 (Regulation)</span></td>
+                            <td>전략 수정 및 조정</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge bg-warning text-dark"><i class="bi bi-clipboard-check"></i> 평가 (Evaluation)</span></td>
+                            <td>학습 결과 점검</td>
+                        </tr>
+                        <tr>
+                            <td><span class="badge bg-danger"><i class="bi bi-person-circle"></i> 자기인식 (Self-awareness)</span></td>
+                            <td>자신의 강약점 파악</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="alert alert-light border mt-4">
+                <h5><i class="bi bi-lightbulb"></i> 5영역 모델의 활용</h5>
+                <p class="mb-0">
+                    이 5영역 모델은 고등학교 학습 상황에 맞게 조정된 실용적인 분류입니다.
+                    각 영역은 독립적이면서도 상호 연관되어 있어, 한 영역의 향상이 다른 영역에도 긍정적 영향을 줍니다.
+                </p>
+            </div>
+        </div>
+
+        <!-- 시각적 다이어그램 -->
+        <div class="doc-card">
+            <h2><i class="bi bi-diagram-2"></i> 메타인지 구조 다이어그램</h2>
+
+            <div class="text-center py-4">
+                <svg width="100%" height="300" viewBox="0 0 600 300">
+                    <!-- 중앙 원 -->
+                    <circle cx="300" cy="150" r="60" fill="url(#gradient1)" />
+                    <text x="300" y="145" text-anchor="middle" fill="white" font-weight="bold" font-size="14">메타인지</text>
+                    <text x="300" y="165" text-anchor="middle" fill="white" font-size="12">(Metacognition)</text>
+
+                    <!-- 5개 영역 -->
+                    <circle cx="300" cy="40" r="40" fill="#667eea" />
+                    <text x="300" y="45" text-anchor="middle" fill="white" font-size="11">계획</text>
+
+                    <circle cx="430" cy="100" r="40" fill="#28a745" />
+                    <text x="430" y="105" text-anchor="middle" fill="white" font-size="11">점검</text>
+
+                    <circle cx="390" cy="230" r="40" fill="#17a2b8" />
+                    <text x="390" y="235" text-anchor="middle" fill="white" font-size="11">조절</text>
+
+                    <circle cx="210" cy="230" r="40" fill="#ffc107" />
+                    <text x="210" y="235" text-anchor="middle" fill="white" font-size="10">평가</text>
+
+                    <circle cx="170" cy="100" r="40" fill="#dc3545" />
+                    <text x="170" y="105" text-anchor="middle" fill="white" font-size="10">자기인식</text>
+
+                    <!-- 연결선 -->
+                    <line x1="300" y1="90" x2="300" y2="80" stroke="#667eea" stroke-width="2" />
+                    <line x1="360" y1="135" x2="390" y2="115" stroke="#28a745" stroke-width="2" />
+                    <line x1="345" y1="190" x2="360" y2="205" stroke="#17a2b8" stroke-width="2" />
+                    <line x1="255" y1="190" x2="240" y2="205" stroke="#ffc107" stroke-width="2" />
+                    <line x1="240" y1="135" x2="210" y2="115" stroke="#dc3545" stroke-width="2" />
+
+                    <defs>
+                        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#f093fb" />
+                            <stop offset="100%" style="stop-color:#f5576c" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+        <footer class="text-center text-muted py-4">
+            <small>&copy; 에듀패스 - 메타인지 분류 체계</small>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

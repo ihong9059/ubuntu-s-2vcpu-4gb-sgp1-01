@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ match.title }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .match-table th, .match-table td {
+        text-align: center;
+        vertical-align: middle;
+    }
+    .team-display {
+        padding: 8px;
+        border-radius: 4px;
+        margin: 2px;
+    }
+    .team-display.mixed {
+        background: linear-gradient(135deg, #e3f2fd 50%, #fce4ec 50%);
+    }
+    .team-display.male {
+        background: #e3f2fd;
+    }
+    .team-display.female {
+        background: #fce4ec;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h3><i class="bi bi-table"></i> {{ match.title }}</h3>
+        <small class="text-muted">{{ match.created_at.strftime('%Y-%m-%d %H:%M') }} | {{ match.creator.nickname }}</small>
+    </div>
+    <div>
+        <a href="{{ url_for('match.index') }}" class="btn btn-outline-secondary">목록</a>
+        {% if current_user.is_staff() %}
+        <form action="{{ url_for('match.delete', match_id=match.id) }}" method="POST" class="d-inline" onsubmit="return confirm('삭제하시겠습니까?');">
+            <button type="submit" class="btn btn-outline-danger">삭제</button>
+        </form>
+        {% endif %}
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered match-table">
+                <thead class="table-light">
+                    <tr>
+                        <th>라운드</th>
+                        {% for c in range(1, (match.settings.courts or 4) + 1) %}
+                        <th>코트 {{ c }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set matches_by_round = {} %}
+                    {% for m in match.match_data %}
+                        {% if m.round not in matches_by_round %}
+                            {% set _ = matches_by_round.update({m.round: {}}) %}
+                        {% endif %}
+                        {% set _ = matches_by_round[m.round].update({m.court: m}) %}
+                    {% endfor %}
+
+                    {% set max_round = match.match_data|map(attribute='round')|max if match.match_data else 0 %}
+                    {% for r in range(1, max_round + 1) %}
+                    <tr>
+                        <td><strong>{{ r }}</strong></td>
+                        {% for c in range(1, (match.settings.courts or 4) + 1) %}
+                        {% set m = matches_by_round.get(r, {}).get(c) %}
+                        {% if m %}
+                        <td>
+                            <div class="team-display {{ m.type or 'mixed' }}">{{ m.team1 }}</div>
+                            <div class="my-1">vs</div>
+                            <div class="team-display {{ m.type or 'mixed' }}">{{ m.team2 }}</div>
+                        </td>
+                        {% else %}
+                        <td class="text-muted">-</td>
+                        {% endif %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% if match.players_data %}
+<div class="card mt-4">
+    <div class="card-header">
+        <h5 class="mb-0">참여자 ({{ match.players_data|length }}명)</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            {% for player in match.players_data %}
+            <div class="col-auto">
+                <span class="badge bg-{{ 'info' if player.gender == 'M' else 'danger' }} fs-6 mb-2">
+                    {{ player.name }} ({{ player.grade }})
+                </span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

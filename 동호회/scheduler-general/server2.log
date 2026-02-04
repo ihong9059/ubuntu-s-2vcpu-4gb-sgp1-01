@@ -1,0 +1,24 @@
+============================================================
+배드민턴 대진표 생성기 (일반화 버전)
+============================================================
+http://localhost:5002
+============================================================
+ * Serving Flask app 'app'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7001
+ * Running on http://178.128.90.37:7001
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 513-454-059
+198.235.24.47 - - [01/Feb/2026 02:54:08] code 400, message Bad HTTP/0.9 request type ('t3')
+198.235.24.47 - - [01/Feb/2026 02:54:08] "[31m[1mt3 12.1.2[0m" 400 -
+91.231.89.224 - - [01/Feb/2026 03:21:46] code 400, message Bad HTTP/0.9 request type ('GIOP\x01\x02\x00\x03\x00\x00\x00\x17\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00')
+91.231.89.224 - - [01/Feb/2026 03:21:46] "[31m[1mGIOP\x01\x02\x00\x03\x00\x00\x00\x17\x00\x00\x00\x02\x00\x00\x00\x00\x00\x00\x00\x0bNameService[0m" 400 -
+============================================================
+배드민턴 대진표 생성기 (일반화 버전)
+============================================================
+http://localhost:5002
+============================================================

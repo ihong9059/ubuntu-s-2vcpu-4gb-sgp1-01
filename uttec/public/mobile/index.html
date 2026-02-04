@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#059669">
+    <title>UTTEC 영업관리</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f4f0;
+            min-height: 100vh;
+            padding-bottom: 70px;
+        }
+        .header {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 { font-size: 22px; margin-bottom: 5px; }
+        .header p { opacity: 0.9; font-size: 13px; }
+        .header .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            margin-top: 8px;
+        }
+
+        .tab-nav {
+            display: flex;
+            background: white;
+            border-bottom: 1px solid #ddd;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            background: white;
+            border: none;
+            font-size: 12px;
+            color: #666;
+            cursor: pointer;
+        }
+        .tab-btn.active {
+            color: #059669;
+            border-top: 3px solid #059669;
+            background: #e8f5e9;
+        }
+        .tab-btn span { display: block; font-size: 18px; margin-bottom: 3px; }
+
+        .screen { display: none; }
+        .screen.active { display: block; }
+
+        .container { padding: 15px; }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .card h3 {
+            color: #059669;
+            margin-bottom: 15px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .form-group { margin-bottom: 15px; }
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #555;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #059669;
+        }
+        .form-group textarea { resize: vertical; min-height: 80px; }
+
+        .photo-area {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .photo-area img {
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+        }
+        .photo-placeholder { color: #999; font-size: 14px; }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: white;
+        }
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+        .btn-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .gps-info {
+            background: #e8f5e9;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #047857;
+        }
+
+        .visit-type-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+        .visit-type-btn {
+            padding: 12px 8px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            text-align: center;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        .visit-type-btn.active {
+            border-color: #059669;
+            background: #e8f5e9;
+            color: #059669;
+        }
+        .visit-type-btn span { display: block; font-size: 22px; margin-bottom: 4px; }
+
+        .search-header {
+            background: white;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .search-box {
+            display: flex;
+            gap: 8px;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .search-box button {
+            padding: 10px 16px;
+            background: #059669;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .stats-bar {
+            display: flex;
+            background: white;
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .stat-item {
+            flex: 1;
+            text-align: center;
+        }
+        .stat-value { font-size: 20px; font-weight: bold; color: #059669; }
+        .stat-label { font-size: 11px; color: #999; }
+
+        .result-list { padding: 15px; }
+        .result-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            gap: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        .result-thumb {
+            width: 70px;
+            height: 70px;
+            background: #e8f5e9;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .result-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .result-info { flex: 1; }
+        .result-title { font-weight: 600; color: #333; margin-bottom: 4px; font-size: 15px; }
+        .result-meta { font-size: 12px; color: #999; margin-bottom: 4px; }
+        .result-category {
+            display: inline-block;
+            padding: 2px 8px;
+            background: #e8f5e9;
+            color: #059669;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-header {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h3 { color: #059669; }
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+        .modal-body { padding: 15px; }
+        .detail-image {
+            width: 100%;
+            max-height: 250px;
+            object-fit: contain;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .detail-row {
+            display: flex;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+        .detail-label { width: 90px; color: #666; }
+        .detail-value { flex: 1; color: #333; }
+        #detail-map { width: 100%; height: 180px; border-radius: 8px; margin-top: 15px; }
+
+        .no-data { text-align: center; padding: 40px; color: #999; }
+
+        .customer-quick-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .customer-tag {
+            padding: 6px 12px;
+            background: #f0f4f0;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .customer-tag:hover { background: #e8f5e9; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>UTTEC 영업관리</h1>
+        <p id="serverInfo">웹 버전</p>
+        <div class="badge">UTTEC Demo</div>
+    </div>
+
+    <!-- 방문 등록 화면 -->
+    <div id="visitScreen" class="screen active">
+        <div class="container">
+            <div class="card">
+                <h3>현재 위치</h3>
+                <div class="gps-info" id="gpsInfo">위치 정보를 가져오는 중...</div>
+            </div>
+
+            <div class="card">
+                <h3>거래처 정보</h3>
+                <div class="form-group">
+                    <label>거래처명 *</label>
+                    <input type="text" id="customerName" placeholder="거래처명을 입력하세요">
+                    <div class="customer-quick-list" id="recentCustomers"></div>
+                </div>
+                <div class="form-group">
+                    <label>담당자</label>
+                    <input type="text" id="contactPerson" placeholder="담당자명">
+                </div>
+                <div class="form-group">
+                    <label>연락처</label>
+                    <input type="tel" id="contactPhone" placeholder="연락처">
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>방문 유형</h3>
+                <div class="visit-type-grid">
+                    <button class="visit-type-btn active" data-type="sales">
+                        <span>&#128188;</span>영업
+                    </button>
+                    <button class="visit-type-btn" data-type="delivery">
+                        <span>&#128666;</span>납품
+                    </button>
+                    <button class="visit-type-btn" data-type="service">
+                        <span>&#128295;</span>AS
+                    </button>
+                    <button class="visit-type-btn" data-type="collect">
+                        <span>&#128176;</span>수금
+                    </button>
+                    <button class="visit-type-btn" data-type="meeting">
+                        <span>&#129309;</span>미팅
+                    </button>
+                    <button class="visit-type-btn" data-type="other">
+                        <span>&#128221;</span>기타
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>방문 내용</h3>
+                <div class="form-group">
+                    <label>상담 내용</label>
+                    <textarea id="visitNotes" placeholder="방문 내용을 입력하세요"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>다음 방문 예정일</label>
+                    <input type="date" id="nextVisitDate">
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>현장 사진</h3>
+                <div class="photo-area" onclick="document.getElementById('photoInput').click()">
+                    <div class="photo-placeholder" id="photoPlaceholder">탭하여 사진 촬영</div>
+                    <img id="photoPreview" style="display:none;">
+                </div>
+                <input type="file" id="photoInput" accept="image/*" capture="environment" style="display:none">
+            </div>
+
+            <button class="btn btn-primary" onclick="submitVisit()">방문 기록 저장</button>
+            <button class="btn btn-secondary" onclick="openDashboard()">관리자 대시보드</button>
+        </div>
+    </div>
+
+    <!-- 조회 화면 -->
+    <div id="searchScreen" class="screen">
+        <div class="search-header">
+            <div class="search-box">
+                <input type="text" id="searchKeyword" placeholder="거래처명 검색...">
+                <button onclick="searchData()">검색</button>
+            </div>
+        </div>
+
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-value" id="statTotal">0</div>
+                <div class="stat-label">전체</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="statToday">0</div>
+                <div class="stat-label">오늘</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="statWeek">0</div>
+                <div class="stat-label">이번주</div>
+            </div>
+        </div>
+
+        <div class="result-list" id="resultList">
+            <div class="no-data">검색 버튼을 눌러 데이터를 조회하세요</div>
+        </div>
+    </div>
+
+    <!-- 설정 화면 -->
+    <div id="settingsScreen" class="screen">
+        <div class="container">
+            <div class="card">
+                <h3>앱 설정</h3>
+                <div class="form-group">
+                    <label>영업사원명 *</label>
+                    <input type="text" id="settingSalesName" placeholder="본인 이름을 입력하세요">
+                </div>
+                <div class="form-group">
+                    <label>기기 ID</label>
+                    <input type="text" id="settingDeviceId" placeholder="uttec-001">
+                </div>
+                <button class="btn btn-success" onclick="saveSettings()">설정 저장</button>
+            </div>
+
+            <div class="card">
+                <h3>내 통계</h3>
+                <div class="detail-row">
+                    <div class="detail-label">오늘 방문</div>
+                    <div class="detail-value" id="todayVisits">0건</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">이번주 방문</div>
+                    <div class="detail-value" id="weekVisits">0건</div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-label">이번달 방문</div>
+                    <div class="detail-value" id="monthVisits">0건</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>사용 안내</h3>
+                <p style="font-size: 13px; color: #666; line-height: 1.6;">
+                    1. 영업사원명을 먼저 설정하세요<br>
+                    2. 방문등록 탭에서 거래처 정보 입력<br>
+                    3. 방문 유형 선택 후 내용 입력<br>
+                    4. 사진 촬영 후 저장<br><br>
+                    <strong>홈 화면 추가 방법:</strong><br>
+                    - iPhone: 공유 버튼 > 홈 화면에 추가<br>
+                    - Android: 메뉴 > 홈 화면에 추가
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 상세 모달 -->
+    <div class="modal" id="detailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">상세 정보</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- 하단 네비게이션 -->
+    <div class="tab-nav">
+        <button class="tab-btn active" onclick="showScreen('visit', this)">
+            <span>&#9997;</span>방문등록
+        </button>
+        <button class="tab-btn" onclick="showScreen('search', this)">
+            <span>&#128269;</span>조회
+        </button>
+        <button class="tab-btn" onclick="showScreen('settings', this)">
+            <span>&#9881;</span>설정
+        </button>
+    </div>
+
+    <script>
+        let currentLat = null;
+        let currentLng = null;
+        let selectedPhoto = null;
+        let selectedVisitType = 'sales';
+        let detailMap = null;
+
+        const serverUrl = window.location.origin;
+        let deviceId = localStorage.getItem('deviceId') || 'uttec-' + Math.random().toString(36).substr(2, 9);
+        let salesName = localStorage.getItem('salesName') || '';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('serverInfo').textContent = '서버: ' + serverUrl;
+            localStorage.setItem('deviceId', deviceId);
+
+            initGPS();
+            initVisitTypes();
+            loadSettings();
+            loadRecentCustomers();
+
+            if (!salesName) {
+                setTimeout(() => {
+                    alert('먼저 설정에서 영업사원명을 입력해주세요.');
+                    showScreen('settings', document.querySelectorAll('.tab-btn')[2]);
+                }, 500);
+            }
+        });
+
+        function showScreen(screen, btn) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(screen + 'Screen').classList.add('active');
+            if (btn) btn.classList.add('active');
+
+            if (screen === 'search') searchData();
+            if (screen === 'settings') loadSettings();
+        }
+
+        function initGPS() {
+            if (navigator.geolocation) {
+                navigator.geolocation.watchPosition(
+                    function(position) {
+                        currentLat = position.coords.latitude;
+                        currentLng = position.coords.longitude;
+                        document.getElementById('gpsInfo').innerHTML =
+                            '위도: ' + currentLat.toFixed(6) + ' / 경도: ' + currentLng.toFixed(6) +
+                            '<br>정확도: ' + position.coords.accuracy.toFixed(1) + 'm';
+                    },
+                    function(error) {
+                        document.getElementById('gpsInfo').textContent = 'GPS 오류: ' + error.message;
+                    },
+                    { enableHighAccuracy: true, timeout: 10000 }
+                );
+            } else {
+                document.getElementById('gpsInfo').textContent = 'GPS를 지원하지 않는 브라우저입니다';
+            }
+        }
+
+        function initVisitTypes() {
+            document.querySelectorAll('.visit-type-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.visit-type-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    selectedVisitType = this.dataset.type;
+                });
+            });
+        }
+
+        document.getElementById('photoInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                selectedPhoto = file;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('photoPreview').src = e.target.result;
+                    document.getElementById('photoPreview').style.display = 'block';
+                    document.getElementById('photoPlaceholder').style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        async function submitVisit() {
+            const customerName = document.getElementById('customerName').value;
+            const contactPerson = document.getElementById('contactPerson').value;
+            const contactPhone = document.getElementById('contactPhone').value;
+            const visitNotes = document.getElementById('visitNotes').value;
+            const nextVisitDate = document.getElementById('nextVisitDate').value;
+
+            if (!customerName) {
+                alert('거래처명을 입력하세요');
+                return;
+            }
+
+            if (!salesName) {
+                alert('설정에서 영업사원명을 먼저 입력하세요');
+                showScreen('settings', document.querySelectorAll('.tab-btn')[2]);
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('device_id', deviceId);
+            formData.append('sales_name', salesName);
+            formData.append('customer_name', customerName);
+            formData.append('contact_person', contactPerson);
+            formData.append('contact_phone', contactPhone);
+            formData.append('visit_type', selectedVisitType);
+            formData.append('notes', visitNotes);
+            formData.append('next_visit_date', nextVisitDate);
+            formData.append('latitude', currentLat || 0);
+            formData.append('longitude', currentLng || 0);
+
+            if (selectedPhoto) {
+                formData.append('photo', selectedPhoto);
+            }
+
+            try {
+                const response = await fetch(serverUrl + '/api/visit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    alert('방문 기록이 저장되었습니다!');
+                    saveRecentCustomer(customerName);
+                    clearForm();
+                } else {
+                    alert('저장 실패: ' + response.status);
+                }
+            } catch (error) {
+                alert('오류: ' + error.message);
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('customerName').value = '';
+            document.getElementById('contactPerson').value = '';
+            document.getElementById('contactPhone').value = '';
+            document.getElementById('visitNotes').value = '';
+            document.getElementById('nextVisitDate').value = '';
+            document.getElementById('photoPreview').style.display = 'none';
+            document.getElementById('photoPlaceholder').style.display = 'block';
+            selectedPhoto = null;
+        }
+
+        function saveRecentCustomer(name) {
+            let customers = JSON.parse(localStorage.getItem('recentCustomers_uttec') || '[]');
+            customers = customers.filter(c => c !== name);
+            customers.unshift(name);
+            customers = customers.slice(0, 10);
+            localStorage.setItem('recentCustomers_uttec', JSON.stringify(customers));
+            loadRecentCustomers();
+        }
+
+        function loadRecentCustomers() {
+            const customers = JSON.parse(localStorage.getItem('recentCustomers_uttec') || '[]');
+            const container = document.getElementById('recentCustomers');
+            container.innerHTML = customers.map(c =>
+                `<span class="customer-tag" onclick="document.getElementById('customerName').value='${c}'">${c}</span>`
+            ).join('');
+        }
+
+        function openDashboard() {
+            window.open(serverUrl, '_blank');
+        }
+
+        async function searchData() {
+            const keyword = document.getElementById('searchKeyword').value;
+            let url = serverUrl + '/api/visit?';
+            if (keyword) url += 'keyword=' + encodeURIComponent(keyword);
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                displayResults(data);
+                updateStats(data);
+            } catch (error) {
+                document.getElementById('resultList').innerHTML =
+                    '<div class="no-data">데이터 조회 실패: ' + error.message + '</div>';
+            }
+        }
+
+        function displayResults(data) {
+            const list = document.getElementById('resultList');
+            if (!data || data.length === 0) {
+                list.innerHTML = '<div class="no-data">검색 결과가 없습니다</div>';
+                return;
+            }
+
+            list.innerHTML = data.map(item => `
+                <div class="result-item" onclick='showDetail(${JSON.stringify(item).replace(/'/g, "\\'")})'>
+                    <div class="result-thumb">
+                        ${item.photo ?
+                            `<img src="${getPhotoUrl(item.photo)}" onerror="this.style.display='none'">` :
+                            '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:11px">No Photo</div>'}
+                    </div>
+                    <div class="result-info">
+                        <div class="result-title">${item.customer_name || '거래처명 없음'}</div>
+                        <div class="result-meta">${item.sales_name || item.device_id} | ${new Date(item.timestamp).toLocaleString()}</div>
+                        <span class="result-category">${getVisitTypeName(item.visit_type)}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getVisitTypeName(type) {
+            const names = {
+                'sales': '영업', 'delivery': '납품', 'service': 'AS',
+                'collect': '수금', 'meeting': '미팅', 'other': '기타'
+            };
+            return names[type] || type;
+        }
+
+        function getPhotoUrl(photo) {
+            if (!photo) return '';
+            if (photo.startsWith('/')) return serverUrl + photo;
+            return serverUrl + '/uploads/' + photo;
+        }
+
+        function updateStats(data) {
+            const total = data.length;
+            const today = new Date().toDateString();
+            const todayCount = data.filter(d => new Date(d.timestamp).toDateString() === today).length;
+
+            const weekAgo = new Date();
+            weekAgo.setDate(weekAgo.getDate() - 7);
+            const weekCount = data.filter(d => new Date(d.timestamp) >= weekAgo).length;
+
+            document.getElementById('statTotal').textContent = total;
+            document.getElementById('statToday').textContent = todayCount;
+            document.getElementById('statWeek').textContent = weekCount;
+        }
+
+        function showDetail(item) {
+            document.getElementById('modalTitle').textContent = item.customer_name || '상세 정보';
+            let html = '';
+
+            if (item.photo) {
+                html += `<img class="detail-image" src="${getPhotoUrl(item.photo)}">`;
+            }
+
+            html += `
+                <div class="detail-row"><div class="detail-label">거래처</div><div class="detail-value">${item.customer_name || '-'}</div></div>
+                <div class="detail-row"><div class="detail-label">담당자</div><div class="detail-value">${item.contact_person || '-'}</div></div>
+                <div class="detail-row"><div class="detail-label">연락처</div><div class="detail-value">${item.contact_phone || '-'}</div></div>
+                <div class="detail-row"><div class="detail-label">방문유형</div><div class="detail-value">${getVisitTypeName(item.visit_type)}</div></div>
+                <div class="detail-row"><div class="detail-label">영업사원</div><div class="detail-value">${item.sales_name || item.device_id}</div></div>
+                <div class="detail-row"><div class="detail-label">내용</div><div class="detail-value">${item.notes || '-'}</div></div>
+                <div class="detail-row"><div class="detail-label">위치</div><div class="detail-value">${item.latitude ? item.latitude.toFixed(6) + ', ' + item.longitude.toFixed(6) : '-'}</div></div>
+                <div class="detail-row"><div class="detail-label">등록일시</div><div class="detail-value">${new Date(item.timestamp).toLocaleString()}</div></div>
+            `;
+
+            if (item.latitude && item.longitude) {
+                html += '<div id="detail-map"></div>';
+            }
+
+            document.getElementById('modalBody').innerHTML = html;
+            document.getElementById('detailModal').classList.add('active');
+
+            if (item.latitude && item.longitude) {
+                setTimeout(() => {
+                    if (detailMap) detailMap.remove();
+                    detailMap = L.map('detail-map').setView([item.latitude, item.longitude], 16);
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(detailMap);
+                    L.marker([item.latitude, item.longitude]).addTo(detailMap).bindPopup(item.customer_name || '위치').openPopup();
+                }, 100);
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').classList.remove('active');
+            if (detailMap) { detailMap.remove(); detailMap = null; }
+        }
+
+        function loadSettings() {
+            document.getElementById('settingSalesName').value = salesName;
+            document.getElementById('settingDeviceId').value = deviceId;
+            loadMyStats();
+        }
+
+        function saveSettings() {
+            const newSalesName = document.getElementById('settingSalesName').value;
+            const newDeviceId = document.getElementById('settingDeviceId').value;
+
+            if (!newSalesName) {
+                alert('영업사원명을 입력하세요');
+                return;
+            }
+
+            salesName = newSalesName;
+            deviceId = newDeviceId || deviceId;
+
+            localStorage.setItem('salesName', salesName);
+            localStorage.setItem('deviceId', deviceId);
+
+            alert('설정이 저장되었습니다');
+        }
+
+        async function loadMyStats() {
+            try {
+                const response = await fetch(serverUrl + '/api/stats');
+                const stats = await response.json();
+                document.getElementById('todayVisits').textContent = stats.today + '건';
+                document.getElementById('weekVisits').textContent = stats.week + '건';
+                document.getElementById('monthVisits').textContent = stats.month + '건';
+            } catch (error) {
+                console.error('Stats load error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

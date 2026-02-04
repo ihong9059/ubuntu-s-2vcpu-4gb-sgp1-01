@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메타인지 테스트 설명서 - 고등학교 2학년</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body { background: #f8f9fa; }
+        .doc-container { max-width: 950px; margin: 0 auto; }
+        .doc-header { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; padding: 40px; border-radius: 0 0 20px 20px; margin-bottom: 30px; }
+        .doc-card { background: white; border-radius: 15px; padding: 30px; margin-bottom: 25px; box-shadow: 0 2px 15px rgba(0,0,0,0.08); }
+        .doc-card h2 { color: #11998e; border-bottom: 3px solid #11998e; padding-bottom: 10px; margin-bottom: 20px; }
+        .section-title { background: #11998e; color: white; padding: 10px 20px; border-radius: 10px; display: inline-block; margin-bottom: 20px; }
+        .info-box { background: #e8f5e9; border-left: 4px solid #11998e; padding: 15px 20px; border-radius: 0 10px 10px 0; margin: 15px 0; }
+        .warning-box { background: #fff3e0; border-left: 4px solid #ff9800; padding: 15px 20px; border-radius: 0 10px 10px 0; margin: 15px 0; }
+        .code-block { background: #263238; color: #aed581; padding: 20px; border-radius: 10px; font-family: 'D2Coding', monospace; font-size: 0.9rem; white-space: pre-wrap; overflow-x: auto; }
+        .table thead { background: #11998e; color: white; }
+        .step-number { display: inline-flex; width: 30px; height: 30px; background: #11998e; color: white; border-radius: 50%; align-items: center; justify-content: center; font-weight: bold; margin-right: 10px; }
+        .area-card { border: 2px solid #ddd; border-radius: 15px; overflow: hidden; margin-bottom: 20px; }
+        .area-card .area-header { background: linear-gradient(135deg, #11998e, #38ef7d); color: white; padding: 15px 20px; }
+        .area-card .area-body { padding: 20px; }
+        .nav-doc { position: fixed; top: 20px; right: 20px; z-index: 1000; }
+        .toc { background: #f8f9fa; padding: 20px; border-radius: 10px; }
+        .toc a { color: #11998e; text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        @media print { .nav-doc, .toc { display: none; } body { background: white; } .doc-card { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; } }
+    </style>
+</head>
+<body>
+    <div class="nav-doc">
+        <a href="index.html" class="btn btn-success"><i class="bi bi-house"></i> 목록</a>
+        <button onclick="window.print()" class="btn btn-outline-secondary"><i class="bi bi-printer"></i></button>
+    </div>
+
+    <div class="doc-header text-center">
+        <h1><i class="bi bi-clipboard2-pulse"></i> 메타인지 테스트 설명서</h1>
+        <h3 class="fw-light mt-2">고등학교 2학년 대상</h3>
+        <div class="mt-3">
+            <span class="badge bg-light text-dark me-2"><i class="bi bi-clock"></i> 60~90분</span>
+            <span class="badge bg-light text-dark"><i class="bi bi-list-check"></i> 5개 영역</span>
+        </div>
+    </div>
+
+    <div class="doc-container px-3">
+        <!-- 목차 -->
+        <div class="doc-card toc">
+            <h5><i class="bi bi-list-ul"></i> 목차</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-unstyled">
+                        <li><a href="#overview">개요</a></li>
+                        <li><a href="#area1">영역 1: 자기인식 정확도</a></li>
+                        <li><a href="#area2">영역 2: 학습전략 인식</a></li>
+                        <li><a href="#area3">영역 3: 계획 및 목표설정</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-unstyled">
+                        <li><a href="#area4">영역 4: 자기점검 능력</a></li>
+                        <li><a href="#area5">영역 5: 자기조절 능력</a></li>
+                        <li><a href="#result">종합 결과 분석</a></li>
+                        <li><a href="#appendix">부록</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 개요 -->
+        <div class="doc-card" id="overview">
+            <h2><i class="bi bi-info-circle"></i> 개요</h2>
+
+            <div class="info-box">
+                <h5>메타인지란?</h5>
+                <p class="mb-0">
+                    메타인지(Metacognition)는 <strong>"자신의 인지 과정에 대해 아는 것"</strong>,
+                    즉 자신이 무엇을 알고 무엇을 모르는지 정확히 파악하는 능력입니다.
+                    학습에서 메타인지가 높은 학생은 효율적인 학습 전략을 선택하고,
+                    자신의 약점을 정확히 인식하여 보완할 수 있습니다.
+                </p>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h5><i class="bi bi-bullseye"></i> 테스트 목적</h5>
+                    <ul>
+                        <li>학생이 자신의 학업 수준을 얼마나 정확히 인식하는지 파악</li>
+                        <li>학습 계획 및 전략 수립 능력 진단</li>
+                        <li>자기 점검 및 조절 능력 평가</li>
+                        <li>맞춤형 학습 코칭의 기초 자료 확보</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h5><i class="bi bi-person"></i> 대상 및 소요시간</h5>
+                    <ul>
+                        <li><strong>대상:</strong> 고등학교 2학년 (대학 진학 준비생)</li>
+                        <li><strong>전체 테스트:</strong> 약 60~90분</li>
+                        <li><strong>결과 분석 면담:</strong> 약 30분</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h5 class="mt-4"><i class="bi bi-diagram-3"></i> 테스트 구성 (5개 영역)</h5>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr><th>영역</th><th>측정 내용</th><th>방법</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><span class="badge bg-primary">1</span> 자기인식 정확도</td><td>예측 vs 실제 성적 비교</td><td>예측 테스트</td></tr>
+                        <tr><td><span class="badge bg-success">2</span> 학습전략 인식</td><td>학습 방법에 대한 이해도</td><td>설문지</td></tr>
+                        <tr><td><span class="badge bg-info">3</span> 계획 및 목표설정</td><td>학습 계획 수립 능력</td><td>과제 수행</td></tr>
+                        <tr><td><span class="badge bg-warning text-dark">4</span> 자기점검 능력</td><td>학습 중 모니터링 능력</td><td>씽크어라우드</td></tr>
+                        <tr><td><span class="badge bg-danger">5</span> 자기조절 능력</td><td>전략 수정 및 조절 능력</td><td>면담 + 설문</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 영역 1 -->
+        <div class="area-card" id="area1">
+            <div class="area-header">
+                <h4 class="mb-0"><span class="badge bg-light text-dark me-2">영역 1</span> 자기인식 정확도 테스트</h4>
+            </div>
+            <div class="area-body">
+                <p><strong>목적:</strong> 학생이 자신의 실력을 얼마나 정확하게 파악하고 있는지 측정</p>
+
+                <h5>방법: 예측-수행-비교 테스트</h5>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card h-100 border-primary">
+                            <div class="card-body">
+                                <h6><span class="step-number">1</span>예측 단계</h6>
+                                <small>문제를 풀기 전, 각 문제에 대해 맞출 자신감을 표시 (10분)</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-success">
+                            <div class="card-body">
+                                <h6><span class="step-number">2</span>수행 단계</h6>
+                                <small>학생이 실제로 문제를 풀이 (30분)</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 border-info">
+                            <div class="card-body">
+                                <h6><span class="step-number">3</span>비교 단계</h6>
+                                <small>예측과 실제 결과를 비교하여 점수 산출</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-block mt-4">예시 양식:
+┌─────────────────────────────────────────────────┐
+│ 문제 1번: 맞출 자신감은?                          │
+│ □ 확실히 맞음 (90%↑)                             │
+│ □ 아마 맞을 것 (70~89%)                          │
+│ □ 반반 (50~69%)                                  │
+│ □ 틀릴 가능성 높음 (30~49%)                       │
+│ □ 모르겠음 (30%↓)                                │
+└─────────────────────────────────────────────────┘</div>
+
+                <h5 class="mt-4">분석 기준</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead><tr><th>유형</th><th>설명</th><th>특징</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="badge bg-success">정확형</span></td><td>예측 ≈ 실제</td><td>메타인지 양호, 현실적 목표 설정 가능</td></tr>
+                            <tr><td><span class="badge bg-danger">과대평가형</span></td><td>예측 > 실제</td><td>자신감 과잉, 학습량 부족 가능성</td></tr>
+                            <tr><td><span class="badge bg-warning text-dark">과소평가형</span></td><td>예측 < 실제</td><td>자신감 부족, 불안 성향 가능성</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 영역 2 -->
+        <div class="area-card" id="area2">
+            <div class="area-header">
+                <h4 class="mb-0"><span class="badge bg-light text-dark me-2">영역 2</span> 학습전략 인식 설문</h4>
+            </div>
+            <div class="area-body">
+                <p><strong>목적:</strong> 학생이 효과적인 학습 전략을 알고 있는지, 실제로 사용하는지 파악</p>
+                <p><strong>방법:</strong> 자기보고식 설문지 (5점 척도, 총 20문항)</p>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-primary text-white">A. 계획 전략 (5문항)</div>
+                            <div class="card-body">
+                                <small>
+                                    1. 공부 전 계획 세우기<br>
+                                    2. 시험 전 일정 정하기<br>
+                                    3. 과목별 시간 배분<br>
+                                    4. 목표 성적 설정<br>
+                                    5. 하루 공부량 실천
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-success text-white">B. 점검 전략 (5문항)</div>
+                            <div class="card-body">
+                                <small>
+                                    6. 이해도 스스로 확인<br>
+                                    7. 오답 원인 분석<br>
+                                    8. 어려운 부분 표시<br>
+                                    9. 시험 후 오답 정리<br>
+                                    10. 복습 시 내용 떠올리기
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-info text-white">C. 조절 전략 (5문항)</div>
+                            <div class="card-body">
+                                <small>
+                                    11. 방법 변경 시도<br>
+                                    12. 다른 자료 찾기<br>
+                                    13. 휴식 후 재시작<br>
+                                    14. 우선순위 정하기<br>
+                                    15. 원인 파악 및 개선
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-header bg-warning">D. 인지 전략 (5문항)</div>
+                            <div class="card-body">
+                                <small>
+                                    16. 밑줄/표시하기<br>
+                                    17. 요약/정리노트<br>
+                                    18. 기존 지식과 연결<br>
+                                    19. 나만의 말로 설명<br>
+                                    20. 그림/도표 활용
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h5 class="mt-4">점수 해석</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <thead><tr><th>구분</th><th>점수 범위</th><th>수준</th><th>해석</th></tr></thead>
+                        <tbody>
+                            <tr><td>각 영역</td><td>21~25점</td><td><span class="badge bg-success">상</span></td><td>해당 전략을 잘 활용함</td></tr>
+                            <tr><td>각 영역</td><td>15~20점</td><td><span class="badge bg-warning text-dark">중</span></td><td>보통 수준, 강화 필요</td></tr>
+                            <tr><td>각 영역</td><td>5~14점</td><td><span class="badge bg-danger">하</span></td><td>해당 전략 학습 필요</td></tr>
+                            <tr class="table-primary"><td><strong>총점</strong></td><td>80~100점</td><td><span class="badge bg-success">상</span></td><td>학습전략 인식 우수</td></tr>
+                            <tr class="table-primary"><td><strong>총점</strong></td><td>60~79점</td><td><span class="badge bg-warning text-dark">중</span></td><td>부분적 개선 필요</td></tr>
+                            <tr class="table-primary"><td><strong>총점</strong></td><td>20~59점</td><td><span class="badge bg-danger">하</span></td><td>체계적 전략 교육 필요</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 영역 3 -->
+        <div class="area-card" id="area3">
+            <div class="area-header">
+                <h4 class="mb-0"><span class="badge bg-light text-dark me-2">영역 3</span> 계획 및 목표설정 능력</h4>
+            </div>
+            <div class="area-body">
+                <p><strong>목적:</strong> 실제 학습 계획을 세우는 능력을 평가</p>
+                <p><strong>방법:</strong> 계획 수립 과제 (15분)</p>
+
+                <div class="info-box">
+                    <h6><i class="bi bi-megaphone"></i> 과제 지시문</h6>
+                    <p class="mb-1"><strong>[상황]</strong> 3주 후 중간고사가 있습니다.</p>
+                    <p class="mb-1"><strong>시험 과목:</strong> 국어, 수학, 영어, 한국사, 생명과학</p>
+                    <hr>
+                    <p class="mb-0"><strong>[과제]</strong><br>
+                    1. 3주간의 학습 계획표를 작성하세요.<br>
+                    2. 과목별 목표 성적을 적으세요.<br>
+                    3. 목표 달성을 위한 구체적 실행 방법을 적으세요.</p>
+                </div>
+
+                <h5 class="mt-4">평가 기준표 (컨설턴트용)</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead><tr><th>평가 항목</th><th>배점</th><th>평가 기준</th></tr></thead>
+                        <tbody>
+                            <tr><td>목표의 구체성</td><td class="text-center">20점</td><td>구체적 점수/등급 제시 여부</td></tr>
+                            <tr><td>목표의 현실성</td><td class="text-center">20점</td><td>이전 성적 대비 합리적 목표 설정</td></tr>
+                            <tr><td>계획의 구체성</td><td class="text-center">20점</td><td>시간, 분량, 방법 명시 여부</td></tr>
+                            <tr><td>균형성</td><td class="text-center">20점</td><td>과목별 적절한 시간 배분</td></tr>
+                            <tr><td>실행 가능성</td><td class="text-center">20점</td><td>실제 생활 패턴 고려 여부</td></tr>
+                            <tr class="table-success"><td><strong>총점</strong></td><td class="text-center"><strong>100점</strong></td><td></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 영역 4 -->
+        <div class="area-card" id="area4">
+            <div class="area-header">
+                <h4 class="mb-0"><span class="badge bg-light text-dark me-2">영역 4</span> 자기점검 능력 (씽크어라우드)</h4>
+            </div>
+            <div class="area-body">
+                <p><strong>목적:</strong> 학습 과정에서 스스로 이해도를 점검하는 능력을 평가</p>
+                <p><strong>방법:</strong> Think-Aloud (생각 말하기) 기법</p>
+
+                <div class="warning-box">
+                    <h6><i class="bi bi-chat-quote"></i> 지시문 안내</h6>
+                    <p class="mb-0">
+                        "지금부터 이 문제를 풀면서 머릿속에 떠오르는 생각을 모두 말로 표현해 주세요.<br><br>
+                        예를 들어:<br>
+                        - '이 부분이 이해가 안 돼'<br>
+                        - '아, 이건 공식을 적용하면 되겠다'<br>
+                        - '여기서 막히네, 다른 방법을 찾아봐야겠다'<br><br>
+                        틀려도 괜찮으니 생각하는 과정을 자연스럽게 말해주세요."
+                    </p>
+                </div>
+
+                <h5 class="mt-4">관찰 체크리스트</h5>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">이해 점검 (9점)</div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="bi bi-check-square me-2"></i>문제를 읽고 무엇을 묻는지 파악하려 함</li>
+                                <li class="list-group-item"><i class="bi bi-check-square me-2"></i>이해 안 되는 부분을 인식하고 표현함</li>
+                                <li class="list-group-item"><i class="bi bi-check-square me-2"></i>핵심 정보를 구분하려는 시도를 함</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">전략 사용 (9점)</div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="bi bi-check-square me-2"></i>필요한 개념/공식을 떠올림</li>
+                                <li class="list-group-item"><i class="bi bi-check-square me-2"></i>풀이 방법을 여러 가지 고려함</li>
+                                <li class="list-group-item"><i class="bi bi-check-square me-2"></i>막히면 다른 접근법을 시도함</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">오류 감지 (9점)</div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="bi bi-check-square me-2"></i>확신/불확신을 표현함</li>
+                                <li class="list-group-item"><i class="bi bi-check-square me-2"></i>풀이 과정의 오류를 스스로 발견함</li>
+                                <li class="list-group-item"><i class="bi bi-check-square me-2"></i>답을 검토하거나 재확인함</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">자기 조절 (9점)</div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="bi bi-check-square me-2"></i>어려움 시 감정을 조절함</li>
+                                <li class="list-group-item"><i class="bi bi-check-square me-2"></i>포기하지 않고 끝까지 시도함</li>
+                                <li class="list-group-item"><i class="bi bi-check-square me-2"></i>모르는 것을 인정하고 표현함</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center mt-3"><strong>총점: 36점 만점</strong></p>
+            </div>
+        </div>
+
+        <!-- 영역 5 -->
+        <div class="area-card" id="area5">
+            <div class="area-header">
+                <h4 class="mb-0"><span class="badge bg-light text-dark me-2">영역 5</span> 자기조절 능력</h4>
+            </div>
+            <div class="area-body">
+                <p><strong>목적:</strong> 학습 과정에서 전략을 수정하고 조절하는 능력을 평가</p>
+                <p><strong>방법:</strong> 시나리오 기반 면담 + 설문</p>
+
+                <h5>시나리오 설문 예시</h5>
+                <div class="card mb-3">
+                    <div class="card-header bg-warning">상황 1</div>
+                    <div class="card-body">
+                        <p class="lead">"수학 문제집을 풀었는데 10문제 중 7문제를 틀렸습니다."</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <small>
+                                    A. 그냥 넘어가고 다음 단원으로 간다 <span class="badge bg-secondary">1점</span><br>
+                                    B. 틀린 문제만 답 보고 넘어간다 <span class="badge bg-secondary">2점</span>
+                                </small>
+                            </div>
+                            <div class="col-md-6">
+                                <small>
+                                    C. 틀린 문제를 다시 풀고 분석한다 <span class="badge bg-success">4점</span><br>
+                                    D. 해당 개념부터 다시 공부한다 <span class="badge bg-info">3점</span>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h5>점수 산정</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-sm">
+                        <thead><tr><th>선택</th><th>점수</th><th>의미</th></tr></thead>
+                        <tbody>
+                            <tr><td>A</td><td class="text-center">1점</td><td>회피/포기 성향</td></tr>
+                            <tr><td>B</td><td class="text-center">2점</td><td>소극적 대처</td></tr>
+                            <tr><td>C</td><td class="text-center">4점</td><td>적극적/전략적 대처</td></tr>
+                            <tr><td>D</td><td class="text-center">3점</td><td>노력형 대처</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 종합 결과 -->
+        <div class="doc-card" id="result">
+            <h2><i class="bi bi-graph-up"></i> 종합 결과 분석</h2>
+
+            <h5>메타인지 유형 분류</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="card border-primary h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary"><i class="bi bi-trophy"></i> 전략형</h5>
+                            <p class="small"><strong>특징:</strong> 모든 영역 상</p>
+                            <p class="small mb-0"><strong>코칭:</strong> 심화 목표 설정, 자기주도 학습 유도</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-success h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-success"><i class="bi bi-hand-thumbs-up"></i> 노력형</h5>
+                            <p class="small"><strong>특징:</strong> 계획/조절 상, 인식 하</p>
+                            <p class="small mb-0"><strong>코칭:</strong> 자기인식 훈련, 객관적 피드백 제공</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-info h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-info"><i class="bi bi-lightbulb"></i> 직관형</h5>
+                            <p class="small"><strong>특징:</strong> 인식 상, 계획/전략 하</p>
+                            <p class="small mb-0"><strong>코칭:</strong> 체계적 학습법 교육, 계획 습관화</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card border-warning h-100">
+                        <div class="card-body">
+                            <h5 class="card-title text-warning"><i class="bi bi-question-circle"></i> 혼란형</h5>
+                            <p class="small"><strong>특징:</strong> 대부분 영역 하</p>
+                            <p class="small mb-0"><strong>코칭:</strong> 기초 학습전략 교육, 단계별 관리</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h5 class="mt-4">메타인지 향상 프로그램 연계</h5>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead><tr><th>취약 영역</th><th>추천 프로그램</th></tr></thead>
+                    <tbody>
+                        <tr><td>자기인식</td><td>학습일지 작성, 예측-확인 훈련</td></tr>
+                        <tr><td>학습전략</td><td>전략 학습 워크숍, 노트필기법 교육</td></tr>
+                        <tr><td>계획수립</td><td>플래너 활용법, 시간관리 코칭</td></tr>
+                        <tr><td>자기점검</td><td>오답노트 작성법, 자기질문 훈련</td></tr>
+                        <tr><td>자기조절</td><td>집중력 훈련, 학습환경 개선 상담</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 부록 -->
+        <div class="doc-card" id="appendix">
+            <h2><i class="bi bi-paperclip"></i> 부록</h2>
+
+            <h5>A. 검사 도구 체크리스트</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><i class="bi bi-square me-2"></i>자기인식 테스트 문제지</li>
+                        <li class="list-group-item"><i class="bi bi-square me-2"></i>학습전략 설문지</li>
+                        <li class="list-group-item"><i class="bi bi-square me-2"></i>계획 수립 과제 양식</li>
+                        <li class="list-group-item"><i class="bi bi-square me-2"></i>씽크어라우드 관찰 체크리스트</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><i class="bi bi-square me-2"></i>시나리오 설문지</li>
+                        <li class="list-group-item"><i class="bi bi-square me-2"></i>결과 종합표</li>
+                        <li class="list-group-item"><i class="bi bi-square me-2"></i>타이머/스톱워치</li>
+                        <li class="list-group-item"><i class="bi bi-square me-2"></i>녹음 장비 (선택)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h5 class="mt-4">B. 검사 진행 시 유의사항</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="alert alert-success mb-0">
+                        <h6><i class="bi bi-emoji-smile"></i> 편안한 분위기 조성</h6>
+                        <small>시험이 아님을 강조, 솔직한 응답 유도</small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="alert alert-info mb-0">
+                        <h6><i class="bi bi-clock"></i> 충분한 시간 제공</h6>
+                        <small>서두르지 않도록 안내, 질문 가능</small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="alert alert-warning mb-0">
+                        <h6><i class="bi bi-eye"></i> 관찰 시 중립 유지</h6>
+                        <small>힌트나 유도 금지, 격려만</small>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="alert alert-secondary mb-0">
+                        <h6><i class="bi bi-shield-lock"></i> 비밀 보장 안내</h6>
+                        <small>결과는 본인과 부모님께만 공유</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center text-muted py-4">
+            <small>본 설명서는 학생 진학 컨설팅 서비스의 메타인지 진단 표준 프로토콜입니다.</small>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

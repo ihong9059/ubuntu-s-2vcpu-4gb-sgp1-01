@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120">
+  <!-- SAM Shield -->
+  <g transform="translate(10, 5)">
+    <!-- Shield outline -->
+    <path d="M5 5 L95 5 L95 70 L50 105 L5 70 Z" fill="#2563eb" stroke="#1e40af" stroke-width="3"/>
+    <!-- Inner shield border -->
+    <path d="M12 12 L88 12 L88 65 L50 95 L12 65 Z" fill="none" stroke="white" stroke-width="2"/>
+
+    <!-- Chevron -->
+    <path d="M20 45 L50 65 L80 45" fill="none" stroke="white" stroke-width="4"/>
+
+    <!-- Book with sprout (left) -->
+    <g transform="translate(22, 18)">
+      <path d="M0 20 L15 15 L15 0 L15 15 L30 20 L15 25 Z" fill="white"/>
+      <path d="M15 0 C15 0 12 -8 18 -12 M15 0 C15 0 18 -8 12 -12" stroke="#4ade80" stroke-width="2" fill="none"/>
+    </g>
+
+    <!-- Campfire (right) -->
+    <g transform="translate(55, 18)">
+      <path d="M10 25 L0 25 L5 15 L10 25 M20 25 L30 25 L25 15 L20 25" stroke="#8b4513" stroke-width="2" fill="#8b4513"/>
+      <path d="M15 25 C15 25 8 15 15 5 C22 15 15 25 15 25" fill="#ef4444"/>
+      <path d="M15 25 C15 25 11 18 15 12 C19 18 15 25 15 25" fill="#fbbf24"/>
+    </g>
+
+    <!-- SAM text -->
+    <text x="50" y="82" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="16" font-weight="bold">SAM</text>
+  </g>
+
+  <!-- Sam English Text -->
+  <g transform="translate(120, 20)">
+    <!-- S (red) -->
+    <text x="0" y="45" fill="#dc2626" font-family="Arial, sans-serif" font-size="52" font-weight="bold">S</text>
+    <!-- am (blue) -->
+    <text x="32" y="45" fill="#2563eb" font-family="Arial, sans-serif" font-size="36" font-weight="bold">am</text>
+    <!-- E (blue, large) -->
+    <text x="0" y="95" fill="#2563eb" font-family="Arial, sans-serif" font-size="52" font-weight="bold">E</text>
+    <!-- nglish (blue) -->
+    <text x="35" y="95" fill="#2563eb" font-family="Arial, sans-serif" font-size="36" font-weight="bold">nglish</text>
+  </g>
+</svg>

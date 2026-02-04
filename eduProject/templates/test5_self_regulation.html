@@ -1,0 +1,350 @@
+{% extends 'base.html' %}
+
+{% block title %}영역 5: 자기조절 능력{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <!-- 진행 상태 -->
+        <div class="progress mb-4" style="height: 25px;">
+            <div class="progress-bar" role="progressbar" style="width: 100%;">
+                5 / 5 영역 (마지막)
+            </div>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">
+                    <span class="badge bg-light text-primary me-2">영역 5</span>
+                    자기조절 능력
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <h5><i class="bi bi-info-circle"></i> 안내</h5>
+                    <p class="mb-0">
+                        다음 상황에서 평소 자신이 어떻게 행동하는지 가장 가까운 것을 선택해 주세요.<br>
+                        정답이 있는 것이 아니니 솔직하게 응답해 주세요.
+                    </p>
+                </div>
+
+                <form id="test5Form">
+                    <!-- 시나리오 1 -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-warning bg-opacity-25">
+                            <strong><i class="bi bi-exclamation-circle"></i> 상황 1</strong>
+                        </div>
+                        <div class="card-body">
+                            <p class="lead mb-4">
+                                "수학 문제집을 풀었는데 <strong>10문제 중 7문제를 틀렸습니다.</strong>"
+                            </p>
+                            <p class="fw-bold">이런 상황에서 나는 어떻게 할까요?</p>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario1" value="1" id="sc1_a">
+                                <label class="form-check-label" for="sc1_a">
+                                    A. 수학은 원래 어렵다고 생각하고 그냥 넘어간다
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario1" value="2" id="sc1_b">
+                                <label class="form-check-label" for="sc1_b">
+                                    B. 틀린 문제의 정답과 해설만 확인하고 넘어간다
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario1" value="3" id="sc1_c">
+                                <label class="form-check-label" for="sc1_c">
+                                    C. 틀린 문제를 다시 풀어보고, 틀린 유형의 문제를 더 찾아서 푼다
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario1" value="4" id="sc1_d">
+                                <label class="form-check-label" for="sc1_d">
+                                    D. 해당 단원의 개념부터 처음부터 다시 공부한다
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 시나리오 2 -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-warning bg-opacity-25">
+                            <strong><i class="bi bi-exclamation-circle"></i> 상황 2</strong>
+                        </div>
+                        <div class="card-body">
+                            <p class="lead mb-4">
+                                "시험 2주 전인데 <strong>계획의 절반밖에 진행하지 못했습니다.</strong>"
+                            </p>
+                            <p class="fw-bold">이런 상황에서 나는 어떻게 할까요?</p>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario2" value="1" id="sc2_a">
+                                <label class="form-check-label" for="sc2_a">
+                                    A. 어차피 못할 것 같아서 그냥 되는대로 한다
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario2" value="2" id="sc2_b">
+                                <label class="form-check-label" for="sc2_b">
+                                    B. 남은 시간에 할 수 있는 만큼만 한다
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario2" value="4" id="sc2_c">
+                                <label class="form-check-label" for="sc2_c">
+                                    C. 우선순위를 다시 정해서 중요한 것부터 집중적으로 공부한다
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario2" value="3" id="sc2_d">
+                                <label class="form-check-label" for="sc2_d">
+                                    D. 수면 시간을 줄여서라도 원래 계획을 완수한다
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 시나리오 3 -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-warning bg-opacity-25">
+                            <strong><i class="bi bi-exclamation-circle"></i> 상황 3</strong>
+                        </div>
+                        <div class="card-body">
+                            <p class="lead mb-4">
+                                "영어 단어를 외우는데 <strong>계속 까먹습니다.</strong>"
+                            </p>
+                            <p class="fw-bold">이런 상황에서 나는 어떻게 할까요?</p>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario3" value="1" id="sc3_a">
+                                <label class="form-check-label" for="sc3_a">
+                                    A. 나는 암기에 소질이 없다고 생각하고 포기한다
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario3" value="2" id="sc3_b">
+                                <label class="form-check-label" for="sc3_b">
+                                    B. 같은 방식으로 더 여러 번 반복해서 외운다
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario3" value="4" id="sc3_c">
+                                <label class="form-check-label" for="sc3_c">
+                                    C. 연상법, 어원, 문장 속 활용 등 다른 암기 방법을 시도한다
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario3" value="3" id="sc3_d">
+                                <label class="form-check-label" for="sc3_d">
+                                    D. 단어장 앱이나 플래시카드를 활용해본다
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 시나리오 4 -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-warning bg-opacity-25">
+                            <strong><i class="bi bi-exclamation-circle"></i> 상황 4</strong>
+                        </div>
+                        <div class="card-body">
+                            <p class="lead mb-4">
+                                "공부하려고 앉았는데 <strong>스마트폰을 계속 보게 됩니다.</strong>"
+                            </p>
+                            <p class="fw-bold">이런 상황에서 나는 어떻게 할까요?</p>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario4" value="1" id="sc4_a">
+                                <label class="form-check-label" for="sc4_a">
+                                    A. 원래 그런 거라고 생각하고 그냥 계속 본다
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario4" value="2" id="sc4_b">
+                                <label class="form-check-label" for="sc4_b">
+                                    B. 조금만 더 보고 공부해야지 하면서 미룬다
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario4" value="3" id="sc4_c">
+                                <label class="form-check-label" for="sc4_c">
+                                    C. 스마트폰을 다른 방에 두거나 부모님께 맡긴다
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario4" value="4" id="sc4_d">
+                                <label class="form-check-label" for="sc4_d">
+                                    D. 공부 시간과 폰 사용 시간을 정해두고 타이머를 사용한다
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 시나리오 5 -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-warning bg-opacity-25">
+                            <strong><i class="bi bi-exclamation-circle"></i> 상황 5</strong>
+                        </div>
+                        <div class="card-body">
+                            <p class="lead mb-4">
+                                "열심히 공부했는데 <strong>시험 성적이 오르지 않았습니다.</strong>"
+                            </p>
+                            <p class="fw-bold">이런 상황에서 나는 어떻게 할까요?</p>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario5" value="1" id="sc5_a">
+                                <label class="form-check-label" for="sc5_a">
+                                    A. 난 머리가 나쁜가보다 하고 좌절한다
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario5" value="2" id="sc5_b">
+                                <label class="form-check-label" for="sc5_b">
+                                    B. 다음엔 더 열심히 해야겠다고 생각한다
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario5" value="3" id="sc5_c">
+                                <label class="form-check-label" for="sc5_c">
+                                    C. 공부 방법에 문제가 있었는지 점검하고 선생님께 조언을 구한다
+                                </label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="radio" name="scenario5" value="4" id="sc5_d">
+                                <label class="form-check-label" for="sc5_d">
+                                    D. 시험 문제를 분석하고, 틀린 유형을 집중 보완하는 계획을 세운다
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 추가 질문 -->
+                    <div class="card mb-4">
+                        <div class="card-header bg-light">
+                            <strong><i class="bi bi-chat-dots"></i> 추가 질문</strong>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">지난 시험에서 가장 잘 본 과목과 그 이유는?</label>
+                                <textarea class="form-control" name="best_subject" rows="2" placeholder="예: 영어 - 단어를 꾸준히 외워서"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">지난 시험에서 가장 못 본 과목과 그 이유는?</label>
+                                <textarea class="form-control" name="worst_subject" rows="2" placeholder="예: 수학 - 시간 부족으로 뒷부분 못 풀었음"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold">그 과목 성적을 올리기 위해 어떤 노력을 할 계획인가요?</label>
+                                <textarea class="form-control" name="improvement_plan" rows="2" placeholder="구체적으로 작성해 주세요"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="/test4" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> 이전 영역
+                        </a>
+                        <div>
+                            <button type="button" class="btn btn-warning me-2" onclick="autoFillTest()">
+                                <i class="bi bi-lightning"></i> 테스트모드 (90점)
+                            </button>
+                            <button type="button" class="btn btn-success btn-lg" onclick="submitTest5()">
+                                <i class="bi bi-check-circle"></i> 테스트 완료 및 결과 보기
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function autoFillTest() {
+    // 시나리오별 최고점 선택 (문항마다 최고점 값이 다름)
+    // 시나리오1: 4점 (D - 해당 단원 개념 복습)
+    document.querySelector('input[name="scenario1"][value="4"]').checked = true;
+    // 시나리오2: 4점 (C - 우선순위 재정립)
+    document.querySelector('input[name="scenario2"][value="4"]').checked = true;
+    // 시나리오3: 4점 (C - 다른 암기 방법)
+    document.querySelector('input[name="scenario3"][value="4"]').checked = true;
+    // 시나리오4: 4점 (D - 시간 관리)
+    document.querySelector('input[name="scenario4"][value="4"]').checked = true;
+    // 시나리오5: 4점 (D - 시험 분석)
+    document.querySelector('input[name="scenario5"][value="4"]').checked = true;
+
+    // 추가 질문 입력
+    document.querySelector('textarea[name="best_subject"]').value = '영어 - 꾸준히 단어를 외우고 독해 연습을 해서';
+    document.querySelector('textarea[name="worst_subject"]').value = '수학 - 시간 배분을 잘못해서 뒷부분 문제를 못 풀었음';
+    document.querySelector('textarea[name="improvement_plan"]').value = '수학 기출문제 시간 재면서 풀기, 오답노트 작성, 취약 단원 집중 복습';
+
+    submitTest5();
+}
+
+function submitTest5() {
+    // 시나리오 응답 확인
+    for (let i = 1; i <= 5; i++) {
+        if (!document.querySelector(`input[name="scenario${i}"]:checked`)) {
+            alert(`상황 ${i}에 응답해 주세요.`);
+            return;
+        }
+    }
+
+    // 점수 계산
+    let totalScore = 0;
+    let responses = [];
+
+    for (let i = 1; i <= 5; i++) {
+        const value = parseInt(document.querySelector(`input[name="scenario${i}"]:checked`).value);
+        totalScore += value;
+        responses.push(value);
+    }
+
+    // 대처 유형 분석
+    let avoidCount = responses.filter(v => v === 1).length;
+    let passiveCount = responses.filter(v => v === 2).length;
+    let effortCount = responses.filter(v => v === 3).length;
+    let strategicCount = responses.filter(v => v === 4).length;
+
+    let copingType = '전략적 대처형';
+    if (avoidCount >= 2) {
+        copingType = '회피형';
+    } else if (passiveCount >= 2) {
+        copingType = '소극적 대처형';
+    } else if (effortCount >= 3) {
+        copingType = '노력형';
+    }
+
+    // 패턴 분석
+    let pattern = `회피(${avoidCount}), 소극(${passiveCount}), 노력(${effortCount}), 전략(${strategicCount})`;
+
+    // 추가 응답 수집
+    const bestSubject = document.querySelector('textarea[name="best_subject"]').value || '';
+    const worstSubject = document.querySelector('textarea[name="worst_subject"]').value || '';
+    const improvementPlan = document.querySelector('textarea[name="improvement_plan"]').value || '';
+
+    // 결과 저장
+    const result = {
+        score: totalScore,
+        pattern: pattern,
+        coping_type: copingType,
+        responses: responses,
+        best_subject: bestSubject,
+        worst_subject: worstSubject,
+        improvement_plan: improvementPlan
+    };
+
+    // localStorage에 저장
+    let testResults = JSON.parse(localStorage.getItem('testResults') || '{}');
+    testResults.test5 = result;
+    localStorage.setItem('testResults', JSON.stringify(testResults));
+
+    // 서버에도 저장
+    fetch('/save_result', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({test_name: 'test5', result: result})
+    }).then(() => {
+        playCompleteSound(); // 테스트 완료 알림음
+        setTimeout(() => {
+            window.location.href = '/result';
+        }, 600);
+    });
+}
+</script>
+{% endblock %}
