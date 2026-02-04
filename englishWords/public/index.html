@@ -920,6 +920,182 @@
             font-weight: 600;
         }
 
+        /* ===== 설정 페이지 탭 스타일 ===== */
+        .settings-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .settings-tab {
+            flex: 1;
+            min-width: 70px;
+            padding: 12px 8px;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .settings-tab:hover {
+            background: linear-gradient(145deg, #e8e8e8, #d8d8d8);
+            transform: translateY(-2px);
+        }
+
+        .settings-tab.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+        }
+
+        .tab-content {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 사용법 가이드 스타일 */
+        .guide-section {
+            background: linear-gradient(145deg, #f8f9ff, #fff);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 3px solid #e0e0ff;
+        }
+
+        .guide-title {
+            font-weight: 800;
+            color: #5f27cd;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .guide-content {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .guide-content p {
+            margin-bottom: 8px;
+        }
+
+        .guide-step {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding: 10px;
+            background: rgba(255,255,255,0.7);
+            border-radius: 12px;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        /* 기능 카드 스타일 */
+        .feature-card {
+            display: flex;
+            gap: 15px;
+            background: linear-gradient(145deg, #fff, #f8f8ff);
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 12px;
+            border: 3px solid #e8e8ff;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateX(5px);
+            border-color: #667eea;
+            box-shadow: 0 5px 20px rgba(102,126,234,0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .feature-info h6 {
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .feature-info p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .feature-detail {
+            font-size: 0.8rem;
+            color: #888;
+            background: rgba(0,0,0,0.03);
+            padding: 8px 12px;
+            border-radius: 10px;
+        }
+
+        /* 팁 카드 스타일 */
+        .tip-card {
+            display: flex;
+            gap: 15px;
+            background: linear-gradient(145deg, #fff8e1, #fff);
+            border-radius: 20px;
+            padding: 18px;
+            margin-bottom: 12px;
+            border: 3px solid #ffd54f;
+            transition: all 0.3s;
+        }
+
+        .tip-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(255,213,79,0.3);
+        }
+
+        .tip-card.tip-important {
+            background: linear-gradient(145deg, #e3f2fd, #fff);
+            border-color: #64b5f6;
+        }
+
+        .tip-card.tip-fun {
+            background: linear-gradient(145deg, #fce4ec, #fff);
+            border-color: #f48fb1;
+        }
+
+        .tip-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .tip-content {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .tip-content strong {
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
         /* 모바일 최적화 */
         @media (max-width: 768px) {
             .main-container {
@@ -1281,45 +1457,223 @@
             <div class="card-header-custom">
                 <div class="d-flex justify-content-between align-items-center">
                     <button class="home-btn" onclick="goHome()">🏠</button>
-                    <h5 class="mb-0">설정</h5>
+                    <h5 class="mb-0">⚙️ 설정 & 도움말</h5>
                     <span></span>
                 </div>
             </div>
             <div class="card-body-custom">
-                <h6>학습 레벨 선택</h6>
-                <div class="mb-3" id="levelSelect">
-                    <!-- 레벨 선택 버튼이 여기에 표시됩니다 -->
+                <!-- 탭 메뉴 -->
+                <div class="settings-tabs mb-4">
+                    <button class="settings-tab active" onclick="showSettingsTab('settings')">⚙️ 설정</button>
+                    <button class="settings-tab" onclick="showSettingsTab('guide')">📖 사용법</button>
+                    <button class="settings-tab" onclick="showSettingsTab('features')">🌟 기능</button>
+                    <button class="settings-tab" onclick="showSettingsTab('tips')">💡 팁</button>
                 </div>
 
-                <h6 class="mt-4">일일 목표</h6>
-                <div class="btn-group w-100" role="group">
-                    <input type="radio" class="btn-check" name="dailyGoal" id="goal10" value="10">
-                    <label class="btn btn-outline-primary" for="goal10">10개</label>
-                    <input type="radio" class="btn-check" name="dailyGoal" id="goal20" value="20" checked>
-                    <label class="btn btn-outline-primary" for="goal20">20개</label>
-                    <input type="radio" class="btn-check" name="dailyGoal" id="goal30" value="30">
-                    <label class="btn btn-outline-primary" for="goal30">30개</label>
+                <!-- 설정 탭 -->
+                <div id="settingsTabContent" class="tab-content">
+                    <h6 class="section-title">📚 학습 레벨 선택</h6>
+                    <div class="mb-3" id="levelSelect">
+                        <!-- 레벨 선택 버튼이 여기에 표시됩니다 -->
+                    </div>
+
+                    <h6 class="section-title mt-4">🎯 일일 목표</h6>
+                    <div class="btn-group w-100" role="group">
+                        <input type="radio" class="btn-check" name="dailyGoal" id="goal10" value="10">
+                        <label class="btn btn-outline-primary" for="goal10">10개</label>
+                        <input type="radio" class="btn-check" name="dailyGoal" id="goal20" value="20" checked>
+                        <label class="btn btn-outline-primary" for="goal20">20개</label>
+                        <input type="radio" class="btn-check" name="dailyGoal" id="goal30" value="30">
+                        <label class="btn btn-outline-primary" for="goal30">30개</label>
+                    </div>
+
+                    <h6 class="section-title mt-4">❓ 퀴즈 문제 수</h6>
+                    <div class="btn-group w-100" role="group">
+                        <input type="radio" class="btn-check" name="quizCount" id="quiz10" value="10" checked>
+                        <label class="btn btn-outline-primary" for="quiz10">10문제</label>
+                        <input type="radio" class="btn-check" name="quizCount" id="quiz20" value="20">
+                        <label class="btn btn-outline-primary" for="quiz20">20문제</label>
+                        <input type="radio" class="btn-check" name="quizCount" id="quiz30" value="30">
+                        <label class="btn btn-outline-primary" for="quiz30">30문제</label>
+                    </div>
+
+                    <button class="btn btn-lg w-100 mt-4" onclick="saveSettings()" style="background: linear-gradient(135deg, #00d2d3, #10ac84); color: white; border-radius: 20px; font-weight: 800; box-shadow: 0 8px 20px rgba(0,210,211,0.4);">
+                        ✅ 설정 저장하기
+                    </button>
+
+                    <hr class="my-4">
+
+                    <button class="btn btn-outline-danger w-100" onclick="resetProgress()">
+                        🗑️ 진행 상황 초기화
+                    </button>
                 </div>
 
-                <h6 class="mt-4">퀴즈 문제 수</h6>
-                <div class="btn-group w-100" role="group">
-                    <input type="radio" class="btn-check" name="quizCount" id="quiz10" value="10" checked>
-                    <label class="btn btn-outline-primary" for="quiz10">10문제</label>
-                    <input type="radio" class="btn-check" name="quizCount" id="quiz20" value="20">
-                    <label class="btn btn-outline-primary" for="quiz20">20문제</label>
-                    <input type="radio" class="btn-check" name="quizCount" id="quiz30" value="30">
-                    <label class="btn btn-outline-primary" for="quiz30">30문제</label>
+                <!-- 사용법 탭 -->
+                <div id="guideTabContent" class="tab-content hidden">
+                    <div class="guide-section">
+                        <h6 class="guide-title">🚀 시작하기</h6>
+                        <div class="guide-content">
+                            <div class="guide-step">
+                                <span class="step-number">1</span>
+                                <span>먼저 <strong>"🔊 소리 켜기"</strong> 버튼을 눌러 발음을 들을 수 있게 해요!</span>
+                            </div>
+                            <div class="guide-step">
+                                <span class="step-number">2</span>
+                                <span><strong>📚 플래시카드</strong>로 새로운 단어를 배워요</span>
+                            </div>
+                            <div class="guide-step">
+                                <span class="step-number">3</span>
+                                <span><strong>🎯 퀴즈</strong>로 배운 단어를 테스트해요</span>
+                            </div>
+                            <div class="guide-step">
+                                <span class="step-number">4</span>
+                                <span><strong>📊 진행 상황</strong>에서 메달과 업적을 확인해요</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="guide-section">
+                        <h6 class="guide-title">📚 플래시카드 사용법</h6>
+                        <div class="guide-content">
+                            <p>👆 카드를 <strong>탭</strong>하면 뜻이 보여요</p>
+                            <p>🔊 스피커 버튼으로 <strong>발음</strong>을 들어요</p>
+                            <p>💬 말풍선 버튼으로 <strong>예문</strong>을 들어요</p>
+                            <p>✅ 알면 <strong>"알겠어요"</strong> → XP 획득!</p>
+                            <p>🔄 모르면 <strong>"다시 공부할래요"</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="guide-section">
+                        <h6 class="guide-title">🎯 퀴즈 사용법</h6>
+                        <div class="guide-content">
+                            <p>📝 영어 단어를 보고 <strong>뜻을 선택</strong>해요</p>
+                            <p>🔊 단어 발음을 <strong>들으면서</strong> 풀어요</p>
+                            <p>⭐ 정답을 맞히면 <strong>XP와 점수</strong>를 받아요</p>
+                            <p>🏅 점수에 따라 <strong>메달</strong>을 받아요!</p>
+                        </div>
+                    </div>
                 </div>
 
-                <button class="btn btn-gradient w-100 mt-4" onclick="saveSettings()">
-                    <i class="bi bi-check-lg"></i> 저장
-                </button>
+                <!-- 기능 탭 -->
+                <div id="featuresTabContent" class="tab-content hidden">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎖️</div>
+                        <div class="feature-info">
+                            <h6>메달 시스템</h6>
+                            <p>퀴즈 점수에 따라 메달을 받아요!</p>
+                            <div class="feature-detail">
+                                🥉 60% 이상 → 동메달<br>
+                                🥈 80% 이상 → 은메달<br>
+                                🥇 100% → 금메달
+                            </div>
+                        </div>
+                    </div>
 
-                <hr class="my-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">🐣</div>
+                        <div class="feature-info">
+                            <h6>랭크 시스템</h6>
+                            <p>단어를 많이 배울수록 캐릭터가 성장해요!</p>
+                            <div class="feature-detail">
+                                🐣→🐥→🐤→🐔→🦅→🦋→🐉→🦄→👑→🌟
+                            </div>
+                        </div>
+                    </div>
 
-                <button class="btn btn-outline-danger w-100" onclick="resetProgress()">
-                    <i class="bi bi-trash"></i> 진행 상황 초기화
-                </button>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌟</div>
+                        <div class="feature-info">
+                            <h6>업적 배지</h6>
+                            <p>특별한 목표를 달성하면 배지를 받아요!</p>
+                            <div class="feature-detail">
+                                🎮 첫 퀴즈 | 💯 100점 | 🔥 연속학습<br>
+                                📚 단어박사 | 🌅 아침형 | 🦉 밤의학습자
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🔥</div>
+                        <div class="feature-info">
+                            <h6>스트릭 (연속 학습)</h6>
+                            <p>매일 학습하면 불꽃이 커져요!</p>
+                            <div class="feature-detail">
+                                1일 🔥 | 3일 🔥🔥 | 7일 🔥🔥🔥 | 14일+ 🔥🔥🔥🔥
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <div class="feature-info">
+                            <h6>XP & 레벨</h6>
+                            <p>학습하면 XP를 받고 레벨업해요!</p>
+                            <div class="feature-detail">
+                                플래시카드 +10 XP<br>
+                                퀴즈 정답 +20 XP
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 팁 탭 -->
+                <div id="tipsTabContent" class="tab-content hidden">
+                    <div class="tip-card tip-important">
+                        <div class="tip-icon">💡</div>
+                        <div class="tip-content">
+                            <strong>매일 조금씩!</strong><br>
+                            하루 10분이라도 매일 학습하면 스트릭 보너스를 받을 수 있어요!
+                        </div>
+                    </div>
+
+                    <div class="tip-card">
+                        <div class="tip-icon">🎧</div>
+                        <div class="tip-content">
+                            <strong>발음 듣기</strong><br>
+                            단어를 눈으로만 보지 말고, 꼭 발음을 들으면서 따라 말해보세요!
+                        </div>
+                    </div>
+
+                    <div class="tip-card">
+                        <div class="tip-icon">📚</div>
+                        <div class="tip-content">
+                            <strong>플래시카드 → 퀴즈</strong><br>
+                            플래시카드로 먼저 학습하고, 바로 퀴즈로 테스트하면 기억에 오래 남아요!
+                        </div>
+                    </div>
+
+                    <div class="tip-card">
+                        <div class="tip-icon">📖</div>
+                        <div class="tip-content">
+                            <strong>예문 활용</strong><br>
+                            단어만 외우지 말고, 예문도 함께 읽어보세요. 어떻게 사용하는지 알 수 있어요!
+                        </div>
+                    </div>
+
+                    <div class="tip-card">
+                        <div class="tip-icon">🎯</div>
+                        <div class="tip-content">
+                            <strong>레벨 선택</strong><br>
+                            너무 어려우면 낮은 레벨부터, 쉬우면 높은 레벨을 선택하세요!
+                        </div>
+                    </div>
+
+                    <div class="tip-card">
+                        <div class="tip-icon">🏆</div>
+                        <div class="tip-content">
+                            <strong>금메달 도전</strong><br>
+                            100점을 맞으면 금메달! 틀린 문제는 다시 학습하고 도전해보세요!
+                        </div>
+                    </div>
+
+                    <div class="tip-card tip-fun">
+                        <div class="tip-icon">🎮</div>
+                        <div class="tip-content">
+                            <strong>게임처럼 즐기기</strong><br>
+                            공부가 아니라 게임이에요! 메달 모으기, 업적 달성하기, 랭크 올리기를 목표로 즐겨보세요!
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -2088,6 +2442,24 @@
                 localStorage.removeItem('englishWordsGame');
                 location.reload();
             }
+        }
+
+        // ===== 설정 탭 전환 =====
+        function showSettingsTab(tabName) {
+            // 모든 탭 컨텐츠 숨기기
+            document.getElementById('settingsTabContent').classList.add('hidden');
+            document.getElementById('guideTabContent').classList.add('hidden');
+            document.getElementById('featuresTabContent').classList.add('hidden');
+            document.getElementById('tipsTabContent').classList.add('hidden');
+
+            // 선택된 탭 컨텐츠 보이기
+            document.getElementById(tabName + 'TabContent').classList.remove('hidden');
+
+            // 탭 버튼 활성화 상태 업데이트
+            document.querySelectorAll('.settings-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
         }
 
         // ===== 유틸리티 =====
