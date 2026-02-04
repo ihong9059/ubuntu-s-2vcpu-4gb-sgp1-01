@@ -592,6 +592,334 @@
             50% { transform: scale(1.05); }
         }
 
+        /* ===== 진행 상황 페이지 스타일 ===== */
+
+        .section-title {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 랭크 카드 */
+        .rank-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 25px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 10px 30px rgba(102,126,234,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rank-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: rankShine 3s infinite;
+        }
+
+        @keyframes rankShine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .rank-character {
+            font-size: 4rem;
+            animation: characterBounce 2s ease-in-out infinite;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+        }
+
+        @keyframes characterBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .rank-info {
+            flex: 1;
+            color: white;
+        }
+
+        .rank-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .rank-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .rank-badge {
+            font-size: 3rem;
+            animation: badgeRotate 4s ease-in-out infinite;
+        }
+
+        @keyframes badgeRotate {
+            0%, 100% { transform: rotate(-5deg) scale(1); }
+            50% { transform: rotate(5deg) scale(1.1); }
+        }
+
+        /* 메달 섹션 */
+        .medal-section {
+            background: linear-gradient(145deg, #fff8e1, #fff);
+            border-radius: 20px;
+            padding: 20px;
+            border: 3px solid #ffd54f;
+        }
+
+        .medal-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 10px;
+        }
+
+        .medal-item {
+            text-align: center;
+        }
+
+        .medal {
+            font-size: 3.5rem;
+            display: block;
+            transition: all 0.3s;
+            cursor: pointer;
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+        }
+
+        .medal:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .medal.bronze { animation: medalShine 3s infinite; }
+        .medal.silver { animation: medalShine 3s infinite 0.5s; }
+        .medal.gold { animation: medalShine 3s infinite 1s; }
+
+        @keyframes medalShine {
+            0%, 100% { filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2)) brightness(1); }
+            50% { filter: drop-shadow(0 5px 25px rgba(255,215,0,0.6)) brightness(1.2); }
+        }
+
+        .medal-count {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #333;
+            margin-top: 5px;
+        }
+
+        .medal-label {
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .medal-hint {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 10px;
+            padding: 8px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 10px;
+        }
+
+        /* 업적 배지 */
+        .achievement-section {
+            background: linear-gradient(145deg, #e8f5e9, #fff);
+            border-radius: 20px;
+            padding: 20px;
+            border: 3px solid #81c784;
+        }
+
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .achievement-badge {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            background: linear-gradient(145deg, #f5f5f5, #e0e0e0);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .achievement-badge.unlocked {
+            background: linear-gradient(145deg, #fff176, #ffd54f);
+            box-shadow: 0 4px 20px rgba(255,213,79,0.5);
+            animation: badgePop 0.5s ease-out;
+        }
+
+        .achievement-badge.locked {
+            filter: grayscale(1);
+            opacity: 0.4;
+        }
+
+        .achievement-badge:hover {
+            transform: scale(1.15);
+        }
+
+        @keyframes badgePop {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        /* 스트릭 섹션 */
+        .streak-section {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(255,107,107,0.4);
+        }
+
+        .streak-flame-container {
+            margin-bottom: 15px;
+        }
+
+        .streak-flames {
+            font-size: 4rem;
+            animation: flameAnimation 0.5s ease-in-out infinite alternate;
+            display: inline-block;
+        }
+
+        @keyframes flameAnimation {
+            0% { transform: scale(1) rotate(-5deg); filter: brightness(1); }
+            100% { transform: scale(1.1) rotate(5deg); filter: brightness(1.2); }
+        }
+
+        .streak-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            line-height: 1;
+        }
+
+        .streak-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            opacity: 0.95;
+        }
+
+        .streak-calendar {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .streak-day {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: rgba(255,255,255,0.3);
+        }
+
+        .streak-day.completed {
+            background: rgba(255,255,255,0.9);
+            color: #ff6b6b;
+        }
+
+        .streak-day.today {
+            border: 3px solid white;
+            animation: todayPulse 1.5s infinite;
+        }
+
+        @keyframes todayPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+        }
+
+        /* 진행률 섹션 */
+        .progress-section {
+            background: linear-gradient(145deg, #e3f2fd, #fff);
+            border-radius: 20px;
+            padding: 20px;
+            border: 3px solid #64b5f6;
+        }
+
+        .master-progress {
+            position: relative;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+
+        .learned-count { color: #1976d2; }
+        .learned-percent { color: #4caf50; font-size: 1.2rem; }
+
+        /* 통계 그리드 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .stat-card.stat-days { border-color: #81d4fa; background: linear-gradient(145deg, #e1f5fe, #fff); }
+        .stat-card.stat-quizzes { border-color: #ce93d8; background: linear-gradient(145deg, #f3e5f5, #fff); }
+        .stat-card.stat-accuracy { border-color: #a5d6a7; background: linear-gradient(145deg, #e8f5e9, #fff); }
+        .stat-card.stat-xp { border-color: #ffcc80; background: linear-gradient(145deg, #fff3e0, #fff); }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #333;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 600;
+        }
+
         /* 모바일 최적화 */
         @media (max-width: 768px) {
             .main-container {
@@ -850,39 +1178,99 @@
             <div class="card-header-custom">
                 <div class="d-flex justify-content-between align-items-center">
                     <button class="home-btn" onclick="goHome()">🏠</button>
-                    <h5 class="mb-0">학습 진행 상황</h5>
+                    <h5 class="mb-0">🏆 나의 학습 현황 🏆</h5>
                     <span></span>
                 </div>
             </div>
             <div class="card-body-custom">
-                <div class="mb-4">
-                    <h6>전체 진행률</h6>
-                    <div class="progress progress-custom" style="height: 20px;">
-                        <div class="progress-bar" id="totalProgress" style="width: 0%"></div>
+                <!-- 랭크 & 캐릭터 -->
+                <div class="rank-card mb-4">
+                    <div class="rank-character" id="rankCharacter">🐣</div>
+                    <div class="rank-info">
+                        <div class="rank-title" id="rankTitle">새싹 학습자</div>
+                        <div class="rank-subtitle">다음 랭크까지 <span id="wordsToNextRank">10</span>단어!</div>
                     </div>
-                    <small class="text-muted"><span id="learnedWords">0</span> / 500 단어 학습</small>
+                    <div class="rank-badge" id="rankBadge">🥉</div>
                 </div>
 
-                <h6>레벨별 진행</h6>
-                <div id="levelProgress">
-                    <!-- 레벨별 진행률이 여기에 표시됩니다 -->
+                <!-- 메달 컬렉션 -->
+                <div class="medal-section mb-4">
+                    <h6 class="section-title">🎖️ 메달 컬렉션</h6>
+                    <div class="medal-container">
+                        <div class="medal-item">
+                            <div class="medal bronze" id="bronzeMedal">🥉</div>
+                            <div class="medal-count" id="bronzeCount">0</div>
+                            <div class="medal-label">동메달</div>
+                        </div>
+                        <div class="medal-item">
+                            <div class="medal silver" id="silverMedal">🥈</div>
+                            <div class="medal-count" id="silverCount">0</div>
+                            <div class="medal-label">은메달</div>
+                        </div>
+                        <div class="medal-item">
+                            <div class="medal gold" id="goldMedal">🥇</div>
+                            <div class="medal-count" id="goldCount">0</div>
+                            <div class="medal-label">금메달</div>
+                        </div>
+                    </div>
+                    <div class="medal-hint">퀴즈 점수: 60%↑ 동메달 | 80%↑ 은메달 | 100% 금메달</div>
                 </div>
 
-                <div class="mt-4 p-3 bg-light rounded-3">
-                    <h6><i class="bi bi-graph-up text-success"></i> 학습 통계</h6>
-                    <div class="row text-center">
-                        <div class="col-4">
-                            <h4 id="statDays">0</h4>
-                            <small class="text-muted">학습일</small>
+                <!-- 업적 배지 -->
+                <div class="achievement-section mb-4">
+                    <h6 class="section-title">🌟 업적 배지</h6>
+                    <div class="badge-container" id="achievementBadges">
+                        <!-- 동적으로 생성됨 -->
+                    </div>
+                </div>
+
+                <!-- 스트릭 화염 -->
+                <div class="streak-section mb-4">
+                    <div class="streak-flame-container">
+                        <div class="streak-flames" id="streakFlames">🔥</div>
+                        <div class="streak-number" id="streakDays">0</div>
+                        <div class="streak-label">일 연속 학습!</div>
+                    </div>
+                    <div class="streak-calendar" id="streakCalendar">
+                        <!-- 최근 7일 표시 -->
+                    </div>
+                </div>
+
+                <!-- 전체 진행률 -->
+                <div class="progress-section mb-4">
+                    <h6 class="section-title">📚 단어 마스터 진행률</h6>
+                    <div class="master-progress">
+                        <div class="progress progress-custom" style="height: 25px;">
+                            <div class="progress-bar" id="totalProgress" style="width: 0%"></div>
                         </div>
-                        <div class="col-4">
-                            <h4 id="statQuizzes">0</h4>
-                            <small class="text-muted">퀴즈 완료</small>
+                        <div class="progress-text">
+                            <span class="learned-count"><span id="learnedWords">0</span> / 500 단어</span>
+                            <span class="learned-percent" id="learnedPercent">0%</span>
                         </div>
-                        <div class="col-4">
-                            <h4 id="statAccuracy">0%</h4>
-                            <small class="text-muted">정답률</small>
-                        </div>
+                    </div>
+                </div>
+
+                <!-- 통계 카드 -->
+                <div class="stats-grid">
+                    <div class="stat-card stat-days">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-value" id="statDays">0</div>
+                        <div class="stat-label">총 학습일</div>
+                    </div>
+                    <div class="stat-card stat-quizzes">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-value" id="statQuizzes">0</div>
+                        <div class="stat-label">퀴즈 완료</div>
+                    </div>
+                    <div class="stat-card stat-accuracy">
+                        <div class="stat-icon">✨</div>
+                        <div class="stat-value" id="statAccuracy">0%</div>
+                        <div class="stat-label">평균 정답률</div>
+                    </div>
+                    <div class="stat-card stat-xp">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-value" id="statTotalXP">0</div>
+                        <div class="stat-label">총 XP</div>
                     </div>
                 </div>
             </div>
@@ -952,8 +1340,61 @@
             learnedWords: [],
             quizzesCompleted: 0,
             totalCorrect: 0,
-            totalAnswered: 0
+            totalAnswered: 0,
+            // 메달 시스템
+            medals: {
+                bronze: 0,  // 60% 이상
+                silver: 0,  // 80% 이상
+                gold: 0     // 100%
+            },
+            // 업적 시스템
+            achievements: {
+                firstQuiz: false,      // 첫 퀴즈 완료
+                perfectScore: false,   // 100점 달성
+                streak3: false,        // 3일 연속 학습
+                streak7: false,        // 7일 연속 학습
+                words50: false,        // 50단어 학습
+                words100: false,       // 100단어 학습
+                words200: false,       // 200단어 학습
+                quiz10: false,         // 퀴즈 10회 완료
+                quiz50: false,         // 퀴즈 50회 완료
+                earlyBird: false,      // 아침 학습 (6-9시)
+                nightOwl: false,       // 밤 학습 (21-24시)
+                speedster: false       // 빠른 정답 (구현 예정)
+            },
+            // 학습 기록
+            studyDates: []  // 학습한 날짜 배열
         };
+
+        // 업적 정의
+        const achievementDefs = {
+            firstQuiz: { icon: '🎮', name: '첫 도전', desc: '첫 퀴즈 완료!' },
+            perfectScore: { icon: '💯', name: '완벽해요', desc: '퀴즈 100점!' },
+            streak3: { icon: '🔥', name: '불꽃 시작', desc: '3일 연속 학습' },
+            streak7: { icon: '🌟', name: '일주일 마스터', desc: '7일 연속 학습' },
+            words50: { icon: '📖', name: '단어 수집가', desc: '50단어 학습' },
+            words100: { icon: '📚', name: '단어 박사', desc: '100단어 학습' },
+            words200: { icon: '🎓', name: '단어 천재', desc: '200단어 학습' },
+            quiz10: { icon: '🎯', name: '퀴즈 도전자', desc: '퀴즈 10회 완료' },
+            quiz50: { icon: '🏅', name: '퀴즈 마스터', desc: '퀴즈 50회 완료' },
+            earlyBird: { icon: '🌅', name: '아침형 학습자', desc: '아침에 학습' },
+            nightOwl: { icon: '🦉', name: '밤의 학습자', desc: '밤에 학습' },
+            speedster: { icon: '⚡', name: '번개손', desc: '빠른 정답' }
+        };
+
+        // 랭크 정의
+        const rankDefs = [
+            { min: 0, char: '🐣', title: '새싹 학습자', badge: '🥉' },
+            { min: 10, char: '🐥', title: '아기 병아리', badge: '🥉' },
+            { min: 30, char: '🐤', title: '귀여운 병아리', badge: '🥈' },
+            { min: 50, char: '🐔', title: '씩씩한 닭', badge: '🥈' },
+            { min: 100, char: '🦅', title: '날개 달린 독수리', badge: '🥇' },
+            { min: 150, char: '🦋', title: '아름다운 나비', badge: '🥇' },
+            { min: 200, char: '🐉', title: '용감한 드래곤', badge: '🏆' },
+            { min: 300, char: '🦄', title: '전설의 유니콘', badge: '🏆' },
+            { min: 400, char: '👑', title: '단어의 왕', badge: '👑' },
+            { min: 500, char: '🌟', title: '완벽한 마스터', badge: '💎' }
+        ];
 
         // 플래시카드 상태
         let fcState = {
@@ -1121,6 +1562,11 @@
             gameState.todayLearned++;
             gameState.lastStudyDate = new Date().toDateString();
             if (gameState.todayLearned === 1) gameState.streak++;
+
+            // 학습일 기록 및 업적 체크
+            recordStudyDate();
+            checkAchievements();
+
             saveGameState();
             nextFlashcard();
         }
@@ -1294,12 +1740,27 @@
             const earnedXP = score * 20;
             const earnedScore = score * 10;
 
-            // 결과에 따른 이모지
+            // 결과에 따른 이모지와 메달
             let emoji = '😢';
             let title = '다시 도전해보세요!';
-            if (percent >= 90) { emoji = '🏆'; title = '완벽해요!'; }
-            else if (percent >= 70) { emoji = '🎉'; title = '훌륭해요!'; }
-            else if (percent >= 50) { emoji = '👍'; title = '잘했어요!'; }
+            let medalText = '';
+
+            if (percent === 100) {
+                emoji = '🥇';
+                title = '완벽해요! 금메달!';
+                medalText = '🥇 금메달 획득!';
+            } else if (percent >= 80) {
+                emoji = '🥈';
+                title = '훌륭해요! 은메달!';
+                medalText = '🥈 은메달 획득!';
+            } else if (percent >= 60) {
+                emoji = '🥉';
+                title = '잘했어요! 동메달!';
+                medalText = '🥉 동메달 획득!';
+            } else if (percent >= 50) {
+                emoji = '👍';
+                title = '조금만 더 힘내요!';
+            }
 
             document.getElementById('resultEmoji').textContent = emoji;
             document.getElementById('resultTitle').textContent = title;
@@ -1307,6 +1768,9 @@
             document.getElementById('resultPercent').textContent = percent;
             document.getElementById('earnedXP').textContent = earnedXP;
             document.getElementById('earnedScore').textContent = earnedScore;
+
+            // 메달 수여
+            awardMedal(percent);
 
             // XP 및 점수 추가
             addXP(earnedXP);
@@ -1316,7 +1780,27 @@
             gameState.lastStudyDate = new Date().toDateString();
             if (gameState.todayLearned <= score) gameState.streak++;
 
+            // 학습일 기록
+            recordStudyDate();
+
+            // 업적 체크
+            checkAchievements();
+
             saveGameState();
+
+            // 메달 획득 시 추가 축하 효과
+            if (percent >= 60 && typeof confetti !== 'undefined') {
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 150,
+                        spread: 100,
+                        origin: { y: 0.6 },
+                        colors: percent === 100 ? ['#FFD700', '#FFA500'] :
+                                percent >= 80 ? ['#C0C0C0', '#A8A8A8'] :
+                                ['#CD7F32', '#B87333']
+                    });
+                }, 500);
+            }
         }
 
         function speakQuizWord() {
@@ -1332,37 +1816,221 @@
             const total = 500;
             const percent = Math.round((learned / total) * 100);
 
+            // 전체 진행률
             document.getElementById('learnedWords').textContent = learned;
             document.getElementById('totalProgress').style.width = percent + '%';
+            document.getElementById('learnedPercent').textContent = percent + '%';
 
-            // 레벨별 진행률
-            let levelHtml = '';
-            for (let i = 1; i <= 5; i++) {
-                const levelWords = wordDatabase.filter(w => w.level === i);
-                const learnedInLevel = levelWords.filter(w => gameState.learnedWords.includes(w.word)).length;
-                const levelPercent = Math.round((learnedInLevel / levelWords.length) * 100);
+            // 랭크 업데이트
+            updateRankDisplay(learned);
 
-                levelHtml += `
-                    <div class="mb-3">
-                        <div class="d-flex justify-content-between">
-                            <small>레벨 ${i}: ${levelStats[i].name}</small>
-                            <small>${learnedInLevel}/${levelWords.length}</small>
-                        </div>
-                        <div class="progress progress-custom" style="height: 8px;">
-                            <div class="progress-bar" style="width: ${levelPercent}%"></div>
-                        </div>
-                    </div>
-                `;
-            }
-            document.getElementById('levelProgress').innerHTML = levelHtml;
+            // 메달 표시
+            document.getElementById('bronzeCount').textContent = gameState.medals.bronze;
+            document.getElementById('silverCount').textContent = gameState.medals.silver;
+            document.getElementById('goldCount').textContent = gameState.medals.gold;
+
+            // 업적 배지 생성
+            renderAchievements();
+
+            // 스트릭 표시
+            document.getElementById('streakDays').textContent = gameState.streak;
+            updateStreakFlames();
+            renderStreakCalendar();
 
             // 통계
-            document.getElementById('statDays').textContent = gameState.streak;
+            document.getElementById('statDays').textContent = gameState.studyDates ? gameState.studyDates.length : 0;
             document.getElementById('statQuizzes').textContent = gameState.quizzesCompleted;
+            document.getElementById('statTotalXP').textContent = gameState.xp;
             const accuracy = gameState.totalAnswered > 0
                 ? Math.round((gameState.totalCorrect / gameState.totalAnswered) * 100)
                 : 0;
             document.getElementById('statAccuracy').textContent = accuracy + '%';
+        }
+
+        // 랭크 표시 업데이트
+        function updateRankDisplay(learned) {
+            let currentRank = rankDefs[0];
+            let nextRank = rankDefs[1];
+
+            for (let i = rankDefs.length - 1; i >= 0; i--) {
+                if (learned >= rankDefs[i].min) {
+                    currentRank = rankDefs[i];
+                    nextRank = rankDefs[i + 1] || null;
+                    break;
+                }
+            }
+
+            document.getElementById('rankCharacter').textContent = currentRank.char;
+            document.getElementById('rankTitle').textContent = currentRank.title;
+            document.getElementById('rankBadge').textContent = currentRank.badge;
+
+            if (nextRank) {
+                const wordsNeeded = nextRank.min - learned;
+                document.getElementById('wordsToNextRank').textContent = wordsNeeded;
+            } else {
+                document.querySelector('.rank-subtitle').textContent = '🎉 최고 랭크 달성!';
+            }
+        }
+
+        // 업적 렌더링
+        function renderAchievements() {
+            const container = document.getElementById('achievementBadges');
+            let html = '';
+
+            for (const [key, def] of Object.entries(achievementDefs)) {
+                const unlocked = gameState.achievements[key];
+                html += `
+                    <div class="achievement-badge ${unlocked ? 'unlocked' : 'locked'}"
+                         title="${def.name}: ${def.desc}">
+                        ${def.icon}
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+        }
+
+        // 스트릭 화염 업데이트
+        function updateStreakFlames() {
+            const streak = gameState.streak;
+            let flames = '🔥';
+
+            if (streak >= 30) flames = '🔥🔥🔥🔥🔥';
+            else if (streak >= 14) flames = '🔥🔥🔥🔥';
+            else if (streak >= 7) flames = '🔥🔥🔥';
+            else if (streak >= 3) flames = '🔥🔥';
+
+            document.getElementById('streakFlames').textContent = flames;
+        }
+
+        // 스트릭 캘린더 렌더링
+        function renderStreakCalendar() {
+            const container = document.getElementById('streakCalendar');
+            const today = new Date();
+            const dayNames = ['일', '월', '화', '수', '목', '금', '토'];
+            let html = '';
+
+            for (let i = 6; i >= 0; i--) {
+                const date = new Date(today);
+                date.setDate(date.getDate() - i);
+                const dateStr = date.toDateString();
+                const dayName = dayNames[date.getDay()];
+                const isCompleted = gameState.studyDates && gameState.studyDates.includes(dateStr);
+                const isToday = i === 0;
+
+                html += `
+                    <div class="streak-day ${isCompleted ? 'completed' : ''} ${isToday ? 'today' : ''}">
+                        ${isCompleted ? '✓' : dayName}
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+        }
+
+        // 업적 체크 및 해금
+        function checkAchievements() {
+            const learned = gameState.learnedWords.length;
+            const hour = new Date().getHours();
+
+            // 단어 관련 업적
+            if (learned >= 50 && !gameState.achievements.words50) {
+                unlockAchievement('words50');
+            }
+            if (learned >= 100 && !gameState.achievements.words100) {
+                unlockAchievement('words100');
+            }
+            if (learned >= 200 && !gameState.achievements.words200) {
+                unlockAchievement('words200');
+            }
+
+            // 퀴즈 관련 업적
+            if (gameState.quizzesCompleted >= 1 && !gameState.achievements.firstQuiz) {
+                unlockAchievement('firstQuiz');
+            }
+            if (gameState.quizzesCompleted >= 10 && !gameState.achievements.quiz10) {
+                unlockAchievement('quiz10');
+            }
+            if (gameState.quizzesCompleted >= 50 && !gameState.achievements.quiz50) {
+                unlockAchievement('quiz50');
+            }
+
+            // 스트릭 업적
+            if (gameState.streak >= 3 && !gameState.achievements.streak3) {
+                unlockAchievement('streak3');
+            }
+            if (gameState.streak >= 7 && !gameState.achievements.streak7) {
+                unlockAchievement('streak7');
+            }
+
+            // 시간대 업적
+            if (hour >= 6 && hour < 9 && !gameState.achievements.earlyBird) {
+                unlockAchievement('earlyBird');
+            }
+            if (hour >= 21 && hour <= 23 && !gameState.achievements.nightOwl) {
+                unlockAchievement('nightOwl');
+            }
+
+            saveGameState();
+        }
+
+        // 업적 해금
+        function unlockAchievement(key) {
+            gameState.achievements[key] = true;
+            const def = achievementDefs[key];
+            showAchievementPopup(def);
+        }
+
+        // 업적 팝업
+        function showAchievementPopup(def) {
+            const popup = document.createElement('div');
+            popup.innerHTML = `
+                <div style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+                            background: linear-gradient(135deg, #ffd54f, #ffb300);
+                            padding: 20px 30px; border-radius: 20px; z-index: 9999;
+                            box-shadow: 0 10px 40px rgba(0,0,0,0.3); text-align: center;
+                            animation: slideDown 0.5s ease-out;">
+                    <div style="font-size: 3rem;">${def.icon}</div>
+                    <div style="font-weight: 800; font-size: 1.2rem; color: #333;">업적 달성!</div>
+                    <div style="font-weight: 600; color: #555;">${def.name}</div>
+                    <div style="font-size: 0.9rem; color: #666;">${def.desc}</div>
+                </div>
+            `;
+            document.body.appendChild(popup);
+
+            // 효과음 & 컨페티
+            if (typeof confetti !== 'undefined') {
+                confetti({ particleCount: 50, spread: 60, origin: { y: 0.3 } });
+            }
+
+            setTimeout(() => popup.remove(), 3000);
+        }
+
+        // 메달 획득
+        function awardMedal(percent) {
+            if (percent === 100) {
+                gameState.medals.gold++;
+                if (!gameState.achievements.perfectScore) {
+                    unlockAchievement('perfectScore');
+                }
+            } else if (percent >= 80) {
+                gameState.medals.silver++;
+            } else if (percent >= 60) {
+                gameState.medals.bronze++;
+            }
+            saveGameState();
+        }
+
+        // 학습일 기록
+        function recordStudyDate() {
+            const today = new Date().toDateString();
+            if (!gameState.studyDates) {
+                gameState.studyDates = [];
+            }
+            if (!gameState.studyDates.includes(today)) {
+                gameState.studyDates.push(today);
+            }
+            saveGameState();
         }
 
         // ===== 설정 =====
