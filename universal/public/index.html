@@ -1,0 +1,1889 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Universal Language Learning</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        * {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .container {
+            max-width: 500px;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .card-header-custom {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-body-custom {
+            padding: 25px;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* 상태 바 */
+        .status-bar {
+            display: flex;
+            justify-content: space-around;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 15px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        .status-item {
+            text-align: center;
+        }
+
+        .status-value {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #5f27cd;
+        }
+
+        .status-label {
+            font-size: 0.75rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        /* 언어 선택 화면 */
+        .language-select-card {
+            background: linear-gradient(145deg, #fff, #f8f9fa);
+            border: 3px solid #e0e0ff;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .language-select-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+
+        .language-select-card.selected {
+            border-color: #667eea;
+            background: linear-gradient(145deg, #f0f0ff, #fff);
+        }
+
+        .language-flag {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .language-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        /* 메뉴 버튼 */
+        .menu-btn {
+            background: linear-gradient(145deg, #fff, #f0f0ff);
+            border: 4px solid #e0e0ff;
+            border-radius: 25px;
+            padding: 20px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-btn:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255,107,107,0.3);
+            border-color: #ff6b6b;
+        }
+
+        .menu-btn .icon {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            display: block;
+            animation: bounce-icon 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce-icon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .menu-btn h4 {
+            margin: 0;
+            color: #333;
+            font-weight: 800;
+        }
+
+        .menu-btn p {
+            margin: 5px 0 0;
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        /* 퀴즈 버튼 상태 */
+        #quizMenuBtn {
+            opacity: 0.6;
+        }
+
+        #quizMenuBtn.quiz-ready {
+            opacity: 1;
+            animation: pulse-ready 2s infinite;
+        }
+
+        @keyframes pulse-ready {
+            0%, 100% { box-shadow: 0 5px 20px rgba(255,107,107,0.3); }
+            50% { box-shadow: 0 5px 30px rgba(255,107,107,0.6); }
+        }
+
+        /* 플래시카드 */
+        .flashcard {
+            background: linear-gradient(145deg, #fff8e1, #fff);
+            border: 5px solid #feca57;
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            min-height: 300px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .flashcard:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(254,202,87,0.4);
+        }
+
+        .flashcard .word {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #5f27cd;
+            margin-bottom: 10px;
+        }
+
+        .flashcard .reading {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .flashcard .meaning {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #10ac84;
+            margin-bottom: 15px;
+        }
+
+        .flashcard .example {
+            font-size: 1rem;
+            color: #666;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 15px;
+            margin-top: 15px;
+        }
+
+        .flashcard .example-meaning {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .flashcard .category-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .flashcard .level-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        /* 퀴즈 옵션 */
+        .quiz-option {
+            background: linear-gradient(145deg, #f8f9fa, #fff);
+            border: 3px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 18px 25px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .quiz-option:hover {
+            transform: translateX(10px);
+            border-color: #667eea;
+            background: linear-gradient(145deg, #f0f0ff, #fff);
+        }
+
+        .quiz-option.correct {
+            background: linear-gradient(145deg, #d4edda, #c3e6cb);
+            border-color: #28a745;
+            color: #155724;
+        }
+
+        .quiz-option.wrong {
+            background: linear-gradient(145deg, #f8d7da, #f5c6cb);
+            border-color: #dc3545;
+            color: #721c24;
+        }
+
+        .quiz-option.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        /* 홈 버튼 */
+        .home-btn {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .home-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* 스피커 버튼 */
+        .speak-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+            border: none;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(255,107,107,0.4);
+        }
+
+        .speak-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* 진행바 */
+        .progress-custom {
+            height: 15px;
+            border-radius: 10px;
+            background: #e9ecef;
+            overflow: hidden;
+        }
+
+        .progress-custom .progress-bar {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 10px;
+            transition: width 0.5s;
+        }
+
+        /* 결과 이모지 */
+        .result-emoji {
+            font-size: 6rem;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .result-score {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #5f27cd;
+        }
+
+        /* 현재 언어 표시 */
+        .current-language {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        .current-language .flag {
+            font-size: 1.5rem;
+        }
+
+        .current-language .arrow {
+            color: white;
+            font-weight: bold;
+        }
+
+        /* 설정 */
+        .section-title {
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-group .btn {
+            font-weight: 700;
+        }
+
+        /* 반응형 */
+        @media (max-width: 400px) {
+            .flashcard .word {
+                font-size: 2rem;
+            }
+            .flashcard .meaning {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 언어 선택 화면 -->
+        <div id="languageSelect" class="game-card hidden">
+            <div class="card-header-custom">
+                <h2 style="font-size: 1.8rem;">🌍 Universal Language Learning 🌍</h2>
+                <p class="mb-0">Select your languages</p>
+                <small class="opacity-75">v1.0.0 MVP</small>
+            </div>
+            <div class="card-body-custom">
+                <h6 class="section-title">🏠 My Language (Native)</h6>
+                <div id="nativeLanguageList" class="mb-4">
+                    <!-- 동적 생성 -->
+                </div>
+
+                <h6 class="section-title">📚 Language to Learn (Target)</h6>
+                <div id="targetLanguageList" class="mb-4">
+                    <!-- 동적 생성 -->
+                </div>
+
+                <button id="startLearningBtn" class="btn btn-lg w-100 mb-2" onclick="startLearning()" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-radius: 25px; font-weight: 800; padding: 18px;" disabled>
+                    🚀 Start Learning!
+                </button>
+                <button id="cancelLangBtn" class="btn btn-outline-secondary w-100 hidden" onclick="goHome()" style="border-radius: 25px; font-weight: 600;">
+                    ← Back
+                </button>
+            </div>
+        </div>
+
+        <!-- 메인 메뉴 -->
+        <div id="mainMenu" class="game-card hidden">
+            <!-- 상태 바 -->
+            <div class="status-bar">
+                <div class="status-item">
+                    <div class="status-value">Lv.<span id="level">1</span></div>
+                    <div class="status-label">Level</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value"><span id="xp">0</span></div>
+                    <div class="status-label">XP</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value"><span id="streak">0</span>🔥</div>
+                    <div class="status-label">Streak</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-value"><span id="totalScore">0</span></div>
+                    <div class="status-label">Score</div>
+                </div>
+            </div>
+
+            <!-- XP 바 -->
+            <div class="px-3 mb-3">
+                <div class="progress progress-custom">
+                    <div class="progress-bar" id="xpBar" style="width: 0%"></div>
+                </div>
+                <small class="text-muted">XP to next level <span id="xpToNext">100</span> XP</small>
+            </div>
+
+            <div class="card-header-custom">
+                <div class="current-language" onclick="changeLanguage()" style="cursor: pointer;" title="Click to change language">
+                    <span class="flag" id="nativeFlagDisplay">🇺🇸</span>
+                    <span class="arrow">➜</span>
+                    <span class="flag" id="targetFlagDisplay">🇰🇷</span>
+                    <span style="font-size: 0.8rem; margin-left: 5px;">✏️</span>
+                </div>
+                <h2 style="font-size: 1.5rem;" id="learningTitle">English → 한국어</h2>
+                <p class="mb-0" id="letsStudyText">Let's study hard!</p>
+            </div>
+            <div class="card-body-custom">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="menu-btn" onclick="startFlashcard()">
+                            <div class="icon">📚</div>
+                            <h4>Flashcards</h4>
+                            <p>Memorize words</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="menu-btn" id="quizMenuBtn" onclick="startQuiz()">
+                            <div class="icon">🎯</div>
+                            <h4>Quiz</h4>
+                            <p id="quizMenuDesc">Complete flashcards first!</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="menu-btn" onclick="showProgress()">
+                            <div class="icon">📊</div>
+                            <h4>Progress</h4>
+                            <p>View your stats</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="menu-btn" onclick="showSettings()">
+                            <div class="icon">⚙️</div>
+                            <h4>Settings</h4>
+                            <p>Language/Level</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 소리 활성화 -->
+                <div id="soundEnable" class="mt-3 p-4 rounded-4 text-center" style="background: linear-gradient(135deg, #ffeaa7, #fdcb6e); border: 3px dashed #f39c12;">
+                    <button class="btn btn-lg" onclick="enableSound()" style="background: linear-gradient(135deg, #ff9ff3, #f368e0); color: white; border-radius: 25px; font-weight: 800; padding: 15px 30px;">
+                        🔊 Enable Sound (Click first!) 🎵
+                    </button>
+                </div>
+
+                <!-- 오늘의 목표 -->
+                <div class="mt-4 p-4 rounded-4" style="background: linear-gradient(135deg, #dfe6e9, #b2bec3); border: 3px solid #74b9ff;">
+                    <h6 style="font-weight: 800; color: #2d3436;">🚀 Daily Goal 🎯</h6>
+                    <div class="progress progress-custom mb-2" style="height: 20px;">
+                        <div class="progress-bar" id="dailyProgress" style="width: 0%"></div>
+                    </div>
+                    <small style="font-weight: 600; color: #636e72;">⭐ <span id="todayLearned">0</span> / <span id="dailyGoal">20</span> words learned ⭐</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- 플래시카드 모드 -->
+        <div id="flashcardMode" class="game-card hidden">
+            <div class="card-header-custom">
+                <div class="d-flex justify-content-between align-items-center">
+                    <button class="home-btn" onclick="goHome()">🏠</button>
+                    <span class="progress-counter">📖 <span id="fcCurrent">1</span> / <span id="fcTotal">10</span></span>
+                    <span class="category-tag" id="fcCategory">Category</span>
+                </div>
+            </div>
+            <div class="card-body-custom">
+                <div class="flashcard" id="flashcard" onclick="flipCard()">
+                    <span class="level-badge" id="fcLevel">Lv.1</span>
+                    <span class="category-badge" id="fcCategoryBadge">인사</span>
+                    <div id="cardFront">
+                        <div class="word" id="fcWord">こんにちは</div>
+                        <div class="reading" id="fcReading">konnichiwa</div>
+                        <button class="speak-btn" onclick="event.stopPropagation(); speakWord()">
+                            <i class="bi bi-volume-up-fill"></i>
+                        </button>
+                        <small class="text-muted d-block mt-3">Tap card to see meaning</small>
+                    </div>
+                    <div id="cardBack" class="hidden">
+                        <div class="meaning" id="fcMeaning">안녕하세요</div>
+                        <div class="d-flex justify-content-center gap-2 my-3">
+                            <button class="speak-btn" onclick="event.stopPropagation(); speakWord()" title="Pronounce word">
+                                <i class="bi bi-volume-up-fill"></i>
+                            </button>
+                            <button class="speak-btn" onclick="event.stopPropagation(); speakExample()" title="Listen to example" style="background: #22c55e;">
+                                <i class="bi bi-chat-quote-fill"></i>
+                            </button>
+                        </div>
+                        <div class="example" id="fcExample">"こんにちは、お元気ですか？"</div>
+                        <div class="example-meaning" id="fcExampleMeaning">안녕하세요, 잘 지내세요?</div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-4 gap-3">
+                    <button class="btn btn-lg" onclick="markUnknown()" style="background: linear-gradient(135deg, #ff6b6b, #ee5a5a); color: white; border-radius: 20px; font-weight: 700; padding: 15px 25px;">
+                        😅 Study again
+                    </button>
+                    <button class="btn btn-lg" onclick="markKnown()" style="background: linear-gradient(135deg, #00d2d3, #10ac84); color: white; border-radius: 20px; font-weight: 700; padding: 15px 25px;">
+                        🎉 I know it! (+10 XP)
+                    </button>
+                </div>
+
+                <div class="progress progress-custom mt-3">
+                    <div class="progress-bar" id="fcProgress" style="width: 10%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 퀴즈 모드 -->
+        <div id="quizMode" class="game-card hidden">
+            <div class="card-header-custom">
+                <div class="d-flex justify-content-between align-items-center">
+                    <button class="home-btn" onclick="goHome()">🏠</button>
+                    <span class="progress-counter">🎯 <span id="qCurrent">1</span> / <span id="qTotal">10</span></span>
+                    <span class="score-badge">⭐ <span id="qScore">0</span>점</span>
+                </div>
+            </div>
+            <div class="card-body-custom">
+                <div class="text-center mb-4">
+                    <button class="speak-btn" onclick="speakQuizWord()">
+                        <i class="bi bi-volume-up-fill"></i>
+                    </button>
+                    <h3 class="mt-2" id="quizWord" style="font-size: 2.5rem; font-weight: 900; color: #5f27cd;">こんにちは</h3>
+                    <p class="text-muted" id="quizReading">konnichiwa</p>
+                    <p style="color: #888; font-weight: 600;">👆 What does this word mean? 👆</p>
+                </div>
+
+                <div id="quizOptions">
+                    <!-- 동적 생성 -->
+                </div>
+
+                <div id="quizFeedback" class="hidden mt-3 p-3 rounded-4">
+                    <p id="feedbackText" class="mb-2 fw-bold"></p>
+                    <p id="feedbackExample" class="mb-0 small text-muted"></p>
+                </div>
+
+                <button id="nextQuizBtn" class="btn btn-lg w-100 mt-3 hidden" onclick="nextQuiz()" style="background: linear-gradient(135deg, #00d2d3, #10ac84); color: white; border-radius: 25px; font-weight: 800; padding: 18px;">
+                    ➡️ Next Question
+                </button>
+
+                <div class="progress progress-custom mt-3">
+                    <div class="progress-bar" id="qProgress" style="width: 10%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 플래시카드 완료 -->
+        <div id="flashcardComplete" class="game-card hidden">
+            <div class="card-body-custom text-center">
+                <div class="result-emoji">📚</div>
+                <h2>Complete!</h2>
+                <p class="text-muted mb-4">
+                    <span id="fcLearnedCount">0</span> words studied
+                </p>
+
+                <div class="p-3 bg-light rounded-3 mb-4">
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <h4 class="text-success mb-0">+<span id="fcEarnedXP">0</span></h4>
+                            <small class="text-muted">Earned XP</small>
+                        </div>
+                        <div>
+                            <h4 class="text-primary mb-0"><span id="fcStudiedCount">10</span></h4>
+                            <small class="text-muted">Studied</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-3">
+                    <button class="btn btn-lg" onclick="startQuizFromFlashcard()" style="background: linear-gradient(135deg, #feca57, #ff9f43); color: white; border-radius: 25px; font-weight: 800; padding: 18px 30px;">
+                        ⚡ Quiz with these words! ⚡
+                    </button>
+                    <button class="btn btn-lg" onclick="goHome()" style="background: linear-gradient(135deg, #74b9ff, #0984e3); color: white; border-radius: 25px; font-weight: 800; padding: 15px 30px;">
+                        🏠 Go Home
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 퀴즈 결과 -->
+        <div id="quizResult" class="game-card hidden">
+            <div class="card-body-custom text-center">
+                <div class="result-emoji" id="resultEmoji">🎉</div>
+                <h2 id="resultTitle">Excellent!</h2>
+                <div class="result-score" id="resultScore">8/10</div>
+                <p class="text-muted mb-4">Accuracy <span id="resultPercent">80</span>%</p>
+
+                <div class="p-3 bg-light rounded-3 mb-4">
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <h4 class="text-success mb-0">+<span id="earnedXP">100</span></h4>
+                            <small class="text-muted">Earned XP</small>
+                        </div>
+                        <div>
+                            <h4 class="text-primary mb-0">+<span id="earnedScore">80</span></h4>
+                            <small class="text-muted">Earned Score</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-3">
+                    <button class="btn btn-lg flex-fill" onclick="goHome()" style="background: linear-gradient(135deg, #74b9ff, #0984e3); color: white; border-radius: 20px; font-weight: 800; padding: 15px;">
+                        🏠 Home
+                    </button>
+                    <button class="btn btn-lg flex-fill" onclick="retryQuiz()" style="background: linear-gradient(135deg, #ff6b6b, #ee5a5a); color: white; border-radius: 20px; font-weight: 800; padding: 15px;">
+                        🔄 Try Again!
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 진행 상황 -->
+        <div id="progressView" class="game-card hidden">
+            <div class="card-header-custom">
+                <div class="d-flex justify-content-between align-items-center">
+                    <button class="home-btn" onclick="goHome()">🏠</button>
+                    <h5 class="mb-0">🏆 My Progress 🏆</h5>
+                    <span></span>
+                </div>
+            </div>
+            <div class="card-body-custom">
+                <div class="text-center mb-4">
+                    <h4>📖 Words Learned</h4>
+                    <div class="result-score"><span id="learnedWords">0</span></div>
+                    <div class="progress progress-custom mt-2">
+                        <div class="progress-bar" id="totalProgress" style="width: 0%"></div>
+                    </div>
+                    <small class="text-muted">Total Progress: <span id="learnedPercent">0</span>%</small>
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-6">
+                        <div class="p-3 bg-light rounded-3 text-center">
+                            <h5 class="text-primary mb-0"><span id="statQuizzes">0</span></h5>
+                            <small class="text-muted">Quizzes Completed</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-3 bg-light rounded-3 text-center">
+                            <h5 class="text-success mb-0"><span id="statAccuracy">0</span>%</h5>
+                            <small class="text-muted">Accuracy</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 메달 표시 -->
+                <div class="p-3 bg-light rounded-3 mb-3">
+                    <h6 class="fw-bold mb-3">🏅 Medal Collection</h6>
+                    <div class="d-flex justify-content-around">
+                        <div class="text-center">
+                            <div style="font-size: 2rem;">🥉</div>
+                            <div class="fw-bold" id="bronzeCount">0</div>
+                            <small class="text-muted">Bronze</small>
+                        </div>
+                        <div class="text-center">
+                            <div style="font-size: 2rem;">🥈</div>
+                            <div class="fw-bold" id="silverCount">0</div>
+                            <small class="text-muted">Silver</small>
+                        </div>
+                        <div class="text-center">
+                            <div style="font-size: 2rem;">🥇</div>
+                            <div class="fw-bold" id="goldCount">0</div>
+                            <small class="text-muted">Gold</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 설정 -->
+        <div id="settingsView" class="game-card hidden">
+            <div class="card-header-custom">
+                <div class="d-flex justify-content-between align-items-center">
+                    <button class="home-btn" onclick="goHome()">🏠</button>
+                    <h5 class="mb-0">⚙️ Settings</h5>
+                    <span></span>
+                </div>
+            </div>
+            <div class="card-body-custom">
+                <h6 class="section-title">🌍 Change Language</h6>
+                <button class="btn btn-outline-primary w-100 mb-4" onclick="changeLanguage()">
+                    Change Language
+                </button>
+
+                <h6 class="section-title">📚 Select Learning Level</h6>
+                <div class="mb-3" id="levelSelect">
+                    <!-- 동적 생성 -->
+                </div>
+
+                <h6 class="section-title mt-4">🎯 Daily Goal</h6>
+                <div class="btn-group w-100" role="group">
+                    <input type="radio" class="btn-check" name="dailyGoal" id="goal10" value="10">
+                    <label class="btn btn-outline-primary" for="goal10">10</label>
+                    <input type="radio" class="btn-check" name="dailyGoal" id="goal20" value="20" checked>
+                    <label class="btn btn-outline-primary" for="goal20">20</label>
+                    <input type="radio" class="btn-check" name="dailyGoal" id="goal30" value="30">
+                    <label class="btn btn-outline-primary" for="goal30">30</label>
+                </div>
+
+                <h6 class="section-title mt-4">📖 Words per Session</h6>
+                <div class="btn-group w-100" role="group">
+                    <input type="radio" class="btn-check" name="wordCount" id="word10" value="10" checked>
+                    <label class="btn btn-outline-primary" for="word10">10</label>
+                    <input type="radio" class="btn-check" name="wordCount" id="word20" value="20">
+                    <label class="btn btn-outline-primary" for="word20">20</label>
+                    <input type="radio" class="btn-check" name="wordCount" id="word30" value="30">
+                    <label class="btn btn-outline-primary" for="word30">30</label>
+                </div>
+
+                <button class="btn btn-lg w-100 mt-4" onclick="saveSettings()" style="background: linear-gradient(135deg, #00d2d3, #10ac84); color: white; border-radius: 20px; font-weight: 800;">
+                    ✅ Save Settings
+                </button>
+
+                <hr class="my-4">
+
+                <button class="btn btn-outline-info w-100 mb-3" onclick="showHelp()" id="helpBtn">
+                    ❓ Help
+                </button>
+
+                <button class="btn btn-outline-danger w-100" onclick="resetProgress()">
+                    🗑️ Reset Progress
+                </button>
+            </div>
+        </div>
+
+        <!-- 도움말 -->
+        <div id="helpView" class="game-card hidden">
+            <div class="card-header-custom">
+                <div class="d-flex justify-content-between align-items-center">
+                    <button class="home-btn" onclick="showSettings()">⬅️</button>
+                    <h5 class="mb-0" id="helpTitle">❓ Help</h5>
+                    <span></span>
+                </div>
+            </div>
+            <div class="card-body-custom" style="max-height: 70vh; overflow-y: auto;">
+                <div class="text-center mb-4">
+                    <h4 id="howToUseTitle">📖 How to Use</h4>
+                    <p class="text-muted" id="helpIntroText">Welcome to Universal Language Learning!</p>
+                </div>
+
+                <!-- 플래시카드 섹션 -->
+                <div class="help-section mb-4 p-3 bg-light rounded-3">
+                    <h6 class="fw-bold text-primary" id="helpFlashcardTitle">📚 Using Flashcards</h6>
+                    <p class="mb-0 small" id="helpFlashcardContent" style="white-space: pre-line;"></p>
+                </div>
+
+                <!-- 퀴즈 섹션 -->
+                <div class="help-section mb-4 p-3 bg-light rounded-3">
+                    <h6 class="fw-bold text-success" id="helpQuizTitle">🎯 Taking Quizzes</h6>
+                    <p class="mb-0 small" id="helpQuizContent" style="white-space: pre-line;"></p>
+                </div>
+
+                <!-- XP 섹션 -->
+                <div class="help-section mb-4 p-3 bg-light rounded-3">
+                    <h6 class="fw-bold text-warning" id="helpXPTitle">⭐ XP and Levels</h6>
+                    <p class="mb-0 small" id="helpXPContent" style="white-space: pre-line;"></p>
+                </div>
+
+                <!-- 팁 섹션 -->
+                <div class="help-section mb-4 p-3 bg-light rounded-3">
+                    <h6 class="fw-bold text-info" id="helpTipsTitle">💡 Learning Tips</h6>
+                    <p class="mb-0 small" id="helpTipsContent" style="white-space: pre-line;"></p>
+                </div>
+
+                <!-- 설정 섹션 -->
+                <div class="help-section mb-4 p-3 bg-light rounded-3">
+                    <h6 class="fw-bold text-secondary" id="helpSettingsTitle">⚙️ Settings Guide</h6>
+                    <p class="mb-0 small" id="helpSettingsContent" style="white-space: pre-line;"></p>
+                </div>
+
+                <button class="btn btn-lg w-100 mt-3" onclick="showSettings()" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-radius: 20px; font-weight: 800;" id="backToSettingsBtn">
+                    ⬅️ Back to Settings
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="words/words-ui.js"></script>
+    <script>
+        // ===== 언어 설정 =====
+        let selectedNative = null;
+        let selectedTarget = null;
+        let currentWordDatabase = [];
+        let currentUI = getUI('en'); // 기본 UI 언어 (영어)
+
+        // ===== 오디오 매핑 =====
+        let audioMapping = null;
+        fetch('audio/mapping.json')
+            .then(r => r.json())
+            .then(data => { audioMapping = data; })
+            .catch(() => { audioMapping = null; });
+
+        // ===== 게임 상태 =====
+        let gameState = {
+            nativeLanguage: null,
+            targetLanguage: null,
+            xp: 0,
+            level: 1,
+            totalScore: 0,
+            streak: 0,
+            lastStudyDate: null,
+            todayLearned: 0,
+            dailyGoal: 20,
+            wordCount: 10,
+            selectedLevels: [1, 2, 3, 4, 5],
+            learnedWords: [],
+            quizzesCompleted: 0,
+            totalCorrect: 0,
+            totalAnswered: 0,
+            medals: { bronze: 0, silver: 0, gold: 0 }
+        };
+
+        // 플래시카드 상태
+        let fcState = {
+            words: [],
+            currentIndex: 0,
+            isFlipped: false,
+            studiedWords: [],
+            earnedXP: 0,
+            completed: false
+        };
+
+        // 퀴즈 상태
+        let quizState = {
+            words: [],
+            currentIndex: 0,
+            score: 0,
+            answered: false,
+            currentWord: null
+        };
+
+        // ===== 초기화 =====
+        function init() {
+            loadGameState();
+
+            // 기본값 설정: 영어 → 한국어
+            if (!gameState.nativeLanguage || !gameState.targetLanguage) {
+                gameState.nativeLanguage = 'en';
+                gameState.targetLanguage = 'ko';
+                saveGameState();
+            }
+
+            // 전역 변수 설정
+            selectedNative = gameState.nativeLanguage;
+            selectedTarget = gameState.targetLanguage;
+            currentUI = getUI(selectedNative); // UI 언어 설정
+
+            // 언어 선택 화면 준비 (설정에서 사용)
+            renderLanguageSelection();
+
+            // 단어 데이터 동적 로딩 후 메인 메뉴로
+            loadWordPack(selectedNative, selectedTarget).then(words => {
+                currentWordDatabase = words;
+                // 다시 한번 확인하여 UI 언어 설정
+                currentUI = getUI(selectedNative);
+                showMainMenu();
+            }).catch(err => {
+                console.error('Failed to load word pack:', err);
+                currentWordDatabase = [];
+                // 다시 한번 확인하여 UI 언어 설정
+                currentUI = getUI(selectedNative);
+                showMainMenu();
+            });
+        }
+
+        function loadGameState() {
+            const saved = localStorage.getItem('universalLanguageGame');
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                gameState = { ...gameState, ...parsed };
+            }
+        }
+
+        function saveGameState() {
+            localStorage.setItem('universalLanguageGame', JSON.stringify(gameState));
+        }
+
+        // ===== UI 언어 업데이트 =====
+        function updateUILanguage() {
+            // 언어 선택 화면
+            document.querySelector('#languageSelect .card-header-custom p').textContent = currentUI.selectLanguage;
+
+            // 나의 언어 / 배우고 싶은 언어 제목
+            const sectionTitles = document.querySelectorAll('#languageSelect .section-title');
+            if (sectionTitles[0]) sectionTitles[0].innerHTML = '🏠 ' + currentUI.myLanguage;
+            if (sectionTitles[1]) sectionTitles[1].innerHTML = '📚 ' + currentUI.targetLanguage;
+
+            // 시작 버튼
+            const startBtn = document.getElementById('startLearningBtn');
+            if (startBtn && !selectedTarget) {
+                startBtn.innerHTML = '🚀 ' + currentUI.startLearning;
+            }
+
+            // 메인 메뉴 버튼들
+            const flashcardBtn = document.querySelector('[onclick="startFlashcard()"]');
+            if (flashcardBtn) {
+                flashcardBtn.querySelector('h4').textContent = currentUI.flashcard;
+                flashcardBtn.querySelector('p').textContent = currentUI.flashcardDesc;
+            }
+
+            const quizBtn = document.getElementById('quizMenuBtn');
+            if (quizBtn) {
+                quizBtn.querySelector('h4').textContent = currentUI.quiz;
+            }
+
+            const progressBtn = document.querySelector('[onclick="showProgress()"]');
+            if (progressBtn) {
+                progressBtn.querySelector('h4').textContent = currentUI.progress;
+                progressBtn.querySelector('p').textContent = currentUI.progressDesc;
+            }
+
+            const settingsBtn = document.querySelector('[onclick="showSettings()"]');
+            if (settingsBtn) {
+                settingsBtn.querySelector('h4').textContent = currentUI.settings;
+                settingsBtn.querySelector('p').textContent = currentUI.settingsDesc;
+            }
+
+            // 소리 버튼
+            const soundBtn = document.querySelector('#soundEnable button');
+            if (soundBtn) soundBtn.innerHTML = '🔊 ' + currentUI.enableSound + ' 🎵';
+
+            // 오늘의 목표
+            const dailyGoalTitle = document.querySelector('#mainMenu [style*="dfe6e9"] h6');
+            if (dailyGoalTitle) dailyGoalTitle.innerHTML = '🚀 ' + currentUI.dailyGoal + ' 🎯';
+
+            const dailyGoalText = document.querySelector('#mainMenu [style*="dfe6e9"] small');
+            if (dailyGoalText) {
+                const today = document.getElementById('todayLearned')?.textContent || '0';
+                const goal = document.getElementById('dailyGoal')?.textContent || '20';
+                dailyGoalText.innerHTML = `⭐ <span id="todayLearned">${today}</span> / <span id="dailyGoal">${goal}</span> ${currentUI.wordsLearned} ⭐`;
+            }
+
+            // 상태바 라벨
+            const statusLabels = document.querySelectorAll('.status-label');
+            if (statusLabels[0]) statusLabels[0].textContent = currentUI.level;
+            if (statusLabels[1]) statusLabels[1].textContent = 'XP';
+            if (statusLabels[2]) statusLabels[2].textContent = currentUI.streak;
+            if (statusLabels[3]) statusLabels[3].textContent = currentUI.score;
+
+            // XP 바 텍스트
+            const xpText = document.querySelector('#mainMenu .px-3 small');
+            if (xpText) {
+                const xpToNext = document.getElementById('xpToNext').textContent;
+                xpText.innerHTML = currentUI.xpToNext + ' <span id="xpToNext">' + xpToNext + '</span> XP';
+            }
+
+            // 플래시카드 모드
+            const fcTapHint = document.querySelector('#cardFront small');
+            if (fcTapHint) fcTapHint.textContent = currentUI.tapToSee;
+
+            const fcStudyAgainBtn = document.querySelector('[onclick="markUnknown()"]');
+            if (fcStudyAgainBtn) fcStudyAgainBtn.innerHTML = '😅 ' + currentUI.studyAgain;
+
+            const fcKnowBtn = document.querySelector('[onclick="markKnown()"]');
+            if (fcKnowBtn) fcKnowBtn.innerHTML = '🎉 ' + currentUI.iKnow;
+
+            // 퀴즈 모드
+            const quizMeaningHint = document.querySelector('#quizMode p[style*="888"]');
+            if (quizMeaningHint) quizMeaningHint.innerHTML = '👆 ' + currentUI.questionMeaning + ' 👆';
+
+            const nextQuizBtn = document.getElementById('nextQuizBtn');
+            if (nextQuizBtn) nextQuizBtn.innerHTML = '➡️ ' + currentUI.nextQuestion;
+
+            // 플래시카드 완료 화면
+            const fcCompleteTitle = document.querySelector('#flashcardComplete h2');
+            if (fcCompleteTitle) fcCompleteTitle.textContent = currentUI.complete;
+
+            const fcCompleteDesc = document.querySelector('#flashcardComplete p.text-muted');
+            if (fcCompleteDesc) {
+                const count = document.getElementById('fcLearnedCount')?.textContent || '0';
+                // 다양한 언어 지원을 위한 포맷 (한국어: 5개, 영어: 5 words 등)
+                fcCompleteDesc.innerHTML = '<span id="fcLearnedCount">' + count + '</span>' + currentUI.wordsStudied;
+            }
+
+            const fcXpLabel = document.querySelector('#flashcardComplete [class*="text-success"] + small');
+            if (fcXpLabel) fcXpLabel.textContent = currentUI.earnedXP;
+
+            const fcWordLabel = document.querySelector('#flashcardComplete [class*="text-primary"] + small');
+            if (fcWordLabel) fcWordLabel.textContent = currentUI.studiedWords;
+
+            const fcQuizNowBtn = document.querySelector('[onclick="startQuizFromFlashcard()"]');
+            if (fcQuizNowBtn) fcQuizNowBtn.innerHTML = '⚡ ' + currentUI.quizNow + ' ⚡';
+
+            const fcGoHomeBtn = document.querySelector('#flashcardComplete [onclick="goHome()"]');
+            if (fcGoHomeBtn) fcGoHomeBtn.innerHTML = '🏠 ' + currentUI.goHome;
+
+            // 퀴즈 결과 화면
+            const quizResultAccuracy = document.querySelector('#quizResult p.text-muted');
+            if (quizResultAccuracy) {
+                const percent = document.getElementById('resultPercent')?.textContent || '0';
+                quizResultAccuracy.innerHTML = currentUI.accuracy + ' <span id="resultPercent">' + percent + '</span>%';
+            }
+
+            const qrXpLabel = document.querySelector('#quizResult [class*="text-success"] + small');
+            if (qrXpLabel) qrXpLabel.textContent = currentUI.earnedXP;
+
+            const qrScoreLabel = document.querySelector('#quizResult [class*="text-primary"] + small');
+            if (qrScoreLabel) qrScoreLabel.textContent = currentUI.earnedScore;
+
+            const qrHomeBtn = document.querySelector('#quizResult [onclick="goHome()"]');
+            if (qrHomeBtn) qrHomeBtn.innerHTML = '🏠 ' + currentUI.home;
+
+            const qrRetryBtn = document.querySelector('[onclick="retryQuiz()"]');
+            if (qrRetryBtn) qrRetryBtn.innerHTML = '🔄 ' + currentUI.retry;
+
+            // 진행 상황 화면
+            const progressTitle = document.querySelector('#progressView h5');
+            if (progressTitle) progressTitle.innerHTML = '🏆 ' + currentUI.myProgress + ' 🏆';
+
+            const learnedWordsTitle = document.querySelector('#progressView h4');
+            if (learnedWordsTitle) learnedWordsTitle.innerHTML = '📖 ' + currentUI.learnedWords;
+
+            const progressPercent = document.querySelector('#progressView small.text-muted');
+            if (progressPercent) {
+                const pct = document.getElementById('learnedPercent')?.textContent || '0';
+                progressPercent.innerHTML = currentUI.totalProgress + ': <span id="learnedPercent">' + pct + '</span>%';
+            }
+
+            const quizzesLabel = document.querySelector('#statQuizzes')?.nextElementSibling;
+            if (quizzesLabel) quizzesLabel.textContent = currentUI.quizzesCompleted;
+
+            const accuracyLabel = document.querySelector('#statAccuracy')?.nextElementSibling;
+            if (accuracyLabel) accuracyLabel.textContent = currentUI.accuracy;
+
+            const medalTitle = document.querySelector('#progressView .bg-light h6');
+            if (medalTitle) medalTitle.innerHTML = '🏅 ' + currentUI.medalCollection;
+
+            const bronzeLabel = document.querySelector('#bronzeCount')?.nextElementSibling;
+            if (bronzeLabel) bronzeLabel.textContent = currentUI.bronze;
+
+            const silverLabel = document.querySelector('#silverCount')?.nextElementSibling;
+            if (silverLabel) silverLabel.textContent = currentUI.silver;
+
+            const goldLabel = document.querySelector('#goldCount')?.nextElementSibling;
+            if (goldLabel) goldLabel.textContent = currentUI.gold;
+
+            // 설정 화면
+            const settingsTitle = document.querySelector('#settingsView h5');
+            if (settingsTitle) settingsTitle.innerHTML = '⚙️ ' + currentUI.settings;
+
+            const settingsSections = document.querySelectorAll('#settingsView .section-title');
+            if (settingsSections[0]) settingsSections[0].innerHTML = '🌍 ' + currentUI.changeLanguage;
+            if (settingsSections[1]) settingsSections[1].innerHTML = '📚 ' + currentUI.selectLevel;
+            if (settingsSections[2]) settingsSections[2].innerHTML = '🎯 ' + currentUI.dailyGoalSetting;
+            if (settingsSections[3]) settingsSections[3].innerHTML = '📖 ' + currentUI.wordCount;
+
+            const changeLangBtn = document.querySelector('[onclick="changeLanguage()"]');
+            if (changeLangBtn) changeLangBtn.textContent = currentUI.changeLanguage;
+
+            const saveSettingsBtn = document.querySelector('[onclick="saveSettings()"]');
+            if (saveSettingsBtn) saveSettingsBtn.innerHTML = '✅ ' + currentUI.saveSettings;
+
+            const helpBtn = document.getElementById('helpBtn');
+            if (helpBtn) helpBtn.innerHTML = '❓ ' + currentUI.help;
+
+            const resetBtn = document.querySelector('[onclick="resetProgress()"]');
+            if (resetBtn) resetBtn.innerHTML = '🗑️ ' + currentUI.resetProgress;
+
+            // 도움말 화면
+            const helpTitle = document.getElementById('helpTitle');
+            if (helpTitle) helpTitle.innerHTML = '❓ ' + currentUI.help;
+
+            const howToUseTitle = document.getElementById('howToUseTitle');
+            if (howToUseTitle) howToUseTitle.textContent = currentUI.howToUse;
+
+            const helpIntroText = document.getElementById('helpIntroText');
+            if (helpIntroText) helpIntroText.textContent = currentUI.helpIntro;
+
+            const helpFlashcardTitle = document.getElementById('helpFlashcardTitle');
+            if (helpFlashcardTitle) helpFlashcardTitle.textContent = currentUI.helpFlashcardTitle;
+
+            const helpFlashcardContent = document.getElementById('helpFlashcardContent');
+            if (helpFlashcardContent) helpFlashcardContent.textContent = currentUI.helpFlashcardContent;
+
+            const helpQuizTitle = document.getElementById('helpQuizTitle');
+            if (helpQuizTitle) helpQuizTitle.textContent = currentUI.helpQuizTitle;
+
+            const helpQuizContent = document.getElementById('helpQuizContent');
+            if (helpQuizContent) helpQuizContent.textContent = currentUI.helpQuizContent;
+
+            const helpXPTitle = document.getElementById('helpXPTitle');
+            if (helpXPTitle) helpXPTitle.textContent = currentUI.helpXPTitle;
+
+            const helpXPContent = document.getElementById('helpXPContent');
+            if (helpXPContent) helpXPContent.textContent = currentUI.helpXPContent;
+
+            const helpTipsTitle = document.getElementById('helpTipsTitle');
+            if (helpTipsTitle) helpTipsTitle.textContent = currentUI.helpTipsTitle;
+
+            const helpTipsContent = document.getElementById('helpTipsContent');
+            if (helpTipsContent) helpTipsContent.textContent = currentUI.helpTipsContent;
+
+            const helpSettingsTitle = document.getElementById('helpSettingsTitle');
+            if (helpSettingsTitle) helpSettingsTitle.textContent = currentUI.helpSettingsTitle;
+
+            const helpSettingsContent = document.getElementById('helpSettingsContent');
+            if (helpSettingsContent) helpSettingsContent.textContent = currentUI.helpSettingsContent;
+
+            const backToSettingsBtn = document.getElementById('backToSettingsBtn');
+            if (backToSettingsBtn) backToSettingsBtn.innerHTML = '⬅️ ' + currentUI.backToSettings;
+        }
+
+        // ===== 언어 선택 =====
+        function renderLanguageSelection() {
+            const languages = getSupportedLanguages();
+            const combinations = getAvailableCombinations();
+
+            // 현지인 언어 (Native) - 사용 가능한 것만
+            const nativeLanguages = [...new Set(combinations.map(c => c.native))];
+            let nativeHtml = '<div class="row g-2">';
+            nativeLanguages.forEach(code => {
+                const lang = languages[code];
+                nativeHtml += `
+                    <div class="col-4">
+                        <div class="language-select-card text-center" id="native-${code}" onclick="selectNativeLanguage('${code}')">
+                            <div class="language-flag">${lang.flag}</div>
+                            <div class="language-name">${lang.name}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            nativeHtml += '</div>';
+            document.getElementById('nativeLanguageList').innerHTML = nativeHtml;
+
+            // 학습 언어는 현지어 선택 후 표시
+            document.getElementById('targetLanguageList').innerHTML = '<p class="text-muted text-center">' + currentUI.selectMyLanguageFirst + '</p>';
+
+            // UI 언어 업데이트
+            updateUILanguage();
+        }
+
+        function selectNativeLanguage(code) {
+            selectedNative = code;
+            currentUI = getUI(code); // UI 언어 변경
+
+            // 선택 표시
+            document.querySelectorAll('#nativeLanguageList .language-select-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.getElementById(`native-${code}`).classList.add('selected');
+
+            // UI 언어 업데이트
+            updateUILanguage();
+
+            // 학습 가능한 언어 표시
+            renderTargetLanguages();
+            updateStartButton();
+        }
+
+        function renderTargetLanguages() {
+            const languages = getSupportedLanguages();
+            const combinations = getAvailableCombinations();
+
+            // 선택된 현지어에서 학습 가능한 언어
+            const availableTargets = combinations
+                .filter(c => c.native === selectedNative)
+                .map(c => c.target);
+
+            if (availableTargets.length === 0) {
+                document.getElementById('targetLanguageList').innerHTML = '<p class="text-muted text-center">' + currentUI.notAvailable + '</p>';
+                return;
+            }
+
+            let targetHtml = '<div class="row g-2">';
+            availableTargets.forEach(code => {
+                const lang = languages[code];
+                targetHtml += `
+                    <div class="col-4">
+                        <div class="language-select-card text-center" id="target-${code}" onclick="selectTargetLanguage('${code}')">
+                            <div class="language-flag">${lang.flag}</div>
+                            <div class="language-name">${lang.name}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            targetHtml += '</div>';
+            document.getElementById('targetLanguageList').innerHTML = targetHtml;
+
+            selectedTarget = null;
+        }
+
+        function selectTargetLanguage(code) {
+            selectedTarget = code;
+
+            document.querySelectorAll('#targetLanguageList .language-select-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.getElementById(`target-${code}`).classList.add('selected');
+
+            updateStartButton();
+        }
+
+        function updateStartButton() {
+            const btn = document.getElementById('startLearningBtn');
+            if (selectedNative && selectedTarget) {
+                btn.disabled = false;
+                const languages = getSupportedLanguages();
+                btn.innerHTML = `🚀 ${languages[selectedNative].flag} → ${languages[selectedTarget].flag} ${currentUI.startLearning}`;
+            } else {
+                btn.disabled = true;
+                btn.innerHTML = '🚀 ' + currentUI.startLearning;
+            }
+        }
+
+        function startLearning() {
+            if (!selectedNative || !selectedTarget) return;
+
+            gameState.nativeLanguage = selectedNative;
+            gameState.targetLanguage = selectedTarget;
+            currentUI = getUI(selectedNative); // UI 언어 업데이트
+
+            // 플래시카드 상태 초기화 (새 언어 선택 시)
+            fcState.completed = false;
+            fcState.studiedWords = [];
+
+            saveGameState();
+
+            // 단어 데이터 동적 로딩 후 메인 메뉴로
+            loadWordPack(selectedNative, selectedTarget).then(words => {
+                currentWordDatabase = words;
+                // UI 언어 재설정
+                currentUI = getUI(selectedNative);
+                showMainMenu();
+            }).catch(err => {
+                console.error('Failed to load word pack:', err);
+                currentWordDatabase = [];
+                currentUI = getUI(selectedNative);
+                showMainMenu();
+            });
+        }
+
+        function showMainMenu() {
+            hideAll();
+            document.getElementById('mainMenu').classList.remove('hidden');
+
+            const languages = getSupportedLanguages();
+
+            // 언어 정보가 없으면 기본값 사용
+            if (!selectedNative || !languages[selectedNative]) {
+                selectedNative = 'en';
+            }
+            if (!selectedTarget || !languages[selectedTarget]) {
+                selectedTarget = 'ko';
+            }
+            if (!currentUI) {
+                currentUI = getUI(selectedNative);
+            }
+
+            // 헤더 업데이트 - 플래그와 언어 방향
+            const nativeFlagEl = document.getElementById('nativeFlagDisplay');
+            const targetFlagEl = document.getElementById('targetFlagDisplay');
+            const titleEl = document.getElementById('learningTitle');
+            const subtitleEl = document.getElementById('letsStudyText');
+
+            if (nativeFlagEl) nativeFlagEl.textContent = languages[selectedNative].flag;
+            if (targetFlagEl) targetFlagEl.textContent = languages[selectedTarget].flag;
+            if (titleEl) titleEl.textContent = `${languages[selectedNative].name} → ${languages[selectedTarget].name}`;
+            if (subtitleEl) subtitleEl.textContent = currentUI.letsStudy;
+
+            updateUILanguage();
+            updateUI();
+            updateQuizButton();
+        }
+
+        function changeLanguage() {
+            hideAll();
+            document.getElementById('languageSelect').classList.remove('hidden');
+
+            // 취소 버튼 표시 (이미 언어가 설정된 경우)
+            const cancelBtn = document.getElementById('cancelLangBtn');
+            if (gameState.nativeLanguage && gameState.targetLanguage) {
+                cancelBtn.classList.remove('hidden');
+                cancelBtn.textContent = '← ' + currentUI.home;
+            } else {
+                cancelBtn.classList.add('hidden');
+            }
+
+            // 현재 선택값 저장
+            const savedNative = selectedNative;
+            const savedTarget = selectedTarget;
+
+            renderLanguageSelection();
+
+            // 현재 선택 복원 (시각적 표시 + 변수 설정)
+            if (savedNative) {
+                selectedNative = savedNative;
+                document.getElementById(`native-${savedNative}`)?.classList.add('selected');
+
+                // 타겟 언어 목록 렌더링
+                const languages = getSupportedLanguages();
+                const combinations = getAvailableCombinations();
+                const availableTargets = combinations
+                    .filter(c => c.native === savedNative)
+                    .map(c => c.target);
+
+                let targetHtml = '<div class="row g-2">';
+                availableTargets.forEach(code => {
+                    const lang = languages[code];
+                    targetHtml += `
+                        <div class="col-4">
+                            <div class="language-select-card text-center" id="target-${code}" onclick="selectTargetLanguage('${code}')">
+                                <div class="language-flag">${lang.flag}</div>
+                                <div class="language-name">${lang.name}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+                targetHtml += '</div>';
+                document.getElementById('targetLanguageList').innerHTML = targetHtml;
+
+                // 타겟 선택 복원
+                if (savedTarget) {
+                    selectedTarget = savedTarget;
+                    document.getElementById(`target-${savedTarget}`)?.classList.add('selected');
+                }
+
+                updateStartButton();
+            }
+        }
+
+        // ===== UI 업데이트 =====
+        function updateUI() {
+            document.getElementById('level').textContent = gameState.level;
+            document.getElementById('xp').textContent = gameState.xp;
+            document.getElementById('totalScore').textContent = gameState.totalScore;
+            document.getElementById('streak').textContent = gameState.streak;
+            document.getElementById('todayLearned').textContent = gameState.todayLearned;
+            document.getElementById('dailyGoal').textContent = gameState.dailyGoal;
+
+            const xpForLevel = gameState.level * 100;
+            const xpProgress = (gameState.xp % xpForLevel) / xpForLevel * 100;
+            document.getElementById('xpBar').style.width = xpProgress + '%';
+            document.getElementById('xpToNext').textContent = xpForLevel - (gameState.xp % xpForLevel);
+
+            const dailyProgress = Math.min((gameState.todayLearned / gameState.dailyGoal) * 100, 100);
+            document.getElementById('dailyProgress').style.width = dailyProgress + '%';
+        }
+
+        function addXP(amount) {
+            gameState.xp += amount;
+            const xpForLevel = gameState.level * 100;
+            while (gameState.xp >= xpForLevel * gameState.level) {
+                gameState.level++;
+                alert(`🎉 ${currentUI.levelUp} ${gameState.level} ${currentUI.achieved}`);
+            }
+            updateUI();
+            saveGameState();
+        }
+
+        // ===== 네비게이션 =====
+        function goHome() {
+            hideAll();
+            document.getElementById('mainMenu').classList.remove('hidden');
+            updateUI();
+            updateQuizButton();
+        }
+
+        function hideAll() {
+            document.getElementById('languageSelect').classList.add('hidden');
+            document.getElementById('mainMenu').classList.add('hidden');
+            document.getElementById('flashcardMode').classList.add('hidden');
+            document.getElementById('flashcardComplete').classList.add('hidden');
+            document.getElementById('quizMode').classList.add('hidden');
+            document.getElementById('quizResult').classList.add('hidden');
+            document.getElementById('progressView').classList.add('hidden');
+            document.getElementById('settingsView').classList.add('hidden');
+            document.getElementById('helpView').classList.add('hidden');
+        }
+
+        // ===== 플래시카드 =====
+        function startFlashcard() {
+            hideAll();
+            document.getElementById('flashcardMode').classList.remove('hidden');
+
+            fcState.words = currentWordDatabase.filter(w => gameState.selectedLevels.includes(w.level));
+            shuffleArray(fcState.words);
+            fcState.words = fcState.words.slice(0, gameState.wordCount);
+            fcState.currentIndex = 0;
+            fcState.isFlipped = false;
+            fcState.studiedWords = [];
+            fcState.earnedXP = 0;
+            fcState.completed = false;
+
+            updateUILanguage();
+            showFlashcard();
+        }
+
+        function showFlashcard() {
+            const word = fcState.words[fcState.currentIndex];
+            document.getElementById('fcWord').textContent = word.word;
+            document.getElementById('fcReading').textContent = word.reading || '';
+            document.getElementById('fcMeaning').textContent = word.meaning;
+            document.getElementById('fcExample').textContent = `"${word.example}"`;
+            document.getElementById('fcExampleMeaning').textContent = word.exampleMeaning || '';
+            document.getElementById('fcLevel').textContent = `Lv.${word.level}`;
+            document.getElementById('fcCategoryBadge').textContent = word.category;
+            document.getElementById('fcCurrent').textContent = fcState.currentIndex + 1;
+            document.getElementById('fcTotal').textContent = fcState.words.length;
+
+            document.getElementById('cardFront').classList.remove('hidden');
+            document.getElementById('cardBack').classList.add('hidden');
+            fcState.isFlipped = false;
+
+            const progress = ((fcState.currentIndex + 1) / fcState.words.length) * 100;
+            document.getElementById('fcProgress').style.width = progress + '%';
+        }
+
+        function flipCard() {
+            fcState.isFlipped = !fcState.isFlipped;
+            if (fcState.isFlipped) {
+                document.getElementById('cardFront').classList.add('hidden');
+                document.getElementById('cardBack').classList.remove('hidden');
+            } else {
+                document.getElementById('cardFront').classList.remove('hidden');
+                document.getElementById('cardBack').classList.add('hidden');
+            }
+        }
+
+        function markKnown() {
+            const word = fcState.words[fcState.currentIndex];
+            if (!gameState.learnedWords.includes(word.word)) {
+                gameState.learnedWords.push(word.word);
+            }
+            fcState.studiedWords.push(word);
+            fcState.earnedXP += 10;
+
+            addXP(10);
+            gameState.totalScore += 10;
+            gameState.todayLearned++;
+            gameState.lastStudyDate = new Date().toDateString();
+            if (gameState.todayLearned === 1) gameState.streak++;
+
+            saveGameState();
+            nextFlashcard();
+        }
+
+        function markUnknown() {
+            const word = fcState.words[fcState.currentIndex];
+            fcState.studiedWords.push(word);
+            nextFlashcard();
+        }
+
+        function nextFlashcard() {
+            fcState.currentIndex++;
+            if (fcState.currentIndex >= fcState.words.length) {
+                showFlashcardComplete();
+            } else {
+                showFlashcard();
+            }
+        }
+
+        function showFlashcardComplete() {
+            hideAll();
+            document.getElementById('flashcardComplete').classList.remove('hidden');
+
+            const learnedCount = fcState.studiedWords.filter(w =>
+                gameState.learnedWords.includes(w.word)
+            ).length;
+
+            document.getElementById('fcLearnedCount').textContent = learnedCount;
+            document.getElementById('fcEarnedXP').textContent = fcState.earnedXP;
+            document.getElementById('fcStudiedCount').textContent = fcState.studiedWords.length;
+
+            fcState.completed = true;
+            updateQuizButton();
+            updateUILanguage();
+        }
+
+        function startQuizFromFlashcard() {
+            hideAll();
+            document.getElementById('quizMode').classList.remove('hidden');
+
+            quizState.words = [...fcState.studiedWords];
+            shuffleArray(quizState.words);
+            quizState.currentIndex = 0;
+            quizState.score = 0;
+            quizState.answered = false;
+
+            document.getElementById('qTotal').textContent = quizState.words.length;
+            updateUILanguage();
+            showQuiz();
+        }
+
+        function speakWord() {
+            const word = fcState.words[fcState.currentIndex];
+            const audioFile = getAudioPath(selectedTarget, word.word, 'words');
+            speak(word.word, audioFile);
+        }
+
+        function speakExample() {
+            const word = fcState.words[fcState.currentIndex];
+            const audioFile = getAudioPath(selectedTarget, word.word, 'examples');
+            speak(word.example, audioFile);
+        }
+
+        // ===== 퀴즈 =====
+        function startQuiz() {
+            if (!fcState.completed || fcState.studiedWords.length === 0) {
+                alert('🎯 ' + currentUI.quizAlert);
+                return;
+            }
+
+            hideAll();
+            document.getElementById('quizMode').classList.remove('hidden');
+
+            quizState.words = [...fcState.studiedWords];
+            shuffleArray(quizState.words);
+            quizState.currentIndex = 0;
+            quizState.score = 0;
+            quizState.answered = false;
+
+            updateUILanguage();
+            showQuiz();
+        }
+
+        function showQuiz() {
+            const word = quizState.words[quizState.currentIndex];
+            quizState.currentWord = word;
+            quizState.answered = false;
+
+            document.getElementById('quizWord').textContent = word.word;
+            document.getElementById('quizReading').textContent = word.reading || '';
+            document.getElementById('qCurrent').textContent = quizState.currentIndex + 1;
+            document.getElementById('qTotal').textContent = quizState.words.length;
+            document.getElementById('qScore').textContent = quizState.score;
+
+            // 선택지 생성
+            const options = generateOptions(word.meaning);
+            let optionsHtml = '';
+            options.forEach((opt, i) => {
+                optionsHtml += `<div class="quiz-option" onclick="selectAnswer(${i}, '${opt.replace(/'/g, "\\'")}')">${opt}</div>`;
+            });
+            document.getElementById('quizOptions').innerHTML = optionsHtml;
+
+            document.getElementById('quizFeedback').classList.add('hidden');
+            document.getElementById('nextQuizBtn').classList.add('hidden');
+
+            const progress = ((quizState.currentIndex + 1) / quizState.words.length) * 100;
+            document.getElementById('qProgress').style.width = progress + '%';
+        }
+
+        function generateOptions(correct) {
+            const allMeanings = currentWordDatabase.map(w => w.meaning);
+            const options = [correct];
+
+            while (options.length < 4) {
+                const random = allMeanings[Math.floor(Math.random() * allMeanings.length)];
+                if (!options.includes(random)) {
+                    options.push(random);
+                }
+            }
+
+            shuffleArray(options);
+            return options;
+        }
+
+        function selectAnswer(index, answer) {
+            if (quizState.answered) return;
+            quizState.answered = true;
+
+            const correct = quizState.currentWord.meaning;
+            const options = document.querySelectorAll('.quiz-option');
+
+            options.forEach((opt, i) => {
+                opt.classList.add('disabled');
+                if (opt.textContent === correct) {
+                    opt.classList.add('correct');
+                } else if (i === index && answer !== correct) {
+                    opt.classList.add('wrong');
+                }
+            });
+
+            const feedback = document.getElementById('quizFeedback');
+            const feedbackText = document.getElementById('feedbackText');
+            const feedbackExample = document.getElementById('feedbackExample');
+
+            if (answer === correct) {
+                feedback.style.background = '#d4edda';
+                feedbackText.textContent = '🎉 ' + currentUI.correct;
+                quizState.score++;
+            } else {
+                feedback.style.background = '#f8d7da';
+                feedbackText.textContent = `😅 ${currentUI.wrongAnswer} "${correct}" ${currentUI.is}`;
+            }
+
+            feedbackExample.textContent = `${currentUI.example}: ${quizState.currentWord.example}`;
+            feedback.classList.remove('hidden');
+            document.getElementById('nextQuizBtn').classList.remove('hidden');
+
+            gameState.totalAnswered++;
+            if (answer === correct) gameState.totalCorrect++;
+            saveGameState();
+        }
+
+        function nextQuiz() {
+            quizState.currentIndex++;
+            if (quizState.currentIndex >= quizState.words.length) {
+                showQuizResult();
+            } else {
+                showQuiz();
+            }
+        }
+
+        function showQuizResult() {
+            hideAll();
+            document.getElementById('quizResult').classList.remove('hidden');
+
+            const total = quizState.words.length;
+            const score = quizState.score;
+            const percent = Math.round((score / total) * 100);
+
+            document.getElementById('resultScore').textContent = `${score}/${total}`;
+            document.getElementById('resultPercent').textContent = percent;
+
+            // 결과에 따른 이모지
+            if (percent === 100) {
+                document.getElementById('resultEmoji').textContent = '🏆';
+                document.getElementById('resultTitle').textContent = currentUI.perfect;
+                gameState.medals.gold++;
+            } else if (percent >= 80) {
+                document.getElementById('resultEmoji').textContent = '🎉';
+                document.getElementById('resultTitle').textContent = currentUI.excellent;
+                gameState.medals.silver++;
+            } else if (percent >= 60) {
+                document.getElementById('resultEmoji').textContent = '👍';
+                document.getElementById('resultTitle').textContent = currentUI.good;
+                gameState.medals.bronze++;
+            } else {
+                document.getElementById('resultEmoji').textContent = '💪';
+                document.getElementById('resultTitle').textContent = currentUI.tryAgain;
+            }
+
+            const earnedXP = score * 10;
+            const earnedScore = score * 10;
+            document.getElementById('earnedXP').textContent = earnedXP;
+            document.getElementById('earnedScore').textContent = earnedScore;
+
+            addXP(earnedXP);
+            gameState.totalScore += earnedScore;
+            gameState.quizzesCompleted++;
+            saveGameState();
+
+            if (percent >= 60 && typeof confetti !== 'undefined') {
+                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            }
+
+            updateUILanguage();
+        }
+
+        function speakQuizWord() {
+            const audioFile = getAudioPath(selectedTarget, quizState.currentWord.word, 'words');
+            speak(quizState.currentWord.word, audioFile);
+        }
+
+        function retryQuiz() {
+            hideAll();
+            document.getElementById('quizMode').classList.remove('hidden');
+
+            shuffleArray(quizState.words);
+            quizState.currentIndex = 0;
+            quizState.score = 0;
+            quizState.answered = false;
+
+            showQuiz();
+        }
+
+        function updateQuizButton() {
+            const quizBtn = document.getElementById('quizMenuBtn');
+            const quizDesc = document.getElementById('quizMenuDesc');
+
+            if (fcState.completed && fcState.studiedWords.length > 0) {
+                quizBtn.style.opacity = '1';
+                quizBtn.style.pointerEvents = 'auto';
+                quizDesc.textContent = currentUI.quizDesc;
+                quizBtn.classList.add('quiz-ready');
+            } else {
+                quizBtn.style.opacity = '0.6';
+                quizDesc.textContent = currentUI.quizLocked;
+                quizBtn.classList.remove('quiz-ready');
+            }
+        }
+
+        // ===== 진행 상황 =====
+        function showProgress() {
+            hideAll();
+            document.getElementById('progressView').classList.remove('hidden');
+
+            const learned = gameState.learnedWords.length;
+            const total = currentWordDatabase.length;
+            const percent = total > 0 ? Math.round((learned / total) * 100) : 0;
+
+            document.getElementById('learnedWords').textContent = learned;
+            document.getElementById('totalProgress').style.width = percent + '%';
+            document.getElementById('learnedPercent').textContent = percent;
+
+            document.getElementById('statQuizzes').textContent = gameState.quizzesCompleted;
+            const accuracy = gameState.totalAnswered > 0
+                ? Math.round((gameState.totalCorrect / gameState.totalAnswered) * 100)
+                : 0;
+            document.getElementById('statAccuracy').textContent = accuracy;
+
+            document.getElementById('bronzeCount').textContent = gameState.medals.bronze;
+            document.getElementById('silverCount').textContent = gameState.medals.silver;
+            document.getElementById('goldCount').textContent = gameState.medals.gold;
+
+            updateUILanguage();
+        }
+
+        // ===== 설정 =====
+        function showSettings() {
+            hideAll();
+            document.getElementById('settingsView').classList.remove('hidden');
+
+            // 레벨 선택 생성
+            let levelHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                const checked = gameState.selectedLevels.includes(i) ? 'checked' : '';
+                levelHtml += `
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="level${i}" value="${i}" ${checked}>
+                        <label class="form-check-label" for="level${i}">Lv.${i}</label>
+                    </div>
+                `;
+            }
+            document.getElementById('levelSelect').innerHTML = levelHtml;
+
+            document.getElementById(`goal${gameState.dailyGoal}`).checked = true;
+            document.getElementById(`word${gameState.wordCount}`).checked = true;
+
+            updateUILanguage();
+        }
+
+        function showHelp() {
+            hideAll();
+            document.getElementById('helpView').classList.remove('hidden');
+            updateUILanguage();
+        }
+
+        function saveSettings() {
+            gameState.selectedLevels = [];
+            for (let i = 1; i <= 5; i++) {
+                if (document.getElementById(`level${i}`).checked) {
+                    gameState.selectedLevels.push(i);
+                }
+            }
+            if (gameState.selectedLevels.length === 0) {
+                gameState.selectedLevels = [1];
+            }
+
+            const goalRadio = document.querySelector('input[name="dailyGoal"]:checked');
+            gameState.dailyGoal = parseInt(goalRadio.value);
+
+            const wordRadio = document.querySelector('input[name="wordCount"]:checked');
+            gameState.wordCount = parseInt(wordRadio.value);
+
+            saveGameState();
+            alert(currentUI.settingsSaved);
+            goHome();
+        }
+
+        function resetProgress() {
+            if (confirm(currentUI.confirmReset)) {
+                localStorage.removeItem('universalLanguageGame');
+                location.reload();
+            }
+        }
+
+        // ===== 유틸리티 =====
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        let soundEnabled = false;
+
+        function enableSound() {
+            soundEnabled = true;
+            document.getElementById('soundEnable').classList.add('hidden');
+            // 타겟 언어로 "준비 완료" 발음
+            const readyMessages = {
+                ko: '준비 완료!',
+                en: 'Ready!',
+                ja: '準備完了！',
+                zh: '准备好了！',
+                es: '¡Listo!',
+                fr: 'Prêt!',
+                de: 'Bereit!'
+            };
+            speak(readyMessages[selectedTarget] || 'Ready!');
+        }
+
+        function getAudioPath(lang, word, type) {
+            if (!audioMapping || !audioMapping[lang] || !audioMapping[lang][word]) return null;
+            const filename = audioMapping[lang][word];
+            return 'audio/' + encodeURIComponent(lang) + '/' + type + '/' + encodeURIComponent(filename) + '.mp3';
+        }
+
+        function speak(text, audioFile) {
+            if (!soundEnabled) return;
+
+            // 1순위: MP3 파일 재생
+            if (audioFile) {
+                const audio = new Audio(audioFile);
+                audio.play().then(() => {
+                    // MP3 재생 성공
+                }).catch(() => {
+                    // MP3 실패 시 폴백
+                    speakFallback(text);
+                });
+                return;
+            }
+
+            speakFallback(text);
+        }
+
+        function speakFallback(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                const languages = getSupportedLanguages();
+                utterance.lang = languages[selectedTarget]?.ttsCode || 'ja-JP';
+                utterance.rate = 0.8;
+                speechSynthesis.speak(utterance);
+            }
+        }
+
+        // 초기화 실행 - DOM 로드 완료 후
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+</body>
+</html>
