@@ -97,9 +97,9 @@ def parse_words_js(filepath):
             results[lang] = {}
 
         # Extract word and example from this section
-        # Handle both single and double quotes
+        # Handle escaped quotes (e.g. French: Aujourd\'hui, C\'est, J\'aime)
         entries = re.findall(
-            r"word:\s*['\"](.+?)['\"].*?example:\s*['\"](.+?)['\"]",
+            r"word:\s*'((?:[^'\\]|\\.)*)'.*?example:\s*'((?:[^'\\]|\\.)*)'",
             section,
         )
         for word, example in entries:
