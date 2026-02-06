@@ -108,7 +108,7 @@ export const businessAreas: BusinessArea[] = [
       { label: '직업 정보', value: '300+' },
       { label: '상담 건수', value: '1,000+' },
     ],
-    link: '/platforms/career',
+    link: 'https://uttec-snu.duckdns.org/',
     externalLink: 'https://uttec-snu.duckdns.org/',
   },
   {
