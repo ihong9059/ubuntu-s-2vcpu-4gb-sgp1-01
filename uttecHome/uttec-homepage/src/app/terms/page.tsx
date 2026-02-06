@@ -109,8 +109,8 @@ export default function TermsPage() {
               <div className="text-gray-600 text-sm space-y-1">
                 <p>대표이사: 홍광선</p>
                 <p>주소: 대전광역시 유성구 테크노2로 314, 2층 (관평동)</p>
-                <p>전화: 042-716-8884 | 팩스: 042-716-8883</p>
-                <p>이메일: info@uttec.co.kr</p>
+                <p>전화: 010-3922-1809 | 팩스: 042-716-8883</p>
+                <p>이메일: uttec@uttec.co.kr</p>
               </div>
             </div>
           </div>

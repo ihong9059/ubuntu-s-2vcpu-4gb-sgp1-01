@@ -103,10 +103,8 @@ export default function Header() {
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center gap-3">
-            <a
-              href="https://uttec-monitor.duckdns.org/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/monitor"
               className={`p-2.5 rounded-lg transition-colors ${
                 isScrolled
                   ? 'text-gray-600 hover:text-primary hover:bg-gray-100'
@@ -115,7 +113,7 @@ export default function Header() {
               title="서버 리소스 모니터"
             >
               <Monitor size={20} />
-            </a>
+            </Link>
             <Link
               href="/portfolio/demos"
               className="px-5 py-2.5 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors font-medium"
@@ -170,16 +168,14 @@ export default function Header() {
             >
               데모 체험하기
             </Link>
-            <a
-              href="https://uttec-monitor.duckdns.org/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/monitor"
               className="flex items-center justify-center gap-2 mt-2 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <Monitor size={18} />
               서버 모니터
-            </a>
+            </Link>
           </div>
         </div>
       )}

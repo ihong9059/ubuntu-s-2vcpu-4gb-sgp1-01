@@ -81,9 +81,9 @@ export const companyInfo = {
   name: '(주)유티텍',
   nameEn: 'UTTEC Co., Ltd.',
   address: '대전광역시 유성구 테크노2로 314, 2층 (관평동)',
-  phone: '042-716-8884',
+  phone: '010-3922-1809',
   fax: '042-716-8883',
-  email: 'info@uttec.co.kr',
+  email: 'uttec@uttec.co.kr',
   ceo: '홍광선',
   businessNumber: '123-45-67890',
 };
