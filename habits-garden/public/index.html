@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>습관정원 🌱 - 게임처럼 즐기는 습관 관리</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #22c55e;
+      --primary-dark: #16a34a;
+      --secondary: #84cc16;
+      --accent: #fbbf24;
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --danger: #ef4444;
+      --rare: #a855f7;
+    }
+
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a2e 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    /* Login Screen */
+    .login-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .login-screen .logo {
+      font-size: 80px;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .login-screen h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .login-screen p {
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      font-size: 1.1rem;
+    }
+
+    .login-form {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 16px 20px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg-card);
+      color: var(--text);
+      font-size: 1rem;
+      margin-bottom: 16px;
+      transition: border-color 0.3s;
+    }
+
+    .login-form input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 16px 24px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .feature {
+      text-align: center;
+      padding: 16px;
+      background: var(--bg-card);
+      border-radius: 12px;
+    }
+
+    .feature i {
+      font-size: 24px;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .feature span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Main App */
+    .app-screen {
+      display: none;
+    }
+
+    .app-screen.active {
+      display: block;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      margin-bottom: 20px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-left .avatar {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .header-left .user-info h3 {
+      font-size: 1rem;
+      margin-bottom: 2px;
+    }
+
+    .header-left .user-info span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .header-right {
+      display: flex;
+      gap: 8px;
+    }
+
+    .header-btn {
+      width: 44px;
+      height: 44px;
+      background: var(--bg-card);
+      border: none;
+      border-radius: 12px;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: background 0.3s;
+    }
+
+    .header-btn:hover {
+      background: var(--border);
+    }
+
+    /* Stats Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .stat-card .icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .stat-card .value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stat-card .label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* Daily Tip */
+    .daily-tip {
+      background: linear-gradient(135deg, var(--bg-card), #2d3748);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 24px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .daily-tip .tip-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .daily-tip p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* Progress Section */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .section-header h2 {
+      font-size: 1.2rem;
+    }
+
+    .progress-ring {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .progress-circle {
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+
+    .progress-circle svg {
+      transform: rotate(-90deg);
+    }
+
+    .progress-circle .bg {
+      stroke: var(--border);
+    }
+
+    .progress-circle .progress {
+      stroke: var(--primary);
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.5s;
+    }
+
+    .progress-circle .percentage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .progress-info h3 {
+      margin-bottom: 4px;
+    }
+
+    .progress-info p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Habits List */
+    .habits-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 100px;
+    }
+
+    .habit-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: transform 0.2s;
+    }
+
+    .habit-card:hover {
+      transform: translateX(4px);
+    }
+
+    .habit-card.completed {
+      opacity: 0.7;
+      background: linear-gradient(135deg, var(--bg-card), rgba(34, 197, 94, 0.1));
+    }
+
+    .habit-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--bg-dark);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .habit-info {
+      flex: 1;
+    }
+
+    .habit-info h4 {
+      margin-bottom: 4px;
+    }
+
+    .habit-info span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .habit-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .habit-btn {
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: all 0.3s;
+    }
+
+    .habit-btn.complete {
+      background: var(--primary);
+      color: white;
+    }
+
+    .habit-btn.complete:hover {
+      background: var(--primary-dark);
+      transform: scale(1.1);
+    }
+
+    .habit-btn.complete.done {
+      background: var(--border);
+      color: var(--text-muted);
+    }
+
+    .habit-btn.delete {
+      background: transparent;
+      color: var(--text-muted);
+    }
+
+    .habit-btn.delete:hover {
+      background: var(--danger);
+      color: white;
+    }
+
+    /* Add Habit Button */
+    .add-habit-btn {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+      transition: all 0.3s;
+      z-index: 100;
+    }
+
+    .add-habit-btn:hover {
+      transform: scale(1.1) rotate(90deg);
+    }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+      z-index: 99;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-muted);
+      text-decoration: none;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .nav-item.active {
+      color: var(--primary);
+    }
+
+    .nav-item i {
+      font-size: 24px;
+    }
+
+    .nav-item span {
+      font-size: 0.7rem;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 24px;
+      width: 100%;
+      max-width: 400px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg-dark);
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .icon-picker {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+
+    .icon-option {
+      padding: 12px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      text-align: center;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .icon-option .tooltip {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-dark);
+      color: var(--text);
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.2s;
+      z-index: 10;
+      margin-bottom: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .icon-option .tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: 6px solid transparent;
+      border-top-color: var(--border);
+    }
+
+    .icon-option:hover .tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .icon-option:hover, .icon-option.selected {
+      border-color: var(--primary);
+      background: rgba(34, 197, 94, 0.1);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .modal-actions .btn {
+      flex: 1;
+    }
+
+    .btn-secondary {
+      background: var(--border);
+      color: var(--text);
+    }
+
+    /* Garden View */
+    .garden-grid {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 8px;
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .garden-flower {
+      font-size: 24px;
+      text-align: center;
+      padding: 8px;
+      background: var(--bg-dark);
+      border-radius: 8px;
+      transition: transform 0.2s;
+    }
+
+    .garden-flower:hover {
+      transform: scale(1.2);
+    }
+
+    .garden-flower.rare {
+      background: linear-gradient(135deg, var(--rare), #7c3aed);
+      animation: glow 2s infinite;
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 5px var(--rare); }
+      50% { box-shadow: 0 0 20px var(--rare); }
+    }
+
+    /* Leaderboard */
+    .leaderboard-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .leader-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .leader-rank {
+      width: 36px;
+      height: 36px;
+      background: var(--bg-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .leader-rank.gold { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+    .leader-rank.silver { background: linear-gradient(135deg, #9ca3af, #6b7280); }
+    .leader-rank.bronze { background: linear-gradient(135deg, #d97706, #b45309); }
+
+    .leader-info {
+      flex: 1;
+    }
+
+    .leader-info h4 {
+      margin-bottom: 2px;
+    }
+
+    .leader-info span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .leader-score {
+      text-align: right;
+    }
+
+    .leader-score .points {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .leader-score .label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    /* Reward Animation */
+    .reward-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 40px;
+      text-align: center;
+      z-index: 300;
+      transition: transform 0.3s;
+    }
+
+    .reward-popup.active {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .reward-popup .flower {
+      font-size: 80px;
+      animation: popIn 0.5s ease-out;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0) rotate(-180deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+
+    .reward-popup h3 {
+      margin: 16px 0 8px;
+      font-size: 1.5rem;
+    }
+
+    .reward-popup p {
+      color: var(--text-muted);
+    }
+
+    .reward-popup .points {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 8px 20px;
+      border-radius: 20px;
+      margin-top: 16px;
+      font-weight: 600;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-muted);
+    }
+
+    .empty-state .icon {
+      font-size: 60px;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+
+    .empty-state h3 {
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    /* Responsive */
+    @media (max-width: 400px) {
+      .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .stat-card {
+        padding: 12px;
+      }
+
+      .stat-card .value {
+        font-size: 1.2rem;
+      }
+
+      .garden-grid {
+        grid-template-columns: repeat(6, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Screen -->
+  <div id="loginScreen" class="login-screen">
+    <div class="logo">🌱</div>
+    <h1>습관정원</h1>
+    <p>게임처럼 즐기는 습관 관리</p>
+
+    <form class="login-form" onsubmit="login(event)">
+      <input type="text" id="nicknameInput" placeholder="닉네임을 입력하세요" maxlength="20" required>
+      <button type="submit" class="btn btn-primary">정원 시작하기 🌻</button>
+    </form>
+
+    <div class="features">
+      <div class="feature">
+        <i class="ri-gamepad-line"></i>
+        <span>게임화</span>
+      </div>
+      <div class="feature">
+        <i class="ri-plant-line"></i>
+        <span>꽃 수집</span>
+      </div>
+      <div class="feature">
+        <i class="ri-trophy-line"></i>
+        <span>순위표</span>
+      </div>
+    </div>
+
+    <a href="guide.html" style="display:inline-flex;align-items:center;gap:8px;margin-top:30px;color:var(--text-muted);text-decoration:none;font-size:0.9rem;transition:color 0.3s;">
+      <i class="ri-question-line"></i>
+      사용 방법이 궁금하신가요?
+    </a>
+  </div>
+
+  <!-- Main App -->
+  <div id="appScreen" class="app-screen">
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <div class="header-left">
+          <div class="avatar">🌱</div>
+          <div class="user-info">
+            <h3 id="userNickname">사용자</h3>
+            <span id="userStreak">🔥 0일 연속</span>
+          </div>
+        </div>
+        <div class="header-right">
+          <a href="guide.html" class="header-btn" title="사용 가이드"><i class="ri-question-line"></i></a>
+          <button class="header-btn" onclick="showView('garden')" title="나의 정원"><i class="ri-plant-line"></i></button>
+          <button class="header-btn" onclick="logout()" title="로그아웃"><i class="ri-logout-box-line"></i></button>
+        </div>
+      </div>
+
+      <!-- Home View -->
+      <div id="homeView" class="view active">
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="icon">🌸</div>
+            <div class="value" id="totalFlowers">0</div>
+            <div class="label">꽃</div>
+          </div>
+          <div class="stat-card">
+            <div class="icon">⭐</div>
+            <div class="value" id="totalPoints">0</div>
+            <div class="label">포인트</div>
+          </div>
+          <div class="stat-card">
+            <div class="icon">🔥</div>
+            <div class="value" id="longestStreak">0</div>
+            <div class="label">최장 연속</div>
+          </div>
+        </div>
+
+        <!-- Daily Tip -->
+        <div class="daily-tip">
+          <div class="tip-header">
+            <i class="ri-lightbulb-line"></i>
+            오늘의 팁
+          </div>
+          <p id="dailyTip">습관을 기록하면 동기부여가 됩니다.</p>
+        </div>
+
+        <!-- Today's Progress -->
+        <div class="section-header">
+          <h2>오늘의 진행</h2>
+        </div>
+        <div class="progress-ring">
+          <div class="progress-circle">
+            <svg width="80" height="80">
+              <circle class="bg" cx="40" cy="40" r="35" fill="none" stroke-width="6"/>
+              <circle class="progress" id="progressCircle" cx="40" cy="40" r="35" fill="none" stroke-width="6"
+                stroke-dasharray="220" stroke-dashoffset="220"/>
+            </svg>
+            <div class="percentage" id="progressPercent">0%</div>
+          </div>
+          <div class="progress-info">
+            <h3 id="progressText">0/0 완료</h3>
+            <p>오늘도 화이팅! 💪</p>
+          </div>
+        </div>
+
+        <!-- Habits List -->
+        <div class="section-header">
+          <h2>나의 습관</h2>
+        </div>
+        <div id="habitsList" class="habits-list">
+          <div class="empty-state">
+            <div class="icon">🌱</div>
+            <h3>아직 습관이 없어요</h3>
+            <p>+ 버튼을 눌러 첫 습관을 추가해보세요!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Garden View -->
+      <div id="gardenView" class="view">
+        <div class="section-header">
+          <h2>🏡 나의 정원</h2>
+        </div>
+        <div id="gardenGrid" class="garden-grid">
+          <div class="empty-state">
+            <div class="icon">🌷</div>
+            <h3>정원이 비어있어요</h3>
+            <p>습관을 완료하면 꽃이 심어져요!</p>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <h2>🏆 순위표</h2>
+        </div>
+        <div id="leaderboard" class="leaderboard-list"></div>
+      </div>
+    </div>
+
+    <!-- Add Habit Button -->
+    <button class="add-habit-btn" onclick="openAddModal()">
+      <i class="ri-add-line"></i>
+    </button>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <div class="nav-item active" onclick="showView('home')">
+        <i class="ri-home-5-line"></i>
+        <span>홈</span>
+      </div>
+      <div class="nav-item" onclick="showView('garden')">
+        <i class="ri-plant-line"></i>
+        <span>정원</span>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Add Habit Modal -->
+  <div id="addModal" class="modal-overlay">
+    <div class="modal">
+      <h2>새 습관 추가 🌱</h2>
+      <form onsubmit="addHabit(event)">
+        <div class="form-group">
+          <label>습관 이름</label>
+          <input type="text" id="habitName" placeholder="예: 물 8잔 마시기" required>
+        </div>
+        <div class="form-group">
+          <label>아이콘 선택</label>
+          <div class="icon-picker" id="iconPicker">
+            <div class="icon-option selected" data-icon="💧"><span class="tooltip">물 마시기</span>💧</div>
+            <div class="icon-option" data-icon="📚"><span class="tooltip">독서</span>📚</div>
+            <div class="icon-option" data-icon="🏃"><span class="tooltip">운동/달리기</span>🏃</div>
+            <div class="icon-option" data-icon="🧘"><span class="tooltip">명상/요가</span>🧘</div>
+            <div class="icon-option" data-icon="💪"><span class="tooltip">근력운동</span>💪</div>
+            <div class="icon-option" data-icon="🍎"><span class="tooltip">건강한 식사</span>🍎</div>
+            <div class="icon-option" data-icon="😴"><span class="tooltip">충분한 수면</span>😴</div>
+            <div class="icon-option" data-icon="✍️"><span class="tooltip">글쓰기/일기</span>✍️</div>
+            <div class="icon-option" data-icon="🎸"><span class="tooltip">악기 연습</span>🎸</div>
+            <div class="icon-option" data-icon="🧹"><span class="tooltip">청소/정리</span>🧹</div>
+            <div class="icon-option" data-icon="💊"><span class="tooltip">영양제/약</span>💊</div>
+            <div class="icon-option" data-icon="🌅"><span class="tooltip">일찍 일어나기</span>🌅</div>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeAddModal()">취소</button>
+          <button type="submit" class="btn btn-primary">추가하기</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Reward Popup -->
+  <div id="rewardPopup" class="reward-popup">
+    <div class="flower" id="rewardFlower">🌸</div>
+    <h3 id="rewardTitle">꽃을 획득했어요!</h3>
+    <p id="rewardMessage">습관을 완료했습니다</p>
+    <div class="points" id="rewardPoints">+10 포인트</div>
+  </div>
+
+  <script>
+    // Global state
+    let currentUser = null;
+    let selectedIcon = '💧';
+
+    const RARE_FLOWERS = ['🌈', '⭐', '💎', '👑', '🦋', '🐝'];
+
+    // API calls
+    const api = {
+      async login(nickname) {
+        const res = await fetch('/api/user', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nickname })
+        });
+        return res.json();
+      },
+
+      async getHabits(userId) {
+        const res = await fetch(`/api/habits/${userId}`);
+        return res.json();
+      },
+
+      async addHabit(data) {
+        const res = await fetch('/api/habits', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        return res.json();
+      },
+
+      async deleteHabit(id) {
+        const res = await fetch(`/api/habits/${id}`, { method: 'DELETE' });
+        return res.json();
+      },
+
+      async completeHabit(id) {
+        const res = await fetch(`/api/habits/${id}/complete`, { method: 'POST' });
+        return res.json();
+      },
+
+      async getProgress(userId) {
+        const res = await fetch(`/api/progress/${userId}`);
+        return res.json();
+      },
+
+      async getGarden(userId) {
+        const res = await fetch(`/api/garden/${userId}`);
+        return res.json();
+      },
+
+      async getLeaderboard() {
+        const res = await fetch('/api/leaderboard');
+        return res.json();
+      },
+
+      async getTip() {
+        const res = await fetch('/api/tip');
+        return res.json();
+      }
+    };
+
+    // Login
+    async function login(e) {
+      e.preventDefault();
+      const nickname = document.getElementById('nicknameInput').value.trim();
+
+      try {
+        currentUser = await api.login(nickname);
+        localStorage.setItem('habitUser', JSON.stringify(currentUser));
+
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('appScreen').classList.add('active');
+
+        loadApp();
+      } catch (error) {
+        alert('로그인 실패: ' + error.message);
+      }
+    }
+
+    // Logout
+    function logout() {
+      localStorage.removeItem('habitUser');
+      currentUser = null;
+      document.getElementById('loginScreen').style.display = 'flex';
+      document.getElementById('appScreen').classList.remove('active');
+    }
+
+    // Load app data
+    async function loadApp() {
+      updateUserInfo();
+      await Promise.all([
+        loadHabits(),
+        loadProgress(),
+        loadTip()
+      ]);
+    }
+
+    // Update user info
+    function updateUserInfo() {
+      document.getElementById('userNickname').textContent = currentUser.nickname;
+      document.getElementById('userStreak').textContent = `🔥 ${currentUser.current_streak}일 연속`;
+      document.getElementById('totalFlowers').textContent = currentUser.total_flowers;
+      document.getElementById('totalPoints').textContent = currentUser.total_points;
+      document.getElementById('longestStreak').textContent = currentUser.longest_streak;
+    }
+
+    // Load habits
+    async function loadHabits() {
+      const habits = await api.getHabits(currentUser.id);
+      const container = document.getElementById('habitsList');
+
+      if (habits.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <div class="icon">🌱</div>
+            <h3>아직 습관이 없어요</h3>
+            <p>+ 버튼을 눌러 첫 습관을 추가해보세요!</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = habits.map(habit => `
+        <div class="habit-card ${habit.completed_today > 0 ? 'completed' : ''}" data-id="${habit.id}">
+          <div class="habit-icon">${habit.icon}</div>
+          <div class="habit-info">
+            <h4>${habit.name}</h4>
+            <span>총 ${habit.total_completions}회 완료</span>
+          </div>
+          <div class="habit-actions">
+            <button class="habit-btn complete ${habit.completed_today > 0 ? 'done' : ''}"
+              onclick="completeHabit(${habit.id})" ${habit.completed_today > 0 ? 'disabled' : ''}>
+              <i class="ri-check-line"></i>
+            </button>
+            <button class="habit-btn delete" onclick="deleteHabit(${habit.id})">
+              <i class="ri-delete-bin-line"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Load progress
+    async function loadProgress() {
+      const progress = await api.getProgress(currentUser.id);
+
+      document.getElementById('progressPercent').textContent = progress.percentage + '%';
+      document.getElementById('progressText').textContent = `${progress.completed}/${progress.total} 완료`;
+
+      const circle = document.getElementById('progressCircle');
+      const offset = 220 - (220 * progress.percentage / 100);
+      circle.style.strokeDashoffset = offset;
+    }
+
+    // Load daily tip
+    async function loadTip() {
+      const { tip } = await api.getTip();
+      document.getElementById('dailyTip').textContent = tip;
+    }
+
+    // Complete habit
+    async function completeHabit(habitId) {
+      try {
+        const result = await api.completeHabit(habitId);
+
+        if (result.error) {
+          alert(result.error);
+          return;
+        }
+
+        // Show reward popup
+        showReward(result.flower, result.points, result.message);
+
+        // Update user data
+        currentUser = result.user;
+        updateUserInfo();
+
+        // Reload habits and progress
+        await Promise.all([loadHabits(), loadProgress()]);
+      } catch (error) {
+        alert('오류가 발생했습니다.');
+      }
+    }
+
+    // Show reward popup
+    function showReward(flower, points, message) {
+      const popup = document.getElementById('rewardPopup');
+      const isRare = RARE_FLOWERS.includes(flower);
+
+      document.getElementById('rewardFlower').textContent = flower;
+      document.getElementById('rewardTitle').textContent = isRare ? '🎉 희귀한 꽃!' : '꽃을 획득했어요!';
+      document.getElementById('rewardMessage').textContent = message;
+      document.getElementById('rewardPoints').textContent = `+${points} 포인트`;
+
+      popup.classList.add('active');
+
+      setTimeout(() => {
+        popup.classList.remove('active');
+      }, 2000);
+    }
+
+    // Delete habit
+    async function deleteHabit(habitId) {
+      if (!confirm('이 습관을 삭제할까요?')) return;
+
+      try {
+        await api.deleteHabit(habitId);
+        await Promise.all([loadHabits(), loadProgress()]);
+      } catch (error) {
+        alert('삭제 실패');
+      }
+    }
+
+    // Add habit modal
+    function openAddModal() {
+      document.getElementById('addModal').classList.add('active');
+    }
+
+    function closeAddModal() {
+      document.getElementById('addModal').classList.remove('active');
+      document.getElementById('habitName').value = '';
+    }
+
+    // Icon picker
+    document.getElementById('iconPicker').addEventListener('click', (e) => {
+      const option = e.target.closest('.icon-option');
+      if (option) {
+        document.querySelectorAll('.icon-option').forEach(el => el.classList.remove('selected'));
+        option.classList.add('selected');
+        selectedIcon = option.dataset.icon;
+
+        // 습관 이름에 툴팁 텍스트 자동 입력
+        const tooltip = option.querySelector('.tooltip');
+        if (tooltip) {
+          document.getElementById('habitName').value = tooltip.textContent;
+        }
+      }
+    });
+
+    // Add habit
+    async function addHabit(e) {
+      e.preventDefault();
+      const name = document.getElementById('habitName').value.trim();
+
+      if (!name) return;
+
+      try {
+        await api.addHabit({
+          user_id: currentUser.id,
+          name,
+          icon: selectedIcon
+        });
+
+        closeAddModal();
+        await Promise.all([loadHabits(), loadProgress()]);
+      } catch (error) {
+        alert('추가 실패');
+      }
+    }
+
+    // View switching
+    function showView(viewName) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+      if (viewName === 'home') {
+        document.getElementById('homeView').classList.add('active');
+        document.querySelector('.nav-item:nth-child(1)').classList.add('active');
+      } else if (viewName === 'garden') {
+        document.getElementById('gardenView').classList.add('active');
+        document.querySelector('.nav-item:nth-child(2)').classList.add('active');
+        loadGarden();
+        loadLeaderboard();
+      }
+    }
+
+    // Load garden
+    async function loadGarden() {
+      const flowers = await api.getGarden(currentUser.id);
+      const container = document.getElementById('gardenGrid');
+
+      if (flowers.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state" style="grid-column: 1 / -1;">
+            <div class="icon">🌷</div>
+            <h3>정원이 비어있어요</h3>
+            <p>습관을 완료하면 꽃이 심어져요!</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = flowers.map(f => `
+        <div class="garden-flower ${RARE_FLOWERS.includes(f.flower) ? 'rare' : ''}"
+          title="${f.habit_name}">${f.flower}</div>
+      `).join('');
+    }
+
+    // Load leaderboard
+    async function loadLeaderboard() {
+      const leaders = await api.getLeaderboard();
+      const container = document.getElementById('leaderboard');
+
+      if (leaders.length === 0) {
+        container.innerHTML = '<p style="text-align:center;color:var(--text-muted);">아직 순위가 없어요</p>';
+        return;
+      }
+
+      container.innerHTML = leaders.map((leader, index) => `
+        <div class="leader-card">
+          <div class="leader-rank ${index === 0 ? 'gold' : index === 1 ? 'silver' : index === 2 ? 'bronze' : ''}">
+            ${index + 1}
+          </div>
+          <div class="leader-info">
+            <h4>${leader.nickname}</h4>
+            <span>🌸 ${leader.total_flowers} | 🔥 ${leader.longest_streak}일</span>
+          </div>
+          <div class="leader-score">
+            <div class="points">${leader.total_points}</div>
+            <div class="label">포인트</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Check for saved user on load
+    document.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem('habitUser');
+      if (saved) {
+        currentUser = JSON.parse(saved);
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('appScreen').classList.add('active');
+        loadApp();
+      }
+    });
+  </script>
+</body>
+</html>

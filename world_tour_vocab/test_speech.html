@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Test</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #1a1a2e; color: white; }
+        button { padding: 20px 40px; font-size: 18px; margin: 10px; cursor: pointer; }
+        #log { background: #333; padding: 15px; margin-top: 20px; white-space: pre-wrap; font-size: 14px; min-height: 200px; }
+    </style>
+</head>
+<body>
+    <h2>Speech Synthesis Test</h2>
+
+    <button onclick="testEnglish()">Test English: "Hello"</button>
+    <button onclick="testKorean()">Test Korean: "안녕하세요"</button>
+    <button onclick="checkSupport()">Check Support</button>
+
+    <div id="log"></div>
+
+    <script>
+        const log = document.getElementById('log');
+
+        function addLog(msg) {
+            log.textContent += msg + '\n';
+            console.log(msg);
+        }
+
+        function checkSupport() {
+            addLog('--- Support Check ---');
+            addLog('speechSynthesis in window: ' + ('speechSynthesis' in window));
+            addLog('window.speechSynthesis: ' + (typeof window.speechSynthesis));
+
+            if ('speechSynthesis' in window) {
+                const voices = window.speechSynthesis.getVoices();
+                addLog('Voices count: ' + voices.length);
+                if (voices.length > 0) {
+                    addLog('Available voices:');
+                    voices.slice(0, 5).forEach(v => {
+                        addLog('  - ' + v.name + ' (' + v.lang + ')');
+                    });
+                }
+            }
+        }
+
+        function testEnglish() {
+            addLog('--- English Test ---');
+            try {
+                if (!('speechSynthesis' in window)) {
+                    addLog('ERROR: speechSynthesis not supported');
+                    return;
+                }
+
+                const utterance = new SpeechSynthesisUtterance('Hello, this is a test');
+                utterance.lang = 'en-US';
+                utterance.rate = 0.9;
+
+                utterance.onstart = () => addLog('Started speaking...');
+                utterance.onend = () => addLog('Finished speaking');
+                utterance.onerror = (e) => addLog('Error: ' + e.error);
+
+                window.speechSynthesis.speak(utterance);
+                addLog('speak() called');
+            } catch(e) {
+                addLog('Exception: ' + e.message);
+            }
+        }
+
+        function testKorean() {
+            addLog('--- Korean Test ---');
+            try {
+                if (!('speechSynthesis' in window)) {
+                    addLog('ERROR: speechSynthesis not supported');
+                    return;
+                }
+
+                const utterance = new SpeechSynthesisUtterance('안녕하세요 테스트입니다');
+                utterance.lang = 'ko-KR';
+                utterance.rate = 1.0;
+
+                utterance.onstart = () => addLog('Started speaking...');
+                utterance.onend = () => addLog('Finished speaking');
+                utterance.onerror = (e) => addLog('Error: ' + e.error);
+
+                window.speechSynthesis.speak(utterance);
+                addLog('speak() called');
+            } catch(e) {
+                addLog('Exception: ' + e.message);
+            }
+        }
+
+        // 초기 로드 시 voices 가져오기
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                addLog('Voices loaded: ' + window.speechSynthesis.getVoices().length);
+            };
+        }
+
+        addLog('Page loaded');
+        addLog('User Agent: ' + navigator.userAgent);
+    </script>
+</body>
+</html>

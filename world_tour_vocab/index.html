@@ -1,0 +1,2366 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>World Tour Vocabulary - 세계일주 영어단어 게임</title>
+    <link rel="stylesheet" href="leaflet.css" />
+    <script src="leaflet.js"></script>
+    <!-- 단어 데이터 파일 -->
+    <script src="vocab_beginner.js"></script>
+    <script src="vocab_intermediate.js"></script>
+    <script src="vocab_advanced_1.js"></script>
+    <script src="vocab_advanced_2.js"></script>
+    <script src="vocab_expert_1.js"></script>
+    <script src="vocab_expert_2.js"></script>
+    <!-- 도시 데이터 파일 -->
+    <script src="cities_1.js"></script>
+    <script src="cities_2.js"></script>
+    <script src="cities_3.js"></script>
+    <script src="cities_4.js"></script>
+    <!-- 경로 생성 모듈 -->
+    <script src="routes.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        header {
+            text-align: center;
+            padding: 15px 0;
+            border-bottom: 2px solid #e94560;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2em;
+            color: #e94560;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            color: #aaa;
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+
+        /* Screen base */
+        .screen {
+            display: none;
+        }
+        .screen.active {
+            display: block;
+        }
+
+        /* Main Menu Screen */
+        .menu-screen {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .menu-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .menu-btn {
+            padding: 20px;
+            font-size: 1.3em;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .menu-btn.new-game {
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            color: white;
+        }
+
+        .menu-btn.continue {
+            background: linear-gradient(135deg, #4ecca3, #45b7aa);
+            color: white;
+        }
+
+        .menu-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .menu-btn:disabled {
+            background: #555;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .saved-game-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            text-align: left;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .saved-game-info h4 {
+            color: #4ecca3;
+            margin-bottom: 10px;
+        }
+
+        .saved-game-info p {
+            font-size: 0.9em;
+            margin: 5px 0;
+            color: #ccc;
+        }
+
+        /* How To Play Screen */
+        .howto-container {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            max-width: 800px;
+            margin: 0 auto;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .howto-title {
+            text-align: center;
+            color: #e94560;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+
+        .howto-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+        }
+
+        .howto-section h3 {
+            color: #4ecca3;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .howto-section p {
+            color: #ddd;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .howto-section ul {
+            color: #ccc;
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .howto-section li {
+            margin-bottom: 5px;
+        }
+
+        .howto-section strong {
+            color: #ffd93d;
+        }
+
+        .howto-table {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .howto-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.05);
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        .howto-level {
+            font-weight: bold;
+            color: #4ecca3;
+        }
+
+        .howto-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .howto-container::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+        }
+
+        .howto-container::-webkit-scrollbar-thumb {
+            background: #4ecca3;
+            border-radius: 4px;
+        }
+
+        /* Level Selection Screen */
+        .setup-screen {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .setup-section {
+            margin-bottom: 25px;
+        }
+
+        .setup-section h3 {
+            color: #e94560;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+
+        .level-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        @media (max-width: 700px) {
+            .level-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .level-card {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 15px 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .level-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .level-card.selected {
+            border-color: #e94560;
+            background: rgba(233, 69, 96, 0.2);
+        }
+
+        .level-card .emoji {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .level-card .name {
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .level-card .words {
+            color: #aaa;
+            font-size: 0.8em;
+        }
+
+        .level-card .tours {
+            color: #4ecca3;
+            font-size: 0.75em;
+            margin-top: 3px;
+        }
+
+        /* Route Selection */
+        .route-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        @media (min-width: 600px) {
+            .route-cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        .route-card {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            padding: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .route-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        .route-card.selected {
+            border-color: #e94560;
+            background: rgba(233, 69, 96, 0.2);
+        }
+
+        .route-card.completed {
+            border-color: #4ecca3;
+            opacity: 0.7;
+        }
+
+        .route-card .route-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .route-card .route-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .route-card .route-name {
+            font-weight: bold;
+            font-size: 0.95em;
+        }
+
+        .route-card .route-cities {
+            color: #aaa;
+            font-size: 0.8em;
+        }
+
+        .route-card .route-sample {
+            font-size: 0.75em;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Route Preview Map */
+        #route-preview-map {
+            height: 250px;
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 15px;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Start Point Selection */
+        #start-point-map {
+            height: 300px;
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Confirm Map */
+        #confirm-map {
+            height: 350px;
+            width: 100%;
+            border-radius: 10px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .selected-city-display {
+            text-align: center;
+            padding: 10px;
+            background: rgba(78, 204, 163, 0.2);
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .selected-city-display span {
+            color: #4ecca3;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* Tour Progress */
+        .tour-progress {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tour-dot {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .tour-dot.completed {
+            background: #4ecca3;
+            color: #fff;
+        }
+
+        .tour-dot.current {
+            background: #e94560;
+            color: #fff;
+            animation: pulse 1.5s infinite;
+        }
+
+        .tour-dot.pending {
+            background: rgba(255,255,255,0.2);
+            color: #888;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Buttons */
+        .action-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            margin-top: 10px;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .action-btn.primary {
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+        }
+
+        .action-btn.secondary {
+            background: linear-gradient(135deg, #4ecca3, #45b7aa);
+        }
+
+        .action-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .action-btn:disabled {
+            background: #555;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-row .action-btn {
+            flex: 1;
+        }
+
+        /* Game Screen */
+        .game-layout {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .game-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        #game-map {
+            height: 450px;
+            width: 100%;
+            border-radius: 10px;
+            border: 2px solid #4ecca3;
+            z-index: 1;
+            position: relative;
+        }
+
+        @media (max-width: 600px) {
+            #game-map {
+                height: 300px;
+            }
+        }
+
+        .map-legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+            font-size: 0.85em;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.visited { background: #4ecca3; }
+        .legend-dot.current { background: #e94560; }
+        .legend-dot.future { background: #666; }
+
+        .game-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            height: 25px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4ecca3, #45b7aa);
+            border-radius: 15px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 8px;
+            font-weight: bold;
+            font-size: 0.85em;
+            min-width: 40px;
+        }
+
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        @media (max-width: 600px) {
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 10px 6px;
+            text-align: center;
+        }
+
+        .stat-item .label {
+            color: #aaa;
+            font-size: 0.7em;
+            margin-bottom: 3px;
+        }
+
+        .stat-item .value {
+            font-size: 1em;
+            font-weight: bold;
+            color: #4ecca3;
+        }
+
+        .stat-item .value.distance {
+            color: #ffd93d;
+        }
+
+        .travel-info {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .travel-info .from-to {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 1em;
+        }
+
+        .travel-info .city {
+            background: rgba(78, 204, 163, 0.3);
+            padding: 5px 12px;
+            border-radius: 15px;
+        }
+
+        .travel-info .city.current {
+            background: rgba(233, 69, 96, 0.3);
+        }
+
+        .travel-info .arrow {
+            font-size: 1.2em;
+        }
+
+        .travel-info .distance {
+            color: #aaa;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+
+        .question-box {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .question-type {
+            color: #aaa;
+            margin-bottom: 8px;
+            font-size: 0.85em;
+        }
+
+        .question-word {
+            font-size: 2em;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .speak-btn {
+            padding: 8px 16px;
+            font-size: 0.9em;
+            background: rgba(78, 204, 163, 0.3);
+            border: 1px solid #4ecca3;
+            border-radius: 20px;
+            color: #4ecca3;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .speak-btn:hover {
+            background: rgba(78, 204, 163, 0.5);
+            transform: scale(1.05);
+        }
+
+        .speak-btn:active {
+            transform: scale(0.95);
+        }
+
+        .speak-btn.speaking {
+            background: rgba(233, 69, 96, 0.3);
+            border-color: #e94560;
+            color: #e94560;
+        }
+
+        .answers {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .answer-btn {
+            padding: 14px;
+            font-size: 1em;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid transparent;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .answer-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(5px);
+        }
+
+        .answer-btn.correct {
+            background: rgba(78, 204, 163, 0.3);
+            border-color: #4ecca3;
+        }
+
+        .answer-btn.wrong {
+            background: rgba(233, 69, 96, 0.3);
+            border-color: #e94560;
+        }
+
+        .answer-btn:disabled {
+            cursor: not-allowed;
+        }
+
+        .feedback {
+            text-align: center;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.correct {
+            background: rgba(78, 204, 163, 0.2);
+            border: 1px solid #4ecca3;
+        }
+
+        .feedback.wrong {
+            background: rgba(233, 69, 96, 0.2);
+            border: 1px solid #e94560;
+        }
+
+        .feedback .icon {
+            font-size: 1.5em;
+        }
+
+        .feedback .message {
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .next-btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            background: linear-gradient(135deg, #4ecca3, #45b7aa);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: none;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .next-btn.show {
+            display: block;
+        }
+
+        .next-btn:hover {
+            transform: scale(1.02);
+        }
+
+        .pause-btn {
+            padding: 10px 20px;
+            font-size: 0.9em;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid #888;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .pause-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Result Screen */
+        .result-box {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .result-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+
+        .result-title {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #4ecca3;
+        }
+
+        .result-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        @media (max-width: 500px) {
+            .result-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .result-stat {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .result-stat .label {
+            color: #aaa;
+            font-size: 0.85em;
+            margin-bottom: 5px;
+        }
+
+        .result-stat .value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #e94560;
+        }
+
+        #result-map {
+            height: 300px;
+            width: 100%;
+            border-radius: 10px;
+            z-index: 1;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Custom map markers */
+        .leaflet-popup-content-wrapper {
+            background: #1a1a2e;
+            color: white;
+            border-radius: 8px;
+        }
+
+        .leaflet-popup-tip {
+            background: #1a1a2e;
+        }
+
+        .city-popup {
+            text-align: center;
+        }
+
+        .city-popup h4 {
+            margin: 0 0 5px 0;
+            color: #4ecca3;
+        }
+
+        .city-popup p {
+            margin: 0;
+            font-size: 0.85em;
+            color: #aaa;
+        }
+
+        .city-popup button {
+            margin-top: 8px;
+            padding: 5px 15px;
+            background: #e94560;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .city-popup button:hover {
+            background: #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>World Tour Vocabulary</h1>
+            <p>세계일주 영어단어 게임 - 경도 기준 지구 순환 경로로 여행하세요!</p>
+        </header>
+
+        <!-- Main Menu Screen -->
+        <div id="menu-screen" class="screen menu-screen active">
+            <h2 style="margin-bottom: 30px;">세계일주를 시작하세요!</h2>
+            <div class="menu-buttons">
+                <button class="menu-btn new-game" onclick="showLevelSelection()">
+                    새 게임 시작
+                </button>
+                <button class="menu-btn continue" id="continue-btn" onclick="continueGame()" disabled>
+                    이어하기
+                </button>
+                <button class="menu-btn how-to" onclick="showHowToPlay()" style="background: linear-gradient(135deg, #6c5ce7, #a29bfe);">
+                    사용 방법 안내
+                </button>
+            </div>
+            <div class="saved-game-info" id="saved-game-info" style="display: none;">
+                <h4>저장된 게임</h4>
+                <p id="saved-level">난이도: -</p>
+                <p id="saved-tour">진행: - / - 세계일주</p>
+                <p id="saved-route">경로: -</p>
+                <p id="saved-progress">현재 위치: - / 200 도시</p>
+            </div>
+        </div>
+
+        <!-- How To Play Screen -->
+        <div id="howto-screen" class="screen">
+            <div class="howto-container">
+                <h2 class="howto-title">사용 방법 안내</h2>
+
+                <div class="howto-section">
+                    <h3>🎯 게임 목표</h3>
+                    <p>영어 단어를 학습하면서 전 세계 도시를 여행하는 게임입니다. 문제를 맞추면 다음 도시로 이동하고, 틀리면 뒤로 돌아갑니다. 모든 도시를 방문하여 세계일주를 완료하세요!</p>
+                </div>
+
+                <div class="howto-section">
+                    <h3>📚 난이도 선택</h3>
+                    <div class="howto-table">
+                        <div class="howto-row">
+                            <span class="howto-level">🌱 초보자</span>
+                            <span>800 단어 / 4회 세계일주</span>
+                        </div>
+                        <div class="howto-row">
+                            <span class="howto-level">🌿 중급자</span>
+                            <span>1,200 단어 / 6회 세계일주</span>
+                        </div>
+                        <div class="howto-row">
+                            <span class="howto-level">🌳 고급자</span>
+                            <span>2,000 단어 / 10회 세계일주</span>
+                        </div>
+                        <div class="howto-row">
+                            <span class="howto-level">🏆 전문가</span>
+                            <span>2,000 단어 / 10회 세계일주</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="howto-section">
+                    <h3>🗺️ 경로 선택</h3>
+                    <p>7개의 세계일주 경로 중 하나를 선택합니다. 각 경로는 200개 도시로 구성되어 있으며, 경도를 기준으로 지구를 순환하는 경로입니다.</p>
+                    <ul>
+                        <li>경로 A ~ G: 각각 다른 도시들로 구성</li>
+                        <li>경로 선택 시 지도에서 미리보기 가능</li>
+                        <li>10회 세계일주 시 완료된 경로도 다시 선택 가능</li>
+                    </ul>
+                </div>
+
+                <div class="howto-section">
+                    <h3>📍 출발 도시 선택</h3>
+                    <p>선택한 경로 내에서 원하는 출발 도시를 지도에서 클릭하여 선택합니다. 해당 도시부터 시작하여 경로를 따라 이동합니다.</p>
+                </div>
+
+                <div class="howto-section">
+                    <h3>🎮 게임 진행</h3>
+                    <ul>
+                        <li><strong>영어 → 한글:</strong> 영어 단어를 보고 한글 뜻을 선택</li>
+                        <li><strong>한글 → 영어:</strong> 한글 뜻을 보고 영어 단어를 선택</li>
+                        <li><strong>정답:</strong> 다음 도시로 이동! 이동 거리가 누적됩니다</li>
+                        <li><strong>오답:</strong> 1~2개 도시 뒤로 이동</li>
+                    </ul>
+                </div>
+
+                <div class="howto-section">
+                    <h3>🔊 발음 듣기</h3>
+                    <ul>
+                        <li>영어 → 한글 문제: 바로 발음 듣기 가능</li>
+                        <li>한글 → 영어 문제: 정답 후 발음 듣기 가능</li>
+                        <li>다음 도시 이동 시 도시 이름 음성 안내</li>
+                    </ul>
+                </div>
+
+                <div class="howto-section">
+                    <h3>💾 저장 및 이어하기</h3>
+                    <ul>
+                        <li>게임 중 <strong>"일시정지 및 저장"</strong> 버튼으로 저장</li>
+                        <li>정답/오답 시 자동 저장</li>
+                        <li>메인 화면에서 <strong>"이어하기"</strong>로 계속 진행</li>
+                    </ul>
+                </div>
+
+                <div class="howto-section">
+                    <h3>📊 화면 정보</h3>
+                    <ul>
+                        <li><strong>방문 도시:</strong> 현재 경로에서 방문한 도시 수</li>
+                        <li><strong>정답률:</strong> 현재 세계일주의 정답률</li>
+                        <li><strong>이번 경로 거리:</strong> 현재 세계일주에서 이동한 거리</li>
+                        <li><strong>총 누적 거리:</strong> 모든 세계일주 총 이동 거리</li>
+                    </ul>
+                </div>
+
+                <div class="howto-section">
+                    <h3>💡 팁</h3>
+                    <ul>
+                        <li>발음 듣기를 활용하여 영어 발음도 함께 학습하세요</li>
+                        <li>틀린 문제는 다시 나오니 반복 학습이 됩니다</li>
+                        <li>지도를 보며 세계 지리도 함께 익힐 수 있습니다</li>
+                    </ul>
+                </div>
+
+                <button class="action-btn primary" onclick="showMainMenu()" style="margin-top: 20px;">
+                    메인 화면으로 돌아가기
+                </button>
+            </div>
+        </div>
+
+        <!-- Level Selection Screen -->
+        <div id="level-screen" class="screen setup-screen">
+            <div class="setup-section">
+                <h3>1. 난이도 선택</h3>
+                <div class="level-cards">
+                    <div class="level-card" data-level="beginner" onclick="selectLevel('beginner')">
+                        <div class="emoji">🌱</div>
+                        <div class="name">초보자</div>
+                        <div class="words">800 단어</div>
+                        <div class="tours">4회 세계일주</div>
+                    </div>
+                    <div class="level-card" data-level="intermediate" onclick="selectLevel('intermediate')">
+                        <div class="emoji">🌿</div>
+                        <div class="name">중급자</div>
+                        <div class="words">1,200 단어</div>
+                        <div class="tours">6회 세계일주</div>
+                    </div>
+                    <div class="level-card" data-level="advanced" onclick="selectLevel('advanced')">
+                        <div class="emoji">🌳</div>
+                        <div class="name">고급자</div>
+                        <div class="words">2,000 단어</div>
+                        <div class="tours">10회 세계일주</div>
+                    </div>
+                    <div class="level-card" data-level="expert" onclick="selectLevel('expert')">
+                        <div class="emoji">🏆</div>
+                        <div class="name">전문가</div>
+                        <div class="words">2,000 단어</div>
+                        <div class="tours">10회 세계일주</div>
+                    </div>
+                </div>
+            </div>
+            <button class="action-btn primary" id="to-route-btn" onclick="showRouteSelection()" disabled>
+                다음: 경로 선택
+            </button>
+            <button class="action-btn" style="background: #555; margin-top: 10px;" onclick="showMainMenu()">
+                돌아가기
+            </button>
+        </div>
+
+        <!-- Route Selection Screen -->
+        <div id="route-screen" class="screen setup-screen">
+            <div class="setup-section">
+                <h3>2. 경로 선택 (7개 중 1개 선택)</h3>
+                <p style="color: #aaa; font-size: 0.9em; margin-bottom: 15px;">각 경로는 200개 도시로 구성되며, 경도 기준으로 지구를 순환합니다.</p>
+                <div class="route-cards" id="route-cards">
+                    <!-- Route cards will be generated dynamically -->
+                </div>
+                <div id="route-preview-map"></div>
+            </div>
+            <button class="action-btn primary" id="to-start-btn" onclick="showStartPointSelection()" disabled>
+                다음: 출발 지점 선택
+            </button>
+            <button class="action-btn" style="background: #555; margin-top: 10px;" onclick="showLevelSelection()">
+                돌아가기
+            </button>
+        </div>
+
+        <!-- Start Point Selection Screen -->
+        <div id="start-screen" class="screen setup-screen">
+            <div class="setup-section">
+                <h3>3. 지도에서 출발 도시를 클릭하세요</h3>
+                <p style="color: #e94560; font-size: 0.9em; margin-bottom: 10px;">✈️ 빨간색 마커: 국제공항이 있는 도시 (출발 가능)</p>
+                <div id="start-point-map"></div>
+                <div class="selected-city-display" id="selected-city-display" style="display: none;">
+                    출발 도시: <span id="selected-city-name">-</span>
+                </div>
+            </div>
+            <button class="action-btn primary" id="confirm-start-btn" onclick="showRouteConfirmation()" disabled>
+                경로 확인 및 시작
+            </button>
+            <button class="action-btn" style="background: #555; margin-top: 10px;" onclick="showRouteSelection()">
+                돌아가기
+            </button>
+        </div>
+
+        <!-- Route Confirmation Screen -->
+        <div id="confirm-screen" class="screen setup-screen">
+            <div class="setup-section">
+                <h3>4. 경로 확인</h3>
+                <div id="confirm-map" style="height: 350px; border-radius: 10px;"></div>
+                <div style="text-align: center; margin-top: 15px;">
+                    <p style="color: #4ecca3; font-size: 1.1em;" id="confirm-route-name">경로 A</p>
+                    <p style="color: #aaa;">출발: <span id="confirm-start-city">서울</span> → 200개 도시 경유 → 출발지로 복귀</p>
+                </div>
+            </div>
+            <button class="action-btn primary" onclick="startGame()">
+                세계일주 시작!
+            </button>
+            <button class="action-btn" style="background: #555; margin-top: 10px;" onclick="showStartPointSelection()">
+                돌아가기
+            </button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <!-- Tour Progress -->
+            <div class="tour-progress" id="tour-progress">
+                <!-- Tour dots will be generated dynamically -->
+            </div>
+
+            <div class="game-layout">
+                <div class="map-container">
+                    <div id="game-map"></div>
+                    <div class="map-legend">
+                        <div class="legend-item"><div class="legend-dot visited"></div> 방문 완료</div>
+                        <div class="legend-item"><div class="legend-dot current"></div> 현재 위치</div>
+                        <div class="legend-item"><div class="legend-dot future"></div> 미방문</div>
+                    </div>
+                </div>
+
+                <div class="game-panel">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill" style="width: 0%">0%</div>
+                    </div>
+
+                    <div class="stats-bar">
+                        <div class="stat-item">
+                            <div class="label">방문 도시</div>
+                            <div class="value" id="visited-count">0 / 200</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="label">정답률</div>
+                            <div class="value" id="accuracy">0%</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="label">이번 경로 거리</div>
+                            <div class="value" id="tour-distance">0 km</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="label">총 누적 거리</div>
+                            <div class="value" id="total-distance">0 km</div>
+                        </div>
+                    </div>
+
+                    <div class="travel-info">
+                        <div class="from-to">
+                            <span class="city current" id="current-city-name">서울</span>
+                            <span class="arrow">✈️</span>
+                            <span class="city" id="next-city-name">도쿄</span>
+                        </div>
+                        <div class="distance" id="travel-distance">거리: 0 km</div>
+                    </div>
+
+                    <div class="question-box">
+                        <div class="question-type" id="question-type">영어 → 한글</div>
+                        <div class="question-word" id="question-word">apple</div>
+                        <button class="speak-btn" id="speak-btn" onclick="speakWord()">
+                            🔊 발음 듣기
+                        </button>
+                    </div>
+
+                    <div class="answers" id="answers">
+                        <!-- Answer buttons -->
+                    </div>
+
+                    <div class="feedback" id="feedback">
+                        <div class="icon" id="feedback-icon">✓</div>
+                        <div class="message" id="feedback-message">정답입니다!</div>
+                    </div>
+
+                    <button class="next-btn" id="next-btn" onclick="nextQuestion()">
+                        다음 도시로 이동 →
+                    </button>
+
+                    <button class="pause-btn" onclick="pauseGame()">
+                        일시정지 및 저장
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tour Complete Screen (between tours) -->
+        <div id="tour-complete-screen" class="screen">
+            <div class="result-box">
+                <div class="result-icon">🎉</div>
+                <div class="result-title" id="tour-complete-title">세계일주 1회 완료!</div>
+                <p id="tour-complete-message">다음 세계일주를 위한 경로를 선택하세요.</p>
+
+                <div class="result-stats">
+                    <div class="result-stat">
+                        <div class="label">완료한 세계일주</div>
+                        <div class="value" id="completed-tours">1 / 4</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="label">이번 정답률</div>
+                        <div class="value" id="tour-accuracy">0%</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="label">총 정답률</div>
+                        <div class="value" id="total-accuracy">0%</div>
+                    </div>
+                </div>
+
+                <button class="action-btn primary" onclick="selectNextTourRoute()">
+                    다음 세계일주 경로 선택
+                </button>
+            </div>
+        </div>
+
+        <!-- Final Result Screen -->
+        <div id="result-screen" class="screen">
+            <div class="result-box">
+                <div class="result-icon" id="result-icon">🏆</div>
+                <div class="result-title" id="result-title">모든 세계일주 완료!</div>
+                <p id="result-message">축하합니다! 모든 세계일주를 성공적으로 마쳤습니다.</p>
+
+                <div id="result-map"></div>
+
+                <div class="result-stats">
+                    <div class="result-stat">
+                        <div class="label">총 이동거리</div>
+                        <div class="value" id="final-distance">0 km</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="label">최종 정답률</div>
+                        <div class="value" id="final-accuracy">0%</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="label">총 문제</div>
+                        <div class="value" id="final-total">0</div>
+                    </div>
+                </div>
+
+                <button class="action-btn primary" onclick="restartGame()">
+                    처음부터 다시 시작
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 전 세계 도시 (외부 파일에서 로드)
+        const worldCities = [...cities1, ...cities2, ...cities3, ...cities4];
+
+        // 국제공항이 있는 주요 도시 목록
+        const internationalAirportCities = [
+            // 한국
+            "서울", "인천", "부산", "제주", "대구", "광주", "청주", "무안",
+            // 일본 (국제공항/국제선 운항 공항 보유 도시)
+            "도쿄", "오사카", "나고야", "삿포로", "후쿠오카", "센다이", "히로시마", "오키나와",
+            "고베", "니가타", "구마모토", "오카야마", "시즈오카", "가고시마", "나가사키",
+            "마츠야마", "다카마츠", "오이타", "미야자키", "아오모리", "아키타", "고치",
+            // 중국
+            "베이징", "상하이", "광저우", "선전", "청두", "충칭", "시안", "항저우", "난징", "쿤밍", "하얼빈", "다롄", "칭다오", "우한",
+            // 동남아시아
+            "방콕", "싱가포르", "쿠알라룸푸르", "자카르타", "마닐라", "호치민", "하노이", "양곤", "프놈펜", "발리", "세부", "푸켓", "치앙마이", "다낭",
+            // 남아시아
+            "뉴델리", "뭄바이", "방갈로르", "첸나이", "콜카타", "하이데라바드", "다카", "콜롬보", "카트만두", "카라치", "라호르", "이슬라마바드",
+            // 중동
+            "두바이", "아부다비", "도하", "리야드", "제다", "쿠웨이트시티", "마나마", "무스카트", "암만", "베이루트", "텔아비브", "테헤란",
+            // 중앙아시아
+            "알마티", "아스타나", "타슈켄트", "바쿠",
+            // 터키
+            "이스탄불", "앙카라", "이즈미르", "안탈리아",
+            // 유럽 - 서유럽
+            "런던", "파리", "프랑크푸르트", "암스테르담", "브뤼셀", "취리히", "뮌헨", "베를린", "마드리드", "바르셀로나", "로마", "밀라노", "리스본", "더블린", "비엔나", "함부르크", "니스", "제네바",
+            // 북유럽
+            "스톡홀름", "코펜하겐", "오슬로", "헬싱키", "레이캬비크",
+            // 동유럽
+            "모스크바", "상트페테르부르크", "바르샤바", "프라하", "부다페스트", "부쿠레슈티", "소피아", "베오그라드", "자그레브", "아테네", "키예프", "빌뉴스", "리가", "탈린",
+            // 아프리카
+            "카이로", "요하네스버그", "케이프타운", "카사블랑카", "나이로비", "아디스아바바", "라고스", "아크라", "다르에스살람", "알제", "튀니스",
+            // 북미
+            "뉴욕", "로스앤젤레스", "시카고", "샌프란시스코", "마이애미", "애틀랜타", "시애틀", "워싱턴 D.C.", "보스턴", "라스베이거스", "댈러스", "휴스턴", "덴버", "피닉스", "호놀룰루",
+            // 캐나다
+            "토론토", "밴쿠버", "몬트리올", "캘거리", "오타와",
+            // 멕시코
+            "멕시코시티", "칸쿤", "과달라하라", "몬테레이",
+            // 남미
+            "상파울루", "리우데자네이루", "부에노스아이레스", "산티아고", "리마", "보고타", "카라카스", "키토",
+            // 오세아니아
+            "시드니", "멜버른", "브리즈번", "퍼스", "오클랜드", "웰링턴", "피지"
+        ];
+
+        // 난이도별 단어 목록 (외부 파일에서 로드)
+        const vocabularyData = {
+            beginner: vocabBeginner,
+            intermediate: vocabIntermediate,
+            advanced: [...vocabAdvanced1, ...vocabAdvanced2],
+            expert: [...vocabExpert1, ...vocabExpert2]
+        };
+
+        // 난이도별 설정
+        const levelConfig = {
+            beginner: { tours: 4, words: 800, name: '초보자' },
+            intermediate: { tours: 6, words: 1200, name: '중급자' },
+            advanced: { tours: 10, words: 2000, name: '고급자' },
+            expert: { tours: 10, words: 2000, name: '전문가' }
+        };
+
+        // 게임 상태
+        let gameState = {
+            level: null,
+            selectedRoute: null,
+            startCity: null,
+            currentTour: 1,
+            totalTours: 4,
+            completedRoutes: [],
+            route: [],
+            currentPosition: 0,
+            correctCount: 0,
+            wrongCount: 0,
+            totalQuestions: 0,
+            tourCorrectCount: 0,
+            tourWrongCount: 0,
+            tourQuestions: 0,
+            currentQuestion: null,
+            questionType: 'en_to_ko',
+            vocabulary: [],
+            wordIndex: 0,
+            isAnswered: false,
+            totalDistance: 0,
+            tourTraveledDistance: 0  // 현재 경로에서 이동한 거리
+        };
+
+        // 경로 세트 (routes.js에서 관리)
+
+        // 지도 객체
+        let routePreviewMap = null;
+        let startPointMap = null;
+        let confirmMap = null;
+        let gameMap = null;
+        let resultMap = null;
+        let cityMarkers = [];
+
+        // 저장 키
+        const SAVE_KEY = 'worldTourVocab_savedGame';
+
+        // 음성 합성 (TTS) - 지원 여부 확인
+        // 일부 모바일 브라우저는 speechSynthesis가 존재하지만 작동하지 않음
+        let speechSynthesisSupported = false;
+        try {
+            if ('speechSynthesis' in window && window.speechSynthesis) {
+                // 실제로 getVoices가 동작하는지 확인
+                const testVoices = window.speechSynthesis.getVoices();
+                speechSynthesisSupported = true;
+            }
+        } catch(e) {
+            speechSynthesisSupported = false;
+        }
+        let isSpeaking = false;
+
+        // 단어 발음하기
+        function speakWord() {
+            if (!speechSynthesisSupported) return;
+            if (!gameState.currentQuestion) return;
+
+            const btn = document.getElementById('speak-btn');
+
+            // 이미 재생 중이면 중지
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                btn.classList.remove('speaking');
+                btn.textContent = '🔊 발음 듣기';
+                return;
+            }
+
+            // 영어 단어 가져오기
+            const word = gameState.currentQuestion.en;
+
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;  // 약간 천천히
+            utterance.pitch = 1;
+
+            // 영어 음성 찾기
+            const voices = window.speechSynthesis.getVoices();
+            const englishVoice = voices.find(v => v.lang.startsWith('en-'));
+            if (englishVoice) {
+                utterance.voice = englishVoice;
+            }
+
+            utterance.onstart = () => {
+                isSpeaking = true;
+                btn.classList.add('speaking');
+                btn.textContent = '🔊 재생 중...';
+            };
+
+            utterance.onend = () => {
+                isSpeaking = false;
+                btn.classList.remove('speaking');
+                btn.textContent = '🔊 발음 듣기';
+            };
+
+            utterance.onerror = () => {
+                isSpeaking = false;
+                btn.classList.remove('speaking');
+                btn.textContent = '🔊 발음 듣기';
+            };
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // 도시 이동 안내 음성
+        function speakTravelAnnouncement(fromCity, toCity) {
+            if (!speechSynthesisSupported) return;
+
+            // 기존 음성 중지
+            window.speechSynthesis.cancel();
+
+            const text = `${fromCity}에서 ${toCity}로 이동합니다`;
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'ko-KR';
+            utterance.rate = 1.1;
+            utterance.pitch = 1;
+
+            // 한국어 음성 찾기
+            const voices = window.speechSynthesis.getVoices();
+            const koreanVoice = voices.find(v => v.lang.startsWith('ko'));
+            if (koreanVoice) {
+                utterance.voice = koreanVoice;
+            }
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Haversine 공식으로 두 지점 간 거리 계산 (km)
+        function calculateDistance(lat1, lng1, lat2, lng2) {
+            const R = 6371;
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLng = (lng2 - lng1) * Math.PI / 180;
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLng/2) * Math.sin(dLng/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            return Math.round(R * c);
+        }
+
+        // 초기화
+        function init() {
+            // 경로 세트 생성
+            routeSets = initializeRoutes();
+            console.log("경로 세트:", routeSets);
+
+            // 음성 기능 테스트 - 버튼 일단 숨김
+            const speakBtnInit = document.getElementById('speak-btn');
+            speakBtnInit.style.display = 'none';
+
+            // 음성 지원 여부 실제 테스트
+            if ('speechSynthesis' in window && window.speechSynthesis) {
+                // voices 로드 후 테스트
+                const checkVoices = () => {
+                    const voices = window.speechSynthesis.getVoices();
+                    if (voices && voices.length > 0) {
+                        speechSynthesisSupported = true;
+                        console.log('음성 합성 지원됨, voices:', voices.length);
+                    }
+                };
+
+                checkVoices();
+                if (window.speechSynthesis.onvoiceschanged !== undefined) {
+                    window.speechSynthesis.onvoiceschanged = checkVoices;
+                }
+            }
+
+            // 저장된 게임 확인
+            checkSavedGame();
+        }
+
+        // 사용 방법 화면 표시
+        function showHowToPlay() {
+            showScreen('howto-screen');
+        }
+
+        // 저장된 게임 확인
+        function checkSavedGame() {
+            const saved = localStorage.getItem(SAVE_KEY);
+            if (saved) {
+                try {
+                    const data = JSON.parse(saved);
+                    document.getElementById('continue-btn').disabled = false;
+                    document.getElementById('saved-game-info').style.display = 'block';
+                    document.getElementById('saved-level').textContent = `난이도: ${levelConfig[data.level].name}`;
+                    document.getElementById('saved-tour').textContent = `진행: ${data.currentTour} / ${data.totalTours} 세계일주`;
+                    document.getElementById('saved-route').textContent = `경로: ${data.selectedRoute}`;
+                    document.getElementById('saved-progress').textContent = `현재 위치: ${data.currentPosition} / 200 도시`;
+                } catch (e) {
+                    localStorage.removeItem(SAVE_KEY);
+                }
+            }
+        }
+
+        // 게임 저장
+        function saveGame() {
+            const saveData = {
+                level: gameState.level,
+                selectedRoute: gameState.selectedRoute,
+                startCity: gameState.startCity,
+                currentTour: gameState.currentTour,
+                totalTours: gameState.totalTours,
+                completedRoutes: gameState.completedRoutes,
+                currentPosition: gameState.currentPosition,
+                correctCount: gameState.correctCount,
+                wrongCount: gameState.wrongCount,
+                totalQuestions: gameState.totalQuestions,
+                tourCorrectCount: gameState.tourCorrectCount,
+                tourWrongCount: gameState.tourWrongCount,
+                tourQuestions: gameState.tourQuestions,
+                wordIndex: gameState.wordIndex,
+                totalDistance: gameState.totalDistance,
+                tourTraveledDistance: gameState.tourTraveledDistance,
+                vocabulary: gameState.vocabulary,
+                route: gameState.route
+            };
+            localStorage.setItem(SAVE_KEY, JSON.stringify(saveData));
+            console.log("게임 저장됨");
+        }
+
+        // 게임 이어하기
+        function continueGame() {
+            const saved = localStorage.getItem(SAVE_KEY);
+            if (!saved) return;
+
+            try {
+                const data = JSON.parse(saved);
+                gameState = {
+                    ...gameState,
+                    ...data,
+                    currentQuestion: null,
+                    questionType: 'en_to_ko',
+                    isAnswered: false
+                };
+
+                showScreen('game-screen');
+                initGameMap();
+                updateGameUI();
+                updateTourProgress();
+                showQuestion();
+            } catch (e) {
+                console.error("저장된 게임 로드 실패:", e);
+                localStorage.removeItem(SAVE_KEY);
+            }
+        }
+
+        // 화면 전환
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        // 메인 메뉴 표시
+        function showMainMenu() {
+            showScreen('menu-screen');
+            checkSavedGame();
+        }
+
+        // 난이도 선택 화면
+        function showLevelSelection() {
+            showScreen('level-screen');
+            document.querySelectorAll('.level-card').forEach(c => c.classList.remove('selected'));
+            document.getElementById('to-route-btn').disabled = true;
+        }
+
+        // 난이도 선택
+        function selectLevel(level) {
+            gameState.level = level;
+            gameState.totalTours = levelConfig[level].tours;
+            gameState.vocabulary = shuffleArray([...vocabularyData[level]]);
+
+            document.querySelectorAll('.level-card').forEach(c => c.classList.remove('selected'));
+            document.querySelector(`[data-level="${level}"]`).classList.add('selected');
+            document.getElementById('to-route-btn').disabled = false;
+        }
+
+        // 경로 선택 화면
+        function showRouteSelection() {
+            showScreen('route-screen');
+            renderRouteCards();
+            initRoutePreviewMap();
+        }
+
+        // 경로 카드 렌더링
+        function renderRouteCards() {
+            const container = document.getElementById('route-cards');
+            container.innerHTML = '';
+
+            Object.entries(routeSets).forEach(([key, route]) => {
+                const isCompleted = gameState.completedRoutes.includes(key);
+                const preview = getRoutePreview(route);
+
+                const card = document.createElement('div');
+                card.className = `route-card ${isCompleted ? 'completed' : ''}`;
+                card.dataset.route = key;
+                card.onclick = () => selectRoute(key);
+
+                card.innerHTML = `
+                    <div class="route-header">
+                        <div class="route-color" style="background: ${route.color}"></div>
+                        <div class="route-name">${route.name} ${isCompleted ? '(완료)' : ''}</div>
+                    </div>
+                    <div class="route-cities">${route.cities.length}개 도시</div>
+                    <div class="route-sample">${preview.sampleCities.join(' → ')}</div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        // 경로 선택
+        function selectRoute(routeKey) {
+            gameState.selectedRoute = routeKey;
+
+            document.querySelectorAll('.route-card').forEach(c => c.classList.remove('selected'));
+            document.querySelector(`[data-route="${routeKey}"]`).classList.add('selected');
+            document.getElementById('to-start-btn').disabled = false;
+
+            // 미리보기 지도 업데이트
+            updateRoutePreview(routeKey);
+        }
+
+        // 경로 미리보기 지도 초기화
+        function initRoutePreviewMap() {
+            if (routePreviewMap) {
+                routePreviewMap.remove();
+            }
+
+            routePreviewMap = L.map('route-preview-map', {
+                tap: true,
+                dragging: true,
+                touchZoom: true
+            }).setView([20, 0], 1);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '© OpenStreetMap contributors © CARTO',
+                maxZoom: 19
+            }).addTo(routePreviewMap);
+
+            // 모바일에서 지도 크기 재계산
+            setTimeout(() => routePreviewMap.invalidateSize(), 100);
+        }
+
+        // 경로 미리보기 업데이트
+        function updateRoutePreview(routeKey) {
+            if (!routePreviewMap) return;
+
+            // 기존 레이어 제거
+            routePreviewMap.eachLayer(layer => {
+                if (layer instanceof L.Polyline || layer instanceof L.CircleMarker) {
+                    routePreviewMap.removeLayer(layer);
+                }
+            });
+
+            const route = routeSets[routeKey];
+            const coords = route.cities.map(c => [c.lat, c.lng]);
+
+            // 경로 라인
+            L.polyline(coords, {
+                color: route.color,
+                weight: 2,
+                opacity: 0.8
+            }).addTo(routePreviewMap);
+
+            // 시작점과 끝점 마커
+            L.circleMarker(coords[0], {
+                radius: 6,
+                fillColor: route.color,
+                color: '#fff',
+                weight: 2,
+                fillOpacity: 1
+            }).addTo(routePreviewMap).bindTooltip(route.cities[0].name);
+
+            // 전체가 보이도록 조정
+            if (coords.length > 0) {
+                routePreviewMap.fitBounds(L.latLngBounds(coords), { padding: [20, 20] });
+            }
+        }
+
+        // 출발 지점 선택 화면
+        function showStartPointSelection() {
+            showScreen('start-screen');
+            initStartPointMap();
+        }
+
+        // 출발 지점 지도 초기화
+        function initStartPointMap() {
+            if (startPointMap) {
+                startPointMap.remove();
+            }
+
+            startPointMap = L.map('start-point-map', {
+                tap: true,
+                dragging: true,
+                touchZoom: true
+            }).setView([20, 0], 2);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '© OpenStreetMap contributors © CARTO',
+                maxZoom: 19
+            }).addTo(startPointMap);
+
+            const route = routeSets[gameState.selectedRoute];
+
+            // 전체 도시 중 국제공항이 있는 도시만 필터링 (경로와 관계없이)
+            const airportCities = worldCities.filter(city =>
+                internationalAirportCities.includes(city.name)
+            );
+
+            // 디버그 로그
+            console.log("선택된 경로:", gameState.selectedRoute);
+            console.log("경로 전체 도시 수:", route.cities.length);
+            console.log("전체 국제공항 도시 수:", airportCities.length);
+
+            // 국제공항 도시만 표시 (선택 가능)
+            airportCities.forEach(city => {
+                const marker = L.circleMarker([city.lat, city.lng], {
+                    radius: 10,
+                    fillColor: '#e94560',
+                    color: '#fff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.9
+                }).addTo(startPointMap);
+
+                marker.bindPopup(`
+                    <div class="city-popup">
+                        <h4>✈️ ${city.name}</h4>
+                        <p>${city.country}</p>
+                        <button onclick="selectStartCity('${city.name}')">출발지로 선택</button>
+                    </div>
+                `);
+
+                marker.on('click', function() {
+                    this.openPopup();
+                });
+            });
+
+            // 전체 경로가 보이도록 조정
+            const coords = route.cities.map(c => [c.lat, c.lng]);
+            setTimeout(() => {
+                startPointMap.invalidateSize();
+                startPointMap.fitBounds(L.latLngBounds(coords), { padding: [30, 30] });
+            }, 100);
+        }
+
+        // 출발 도시 선택
+        function selectStartCity(cityName) {
+            const route = routeSets[gameState.selectedRoute];
+
+            // 선택한 도시가 현재 경로에 있는지 확인
+            const cityInRoute = route.cities.find(c => c.name === cityName);
+
+            if (cityInRoute) {
+                // 경로에 있으면 그대로 사용
+                gameState.startCity = cityName;
+                document.getElementById('selected-city-name').textContent = cityName;
+            } else {
+                // 경로에 없으면 가장 가까운 도시 찾기
+                const selectedCity = worldCities.find(c => c.name === cityName);
+                if (selectedCity) {
+                    let nearestCity = route.cities[0];
+                    let minDistance = Infinity;
+
+                    route.cities.forEach(city => {
+                        const dist = calculateDistance(selectedCity.lat, selectedCity.lng, city.lat, city.lng);
+                        if (dist < minDistance) {
+                            minDistance = dist;
+                            nearestCity = city;
+                        }
+                    });
+
+                    gameState.startCity = nearestCity.name;
+                    document.getElementById('selected-city-name').textContent =
+                        `${cityName} → ${nearestCity.name} (가장 가까운 경로 도시)`;
+                }
+            }
+
+            document.getElementById('selected-city-display').style.display = 'block';
+            document.getElementById('confirm-start-btn').disabled = false;
+
+            if (startPointMap) {
+                startPointMap.closePopup();
+            }
+        }
+
+        // 경로 확인 화면
+        function showRouteConfirmation() {
+            showScreen('confirm-screen');
+            initConfirmMap();
+        }
+
+        // 확인 지도 초기화
+        function initConfirmMap() {
+            if (confirmMap) {
+                confirmMap.remove();
+            }
+
+            confirmMap = L.map('confirm-map', {
+                tap: true,
+                dragging: true,
+                touchZoom: true
+            }).setView([20, 0], 2);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '© OpenStreetMap contributors © CARTO',
+                maxZoom: 19
+            }).addTo(confirmMap);
+
+            const route = routeSets[gameState.selectedRoute];
+
+            // 시작 지점부터 재정렬된 경로
+            const reorderedCities = reorderRouteFromStart(route.cities, gameState.startCity);
+            const coords = reorderedCities.map(c => [c.lat, c.lng]);
+
+            // 순환 경로 (마지막에서 처음으로 돌아옴)
+            const fullCoords = [...coords, coords[0]];
+
+            // 경로 라인
+            L.polyline(fullCoords, {
+                color: route.color,
+                weight: 3,
+                opacity: 0.8
+            }).addTo(confirmMap);
+
+            // 도시 마커
+            reorderedCities.forEach((city, idx) => {
+                const isStart = idx === 0;
+                L.circleMarker([city.lat, city.lng], {
+                    radius: isStart ? 10 : 5,
+                    fillColor: isStart ? '#e94560' : route.color,
+                    color: '#fff',
+                    weight: isStart ? 3 : 1,
+                    fillOpacity: 0.9
+                }).addTo(confirmMap).bindTooltip(isStart ? `출발: ${city.name}` : city.name);
+            });
+
+            // 전체가 보이도록 조정
+            setTimeout(() => {
+                confirmMap.invalidateSize();
+                confirmMap.fitBounds(L.latLngBounds(coords), { padding: [30, 30] });
+            }, 100);
+
+            // 정보 업데이트
+            document.getElementById('confirm-route-name').textContent = route.name;
+            document.getElementById('confirm-start-city').textContent = gameState.startCity;
+        }
+
+        // 배열 섞기
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // 게임 시작
+        function startGame() {
+            // 저장된 게임 삭제 (새 게임 시작)
+            localStorage.removeItem(SAVE_KEY);
+
+            const route = routeSets[gameState.selectedRoute];
+            gameState.route = reorderRouteFromStart(route.cities, gameState.startCity);
+            // 마지막에 출발지 추가 (순환)
+            gameState.route.push(gameState.route[0]);
+
+            gameState.currentPosition = 0;
+            gameState.tourCorrectCount = 0;
+            gameState.tourWrongCount = 0;
+            gameState.tourQuestions = 0;
+            gameState.tourTraveledDistance = 0;  // 이번 경로 이동 거리 초기화
+
+            showScreen('game-screen');
+            initGameMap();
+            updateGameUI();
+            updateTourProgress();
+            showQuestion();
+        }
+
+        // 세계일주 진행 표시 업데이트
+        function updateTourProgress() {
+            const container = document.getElementById('tour-progress');
+            container.innerHTML = '';
+
+            for (let i = 1; i <= gameState.totalTours; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'tour-dot';
+
+                if (i < gameState.currentTour) {
+                    dot.classList.add('completed');
+                    dot.textContent = '✓';
+                } else if (i === gameState.currentTour) {
+                    dot.classList.add('current');
+                    dot.textContent = i;
+                } else {
+                    dot.classList.add('pending');
+                    dot.textContent = i;
+                }
+
+                container.appendChild(dot);
+            }
+        }
+
+        // 게임 지도 초기화
+        function initGameMap() {
+            if (gameMap) {
+                gameMap.remove();
+            }
+
+            gameMap = L.map('game-map', {
+                tap: true,
+                dragging: true,
+                touchZoom: true
+            }).setView([20, 0], 2);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '© OpenStreetMap contributors © CARTO',
+                maxZoom: 19
+            }).addTo(gameMap);
+
+            // 모바일에서 지도 크기 재계산
+            setTimeout(() => gameMap.invalidateSize(), 100);
+
+            updateMapMarkers();
+        }
+
+        // 지도 마커 업데이트
+        function updateMapMarkers() {
+            // 기존 마커 제거
+            cityMarkers.forEach(m => gameMap.removeLayer(m));
+            cityMarkers = [];
+
+            // 기존 라인 제거
+            gameMap.eachLayer(layer => {
+                if (layer instanceof L.Polyline) {
+                    gameMap.removeLayer(layer);
+                }
+            });
+
+            const routeCoords = gameState.route.map(c => [c.lat, c.lng]);
+
+            // 방문한 구간 (초록색)
+            if (gameState.currentPosition > 0) {
+                const visitedCoords = routeCoords.slice(0, gameState.currentPosition + 1);
+                L.polyline(visitedCoords, {
+                    color: '#4ecca3',
+                    weight: 3,
+                    opacity: 0.8
+                }).addTo(gameMap);
+            }
+
+            // 미방문 구간 (회색 점선)
+            if (gameState.currentPosition < gameState.route.length - 1) {
+                const futureCoords = routeCoords.slice(gameState.currentPosition);
+                L.polyline(futureCoords, {
+                    color: '#666',
+                    weight: 2,
+                    opacity: 0.5,
+                    dashArray: '5, 10'
+                }).addTo(gameMap);
+            }
+
+            // 도시 마커 추가
+            gameState.route.forEach((city, index) => {
+                // 마지막 도시(출발지 복귀)는 스킵
+                if (index === gameState.route.length - 1) return;
+
+                let color, radius;
+
+                if (index < gameState.currentPosition) {
+                    color = '#4ecca3';
+                    radius = 6;
+                } else if (index === gameState.currentPosition) {
+                    color = '#e94560';
+                    radius = 10;
+                } else {
+                    color = '#666';
+                    radius = 5;
+                }
+
+                const marker = L.circleMarker([city.lat, city.lng], {
+                    radius: radius,
+                    fillColor: color,
+                    color: '#fff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.9
+                }).addTo(gameMap);
+
+                marker.bindTooltip(city.name, {
+                    permanent: index === gameState.currentPosition,
+                    direction: 'top'
+                });
+
+                cityMarkers.push(marker);
+            });
+
+            // 현재 위치로 지도 이동
+            const currentCity = gameState.route[gameState.currentPosition];
+            gameMap.setView([currentCity.lat, currentCity.lng], 4);
+        }
+
+        // 게임 UI 업데이트
+        function updateGameUI() {
+            const maxPosition = gameState.route.length - 1;
+            const progress = (gameState.currentPosition / maxPosition) * 100;
+            document.getElementById('progress-fill').style.width = progress + '%';
+            document.getElementById('progress-fill').textContent = Math.round(progress) + '%';
+
+            document.getElementById('visited-count').textContent =
+                `${gameState.currentPosition} / ${maxPosition}`;
+
+            const accuracy = gameState.tourQuestions > 0
+                ? Math.round((gameState.tourCorrectCount / gameState.tourQuestions) * 100)
+                : 0;
+            document.getElementById('accuracy').textContent = accuracy + '%';
+
+            // 현재/다음 도시 표시
+            const currentCity = gameState.route[gameState.currentPosition];
+            const nextCity = gameState.route[Math.min(gameState.currentPosition + 1, gameState.route.length - 1)];
+
+            document.getElementById('current-city-name').textContent = currentCity.name;
+            document.getElementById('next-city-name').textContent = nextCity.name;
+
+            // 다음 도시까지 거리 표시
+            const distance = calculateDistance(currentCity.lat, currentCity.lng, nextCity.lat, nextCity.lng);
+            document.getElementById('travel-distance').textContent = `거리: ${distance.toLocaleString()} km`;
+
+            // 이번 경로 이동 거리 표시
+            document.getElementById('tour-distance').textContent =
+                gameState.tourTraveledDistance.toLocaleString() + ' km';
+
+            // 총 누적 거리 표시
+            document.getElementById('total-distance').textContent =
+                gameState.totalDistance.toLocaleString() + ' km';
+
+            updateMapMarkers();
+        }
+
+        // 문제 출제
+        function showQuestion() {
+            gameState.isAnswered = false;
+            document.getElementById('feedback').classList.remove('show', 'correct', 'wrong');
+            document.getElementById('next-btn').classList.remove('show');
+
+            // 단어 인덱스가 끝에 도달하면 다시 섞어서 처음부터
+            if (gameState.wordIndex >= gameState.vocabulary.length) {
+                gameState.vocabulary = shuffleArray([...gameState.vocabulary]);
+                gameState.wordIndex = 0;
+            }
+
+            const word = gameState.vocabulary[gameState.wordIndex];
+            gameState.currentQuestion = word;
+            gameState.wordIndex++;
+
+            // 문제 유형 교대
+            gameState.questionType = gameState.questionType === 'en_to_ko' ? 'ko_to_en' : 'en_to_ko';
+
+            // 발음 버튼 초기화
+            const speakBtn = document.getElementById('speak-btn');
+            speakBtn.textContent = '🔊 발음 듣기';
+            speakBtn.classList.remove('speaking');
+
+            if (gameState.questionType === 'en_to_ko') {
+                document.getElementById('question-type').textContent = '영어 → 한글';
+                document.getElementById('question-word').textContent = word.en;
+                // 영어 문제일 때 발음 버튼 표시 (음성 지원 시에만)
+                speakBtn.style.display = speechSynthesisSupported ? 'inline-block' : 'none';
+                generateAnswers(word.ko, 'ko');
+            } else {
+                document.getElementById('question-type').textContent = '한글 → 영어';
+                document.getElementById('question-word').textContent = word.ko;
+                speakBtn.style.display = 'none';  // 한글 문제일 때 발음 버튼 숨김
+                generateAnswers(word.en, 'en');
+            }
+        }
+
+        // 보기 생성
+        function generateAnswers(correctAnswer, type) {
+            const allWords = gameState.vocabulary.map(w => type === 'ko' ? w.ko : w.en);
+            let options = [correctAnswer];
+
+            while (options.length < 5) {
+                const randomWord = allWords[Math.floor(Math.random() * allWords.length)];
+                if (!options.includes(randomWord)) {
+                    options.push(randomWord);
+                }
+            }
+
+            options = shuffleArray(options);
+
+            const container = document.getElementById('answers');
+            container.innerHTML = options.map((opt, idx) =>
+                `<button class="answer-btn" onclick="checkAnswer('${opt.replace(/'/g, "\\'")}', '${correctAnswer.replace(/'/g, "\\'")}')">${idx + 1}. ${opt}</button>`
+            ).join('');
+        }
+
+        // 정답 확인
+        function checkAnswer(selected, correct) {
+            if (gameState.isAnswered) return;
+            gameState.isAnswered = true;
+            gameState.totalQuestions++;
+            gameState.tourQuestions++;
+
+            const buttons = document.querySelectorAll('.answer-btn');
+            buttons.forEach(btn => {
+                btn.disabled = true;
+                const btnText = btn.textContent.substring(3);
+                if (btnText === correct) {
+                    btn.classList.add('correct');
+                } else if (btnText === selected && selected !== correct) {
+                    btn.classList.add('wrong');
+                }
+            });
+
+            const feedback = document.getElementById('feedback');
+            feedback.classList.add('show');
+
+            if (selected === correct) {
+                gameState.correctCount++;
+                gameState.tourCorrectCount++;
+
+                // 이동 거리 계산 및 누적
+                const fromCity = gameState.route[gameState.currentPosition];
+                const toCity = gameState.route[gameState.currentPosition + 1];
+                const traveledDist = calculateDistance(fromCity.lat, fromCity.lng, toCity.lat, toCity.lng);
+                gameState.tourTraveledDistance += traveledDist;
+                gameState.totalDistance += traveledDist;
+
+                gameState.currentPosition++;
+
+                const nextCity = gameState.route[gameState.currentPosition];
+                feedback.classList.add('correct');
+                document.getElementById('feedback-icon').textContent = '✈️';
+                document.getElementById('feedback-message').textContent =
+                    `정답! ${nextCity.name}(${nextCity.country})에 도착! (+${traveledDist.toLocaleString()} km)`;
+
+                // 한글→영어 문제에서 정답 시 발음 버튼 표시 (음성 지원 시에만)
+                if (gameState.questionType === 'ko_to_en' && speechSynthesisSupported) {
+                    document.getElementById('speak-btn').style.display = 'inline-block';
+                }
+            } else {
+                gameState.wrongCount++;
+                gameState.tourWrongCount++;
+
+                if (gameState.currentPosition > 0) {
+                    const backSteps = Math.min(
+                        Math.floor(Math.random() * 2) + 1,
+                        gameState.currentPosition
+                    );
+                    gameState.currentPosition = Math.max(0, gameState.currentPosition - backSteps);
+                }
+
+                const currentCity = gameState.route[gameState.currentPosition];
+                feedback.classList.add('wrong');
+                document.getElementById('feedback-icon').textContent = '❌';
+                document.getElementById('feedback-message').textContent =
+                    `오답! 정답: ${correct}. ${currentCity.name}(으)로 되돌아갑니다.`;
+            }
+
+            updateGameUI();
+            document.getElementById('next-btn').classList.add('show');
+
+            // 게임 종료 체크 (세계일주 1회 완료)
+            if (gameState.currentPosition >= gameState.route.length - 1) {
+                document.getElementById('next-btn').textContent = '🏆 세계일주 완료!';
+            } else {
+                document.getElementById('next-btn').textContent = '다음 도시로 이동 →';
+            }
+
+            // 자동 저장
+            saveGame();
+        }
+
+        // 다음 문제
+        function nextQuestion() {
+            if (gameState.currentPosition >= gameState.route.length - 1) {
+                completeTour();
+            } else {
+                // 현재 도시와 다음 도시 이름 가져오기
+                const currentCity = gameState.route[gameState.currentPosition];
+                const nextCity = gameState.route[gameState.currentPosition + 1];
+
+                // 이동 안내 음성 재생
+                speakTravelAnnouncement(currentCity.name, nextCity.name);
+
+                showQuestion();
+            }
+        }
+
+        // 세계일주 1회 완료
+        function completeTour() {
+            gameState.completedRoutes.push(gameState.selectedRoute);
+
+            if (gameState.currentTour >= gameState.totalTours) {
+                // 모든 세계일주 완료
+                showFinalResult();
+            } else {
+                // 다음 세계일주로
+                showTourCompleteScreen();
+            }
+        }
+
+        // 세계일주 완료 화면
+        function showTourCompleteScreen() {
+            showScreen('tour-complete-screen');
+
+            document.getElementById('tour-complete-title').textContent =
+                `세계일주 ${gameState.currentTour}회 완료!`;
+            document.getElementById('completed-tours').textContent =
+                `${gameState.currentTour} / ${gameState.totalTours}`;
+
+            const tourAccuracy = gameState.tourQuestions > 0
+                ? Math.round((gameState.tourCorrectCount / gameState.tourQuestions) * 100)
+                : 0;
+            document.getElementById('tour-accuracy').textContent = tourAccuracy + '%';
+
+            const totalAccuracy = gameState.totalQuestions > 0
+                ? Math.round((gameState.correctCount / gameState.totalQuestions) * 100)
+                : 0;
+            document.getElementById('total-accuracy').textContent = totalAccuracy + '%';
+        }
+
+        // 다음 세계일주 경로 선택
+        function selectNextTourRoute() {
+            gameState.currentTour++;
+            gameState.selectedRoute = null;
+            gameState.startCity = null;
+            gameState.tourCorrectCount = 0;
+            gameState.tourWrongCount = 0;
+            gameState.tourQuestions = 0;
+            gameState.tourTraveledDistance = 0;
+
+            showRouteSelection();
+        }
+
+        // 최종 결과 화면
+        function showFinalResult() {
+            showScreen('result-screen');
+
+            const accuracy = gameState.totalQuestions > 0
+                ? Math.round((gameState.correctCount / gameState.totalQuestions) * 100)
+                : 0;
+
+            document.getElementById('final-distance').textContent =
+                gameState.totalDistance.toLocaleString() + ' km';
+            document.getElementById('final-accuracy').textContent = accuracy + '%';
+            document.getElementById('final-total').textContent = gameState.totalQuestions;
+
+            if (accuracy >= 80) {
+                document.getElementById('result-icon').textContent = '🏆';
+                document.getElementById('result-title').textContent = '완벽한 세계일주!';
+            } else if (accuracy >= 60) {
+                document.getElementById('result-icon').textContent = '🎉';
+                document.getElementById('result-title').textContent = '세계일주 성공!';
+            } else {
+                document.getElementById('result-icon').textContent = '💪';
+                document.getElementById('result-title').textContent = '다시 도전해보세요!';
+            }
+
+            // 저장된 게임 삭제
+            localStorage.removeItem(SAVE_KEY);
+
+            initResultMap();
+        }
+
+        // 결과 지도 초기화
+        function initResultMap() {
+            if (resultMap) {
+                resultMap.remove();
+            }
+
+            resultMap = L.map('result-map', {
+                tap: true,
+                dragging: true,
+                touchZoom: true
+            }).setView([20, 0], 2);
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '© OpenStreetMap contributors © CARTO',
+                maxZoom: 19
+            }).addTo(resultMap);
+
+            // 완료된 모든 경로 표시
+            gameState.completedRoutes.forEach(routeKey => {
+                const route = routeSets[routeKey];
+                const coords = route.cities.map(c => [c.lat, c.lng]);
+
+                L.polyline(coords, {
+                    color: route.color,
+                    weight: 2,
+                    opacity: 0.7
+                }).addTo(resultMap);
+            });
+
+            // 모바일에서 지도 크기 재계산
+            setTimeout(() => {
+                resultMap.invalidateSize();
+            }, 100);
+        }
+
+        // 일시정지 및 저장
+        function pauseGame() {
+            saveGame();
+            alert('게임이 저장되었습니다. 나중에 이어하기로 계속할 수 있습니다.');
+            showMainMenu();
+        }
+
+        // 게임 재시작
+        function restartGame() {
+            localStorage.removeItem(SAVE_KEY);
+
+            gameState = {
+                level: null,
+                selectedRoute: null,
+                startCity: null,
+                currentTour: 1,
+                totalTours: 4,
+                completedRoutes: [],
+                route: [],
+                currentPosition: 0,
+                correctCount: 0,
+                wrongCount: 0,
+                totalQuestions: 0,
+                tourCorrectCount: 0,
+                tourWrongCount: 0,
+                tourQuestions: 0,
+                currentQuestion: null,
+                questionType: 'en_to_ko',
+                vocabulary: [],
+                wordIndex: 0,
+                isAnswered: false,
+                totalDistance: 0,
+                tourTraveledDistance: 0
+            };
+
+            showMainMenu();
+        }
+
+        // 페이지 로드 시 초기화
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

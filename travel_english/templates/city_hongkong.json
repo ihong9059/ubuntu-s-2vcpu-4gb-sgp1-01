@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "hongkong",
+  "cityName": "홍콩",
+  "country": "중국",
+  "description": "동서양이 만나는 국제 금융 도시, 미식과 쇼핑의 천국",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_HKG_001",
+      "category": "landmark",
+      "day": 2,
+      "location": "빅토리아 피크",
+      "situation": "홍콩 최고의 전망대를 방문한다",
+      "npcDialog": "Victoria Peak has the best views of Hong Kong! Take the Peak Tram - it's been running since 1888. Night views are even more spectacular!",
+      "npcDialogKo": "빅토리아 피크에서 홍콩 전경이 최고예요! 피크 트램 타세요 - 1888년부터 운행했어요. 야경이 더 멋져요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The view is breathtaking!", "correct": true},
+          {"text": "I'll definitely come back for the night view.", "correct": true},
+          {"text": "It's just another viewpoint.", "correct": false},
+          {"text": "The tram is too slow.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_002",
+      "category": "food",
+      "day": 2,
+      "location": "딤섬 레스토랑",
+      "situation": "정통 홍콩식 딤섬을 먹는다",
+      "npcDialog": "Yum cha is Hong Kong's breakfast tradition! Har gow, siu mai, char siu bao - we push carts around. Point at what you want!",
+      "npcDialogKo": "얌차는 홍콩 아침 전통이에요! 하가우, 슈마이, 차슈바오 - 카트로 돌아다녀요. 원하는 거 가리키세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The cart system is so fun!", "correct": true},
+          {"text": "I want to try everything!", "correct": true},
+          {"text": "I don't know what to order.", "correct": false},
+          {"text": "Small portions aren't filling.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_003",
+      "category": "shopping",
+      "day": 3,
+      "location": "템플 스트리트 야시장",
+      "situation": "밤의 야시장을 구경한다",
+      "npcDialog": "Temple Street Night Market is legendary! Bargain for everything - start at half price. Fortune tellers and street opera too!",
+      "npcDialogKo": "템플 스트리트 야시장은 전설이에요! 다 깎아야 해요 - 반값부터 시작하세요. 점쟁이랑 거리 오페라도 있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I love bargaining!", "correct": true},
+          {"text": "Street fortune telling sounds interesting.", "correct": true},
+          {"text": "I don't like haggling.", "correct": false},
+          {"text": "Night markets sell fake stuff.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_004",
+      "category": "transport",
+      "day": 2,
+      "location": "스타 페리",
+      "situation": "빅토리아 항구를 가로지르는 페리를 탄다",
+      "npcDialog": "Star Ferry has been crossing Victoria Harbour since 1888! Best $2 view in the world. Sit on the upper deck for photos!",
+      "npcDialogKo": "스타 페리는 1888년부터 빅토리아 항구를 건너요! 세계에서 2달러로 보는 최고의 전망. 사진은 윗층에서!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Only $2 for this view? Amazing!", "correct": true},
+          {"text": "136 years of history on the water.", "correct": true},
+          {"text": "Boats make me seasick.", "correct": false},
+          {"text": "I'll just take the metro.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_005",
+      "category": "culture",
+      "day": 3,
+      "location": "만모 사원",
+      "situation": "홍콩에서 가장 오래된 사원을 방문한다",
+      "npcDialog": "Man Mo Temple was built in 1847! The giant incense coils burn for weeks. Make a wish under the hanging coils - it's good luck!",
+      "npcDialogKo": "만모 사원은 1847년에 지어졌어요! 거대한 향 코일이 몇 주간 타요. 매달린 향 밑에서 소원 빌면 행운이 와요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The hanging incense coils are mesmerizing.", "correct": true},
+          {"text": "I'll definitely make a wish!", "correct": true},
+          {"text": "The smoke is too strong.", "correct": false},
+          {"text": "Temples are all the same.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_006",
+      "category": "food",
+      "day": 3,
+      "location": "로컬 차찬텡",
+      "situation": "홍콩식 카페에서 식사한다",
+      "npcDialog": "Cha chaan teng is Hong Kong's soul! Try our milk tea - silky smooth! Pineapple bun with butter, and scrambled eggs on toast - so local!",
+      "npcDialogKo": "차찬텡은 홍콩의 영혼이에요! 밀크티 드세요 - 부드러워요! 파인애플 빵에 버터, 토스트에 스크램블 에그 - 완전 로컬!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Hong Kong milk tea is famous!", "correct": true},
+          {"text": "I love local neighborhood spots.", "correct": true},
+          {"text": "The menu is confusing.", "correct": false},
+          {"text": "I prefer Western breakfast.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_007",
+      "category": "nature",
+      "day": 4,
+      "location": "란타우섬",
+      "situation": "대불과 자연을 체험한다",
+      "npcDialog": "Big Buddha on Lantau is 34 meters tall! Take the Ngong Ping 360 cable car for amazing views. The monastery serves vegetarian lunch!",
+      "npcDialogKo": "란타우 대불은 34미터 높이예요! 옹핑 360 케이블카로 멋진 전망 보세요. 수도원에서 채식 점심도 해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The cable car ride sounds incredible!", "correct": true},
+          {"text": "I'd love to try the monastery lunch.", "correct": true},
+          {"text": "It's too far from the city.", "correct": false},
+          {"text": "I don't want to climb stairs.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_008",
+      "category": "shopping",
+      "day": 4,
+      "location": "레이디스 마켓",
+      "situation": "몽콕의 유명한 시장을 구경한다",
+      "npcDialog": "Ladies' Market has over 100 stalls! Clothes, bags, souvenirs - bargain hard! Sneaker Street nearby has the best shoe deals.",
+      "npcDialogKo": "레이디스 마켓에 100개 넘는 가판대가 있어요! 옷, 가방, 기념품 - 열심히 깎으세요! 근처 스니커 스트리트 신발 싸요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "100 stalls? I'll need hours!", "correct": true},
+          {"text": "Sneaker Street sounds perfect for me.", "correct": true},
+          {"text": "Street markets aren't my thing.", "correct": false},
+          {"text": "Everything looks cheap.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_009",
+      "category": "nightlife",
+      "day": 4,
+      "location": "란콰이퐁",
+      "situation": "홍콩의 밤문화 중심지를 체험한다",
+      "npcDialog": "Lan Kwai Fong is Hong Kong's party central! Bars spill onto the streets on weekends. Happy hour starts at 5 - great deals everywhere!",
+      "npcDialogKo": "란콰이퐁은 홍콩 파티의 중심이에요! 주말엔 바가 거리로 넘쳐요. 해피아워 5시 시작 - 어디나 할인해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Happy hour sounds perfect!", "correct": true},
+          {"text": "The street party vibe is exciting.", "correct": true},
+          {"text": "I don't like crowded bars.", "correct": false},
+          {"text": "Nightlife is too expensive.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_010",
+      "category": "food",
+      "day": 5,
+      "location": "완차이 로컬 식당",
+      "situation": "완탕면을 먹는다",
+      "npcDialog": "Our wonton noodles are award-winning! Shrimp wontons, springy noodles, rich broth. Been family recipe for 50 years!",
+      "npcDialogKo": "저희 완탕면은 수상 경력이 있어요! 새우 완탕, 쫄깃한 면, 진한 육수. 50년 가족 비법이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "50-year family recipe? I'm excited!", "correct": true},
+          {"text": "Hong Kong noodles are famous worldwide.", "correct": true},
+          {"text": "Noodle soup is boring.", "correct": false},
+          {"text": "I prefer ramen.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_011",
+      "category": "landmark",
+      "day": 3,
+      "location": "심포니 오브 라이트",
+      "situation": "세계 최대 레이저 쇼를 감상한다",
+      "npcDialog": "Symphony of Lights is every night at 8pm! 40+ buildings join the laser and light show. Best view from Tsim Sha Tsui waterfront!",
+      "npcDialogKo": "심포니 오브 라이트는 매일 밤 8시예요! 40개 넘는 빌딩이 레이저 쇼를 해요. 침사추이 워터프론트에서 제일 잘 보여요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "A free daily show? That's amazing!", "correct": true},
+          {"text": "I'll definitely be at the waterfront at 8!", "correct": true},
+          {"text": "Light shows are cheesy.", "correct": false},
+          {"text": "I don't want to wait until 8pm.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_012",
+      "category": "local",
+      "day": 5,
+      "location": "중환 에스컬레이터",
+      "situation": "세계에서 가장 긴 야외 에스컬레이터를 탄다",
+      "npcDialog": "Central Escalator is 800 meters long! It goes through SoHo's best restaurants and bars. Morning goes down, afternoon goes up!",
+      "npcDialogKo": "센트럴 에스컬레이터는 800미터 길이예요! 소호 최고의 식당과 바를 지나요. 아침엔 내려가고, 오후엔 올라가요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "World's longest escalator? So cool!", "correct": true},
+          {"text": "Perfect way to explore SoHo!", "correct": true},
+          {"text": "Just an escalator, nothing special.", "correct": false},
+          {"text": "I'd rather walk.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_013",
+      "category": "food",
+      "day": 4,
+      "location": "로스트 구스 레스토랑",
+      "situation": "홍콩식 로스트 미트를 먹는다",
+      "npcDialog": "Our roast goose is famous! Char siu too - sweet BBQ pork. Get the three treasure rice - goose, pork, duck on rice!",
+      "npcDialogKo": "저희 로스트 구스가 유명해요! 차슈도요 - 달콤한 BBQ 돼지고기. 삼보밥 드세요 - 거위, 돼지, 오리를 밥 위에!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Three meats on rice? Count me in!", "correct": true},
+          {"text": "I've heard Hong Kong roast goose is the best.", "correct": true},
+          {"text": "Too much meat for me.", "correct": false},
+          {"text": "I don't eat goose.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_014",
+      "category": "culture",
+      "day": 5,
+      "location": "PMQ",
+      "situation": "옛 경찰 숙소가 변신한 크리에이티브 허브를 방문한다",
+      "npcDialog": "PMQ was police married quarters! Now it's full of local designers and artists. Great for unique Hong Kong souvenirs!",
+      "npcDialogKo": "PMQ는 경찰 기혼자 숙소였어요! 지금은 로컬 디자이너와 예술가로 가득해요. 독특한 홍콩 기념품 사기 좋아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Local designers? Perfect for unique gifts!", "correct": true},
+          {"text": "I love buildings with history.", "correct": true},
+          {"text": "Designer stuff is too expensive.", "correct": false},
+          {"text": "I prefer regular shopping malls.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_015",
+      "category": "nature",
+      "day": 5,
+      "location": "레펄스 베이",
+      "situation": "홍콩의 아름다운 해변을 방문한다",
+      "npcDialog": "Repulse Bay is Hong Kong's best beach! The Tin Hau temple has huge statues. Only 20 minutes from Central by bus!",
+      "npcDialogKo": "레펄스 베이는 홍콩 최고의 해변이에요! 틴하우 사원에 거대한 동상이 있어요. 센트럴에서 버스로 20분이면 와요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "A beach so close to the city? Perfect!", "correct": true},
+          {"text": "I'd love to see those temple statues.", "correct": true},
+          {"text": "Hong Kong has beaches?", "correct": false},
+          {"text": "I don't like sand.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_016",
+      "category": "shopping",
+      "day": 3,
+      "location": "하버 시티",
+      "situation": "홍콩 최대 쇼핑몰을 방문한다",
+      "npcDialog": "Harbour City is Hong Kong's largest mall! 700 shops across 5 zones. The harbor view restaurants are stunning at sunset!",
+      "npcDialogKo": "하버 시티는 홍콩 최대 쇼핑몰이에요! 5개 구역에 700개 상점. 항구 뷰 레스토랑 석양이 끝내줘요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "700 shops? I could spend days here!", "correct": true},
+          {"text": "Sunset dinner with harbor views sounds romantic.", "correct": true},
+          {"text": "Malls are all the same.", "correct": false},
+          {"text": "Too overwhelming.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_017",
+      "category": "food",
+      "day": 2,
+      "location": "에그 와플 가게",
+      "situation": "홍콩 명물 에그 와플을 먹는다",
+      "npcDialog": "Egg waffles were invented in Hong Kong! Crispy outside, soft inside. Original flavor or with ice cream and toppings?",
+      "npcDialogKo": "에그 와플은 홍콩에서 시작됐어요! 밖은 바삭, 안은 부드러워요. 오리지널 아님 아이스크림에 토핑 올릴까요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Ice cream and toppings, please!", "correct": true},
+          {"text": "I want to try the original first.", "correct": true},
+          {"text": "Waffles are just dessert.", "correct": false},
+          {"text": "Too many calories.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_018",
+      "category": "transport",
+      "day": 2,
+      "location": "홍콩 트램",
+      "situation": "더블데커 트램을 타고 도시를 구경한다",
+      "npcDialog": "Hong Kong trams are called 'Ding Ding' for the bell sound! Only $3 for any distance. Upper deck front seats are best for photos!",
+      "npcDialogKo": "홍콩 트램은 종소리 때문에 '딩딩'이라 불려요! 어디든 3달러. 2층 맨 앞자리가 사진 찍기 좋아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "$3 for a scenic city tour? Amazing!", "correct": true},
+          {"text": "I'll grab a front seat upstairs!", "correct": true},
+          {"text": "Trams are too slow.", "correct": false},
+          {"text": "I prefer the metro.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_019",
+      "category": "local",
+      "day": 4,
+      "location": "스탠리 마켓",
+      "situation": "해변가 마을 마켓을 구경한다",
+      "npcDialog": "Stanley Market is more relaxed than city markets! Beachside dining, colonial buildings. Great for a half-day escape from the city!",
+      "npcDialogKo": "스탠리 마켓은 시내 마켓보다 여유로워요! 해변가 식당, 식민지 시대 건물. 반나절 도시 탈출로 좋아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "A seaside escape sounds perfect.", "correct": true},
+          {"text": "Colonial architecture interests me.", "correct": true},
+          {"text": "Markets are all the same.", "correct": false},
+          {"text": "It's too far from Central.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_HKG_020",
+      "category": "food",
+      "day": 5,
+      "location": "미슐랭 스타 길거리 음식",
+      "situation": "미슐랭 스타를 받은 저렴한 식당에서 식사한다",
+      "npcDialog": "Tim Ho Wan is the world's cheapest Michelin star! Our pork buns are legendary. Line up early - locals know the value!",
+      "npcDialogKo": "팀호완은 세계에서 가장 저렴한 미슐랭 스타예요! 돼지고기 번이 전설이에요. 일찍 줄 서세요 - 현지인들이 가치를 알아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Michelin star for this price? Incredible!", "correct": true},
+          {"text": "The pork buns look amazing!", "correct": true},
+          {"text": "I don't wait in lines.", "correct": false},
+          {"text": "Cheap Michelin can't be that good.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "osaka",
+  "cityName": "오사카",
+  "country": "일본",
+  "description": "먹거리의 천국, 활기찬 상인의 도시",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_OSA_001",
+      "category": "food",
+      "day": 2,
+      "location": "도톤보리",
+      "situation": "오사카의 대표 음식 거리를 탐험한다",
+      "npcDialog": "Dotonbori is Osaka's kitchen! Try takoyaki here - the octopus balls are freshly made. The Glico running man sign is perfect for photos!",
+      "npcDialogKo": "도톤보리는 오사카의 부엌이에요! 타코야키 드세요 - 문어볼 갓 만들어요. 글리코 러닝맨 사진 찍기 좋아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I've always wanted to try authentic takoyaki!", "correct": true},
+          {"text": "The neon signs are incredible!", "correct": true},
+          {"text": "Street food is not hygienic.", "correct": false},
+          {"text": "I don't eat octopus.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_002",
+      "category": "landmark",
+      "day": 3,
+      "location": "오사카 성",
+      "situation": "오사카의 상징인 성을 방문한다",
+      "npcDialog": "Osaka Castle was built by Hideyoshi in 1583! The view from the top floor is amazing. Cherry blossoms in spring are spectacular here.",
+      "npcDialogKo": "오사카 성은 1583년 히데요시가 지었어요! 맨 위층 전망이 끝내줘요. 봄 벚꽃이 장관이에요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "The castle looks majestic!", "correct": true},
+          {"text": "Is the inside original or reconstructed?", "correct": true},
+          {"text": "Japanese castles look all the same.", "correct": false},
+          {"text": "I'll just see it from outside.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_003",
+      "category": "food",
+      "day": 2,
+      "location": "오코노미야키 가게",
+      "situation": "오사카식 오코노미야키를 먹는다",
+      "npcDialog": "Osaka-style okonomiyaki is mixed all together! We cook it on the teppan in front of you. Want pork, seafood, or mixed?",
+      "npcDialogKo": "오사카식 오코노미야키는 다 섞어요! 앞에서 철판에 구워드려요. 돼지고기, 해산물, 믹스 중에 뭐로 하실래요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Mixed sounds perfect!", "correct": true},
+          {"text": "I love watching it being cooked!", "correct": true},
+          {"text": "I can make pancakes at home.", "correct": false},
+          {"text": "This looks too greasy.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_004",
+      "category": "shopping",
+      "day": 3,
+      "location": "신사이바시",
+      "situation": "오사카의 쇼핑 거리를 구경한다",
+      "npcDialog": "Shinsaibashi is Osaka's shopping heart! From luxury brands to 100 yen shops. The covered arcade goes on for kilometers!",
+      "npcDialogKo": "신사이바시는 오사카 쇼핑의 심장이에요! 명품부터 100엔샵까지. 아케이드가 몇 킬로나 이어져요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "A kilometer-long arcade? Amazing!", "correct": true},
+          {"text": "I love that it's covered for any weather.", "correct": true},
+          {"text": "Shopping streets bore me.", "correct": false},
+          {"text": "I don't need to shop.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_005",
+      "category": "entertainment",
+      "day": 4,
+      "location": "유니버설 스튜디오 재팬",
+      "situation": "테마파크에서 하루를 보낸다",
+      "npcDialog": "USJ has the only Super Nintendo World! Mario Kart ride is incredible. Get Express Pass for shorter waits!",
+      "npcDialogKo": "USJ에만 슈퍼 닌텐도 월드가 있어요! 마리오카트 놀이기구 끝내줘요. 익스프레스 패스로 대기 줄이세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Super Nintendo World! I'm so excited!", "correct": true},
+          {"text": "How long is the wait for Mario Kart?", "correct": true},
+          {"text": "Theme parks are for kids.", "correct": false},
+          {"text": "Express passes are too expensive.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_006",
+      "category": "local",
+      "day": 3,
+      "location": "신세카이",
+      "situation": "레트로한 분위기의 동네를 탐험한다",
+      "npcDialog": "Shinsekai means 'New World' - it's actually the oldest entertainment district! Try kushikatsu here, but never double dip the sauce!",
+      "npcDialogKo": "신세카이는 '새로운 세계'란 뜻 - 사실 가장 오래된 유흥가예요! 쿠시카츠 드세요, 근데 소스에 두 번 찍으면 안 돼요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "No double dipping - got it!", "correct": true},
+          {"text": "The retro atmosphere is charming.", "correct": true},
+          {"text": "This area looks old and run-down.", "correct": false},
+          {"text": "I don't like fried food.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_007",
+      "category": "food",
+      "day": 4,
+      "location": "쿠로몬 시장",
+      "situation": "오사카의 주방이라 불리는 시장을 방문한다",
+      "npcDialog": "Kuromon is Osaka's Kitchen! Fresh sashimi, grilled seafood, wagyu beef on stick. Eat as you walk - it's the local style!",
+      "npcDialogKo": "쿠로몬은 오사카의 부엌이에요! 신선한 회, 구이 해산물, 와규 꼬치. 걸으면서 드세요 - 현지 스타일이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Wagyu on a stick? I have to try that!", "correct": true},
+          {"text": "Fresh sashimi right at the market!", "correct": true},
+          {"text": "Eating while walking is rude.", "correct": false},
+          {"text": "Markets are too crowded.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_008",
+      "category": "culture",
+      "day": 5,
+      "location": "난바 그랜드 가게츠",
+      "situation": "오사카 코미디 쇼를 관람한다",
+      "npcDialog": "Osaka is Japan's comedy capital! Manzai double-act comedy started here. Even if you don't understand, the energy is infectious!",
+      "npcDialogKo": "오사카는 일본 코미디의 수도예요! 만자이 듀오 코미디가 여기서 시작됐어요. 못 알아들어도 에너지가 전염돼요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Comedy transcends language barriers!", "correct": true},
+          {"text": "I'd love to experience Osaka's famous humor.", "correct": true},
+          {"text": "I won't understand Japanese comedy.", "correct": false},
+          {"text": "Comedy shows are boring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_009",
+      "category": "nature",
+      "day": 5,
+      "location": "오사카 수족관 카이유칸",
+      "situation": "세계 최대급 수족관을 관람한다",
+      "npcDialog": "Kaiyukan is one of the world's largest aquariums! The whale shark tank is 9 meters deep. Touch the rays and sharks in the touch pool!",
+      "npcDialogKo": "카이유칸은 세계 최대급 수족관이에요! 고래상어 탱크가 9미터 깊이예요. 터치풀에서 가오리랑 상어 만져보세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I can touch sharks? That's amazing!", "correct": true},
+          {"text": "Whale sharks are so majestic.", "correct": true},
+          {"text": "Aquariums are sad for the animals.", "correct": false},
+          {"text": "I've seen enough fish.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_010",
+      "category": "nightlife",
+      "day": 4,
+      "location": "우메다 스카이 빌딩",
+      "situation": "공중 정원 전망대에서 야경을 본다",
+      "npcDialog": "The Floating Garden is 170 meters high! The escalator going up is thrilling. Night views are especially romantic!",
+      "npcDialogKo": "공중 정원은 170미터 높이예요! 올라가는 에스컬레이터가 스릴 있어요. 야경이 특히 로맨틱해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The view must be incredible at night!", "correct": true},
+          {"text": "That escalator looks exciting!", "correct": true},
+          {"text": "I'm afraid of heights.", "correct": false},
+          {"text": "City views are all the same.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_011",
+      "category": "food",
+      "day": 3,
+      "location": "이카야키 가게",
+      "situation": "오사카 명물 오징어 구이를 먹는다",
+      "npcDialog": "Ikayaki is Osaka's hidden gem! Whole squid pressed and grilled. The sauce is sweet and savory - so addictive!",
+      "npcDialogKo": "이카야키는 오사카 숨은 명물이에요! 오징어를 통째로 눌러 구워요. 소스가 달콤 짭짤해서 중독돼요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Pressed squid sounds unique!", "correct": true},
+          {"text": "I love trying hidden local foods!", "correct": true},
+          {"text": "Squid is too chewy.", "correct": false},
+          {"text": "I prefer familiar foods.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_012",
+      "category": "transport",
+      "day": 2,
+      "location": "오사카 지하철",
+      "situation": "지하철로 시내를 이동한다",
+      "npcDialog": "Get the Osaka Visitors Pass! Unlimited subway and bus plus free entry to attractions. One day or two day options available.",
+      "npcDialogKo": "오사카 비지터 패스 사세요! 지하철 버스 무제한에 관광지 무료 입장. 1일권 2일권 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Free attractions included? Great value!", "correct": true},
+          {"text": "Which attractions are included?", "correct": true},
+          {"text": "I prefer taking taxis.", "correct": false},
+          {"text": "The subway is confusing.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_013",
+      "category": "local",
+      "day": 4,
+      "location": "나라 공원 (당일치기)",
+      "situation": "사슴 공원으로 당일 여행을 간다",
+      "npcDialog": "Nara is only 45 minutes away! Over 1,000 sacred deer roam free. Buy shika senbei - deer cookies - they'll bow for treats!",
+      "npcDialogKo": "나라는 45분 거리예요! 1,000마리 넘는 신성한 사슴이 자유롭게 다녀요. 시카 센베이 사세요 - 간식 달라고 절해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Deer that bow? I have to see this!", "correct": true},
+          {"text": "45 minutes is perfect for a day trip.", "correct": true},
+          {"text": "Wild animals are dangerous.", "correct": false},
+          {"text": "I don't want to leave Osaka.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_014",
+      "category": "food",
+      "day": 5,
+      "location": "라멘 가게",
+      "situation": "오사카 스타일 라멘을 먹는다",
+      "npcDialog": "Osaka ramen uses soy sauce base - different from Kyushu's tonkotsu! Order from the ticket machine. Extra noodles? Press 'kaedama'!",
+      "npcDialogKo": "오사카 라멘은 간장 베이스 - 규슈 돈코츠랑 달라요! 티켓 기계로 주문하세요. 면 추가는 '카에다마' 버튼!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I love the ticket machine system!", "correct": true},
+          {"text": "What toppings do you recommend?", "correct": true},
+          {"text": "Ticket machines are confusing.", "correct": false},
+          {"text": "Ramen is just instant noodles.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_015",
+      "category": "shopping",
+      "day": 5,
+      "location": "덴덴타운",
+      "situation": "오사카의 전자제품 거리를 구경한다",
+      "npcDialog": "Den Den Town is Osaka's Akihabara! Electronics, anime goods, retro games. Maid cafes too if you're curious!",
+      "npcDialogKo": "덴덴타운은 오사카의 아키하바라예요! 전자제품, 애니메 굿즈, 레트로 게임. 메이드 카페도 있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Retro games? I have to look around!", "correct": true},
+          {"text": "Is it different from Akihabara?", "correct": true},
+          {"text": "I'm not into anime.", "correct": false},
+          {"text": "Electronics are cheaper online.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_016",
+      "category": "culture",
+      "day": 3,
+      "location": "스미요시 대사",
+      "situation": "오사카에서 가장 오래된 신사를 방문한다",
+      "npcDialog": "Sumiyoshi Taisha is from 211 AD! The Taiko bridge is said to bring good fortune. Pull a fortune slip to see your luck!",
+      "npcDialogKo": "스미요시 대사는 서기 211년 것이에요! 타이코 다리를 건너면 행운이 온대요. 오미쿠지 뽑아서 운세 보세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Over 1,800 years old? Incredible!", "correct": true},
+          {"text": "I'll definitely pull a fortune slip!", "correct": true},
+          {"text": "Fortune slips are superstition.", "correct": false},
+          {"text": "I've seen enough shrines.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_017",
+      "category": "nightlife",
+      "day": 4,
+      "location": "호젠지 요코초",
+      "situation": "분위기 있는 골목에서 저녁을 즐긴다",
+      "npcDialog": "Hozenji Yokocho is old Osaka! Lantern-lit alley with traditional izakayas. Splash water on the moss-covered Buddha for good fortune!",
+      "npcDialogKo": "호젠지 요코초는 옛 오사카예요! 등불 켜진 골목에 전통 이자카야가 있어요. 이끼 낀 부처님께 물 뿌리면 행운이 와요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "This atmospheric alley is perfect!", "correct": true},
+          {"text": "I love traditional izakayas.", "correct": true},
+          {"text": "Dark alleys look sketchy.", "correct": false},
+          {"text": "I prefer modern restaurants.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_018",
+      "category": "food",
+      "day": 2,
+      "location": "551 호라이",
+      "situation": "오사카 명물 돼지고기 만두를 먹는다",
+      "npcDialog": "551 Horai butaman is legendary in Osaka! Juicy pork buns, steaming hot. People line up just for these - trust me, it's worth it!",
+      "npcDialogKo": "551 호라이 부타만은 오사카의 전설이에요! 육즙 가득 돼지고기 만두, 김이 펄펄. 줄 서서 사요 - 믿으세요, 그만한 가치 있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "If locals line up, it must be good!", "correct": true},
+          {"text": "Steaming pork buns sound delicious!", "correct": true},
+          {"text": "I don't like waiting in line.", "correct": false},
+          {"text": "It's just a pork bun.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_019",
+      "category": "entertainment",
+      "day": 5,
+      "location": "아베노 하루카스",
+      "situation": "일본에서 가장 높은 빌딩 전망대를 방문한다",
+      "npcDialog": "Abeno Harukas is Japan's tallest building! 300 meters high with 360-degree views. Clear days you can see all the way to Awaji Island!",
+      "npcDialogKo": "아베노 하루카스는 일본에서 가장 높은 빌딩이에요! 300미터 높이에서 360도 전망. 맑은 날엔 아와지섬까지 보여요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Japan's tallest building? Must see this!", "correct": true},
+          {"text": "360-degree views sound incredible.", "correct": true},
+          {"text": "I've been to taller buildings.", "correct": false},
+          {"text": "Observation decks are overrated.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_OSA_020",
+      "category": "local",
+      "day": 3,
+      "location": "텐노지 동물원",
+      "situation": "일본에서 세 번째로 오래된 동물원을 방문한다",
+      "npcDialog": "Tennoji Zoo is Japan's third oldest! Combined with Shitenno-ji Temple and the garden, it's a perfect afternoon. Pandas are the star attraction!",
+      "npcDialogKo": "텐노지 동물원은 일본에서 세 번째로 오래됐어요! 시텐노지 절과 정원이랑 같이 보면 오후가 완벽해요. 판다가 스타예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Pandas! I definitely want to see them!", "correct": true},
+          {"text": "Temple and zoo together sounds great.", "correct": true},
+          {"text": "Zoos are unethical.", "correct": false},
+          {"text": "I've seen enough zoos.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

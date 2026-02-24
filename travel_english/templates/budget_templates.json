@@ -1,0 +1,747 @@
+{
+  "templateType": "budget",
+  "description": "예산별로 명확히 구분되는 숙소/식사/교통 상황",
+  "templates": {
+    "budget": {
+      "name": "최저가",
+      "description": "저가항공, 호스텔, 길거리음식",
+      "sceneCount": 15,
+      "scenes": [
+        {
+          "id": "B_BUD_001",
+          "category": "accommodation",
+          "location": "호스텔 프론트",
+          "situation": "호스텔 도미토리 체크인",
+          "npcDialog": "Welcome! You booked a 6-bed dorm, right? Here's your locker key.",
+          "npcDialogKo": "환영합니다! 6인실 도미토리 예약하셨죠? 여기 락커 키입니다.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, that's correct. Where is my bed?", "correct": true},
+              {"text": "Thanks! Which bed is mine?", "correct": true},
+              {"text": "I want a private room now.", "correct": false},
+              {"text": "6 people? That's too many.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_BUD_002",
+          "category": "accommodation",
+          "location": "호스텔",
+          "situation": "공용 주방 사용법을 물어본다",
+          "npcDialog": "The shared kitchen is on the first floor. Do you have any questions?",
+          "npcDialogKo": "공용 주방은 1층에 있어요. 질문 있으신가요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Can I store food in the fridge?", "correct": true},
+              {"text": "What time does the kitchen close?", "correct": true},
+              {"text": "Cook for me please.", "correct": false},
+              {"text": "I don't cook.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_BUD_003",
+          "category": "accommodation",
+          "location": "호스텔",
+          "situation": "공용 화장실/샤워실 위치를 물어본다",
+          "npcDialog": "Is this your first time at a hostel?",
+          "npcDialogKo": "호스텔은 처음이세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, where are the shared bathrooms?", "correct": true},
+              {"text": "Where can I take a shower?", "correct": true},
+              {"text": "I need a private bathroom.", "correct": false},
+              {"text": "Hostels are dirty.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_BUD_004",
+          "category": "transport",
+          "location": "저가항공 체크인",
+          "situation": "수하물 추가 비용을 물어본다",
+          "npcDialog": "Your ticket includes only cabin baggage. Do you have checked luggage?",
+          "npcDialogKo": "티켓에는 기내 수하물만 포함되어 있어요. 위탁 수하물 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "How much extra for checked baggage?", "correct": true},
+              {"text": "I only have carry-on, so I'm fine.", "correct": true},
+              {"text": "That's a rip-off!", "correct": false},
+              {"text": "I refuse to pay extra.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_BUD_005",
+          "category": "food",
+          "location": "길거리 푸드트럭",
+          "situation": "푸드트럭에서 음식 주문",
+          "npcDialog": "What can I get for you?",
+          "npcDialogKo": "뭘 드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "One kebab, please. How much is it?", "correct": true},
+              {"text": "What's the cheapest thing on the menu?", "correct": true},
+              {"text": "Is this food safe to eat?", "correct": false},
+              {"text": "This looks unhealthy.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_BUD_006",
+          "category": "food",
+          "location": "패스트푸드점",
+          "situation": "패스트푸드 세트 주문",
+          "npcDialog": "Welcome! Would you like a meal or just a sandwich?",
+          "npcDialogKo": "환영합니다! 세트로 드릴까요 샌드위치만 드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Just the burger, no combo.", "correct": true},
+              {"text": "How much is the value meal?", "correct": true},
+              {"text": "Make it free.", "correct": false},
+              {"text": "Fast food is terrible.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_BUD_007",
+          "category": "shopping",
+          "location": "편의점",
+          "situation": "편의점에서 간편식 구매",
+          "npcDialog": "Will that be all?",
+          "npcDialogKo": "이게 전부인가요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, and can you heat this up for me?", "correct": true},
+              {"text": "Do you have any meal deals?", "correct": true},
+              {"text": "This is too expensive for a convenience store.", "correct": false},
+              {"text": "I want restaurant food.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_BUD_008",
+          "category": "shopping",
+          "location": "야시장",
+          "situation": "야시장에서 흥정하기",
+          "npcDialog": "This souvenir is 20 euros.",
+          "npcDialogKo": "이 기념품은 20유로예요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Can you give me a discount? How about 15?", "correct": true},
+              {"text": "That's too expensive. 10 euros?", "correct": true},
+              {"text": "Just give it to me for free.", "correct": false},
+              {"text": "I'll steal it then.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_BUD_009",
+          "category": "transport",
+          "location": "버스 정류장",
+          "situation": "시내버스로 이동하기",
+          "npcDialog": "Do you need help with the bus?",
+          "npcDialogKo": "버스 도움이 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Which bus goes to the old town?", "correct": true},
+              {"text": "How much is the bus fare?", "correct": true},
+              {"text": "Buses are for poor people.", "correct": false},
+              {"text": "Call me a taxi instead.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_BUD_010",
+          "category": "transport",
+          "location": "거리",
+          "situation": "걸어서 목적지 찾기",
+          "npcDialog": "Are you looking for something?",
+          "npcDialogKo": "뭔가 찾고 계세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Is the museum within walking distance?", "correct": true},
+              {"text": "How long does it take to walk there?", "correct": true},
+              {"text": "Walking is for losers.", "correct": false},
+              {"text": "Carry me there.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_BUD_011",
+          "category": "activity",
+          "location": "관광안내소",
+          "situation": "무료 워킹투어 참가 신청",
+          "npcDialog": "We have a free walking tour starting at 10 AM. Interested?",
+          "npcDialogKo": "오전 10시에 무료 워킹투어가 있어요. 관심 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! How long is the tour?", "correct": true},
+              {"text": "Great! Where does it start?", "correct": true},
+              {"text": "If it's free, it's probably bad.", "correct": false},
+              {"text": "I want a private tour.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_BUD_012",
+          "category": "food",
+          "location": "호스텔 주방",
+          "situation": "직접 요리하기 위해 재료 구매",
+          "npcDialog": "Cooking tonight? There's a supermarket around the corner.",
+          "npcDialogKo": "오늘 저녁 요리하세요? 코너 돌면 슈퍼마켓 있어요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Great! Do they have fresh vegetables?", "correct": true},
+              {"text": "Perfect, I'll cook some pasta.", "correct": true},
+              {"text": "I can't cook.", "correct": false},
+              {"text": "Cooking is a waste of time.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_BUD_013",
+          "category": "activity",
+          "location": "박물관",
+          "situation": "무료 입장일 확인",
+          "npcDialog": "Regular admission is 15 euros.",
+          "npcDialogKo": "일반 입장료는 15유로입니다.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Do you have any free admission days?", "correct": true},
+              {"text": "Is there a student discount?", "correct": true},
+              {"text": "That's too expensive, forget it.", "correct": false},
+              {"text": "Museums should be free.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_BUD_014",
+          "category": "transport",
+          "location": "기차역",
+          "situation": "역 락커에 짐 보관",
+          "npcDialog": "Looking for luggage storage?",
+          "npcDialogKo": "짐 보관 찾으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, how much for a small locker?", "correct": true},
+              {"text": "Where are the cheapest lockers?", "correct": true},
+              {"text": "I'll just leave it on the floor.", "correct": false},
+              {"text": "Guard my bags for me.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_BUD_015",
+          "category": "utility",
+          "location": "카페",
+          "situation": "무료 와이파이 사용",
+          "npcDialog": "Can I help you with anything?",
+          "npcDialogKo": "도움이 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Do you have free WiFi?", "correct": true},
+              {"text": "What's the WiFi password?", "correct": true},
+              {"text": "I just want WiFi, no food.", "correct": false},
+              {"text": "Your WiFi is too slow.", "correct": false}
+            ]
+          }
+        }
+      ]
+    },
+    "economy": {
+      "name": "절감형",
+      "description": "일반항공, 게스트하우스, 로컬식당",
+      "sceneCount": 15,
+      "scenes": [
+        {
+          "id": "B_ECO_001",
+          "category": "accommodation",
+          "location": "게스트하우스 프론트",
+          "situation": "게스트하우스 체크인",
+          "npcDialog": "Welcome! You have a private room with shared bathroom. Breakfast is included!",
+          "npcDialogKo": "환영합니다! 공용 화장실이 있는 개인실이에요. 조식 포함이에요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Great! What time is breakfast served?", "correct": true},
+              {"text": "Perfect, can I see the room first?", "correct": true},
+              {"text": "I need an ensuite bathroom.", "correct": false},
+              {"text": "This isn't a real hotel.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_ECO_002",
+          "category": "food",
+          "location": "B&B 식당",
+          "situation": "조식 뷔페 이용",
+          "npcDialog": "Good morning! Help yourself to the breakfast buffet.",
+          "npcDialogKo": "좋은 아침이에요! 조식 뷔페 마음껏 드세요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Thank you! Is there fresh juice?", "correct": true},
+              {"text": "Great, what time does breakfast end?", "correct": true},
+              {"text": "This doesn't look like much.", "correct": false},
+              {"text": "I expected more variety.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_ECO_003",
+          "category": "transport",
+          "location": "항공사 체크인",
+          "situation": "일반 항공사 체크인",
+          "npcDialog": "Your ticket includes one checked bag. Would you like to check any luggage?",
+          "npcDialogKo": "티켓에 위탁 수하물 1개가 포함되어 있어요. 수하물 부치시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, I have one bag to check.", "correct": true},
+              {"text": "Perfect, here's my suitcase.", "correct": true},
+              {"text": "Can I check three bags for free?", "correct": false},
+              {"text": "I want business class upgrade.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_ECO_004",
+          "category": "food",
+          "location": "로컬 식당",
+          "situation": "현지인 맛집에서 주문",
+          "npcDialog": "This is a local favorite. Would you like to try our special?",
+          "npcDialogKo": "현지인들이 좋아하는 곳이에요. 저희 스페셜 드셔보실래요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, I'd love to try the local specialty!", "correct": true},
+              {"text": "What do you recommend?", "correct": true},
+              {"text": "Do you have American food?", "correct": false},
+              {"text": "This menu is too strange.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_ECO_005",
+          "category": "food",
+          "location": "카페",
+          "situation": "카페에서 커피와 디저트 주문",
+          "npcDialog": "What can I get started for you?",
+          "npcDialogKo": "뭘로 드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "A latte and a slice of apple pie, please.", "correct": true},
+              {"text": "What pastries do you have today?", "correct": true},
+              {"text": "Why is coffee so expensive here?", "correct": false},
+              {"text": "Just give me free samples.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_ECO_006",
+          "category": "shopping",
+          "location": "대형마트",
+          "situation": "슈퍼마켓에서 장보기",
+          "npcDialog": "Looking for something specific?",
+          "npcDialogKo": "특별히 찾으시는 거 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Where can I find local snacks?", "correct": true},
+              {"text": "Do you have any lunch deals?", "correct": true},
+              {"text": "Your store is too big.", "correct": false},
+              {"text": "Everything is expensive.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_ECO_007",
+          "category": "transport",
+          "location": "지하철역",
+          "situation": "1일권 구매",
+          "npcDialog": "How can I help you with tickets?",
+          "npcDialogKo": "표 구매 도와드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'd like a day pass, please.", "correct": true},
+              {"text": "How much is an unlimited daily ticket?", "correct": true},
+              {"text": "Can I ride for free?", "correct": false},
+              {"text": "Tickets are a waste of money.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_ECO_008",
+          "category": "transport",
+          "location": "트램 정류장",
+          "situation": "트램 이용하기",
+          "npcDialog": "Need help with the tram system?",
+          "npcDialogKo": "트램 이용 도움 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Which line goes to the museum district?", "correct": true},
+              {"text": "Where do I validate my ticket?", "correct": true},
+              {"text": "Trams are too confusing.", "correct": false},
+              {"text": "Just call me a taxi.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_ECO_009",
+          "category": "activity",
+          "location": "투어 회사",
+          "situation": "반일 그룹투어 예약",
+          "npcDialog": "We have a half-day group tour for 35 euros. Interested?",
+          "npcDialogKo": "35유로에 반일 그룹투어가 있어요. 관심 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "What's included in the tour?", "correct": true},
+              {"text": "How big is the group usually?", "correct": true},
+              {"text": "That's too expensive for a group.", "correct": false},
+              {"text": "I want a private tour for that price.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_ECO_010",
+          "category": "activity",
+          "location": "박물관",
+          "situation": "학생/시니어 할인 적용",
+          "npcDialog": "Are you eligible for any discounts?",
+          "npcDialogKo": "혹시 할인 대상이세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, I'm a student. Here's my ID.", "correct": true},
+              {"text": "Do you offer any discounts?", "correct": true},
+              {"text": "I should get in for free.", "correct": false},
+              {"text": "Discounts are for poor people.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_ECO_011",
+          "category": "transport",
+          "location": "공항",
+          "situation": "공유 셔틀 이용",
+          "npcDialog": "Airport shuttle to the city center? It's 15 euros per person.",
+          "npcDialogKo": "시내로 가는 공항 셔틀요? 1인당 15유로예요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Sure, when is the next one leaving?", "correct": true},
+              {"text": "How long does it take to the center?", "correct": true},
+              {"text": "That's too expensive for a shared ride.", "correct": false},
+              {"text": "I demand a private shuttle.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_ECO_012",
+          "category": "shopping",
+          "location": "현지 시장",
+          "situation": "기념품과 특산품 구매",
+          "npcDialog": "This is handmade by local artisans. 25 euros.",
+          "npcDialogKo": "현지 장인이 수제로 만든 거예요. 25유로입니다.",
+          "playerResponse": {
+            "choices": [
+              {"text": "It's beautiful! Can I see more designs?", "correct": true},
+              {"text": "Does it come with any certificate of authenticity?", "correct": true},
+              {"text": "I can buy this cheaper online.", "correct": false},
+              {"text": "Handmade means nothing.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_ECO_013",
+          "category": "utility",
+          "location": "ATM",
+          "situation": "현지 ATM에서 현금 인출",
+          "npcDialog": "Do you need help with the ATM?",
+          "npcDialogKo": "ATM 도움 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Can I use my foreign card here?", "correct": true},
+              {"text": "Is there a fee for international cards?", "correct": true},
+              {"text": "Why are there fees?", "correct": false},
+              {"text": "Give me money for free.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_ECO_014",
+          "category": "activity",
+          "location": "관광안내소",
+          "situation": "시티패스 구매",
+          "npcDialog": "The city pass includes unlimited transport and museum entries. 60 euros for 3 days.",
+          "npcDialogKo": "시티패스에 무제한 교통과 박물관 입장이 포함되어 있어요. 3일에 60유로입니다.",
+          "playerResponse": {
+            "choices": [
+              {"text": "That sounds like a good deal. I'll take one.", "correct": true},
+              {"text": "Which museums are included?", "correct": true},
+              {"text": "60 euros is way too much.", "correct": false},
+              {"text": "I want everything for free.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_ECO_015",
+          "category": "transport",
+          "location": "자전거 대여소",
+          "situation": "공유 자전거 대여",
+          "npcDialog": "Would you like to rent a bike? It's 10 euros for the day.",
+          "npcDialogKo": "자전거 빌리시겠어요? 하루에 10유로예요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, please! Is a helmet included?", "correct": true},
+              {"text": "Do you have a city bike map?", "correct": true},
+              {"text": "Biking is too much effort.", "correct": false},
+              {"text": "I don't know how to ride.", "correct": false}
+            ]
+          }
+        }
+      ]
+    },
+    "normal": {
+      "name": "일반",
+      "description": "직항, 호텔, 레스토랑",
+      "sceneCount": 15,
+      "scenes": [
+        {
+          "id": "B_NOR_001",
+          "category": "accommodation",
+          "location": "호텔 프론트",
+          "situation": "호텔 체크인 및 업그레이드 문의",
+          "npcDialog": "Good evening! Your room is ready. Would you like an upgrade to a suite for 50 euros more?",
+          "npcDialogKo": "안녕하세요! 객실 준비되었습니다. 50유로 추가하시면 스위트룸으로 업그레이드 가능한데요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "That sounds nice. What does the suite include?", "correct": true},
+              {"text": "What's the difference between the rooms?", "correct": true},
+              {"text": "Give me the upgrade for free.", "correct": false},
+              {"text": "That's a rip-off.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_NOR_002",
+          "category": "accommodation",
+          "location": "호텔 컨시어지",
+          "situation": "컨시어지에게 레스토랑 추천 요청",
+          "npcDialog": "How may I assist you this evening?",
+          "npcDialogKo": "오늘 저녁 어떻게 도와드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Could you recommend a nice restaurant nearby?", "correct": true},
+              {"text": "Can you make a reservation for me?", "correct": true},
+              {"text": "Find me the cheapest place.", "correct": false},
+              {"text": "You should know what I want.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_NOR_003",
+          "category": "accommodation",
+          "location": "호텔 객실",
+          "situation": "룸서비스 주문",
+          "npcDialog": "Room service, how may I help you?",
+          "npcDialogKo": "룸서비스입니다, 어떻게 도와드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'd like to order breakfast for tomorrow morning.", "correct": true},
+              {"text": "Could I get a bottle of wine sent up?", "correct": true},
+              {"text": "Bring me everything on the menu.", "correct": false},
+              {"text": "Room service is too slow.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_NOR_004",
+          "category": "transport",
+          "location": "항공사 체크인",
+          "situation": "직항 비즈니스 체크인",
+          "npcDialog": "Welcome to business class check-in. May I see your passport?",
+          "npcDialogKo": "비즈니스 클래스 체크인에 오신 것을 환영합니다. 여권 보여주시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Here you go. Is the lounge open now?", "correct": true},
+              {"text": "Can I get priority boarding?", "correct": true},
+              {"text": "Where's my champagne?", "correct": false},
+              {"text": "Upgrade me to first class.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_NOR_005",
+          "category": "food",
+          "location": "레스토랑",
+          "situation": "파인다이닝 예약 확인",
+          "npcDialog": "Good evening. Do you have a reservation?",
+          "npcDialogKo": "안녕하세요. 예약하셨나요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, reservation for Kim at 7 PM.", "correct": true},
+              {"text": "I booked a table for two.", "correct": true},
+              {"text": "I don't need a reservation.", "correct": false},
+              {"text": "Just give me any table.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_NOR_006",
+          "category": "food",
+          "location": "레스토랑",
+          "situation": "코스 요리와 와인 주문",
+          "npcDialog": "Would you like to try our tasting menu with wine pairing?",
+          "npcDialogKo": "와인 페어링과 함께하는 테이스팅 메뉴 드셔보시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "That sounds wonderful. What wines are included?", "correct": true},
+              {"text": "Yes, please. Is there a vegetarian option?", "correct": true},
+              {"text": "Just bring me a burger.", "correct": false},
+              {"text": "Wine pairing is pretentious.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_NOR_007",
+          "category": "transport",
+          "location": "호텔 앞",
+          "situation": "택시/우버 호출",
+          "npcDialog": "Shall I call a taxi for you, or would you prefer to use the app?",
+          "npcDialogKo": "택시 불러드릴까요, 아니면 앱 사용하시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Please call a taxi. I'm going to the opera house.", "correct": true},
+              {"text": "I'll use the app. What's the address here?", "correct": true},
+              {"text": "Taxis are too expensive.", "correct": false},
+              {"text": "I'll walk... no, actually drive me.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_NOR_008",
+          "category": "activity",
+          "location": "투어 회사",
+          "situation": "프라이빗 투어 예약",
+          "npcDialog": "Would you like a private guide for your city tour?",
+          "npcDialogKo": "시티 투어에 개인 가이드 원하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, can the guide speak Korean?", "correct": true},
+              {"text": "How much is a private half-day tour?", "correct": true},
+              {"text": "Private tours are overpriced.", "correct": false},
+              {"text": "I can guide myself.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_NOR_009",
+          "category": "activity",
+          "location": "관광지",
+          "situation": "VIP 스킵더라인 입장",
+          "npcDialog": "The regular line is about 2 hours. Would you like skip-the-line tickets?",
+          "npcDialogKo": "일반 줄은 약 2시간 기다려야 해요. 줄 안서는 티켓 원하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, how much extra is it?", "correct": true},
+              {"text": "Definitely, I don't want to wait.", "correct": true},
+              {"text": "Waiting is fine.", "correct": false},
+              {"text": "I should get VIP for free.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_NOR_010",
+          "category": "activity",
+          "location": "스파",
+          "situation": "스파/마사지 예약",
+          "npcDialog": "Would you like to book a spa treatment?",
+          "npcDialogKo": "스파 트리트먼트 예약하시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, what massage options do you have?", "correct": true},
+              {"text": "I'd like a 60-minute deep tissue massage.", "correct": true},
+              {"text": "Spas are a waste of money.", "correct": false},
+              {"text": "Give me a free massage.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_NOR_011",
+          "category": "shopping",
+          "location": "백화점",
+          "situation": "면세 쇼핑 및 택스리펀",
+          "npcDialog": "Are you visiting from abroad? You may be eligible for tax refund.",
+          "npcDialogKo": "해외에서 오셨나요? 택스 리펀 받으실 수 있어요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, how do I get the tax refund?", "correct": true},
+              {"text": "Can you prepare the documents for me?", "correct": true},
+              {"text": "Tax refund is too complicated.", "correct": false},
+              {"text": "Just give me the discount now.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_NOR_012",
+          "category": "transport",
+          "location": "공항 라운지",
+          "situation": "공항 라운지 이용",
+          "npcDialog": "Welcome to the lounge. May I see your boarding pass?",
+          "npcDialogKo": "라운지에 오신 것을 환영합니다. 탑승권 보여주시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Here you go. Where are the showers?", "correct": true},
+              {"text": "Is there a quiet area to work?", "correct": true},
+              {"text": "This lounge looks cheap.", "correct": false},
+              {"text": "I deserve first class lounge.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_NOR_013",
+          "category": "transport",
+          "location": "렌터카 회사",
+          "situation": "렌터카 예약 및 보험",
+          "npcDialog": "Here's your rental car. Would you like additional insurance coverage?",
+          "npcDialogKo": "렌터카 여기 있습니다. 추가 보험 들으시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "What does the full coverage include?", "correct": true},
+              {"text": "Yes, I'd like the comprehensive insurance.", "correct": true},
+              {"text": "Insurance is a scam.", "correct": false},
+              {"text": "I never crash.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_NOR_014",
+          "category": "accommodation",
+          "location": "호텔",
+          "situation": "발렛 파킹",
+          "npcDialog": "Would you like valet parking for your vehicle?",
+          "npcDialogKo": "발렛 파킹 이용하시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, please. How much is it per day?", "correct": true},
+              {"text": "Sure, here are my keys.", "correct": true},
+              {"text": "Valet parking is for lazy people.", "correct": false},
+              {"text": "Park it for free.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "B_NOR_015",
+          "category": "utility",
+          "location": "공항",
+          "situation": "짐 배송 서비스 이용",
+          "npcDialog": "Would you like us to deliver your luggage directly to your hotel?",
+          "npcDialogKo": "수하물을 호텔로 직접 배송해드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "That would be great! How long does it take?", "correct": true},
+              {"text": "Yes, what time will it arrive?", "correct": true},
+              {"text": "I'll carry my own bags.", "correct": false},
+              {"text": "Why would I pay for that?", "correct": false}
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

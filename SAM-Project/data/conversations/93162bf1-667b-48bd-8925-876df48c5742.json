@@ -1,0 +1,14 @@
+{
+  "id": "93162bf1-667b-48bd-8925-876df48c5742",
+  "title": "New Chat",
+  "member_id": "han",
+  "created_at": "2026-02-12T10:21:36.795371",
+  "updated_at": "2026-02-12T10:21:38.823192",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hey Han! What are you up to?",
+      "timestamp": "2026-02-12T10:21:38.823192"
+    }
+  ]
+}

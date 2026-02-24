@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "miami",
+  "cityName": "마이애미",
+  "country": "미국",
+  "description": "해변과 나이트라이프의 도시, 라틴 문화가 숨쉬는 플로리다의 보석",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_MIA_001",
+      "category": "beach",
+      "day": 2,
+      "location": "사우스 비치",
+      "situation": "아르데코 건축물과 해변을 즐긴다",
+      "npcDialog": "South Beach is iconic! The Art Deco buildings are from the 1930s. Rent a bike to cruise Ocean Drive - it's the Miami experience!",
+      "npcDialogKo": "사우스 비치는 상징적이에요! 아르데코 건물은 1930년대 것이에요. 자전거 빌려서 오션 드라이브 달려요 - 마이애미 경험이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Biking along Ocean Drive sounds perfect!", "correct": true},
+          {"text": "The Art Deco architecture is beautiful.", "correct": true},
+          {"text": "Beaches are all the same.", "correct": false},
+          {"text": "Too hot for biking.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_002",
+      "category": "food",
+      "day": 2,
+      "location": "리틀 하바나",
+      "situation": "쿠바 음식과 문화를 체험한다",
+      "npcDialog": "Welcome to Little Havana! Try Cuban coffee - cortadito is strong! Our Cuban sandwich is authentic. Watch the domino players in the park!",
+      "npcDialogKo": "리틀 하바나에 오신 걸 환영해요! 쿠바 커피 드세요 - 코르타디토는 진해요! 쿠바 샌드위치가 정통이에요. 공원에서 도미노 하는 거 보세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I love strong coffee! Let me try cortadito.", "correct": true},
+          {"text": "The Cuban atmosphere is so vibrant!", "correct": true},
+          {"text": "I don't drink coffee.", "correct": false},
+          {"text": "This doesn't feel like America.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_003",
+      "category": "nightlife",
+      "day": 4,
+      "location": "윈우드",
+      "situation": "거리 예술과 트렌디한 바를 즐긴다",
+      "npcDialog": "Wynwood Walls has the best street art in the world! Over 50 murals by famous artists. The rooftop bars here have amazing sunset views!",
+      "npcDialogKo": "윈우드 월스는 세계 최고의 거리 예술이 있어요! 유명 작가 50개 넘는 벽화가 있어요. 루프탑 바 석양 전망이 끝내줘요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "World-class street art? I'm excited!", "correct": true},
+          {"text": "Sunset rooftop drinks sound perfect.", "correct": true},
+          {"text": "Graffiti is just vandalism.", "correct": false},
+          {"text": "I don't like trendy areas.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_004",
+      "category": "nature",
+      "day": 3,
+      "location": "에버글레이즈",
+      "situation": "악어 투어를 체험한다",
+      "npcDialog": "Everglades airboat tour is a must! You'll see alligators up close. Wear sunscreen - it's intense out there on the water!",
+      "npcDialogKo": "에버글레이즈 에어보트 투어는 필수예요! 악어를 가까이서 봐요. 선크림 바르세요 - 물 위에서 강렬해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Seeing alligators in the wild? Amazing!", "correct": true},
+          {"text": "Airboat sounds like an adventure!", "correct": true},
+          {"text": "Alligators are scary.", "correct": false},
+          {"text": "I prefer staying in the city.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_005",
+      "category": "shopping",
+      "day": 3,
+      "location": "디자인 디스트릭트",
+      "situation": "럭셔리 쇼핑과 갤러리를 구경한다",
+      "npcDialog": "Design District is luxury and art combined! All the big brands plus amazing galleries. The architecture is as impressive as the shops!",
+      "npcDialogKo": "디자인 디스트릭트는 럭셔리와 예술의 조합이에요! 큰 브랜드에 멋진 갤러리까지. 건축물이 매장만큼 인상적이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The architecture alone is worth seeing!", "correct": true},
+          {"text": "Art galleries and shopping together - perfect!", "correct": true},
+          {"text": "Luxury stores are intimidating.", "correct": false},
+          {"text": "I can't afford anything here.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_006",
+      "category": "food",
+      "day": 4,
+      "location": "해산물 레스토랑",
+      "situation": "신선한 플로리다 해산물을 먹는다",
+      "npcDialog": "Stone crab is Miami's specialty! Only available October to May. Key lime pie is the perfect ending - it's Florida's official pie!",
+      "npcDialogKo": "스톤 크랩이 마이애미 특산물이에요! 10월에서 5월만 돼요. 키라임 파이로 마무리 완벽 - 플로리다 공식 파이예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Stone crab season! I'm lucky to be here now.", "correct": true},
+          {"text": "Key lime pie is a must-try!", "correct": true},
+          {"text": "Crab is too expensive.", "correct": false},
+          {"text": "I don't like seafood.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_007",
+      "category": "beach",
+      "day": 5,
+      "location": "키 비스케인",
+      "situation": "한적한 섬 비치를 방문한다",
+      "npcDialog": "Key Biscayne is Miami's hidden gem! Crandon Park Beach is less crowded. Rent kayaks to explore the mangroves!",
+      "npcDialogKo": "키 비스케인은 마이애미 숨은 보석이에요! 크랜든 파크 비치가 덜 붐벼요. 카약 빌려서 맹그로브 탐험해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "A quiet beach escape sounds wonderful!", "correct": true},
+          {"text": "Kayaking through mangroves? Count me in!", "correct": true},
+          {"text": "I prefer the main beaches.", "correct": false},
+          {"text": "Islands are too remote.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_008",
+      "category": "culture",
+      "day": 3,
+      "location": "비스카야 박물관",
+      "situation": "이탈리아풍 역사적 저택을 관람한다",
+      "npcDialog": "Vizcaya is a stunning Italian Renaissance villa! Built in 1916 by industrialist James Deering. The gardens overlook Biscayne Bay - perfect for photos!",
+      "npcDialogKo": "비스카야는 멋진 이탈리아 르네상스 별장이에요! 1916년 사업가 제임스 디어링이 지었어요. 정원에서 비스케인 만이 보여요 - 사진 찍기 완벽!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Italian villa in Miami? Fascinating!", "correct": true},
+          {"text": "The bay views must be incredible.", "correct": true},
+          {"text": "Old houses bore me.", "correct": false},
+          {"text": "I don't care about history.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_009",
+      "category": "nightlife",
+      "day": 4,
+      "location": "오션 드라이브",
+      "situation": "마이애미 나이트라이프를 경험한다",
+      "npcDialog": "Ocean Drive comes alive at night! Neon lights, outdoor bars, people watching. Live Latin music everywhere - salsa your way down the strip!",
+      "npcDialogKo": "오션 드라이브가 밤에 살아나요! 네온 불빛, 야외 바, 사람 구경. 어디서나 라틴 음악 - 살사 추면서 거리 내려가세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Latin music and neon lights - so Miami!", "correct": true},
+          {"text": "I love the people-watching scene!", "correct": true},
+          {"text": "It's too loud and crowded.", "correct": false},
+          {"text": "I don't like nightlife.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_010",
+      "category": "local",
+      "day": 5,
+      "location": "코코넛 그로브",
+      "situation": "마이애미에서 가장 오래된 동네를 탐험한다",
+      "npcDialog": "Coconut Grove is Miami's oldest neighborhood! Bohemian vibes, waterfront dining, Cocowalk for shopping. Much more laid-back than South Beach!",
+      "npcDialogKo": "코코넛 그로브는 마이애미에서 가장 오래된 동네예요! 보헤미안 분위기, 워터프론트 식당, 코코워크 쇼핑. 사우스비치보다 훨씬 여유로워요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "A relaxed alternative to South Beach!", "correct": true},
+          {"text": "Waterfront dining sounds lovely.", "correct": true},
+          {"text": "Old neighborhoods aren't exciting.", "correct": false},
+          {"text": "I want the touristy experience.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_011",
+      "category": "food",
+      "day": 2,
+      "location": "콜롬비아 레스토랑",
+      "situation": "다양한 라틴 음식을 맛본다",
+      "npcDialog": "Miami is a Latin food paradise! Arepas from Venezuela, empanadas from Argentina, ceviche from Peru - all authentic here!",
+      "npcDialogKo": "마이애미는 라틴 음식 천국이에요! 베네수엘라 아레파, 아르헨티나 엠파나다, 페루 세비체 - 다 정통이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "So many Latin cuisines to explore!", "correct": true},
+          {"text": "I'd love to try authentic ceviche.", "correct": true},
+          {"text": "I only eat American food.", "correct": false},
+          {"text": "Latin food is too spicy.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_012",
+      "category": "beach",
+      "day": 3,
+      "location": "발 하버",
+      "situation": "럭셔리 비치 리조트 지역을 방문한다",
+      "npcDialog": "Bal Harbour is Miami's most exclusive beach! Designer shops, luxury hotels. The beach is pristine and much quieter than South Beach.",
+      "npcDialogKo": "발 하버는 마이애미에서 가장 독점적인 비치예요! 디자이너 숍, 럭셔리 호텔. 해변이 깨끗하고 사우스비치보다 훨씬 조용해요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "A quiet, pristine beach sounds perfect.", "correct": true},
+          {"text": "The upscale atmosphere is appealing.", "correct": true},
+          {"text": "Too fancy for me.", "correct": false},
+          {"text": "I prefer lively beaches.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_013",
+      "category": "culture",
+      "day": 5,
+      "location": "페레즈 아트 뮤지엄",
+      "situation": "현대 미술관을 관람한다",
+      "npcDialog": "PAMM has incredible contemporary art! The building by Herzog & de Meuron is a masterpiece. Waterfront terrace has stunning bay views!",
+      "npcDialogKo": "PAMM에는 놀라운 현대 미술이 있어요! 헤르조그 & 드 뫼롱의 건물이 걸작이에요. 워터프론트 테라스에서 만 전경이 멋져요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The building itself is art!", "correct": true},
+          {"text": "Contemporary art with bay views - perfect!", "correct": true},
+          {"text": "I don't understand modern art.", "correct": false},
+          {"text": "Museums are boring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_014",
+      "category": "transport",
+      "day": 2,
+      "location": "마이애미 비치 트롤리",
+      "situation": "무료 트롤리로 비치를 이동한다",
+      "npcDialog": "Miami Beach Trolley is free! Goes from South Beach to Mid Beach. Air conditioned - great escape from the heat while sightseeing!",
+      "npcDialogKo": "마이애미 비치 트롤리는 무료예요! 사우스비치에서 미드비치까지 가요. 에어컨 있어서 더위 피하면서 관광하기 좋아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Free and air conditioned? Perfect!", "correct": true},
+          {"text": "Great way to explore the beach areas.", "correct": true},
+          {"text": "I'd rather walk.", "correct": false},
+          {"text": "Public transit is confusing.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_015",
+      "category": "nature",
+      "day": 4,
+      "location": "마이애미 씨쿼리움",
+      "situation": "해양 동물원을 방문한다",
+      "npcDialog": "Miami Seaquarium has been here since 1955! Dolphin shows, sea lion encounters. The original Flipper was trained here!",
+      "npcDialogKo": "마이애미 씨쿼리움은 1955년부터 있었어요! 돌고래 쇼, 바다사자 만남. 오리지널 플리퍼가 여기서 훈련받았어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The original Flipper? That's classic!", "correct": true},
+          {"text": "Dolphin encounters sound amazing!", "correct": true},
+          {"text": "Marine parks are unethical.", "correct": false},
+          {"text": "I've seen enough aquariums.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_016",
+      "category": "local",
+      "day": 3,
+      "location": "리틀 하이티",
+      "situation": "아이티 문화 지역을 탐험한다",
+      "npcDialog": "Little Haiti is vibrant and authentic! Caribbean art, botanicas for voodoo supplies, amazing Creole food. The murals tell Haiti's story!",
+      "npcDialogKo": "리틀 하이티는 활기차고 정통이에요! 카리브 예술, 부두교 용품 보타니카, 놀라운 크레올 음식. 벽화가 아이티 이야기를 해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I love discovering authentic neighborhoods!", "correct": true},
+          {"text": "Caribbean art sounds colorful!", "correct": true},
+          {"text": "This area looks sketchy.", "correct": false},
+          {"text": "I prefer mainstream areas.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_017",
+      "category": "food",
+      "day": 5,
+      "location": "해변가 브런치",
+      "situation": "마이애미 스타일 브런치를 즐긴다",
+      "npcDialog": "Miami brunch is legendary! Bottomless mimosas, ocean views, Latin flair. Most places have DJ brunch on weekends - it's a party!",
+      "npcDialogKo": "마이애미 브런치는 전설이에요! 무제한 미모사, 바다 전망, 라틴 풍미. 주말에 DJ 브런치하는 곳 많아요 - 파티예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "DJ brunch sounds like Miami!", "correct": true},
+          {"text": "Bottomless mimosas by the ocean? Yes!", "correct": true},
+          {"text": "Brunch is overrated.", "correct": false},
+          {"text": "I don't drink in the morning.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_018",
+      "category": "nightlife",
+      "day": 5,
+      "location": "브릭켈",
+      "situation": "마이애미 금융지구의 루프탑 바를 방문한다",
+      "npcDialog": "Brickell has the best rooftop bars! Skyline views, craft cocktails, dressed-up crowd. Sugar at East Miami is unforgettable!",
+      "npcDialogKo": "브릭켈에 최고의 루프탑 바가 있어요! 스카이라인 전망, 크래프트 칵테일, 잘 차려입은 사람들. 이스트 마이애미 슈가가 잊을 수 없어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Rooftop cocktails with skyline views!", "correct": true},
+          {"text": "I love a dressed-up night out.", "correct": true},
+          {"text": "Fancy bars are too pretentious.", "correct": false},
+          {"text": "I prefer dive bars.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_019",
+      "category": "beach",
+      "day": 4,
+      "location": "루머스 파크 비치",
+      "situation": "로컬들이 사랑하는 비치를 방문한다",
+      "npcDialog": "Lummus Park is where locals and tourists mix! Beach volleyball, outdoor gyms, palm-lined paths. The people-watching is unbeatable!",
+      "npcDialogKo": "루머스 파크는 현지인과 관광객이 섞이는 곳이에요! 비치 발리볼, 야외 헬스장, 야자수 길. 사람 구경이 최고예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Beach volleyball sounds fun!", "correct": true},
+          {"text": "Perfect spot to experience local life.", "correct": true},
+          {"text": "Too many tourists.", "correct": false},
+          {"text": "I don't exercise on vacation.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_MIA_020",
+      "category": "shopping",
+      "day": 5,
+      "location": "링컨 로드",
+      "situation": "유명한 보행자 쇼핑 거리를 산책한다",
+      "npcDialog": "Lincoln Road is Miami's outdoor mall! Boutiques, restaurants, art galleries. Sunday farmers market has amazing local produce!",
+      "npcDialogKo": "링컨 로드는 마이애미 야외 쇼핑몰이에요! 부티크, 레스토랑, 아트 갤러리. 일요일 파머스 마켓에 현지 농산물이 끝내줘요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "An outdoor mall in perfect weather!", "correct": true},
+          {"text": "Sunday farmers market sounds lovely.", "correct": true},
+          {"text": "Outdoor malls are too hot.", "correct": false},
+          {"text": "I prefer regular malls.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

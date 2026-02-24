@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel English - 시나리오 통계</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: white;
+            padding: 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #e94560;
+            margin-bottom: 30px;
+        }
+        header h1 { font-size: 1.8em; color: #e94560; }
+        header p { color: #aaa; margin-top: 5px; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-card .number {
+            font-size: 2.5em;
+            color: #4ecca3;
+            font-weight: bold;
+        }
+        .stat-card .label { color: #aaa; margin-top: 5px; }
+
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            color: #4ecca3;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        th { color: #4ecca3; }
+        tr:hover { background: rgba(255,255,255,0.05); }
+
+        .category-bar {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+        }
+        .category-name {
+            width: 120px;
+            font-size: 0.9em;
+        }
+        .category-bar-fill {
+            height: 20px;
+            background: linear-gradient(90deg, #e94560, #ff6b6b);
+            border-radius: 10px;
+            margin-right: 10px;
+            min-width: 10px;
+        }
+        .category-count {
+            color: #4ecca3;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #4ecca3, #45b7aa);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .back-btn:hover { opacity: 0.9; }
+
+        .day-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            background: #e94560;
+            border-radius: 10px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 시나리오 통계</h1>
+            <p id="scenario-title">암스테르담 관광 시나리오</p>
+        </header>
+
+        <div class="stats-grid" id="stats-grid">
+            <div class="stat-card">
+                <div class="number" id="total-scenes">-</div>
+                <div class="label">총 Scene 수</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="total-days">-</div>
+                <div class="label">여행 일수</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="total-locations">-</div>
+                <div class="label">장소 수</div>
+            </div>
+            <div class="stat-card">
+                <div class="number" id="total-choices">-</div>
+                <div class="label">총 선택지</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📍 카테고리별 Scene 분포</h2>
+            <div id="category-chart"></div>
+        </div>
+
+        <div class="section">
+            <h2>📅 일자별 Scene 목록</h2>
+            <div id="day-list"></div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 전체 Scene 상세</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Day</th>
+                        <th>장소</th>
+                        <th>상황</th>
+                        <th>선택지</th>
+                    </tr>
+                </thead>
+                <tbody id="scene-table"></tbody>
+            </table>
+        </div>
+
+        <a href="/" class="back-btn">← 학습하러 가기</a>
+    </div>
+
+    <script>
+        async function loadStats() {
+            try {
+                const response = await fetch('/scenario/amsterdam_tourism.json');
+                const data = await response.json();
+
+                // 제목 업데이트
+                document.getElementById('scenario-title').textContent =
+                    `${data.info.departure} → ${data.info.destination} (${data.info.purpose})`;
+
+                const scenes = data.scenes;
+
+                // 기본 통계
+                document.getElementById('total-scenes').textContent = scenes.length;
+
+                const days = [...new Set(scenes.map(s => s.day))];
+                document.getElementById('total-days').textContent = days.length;
+
+                const locations = [...new Set(scenes.map(s => s.location))];
+                document.getElementById('total-locations').textContent = locations.length;
+
+                const totalChoices = scenes.reduce((sum, s) => sum + s.playerResponse.choices.length, 0);
+                document.getElementById('total-choices').textContent = totalChoices;
+
+                // 카테고리 분류
+                const categories = {};
+
+                scenes.forEach((scene, idx) => {
+                    const loc = scene.location;
+                    const sit = scene.situation;
+                    let category = '기타';
+
+                    if (loc.includes('인천공항') || (loc.includes('체크인') && scene.day === 1)) {
+                        category = '공항 출발';
+                    } else if (loc.includes('기내') || loc.includes('비행기') || loc.includes('KLM')) {
+                        category = '기내';
+                    } else if (loc.includes('스키폴') && scene.day === 1) {
+                        category = '입국/도착';
+                    } else if (loc.includes('호텔') || loc.includes('객실') || loc.includes('프론트')) {
+                        category = '호텔';
+                    } else if (loc.includes('박물관') || loc.includes('광장') || loc.includes('운하') ||
+                               loc.includes('시장') || loc.includes('풍차') || loc.includes('잔세') ||
+                               loc.includes('안네') || loc.includes('반 고흐')) {
+                        category = '관광지';
+                    } else if (loc.includes('레스토랑') || loc.includes('카페') || loc.includes('식당') ||
+                               sit.includes('주문') || sit.includes('식사')) {
+                        category = '식당';
+                    } else if (loc.includes('상점') || loc.includes('가게') || loc.includes('마트') ||
+                               sit.includes('쇼핑') || sit.includes('구매') || loc.includes('치즈')) {
+                        category = '쇼핑';
+                    } else if (sit.includes('길') || sit.includes('교통') || sit.includes('트램') ||
+                               sit.includes('자전거') || loc.includes('역') || loc.includes('정류장')) {
+                        category = '길찾기/교통';
+                    } else if (loc.includes('약국') || sit.includes('분실') || sit.includes('응급') || sit.includes('아프')) {
+                        category = '비상상황';
+                    } else if (scene.day === 10 || (loc.includes('스키폴') && !loc.includes('입국'))) {
+                        category = '귀국';
+                    }
+
+                    if (!categories[category]) categories[category] = [];
+                    categories[category].push({idx, scene});
+                });
+
+                // 카테고리 차트
+                const maxCount = Math.max(...Object.values(categories).map(c => c.length));
+                let chartHtml = '';
+
+                const orderedCategories = ['공항 출발', '기내', '입국/도착', '호텔', '관광지', '식당', '쇼핑', '길찾기/교통', '비상상황', '귀국', '기타'];
+
+                for (const name of orderedCategories) {
+                    const items = categories[name];
+                    if (items && items.length > 0) {
+                        const width = (items.length / maxCount) * 100;
+                        chartHtml += `
+                            <div class="category-bar">
+                                <span class="category-name">${name}</span>
+                                <div class="category-bar-fill" style="width: ${width}%"></div>
+                                <span class="category-count">${items.length}개</span>
+                            </div>
+                        `;
+                    }
+                }
+                document.getElementById('category-chart').innerHTML = chartHtml;
+
+                // 일자별 목록
+                let dayHtml = '';
+                days.sort((a, b) => a - b).forEach(day => {
+                    const dayScenes = scenes.filter(s => s.day === day);
+                    const locList = dayScenes.map(s => s.location).slice(0, 3).join(', ');
+                    const more = dayScenes.length > 3 ? '...' : '';
+                    dayHtml += `<p style="margin: 10px 0;"><span class="day-badge">Day ${day}</span> ${dayScenes.length}개 - ${locList}${more}</p>`;
+                });
+                document.getElementById('day-list').innerHTML = dayHtml;
+
+                // Scene 테이블
+                let tableHtml = '';
+                scenes.forEach((scene, idx) => {
+                    const correctCount = scene.playerResponse.choices.filter(c => c.correct).length;
+                    const totalCount = scene.playerResponse.choices.length;
+                    const situation = scene.situation.length > 35 ? scene.situation.substring(0, 35) + '...' : scene.situation;
+                    tableHtml += `
+                        <tr>
+                            <td>${idx + 1}</td>
+                            <td>Day ${scene.day}</td>
+                            <td>${scene.location}</td>
+                            <td>${situation}</td>
+                            <td>${correctCount}/${totalCount}</td>
+                        </tr>
+                    `;
+                });
+                document.getElementById('scene-table').innerHTML = tableHtml;
+
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('stats-grid').innerHTML = '<p style="color: #e94560; text-align: center;">시나리오를 불러올 수 없습니다.</p>';
+            }
+        }
+
+        loadStats();
+    </script>
+</body>
+</html>

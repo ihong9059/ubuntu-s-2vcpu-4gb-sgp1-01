@@ -1,0 +1,851 @@
+{
+  "templateType": "transfer",
+  "description": "경유지 환승 씬 - 예산에 따라 삽입. 각 경유지의 현지 특색과 문화를 체험",
+  "transfers": {
+    "beijing": {
+      "city": "베이징",
+      "airport": "베이징 수도국제공항",
+      "layoverHours": 4,
+      "scenes": [
+        {
+          "id": "TR_BEI_001",
+          "category": "transfer",
+          "day": 1,
+          "location": "베이징 수도국제공항 입국",
+          "situation": "베이징 도착 후 환승 안내를 받는다. 중국어 안내 표지판이 복잡하다.",
+          "npcDialog": "Connecting flight? Show me your boarding pass. Transit visa not needed for under 24 hours. Terminal 3, Gate E area.",
+          "npcDialogKo": "환승이세요? 탑승권 보여주세요. 24시간 미만이면 환승 비자 필요없어요. 터미널 3, E구역으로 가세요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Thank you! I have 4 hours. Is that enough time?", "correct": true, "feedback": "환승 시간을 확인하는 것은 중요합니다."},
+              {"text": "Where do I go through security again?", "correct": true, "feedback": "환승 보안검색 위치를 묻는 것이 좋습니다."},
+              {"text": "I don't understand Chinese signs.", "correct": false, "feedback": "불평보다는 도움을 요청하는 것이 좋습니다."},
+              {"text": "Why is this airport so confusing?", "correct": false, "feedback": "공항 직원에게 불만을 표하는 것은 적절하지 않습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_BEI_002",
+          "category": "transfer",
+          "day": 1,
+          "location": "베이징 공항 보안검색",
+          "situation": "중국 공항 보안검색을 통과한다. 검색이 까다롭다.",
+          "npcDialog": "Laptop out. Belt off. Water bottle - throw away. Everything in the tray.",
+          "npcDialogKo": "노트북 꺼내세요. 벨트 벗으세요. 물병 버리세요. 전부 트레이에 넣으세요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Sure, just a moment. Is this correct?", "correct": true, "feedback": "협조적인 태도가 좋습니다."},
+              {"text": "I understand. Should I take off my shoes too?", "correct": true, "feedback": "추가 규정을 확인하는 것이 좋습니다."},
+              {"text": "I already went through security in Seoul!", "correct": false, "feedback": "환승 시 재검색은 필수입니다."},
+              {"text": "This is so annoying.", "correct": false, "feedback": "보안요원에게 짜증을 표하면 추가 검색을 받을 수 있습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_BEI_003",
+          "category": "transfer",
+          "day": 1,
+          "location": "베이징 공항 푸드코트",
+          "situation": "대기 시간에 중국 음식을 먹으려 한다. 메뉴가 중국어로만 되어 있다.",
+          "npcDialog": "Nǐ hǎo! What you want? We have Beijing noodles, dumplings, Peking duck rice. Very good!",
+          "npcDialogKo": "니하오! 뭐 드실래요? 북경면, 만두, 북경오리덮밥 있어요. 아주 맛있어요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'll try the Beijing noodles. How spicy is it?", "correct": true, "feedback": "현지 음식에 도전하면서 맵기를 확인하는 것이 좋습니다."},
+              {"text": "Can I see a picture menu? I'd like dumplings.", "correct": true, "feedback": "사진 메뉴를 요청하는 것은 외국에서 유용한 방법입니다."},
+              {"text": "Don't you have Western food?", "correct": false, "feedback": "중국에서 중국 음식을 거부하는 것은 아쉬운 선택입니다."},
+              {"text": "I can't read this menu at all.", "correct": false, "feedback": "불평보다는 도움을 요청하는 것이 좋습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_BEI_004",
+          "category": "transfer",
+          "day": 1,
+          "location": "베이징 공항 면세점",
+          "situation": "중국 특산품을 구경한다. 직원이 적극적으로 권한다.",
+          "npcDialog": "Chinese tea! Very famous! Oolong, Pu'er, Longjing. Good price for you. Special airport discount!",
+          "npcDialogKo": "중국차예요! 아주 유명해요! 우롱차, 보이차, 용정차. 좋은 가격에 드릴게요. 공항 특별 할인!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Can I try a sample? What's Pu'er tea like?", "correct": true, "feedback": "시음을 요청하고 차에 대해 물어보는 것이 좋습니다."},
+              {"text": "Thanks, just looking for now. I'll come back if I have time.", "correct": true, "feedback": "정중하게 거절하면서 여지를 남기는 표현입니다."},
+              {"text": "Too expensive. Everything in China is fake anyway.", "correct": false, "feedback": "무례한 발언은 적절하지 않습니다."},
+              {"text": "Stop following me around!", "correct": false, "feedback": "적극적인 판매는 중국 문화의 일부입니다. 정중히 거절하세요."}
+            ]
+          }
+        },
+        {
+          "id": "TR_BEI_005",
+          "category": "transfer",
+          "day": 1,
+          "location": "베이징 공항 환전소",
+          "situation": "약간의 위안화가 필요할 것 같아 환전을 고려한다.",
+          "npcDialog": "Change money? Korean won to Chinese yuan. Today rate not bad. You need receipt?",
+          "npcDialogKo": "환전하실래요? 한국 원화를 중국 위안화로. 오늘 환율 나쁘지 않아요. 영수증 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "What's the exchange rate? I just need about 100 yuan.", "correct": true, "feedback": "환율을 확인하고 필요한 만큼만 환전하는 것이 현명합니다."},
+              {"text": "I'll pay by card everywhere. Thanks anyway.", "correct": true, "feedback": "카드 사용을 선호한다고 말하는 것도 괜찮습니다."},
+              {"text": "Your rates are a rip-off!", "correct": false, "feedback": "공항 환전소가 비싼 것은 사실이지만 무례하게 말할 필요는 없습니다."},
+              {"text": "I don't trust Chinese money.", "correct": false, "feedback": "매우 무례한 발언입니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_BEI_006",
+          "category": "transfer",
+          "day": 1,
+          "location": "베이징 공항 게이트",
+          "situation": "드디어 다음 비행기 탑승 게이트에 도착했다. 탑승이 곧 시작된다.",
+          "npcDialog": "Flight to Moscow now boarding. Business class and families with children first, then zone 1.",
+          "npcDialogKo": "모스크바행 탑승을 시작합니다. 비즈니스석과 어린이 동반 가족 먼저, 그 다음 존 1.",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'm in zone 2. How much longer until my zone?", "correct": true, "feedback": "자신의 탑승 순서를 확인하는 것이 좋습니다."},
+              {"text": "Made it! That was a tight connection.", "correct": true, "feedback": "안도감을 표현하는 자연스러운 말입니다."},
+              {"text": "I should board first, I've been waiting forever.", "correct": false, "feedback": "탑승 순서는 정해져 있습니다."},
+              {"text": "Why is boarding so slow?", "correct": false, "feedback": "불평보다는 인내심을 가지세요."}
+            ]
+          }
+        }
+      ]
+    },
+    "moscow": {
+      "city": "모스크바",
+      "airport": "셰레메티예보 국제공항",
+      "layoverHours": 3,
+      "scenes": [
+        {
+          "id": "TR_MOS_001",
+          "category": "transfer",
+          "day": 1,
+          "location": "모스크바 셰레메티예보 공항 도착",
+          "situation": "모스크바에 도착했다. 두 번째 경유지. 러시아어 안내방송이 흐른다.",
+          "npcDialog": "Dobro pozhalovat' v Moskvu! Welcome to Moscow. Connecting flight to Amsterdam? Terminal D, follow green signs.",
+          "npcDialogKo": "모스크바에 오신 것을 환영합니다! 암스테르담 환승이요? 터미널 D, 초록색 표지판을 따라가세요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Spasibo! Is there a fast track for transit passengers?", "correct": true, "feedback": "러시아어로 감사하다고 하면 좋은 인상을 줍니다."},
+              {"text": "Thank you! How long is the walk to Terminal D?", "correct": true, "feedback": "거리를 확인하는 것이 중요합니다."},
+              {"text": "Another transfer? I'm exhausted.", "correct": false, "feedback": "불평은 도움이 되지 않습니다."},
+              {"text": "I can't understand Russian at all.", "correct": false, "feedback": "영어로 안내를 해주고 있으니 감사해야 합니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_MOS_002",
+          "category": "transfer",
+          "day": 1,
+          "location": "모스크바 공항 내부 셔틀",
+          "situation": "터미널 간 이동을 위해 공항 내부 셔틀을 탄다.",
+          "npcDialog": "Shuttle to Terminal D departing. Hold on to the rail. Next stop, international departures.",
+          "npcDialogKo": "터미널 D행 셔틀 출발합니다. 손잡이를 잡으세요. 다음 정거장, 국제선 출발.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Perfect timing! This airport is huge.", "correct": true, "feedback": "공항 규모에 대한 자연스러운 감상입니다."},
+              {"text": "How many minutes to Terminal D?", "correct": true, "feedback": "시간을 확인하는 것이 좋습니다."},
+              {"text": "Why is this airport so spread out?", "correct": false, "feedback": "불평보다는 상황을 받아들이세요."},
+              {"text": "I'll just walk.", "correct": false, "feedback": "터미널 간 거리가 매우 멀 수 있습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_MOS_003",
+          "category": "transfer",
+          "day": 1,
+          "location": "모스크바 공항 카페",
+          "situation": "추운 날씨 탓에 따뜻한 음료가 마시고 싶다. 러시아 전통 음료를 발견한다.",
+          "npcDialog": "Russian tea? We serve in traditional style with jam. Or try sbiten - honey spiced drink, very warming!",
+          "npcDialogKo": "러시아 차요? 전통 방식으로 잼과 함께 드려요. 아니면 스비텐 - 꿀 향신료 음료, 아주 따뜻해요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Sbiten sounds interesting! Is it sweet?", "correct": true, "feedback": "새로운 음료에 도전하는 것이 좋습니다."},
+              {"text": "I'll try the Russian tea with jam. That's unique!", "correct": true, "feedback": "러시아 차 문화를 경험하는 좋은 선택입니다."},
+              {"text": "Just a regular coffee, nothing Russian.", "correct": false, "feedback": "현지 음료를 시도해보는 것이 여행의 재미입니다."},
+              {"text": "Tea with jam? That's weird.", "correct": false, "feedback": "다른 문화를 비하하는 것은 적절하지 않습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_MOS_004",
+          "category": "transfer",
+          "day": 1,
+          "location": "모스크바 공항 면세점",
+          "situation": "러시아 기념품 가게를 둘러본다. 마트료시카 인형과 보드카가 진열되어 있다.",
+          "npcDialog": "Matryoshka dolls! Each one hand-painted. This set has 7 dolls inside. Also Russian vodka, Beluga, Stolichnaya - very smooth.",
+          "npcDialogKo": "마트료시카 인형이에요! 하나하나 손으로 그렸어요. 이 세트는 7개가 들어있어요. 러시아 보드카도 있어요, 벨루가, 스톨리치나야 - 아주 부드러워요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "The dolls are beautiful! How much for the 5-piece set?", "correct": true, "feedback": "마트료시카는 훌륭한 러시아 기념품입니다."},
+              {"text": "Can I buy vodka here and take it on the plane?", "correct": true, "feedback": "면세점 구매 규정을 확인하는 좋은 질문입니다."},
+              {"text": "All these Russian things are tourist traps.", "correct": false, "feedback": "무례한 발언은 삼가세요."},
+              {"text": "I don't drink and dolls are for kids.", "correct": false, "feedback": "더 부드럽게 거절할 수 있습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_MOS_005",
+          "category": "transfer",
+          "day": 1,
+          "location": "모스크바 공항 휴식공간",
+          "situation": "피곤해서 잠시 쉬려는데 러시아 여행자가 말을 건다.",
+          "npcDialog": "Long journey, eh? Where you flying to? I'm going to Paris. First time outside Russia!",
+          "npcDialogKo": "긴 여정이죠? 어디로 가세요? 전 파리 가요. 러시아 밖은 처음이에요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Amsterdam! It's my first time in Europe too. How exciting!", "correct": true, "feedback": "다른 여행자와 교류하는 것은 좋은 경험입니다."},
+              {"text": "I'm heading to the Netherlands. Have a great trip to Paris!", "correct": true, "feedback": "친절하게 대화하는 좋은 예입니다."},
+              {"text": "I'm too tired to talk.", "correct": false, "feedback": "조금 무례하게 들릴 수 있습니다."},
+              {"text": "Mind your own business.", "correct": false, "feedback": "친근하게 다가오는 사람에게 무례합니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_MOS_006",
+          "category": "transfer",
+          "day": 1,
+          "location": "모스크바 공항 게이트",
+          "situation": "암스테르담행 비행기 탑승이 시작된다. 드디어 마지막 비행기다.",
+          "npcDialog": "Final call for Amsterdam flight. All passengers please proceed to gate immediately. Doors closing in 10 minutes.",
+          "npcDialogKo": "암스테르담행 마지막 호출입니다. 모든 승객은 즉시 게이트로 이동해주세요. 10분 후 문 닫힙니다.",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'm here! Last leg of the journey, finally!", "correct": true, "feedback": "마지막 비행을 앞둔 설레임을 표현합니다."},
+              {"text": "Just in time. My boarding pass is ready.", "correct": true, "feedback": "준비된 모습을 보여주는 좋은 표현입니다."},
+              {"text": "They always rush everyone.", "correct": false, "feedback": "마지막 호출에는 서둘러야 합니다."},
+              {"text": "I need more time to shop!", "correct": false, "feedback": "비행기를 놓칠 수 있습니다."}
+            ]
+          }
+        }
+      ]
+    },
+    "istanbul": {
+      "city": "이스탄불",
+      "airport": "이스탄불 공항",
+      "layoverHours": 5,
+      "scenes": [
+        {
+          "id": "TR_IST_001",
+          "category": "transfer",
+          "day": 1,
+          "location": "이스탄불 공항 도착",
+          "situation": "터키의 거대한 신공항에 도착했다. 현대적이고 웅장한 건축물에 감탄한다.",
+          "npcDialog": "Hoş geldiniz! Welcome to Istanbul Airport. Very new, very big! Transfer to Amsterdam? Take escalator to Level 2, follow blue signs.",
+          "npcDialogKo": "호쉬 겔디니즈! 이스탄불 공항에 오신 것을 환영합니다. 아주 새롭고 커요! 암스테르담 환승이요? 에스컬레이터로 2층 가서 파란 표지판 따라가세요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Teşekkürler! This airport is amazing! Is there a lounge I can use?", "correct": true, "feedback": "터키어로 감사를 표현하고 라운지를 물어보는 것이 좋습니다."},
+              {"text": "Thank you! I have 5 hours. Any recommendations?", "correct": true, "feedback": "5시간 동안 할 수 있는 것을 물어보는 현명한 질문입니다."},
+              {"text": "This airport is too big to walk around.", "correct": false, "feedback": "불평보다는 긍정적으로 받아들이세요."},
+              {"text": "I just want to sit and wait.", "correct": false, "feedback": "5시간 동안 공항을 즐길 수 있습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_IST_002",
+          "category": "transfer",
+          "day": 1,
+          "location": "이스탄불 공항 터키항공 라운지",
+          "situation": "터키항공 라운지를 발견했다. 입장 가능 여부를 확인한다.",
+          "npcDialog": "Welcome! Do you have business class ticket or lounge access card? We also offer day passes for 50 dollars.",
+          "npcDialogKo": "환영합니다! 비즈니스석 티켓이나 라운지 카드 있으세요? 50달러에 당일 이용권도 판매해요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'm economy, but I'd like to buy a day pass. What's included?", "correct": true, "feedback": "라운지 이용을 위해 비용을 지불할 의향을 표현합니다."},
+              {"text": "I don't have access. Are there comfortable seats elsewhere?", "correct": true, "feedback": "대안을 물어보는 것도 좋은 방법입니다."},
+              {"text": "50 dollars is too expensive for a few hours.", "correct": false, "feedback": "좀 더 부드럽게 거절할 수 있습니다."},
+              {"text": "Let me in anyway, I'm tired.", "correct": false, "feedback": "규정을 무시하려는 것은 적절하지 않습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_IST_003",
+          "category": "transfer",
+          "day": 1,
+          "location": "이스탄불 공항 터키 음식점",
+          "situation": "터키 음식이 먹고 싶어 레스토랑에 들어갔다. 케밥과 터키 피자의 향기가 진동한다.",
+          "npcDialog": "Merhaba! Try our famous Turkish kebab or pide - Turkish pizza! Fresh from the oven. Ayran to drink? Traditional yogurt drink, very refreshing!",
+          "npcDialogKo": "메르하바! 유명한 터키 케밥이나 피데 - 터키 피자 드셔보세요! 오븐에서 갓 나왔어요. 음료는 아이란? 전통 요구르트 음료, 아주 상쾌해요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'll have the kebab with ayran! I've always wanted to try authentic Turkish food.", "correct": true, "feedback": "진정한 터키 음식을 시도하는 훌륭한 선택입니다."},
+              {"text": "What's in the pide? Is it like Italian pizza?", "correct": true, "feedback": "음식에 대해 물어보는 것이 좋습니다."},
+              {"text": "Do you have any non-Turkish food?", "correct": false, "feedback": "터키에서 터키 음식을 거부하는 것은 아쉬운 선택입니다."},
+              {"text": "Yogurt drink sounds gross.", "correct": false, "feedback": "다른 문화의 음식을 비하하지 마세요."}
+            ]
+          }
+        },
+        {
+          "id": "TR_IST_004",
+          "category": "transfer",
+          "day": 1,
+          "location": "이스탄불 공항 카페",
+          "situation": "터키 커피를 주문했다. 바리스타가 커피 점을 봐준다고 제안한다.",
+          "npcDialog": "Turkish coffee ready! When you finish, turn cup upside down. I read your fortune from the coffee grounds - old Turkish tradition!",
+          "npcDialogKo": "터키 커피 나왔어요! 다 마시면 컵을 뒤집어 놓으세요. 커피 찌꺼기로 점을 봐드릴게요 - 오래된 터키 전통이에요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "That's so interesting! I'd love to try that. How does it work?", "correct": true, "feedback": "터키 문화를 체험하려는 열린 마음이 좋습니다."},
+              {"text": "Really? I've heard about Turkish coffee fortune telling! Let's do it!", "correct": true, "feedback": "문화 체험에 대한 열정을 보여줍니다."},
+              {"text": "Fortune telling is fake.", "correct": false, "feedback": "문화적 전통을 무시하는 것은 적절하지 않습니다."},
+              {"text": "I just want the coffee, nothing else.", "correct": false, "feedback": "좀 더 부드럽게 거절할 수 있습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_IST_005",
+          "category": "transfer",
+          "day": 1,
+          "location": "이스탄불 공항 그랜드 바자르 스타일 면세점",
+          "situation": "그랜드 바자르를 재현한 면세점 구역. 터키 램프, 카펫, 도자기가 화려하다.",
+          "npcDialog": "Look at these handmade Turkish lamps! When light shines, very beautiful! Also authentic Turkish evil eye - nazar boncuğu - for protection. Good luck charm!",
+          "npcDialogKo": "이 수공예 터키 램프 보세요! 불빛 켜면 아주 예뻐요! 진짜 터키 악마의 눈 - 나자르 본주 - 보호해줘요. 행운의 부적이에요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "The lamps are gorgeous! Can I take one on the plane as carry-on?", "correct": true, "feedback": "휴대 가능 여부를 확인하는 현명한 질문입니다."},
+              {"text": "I'd like a small evil eye charm. What's the story behind it?", "correct": true, "feedback": "나자르의 의미를 물어보는 것이 좋습니다."},
+              {"text": "These are all tourist traps.", "correct": false, "feedback": "수공예품에 대한 무례한 발언입니다."},
+              {"text": "Evil eye? That's superstition.", "correct": false, "feedback": "문화적 상징을 비하하지 마세요."}
+            ]
+          }
+        },
+        {
+          "id": "TR_IST_006",
+          "category": "transfer",
+          "day": 1,
+          "location": "이스탄불 공항 터키쉬 딜라이트 가게",
+          "situation": "터키쉬 딜라이트(로쿰) 가게에서 시식을 권한다. 다양한 맛이 있다.",
+          "npcDialog": "Free sample! Try our lokum - Turkish delight. Rose, pistachio, pomegranate, many flavors! Made in Istanbul for 500 years. Perfect gift!",
+          "npcDialogKo": "무료 시식하세요! 로쿰 - 터키쉬 딜라이트예요. 장미, 피스타치오, 석류, 맛이 다양해요! 500년간 이스탄불에서 만들어왔어요. 완벽한 선물!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Mmm, delicious! I'll take a mixed box. Which flavors are most popular?", "correct": true, "feedback": "인기 있는 맛을 물어보는 것이 좋습니다."},
+              {"text": "Can I try the rose flavor? Is it very sweet?", "correct": true, "feedback": "시식 후 결정하는 현명한 방법입니다."},
+              {"text": "500 years? I doubt that.", "correct": false, "feedback": "역사를 의심하는 것은 무례합니다."},
+              {"text": "Too sweet for me, no thanks.", "correct": false, "feedback": "시식도 안 하고 거절하는 것은 아쉽습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_IST_007",
+          "category": "transfer",
+          "day": 1,
+          "location": "이스탄불 공항 전망대",
+          "situation": "공항에서 보스포루스 해협이 보인다는 안내를 발견했다.",
+          "npcDialog": "From observation deck, you can see where Europe meets Asia! Bosphorus strait is right there. Beautiful sunset view!",
+          "npcDialogKo": "전망대에서 유럽과 아시아가 만나는 곳을 볼 수 있어요! 보스포루스 해협이 바로 저기예요. 일몰이 아름다워요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Wow, I'm standing between two continents! This is incredible!", "correct": true, "feedback": "두 대륙 사이에 있다는 특별한 경험을 표현합니다."},
+              {"text": "What a view! I wish I had more time to explore Istanbul.", "correct": true, "feedback": "이스탄불에 대한 관심을 표현합니다."},
+              {"text": "It's just water.", "correct": false, "feedback": "역사적 의미를 무시하는 발언입니다."},
+              {"text": "I've seen better views.", "correct": false, "feedback": "부정적인 비교는 적절하지 않습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_IST_008",
+          "category": "transfer",
+          "day": 1,
+          "location": "이스탄불 공항 게이트",
+          "situation": "암스테르담행 비행기 탑승 시간이다. 터키에서의 짧은 시간이 인상적이었다.",
+          "npcDialog": "Boarding now for Amsterdam. Thank you for visiting Turkey. Güle güle - goodbye! Hope to see you again for a longer visit!",
+          "npcDialogKo": "암스테르담행 탑승 시작합니다. 터키를 방문해주셔서 감사합니다. 귤레 귤레 - 안녕히 가세요! 다음엔 더 오래 계시길 바라요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Teşekkürler! I definitely want to come back and see more of Turkey!", "correct": true, "feedback": "터키에 다시 오고 싶다는 의사를 표현합니다."},
+              {"text": "This was a wonderful layover. Istanbul Airport is amazing!", "correct": true, "feedback": "환승 경험에 대한 긍정적인 피드백입니다."},
+              {"text": "Finally leaving.", "correct": false, "feedback": "부정적인 표현은 적절하지 않습니다."},
+              {"text": "I won't miss this place.", "correct": false, "feedback": "무례한 발언입니다."}
+            ]
+          }
+        }
+      ]
+    },
+    "dubai": {
+      "city": "두바이",
+      "airport": "두바이 국제공항",
+      "layoverHours": 4,
+      "scenes": [
+        {
+          "id": "TR_DUB_001",
+          "category": "transfer",
+          "day": 1,
+          "location": "두바이 공항 도착",
+          "situation": "중동의 화려한 두바이 공항에 도착했다. 금빛 인테리어와 고급스러운 분위기.",
+          "npcDialog": "Marhaba! Welcome to Dubai. Transfer passengers this way please. You have 4 hours? Plenty of time to explore our duty free!",
+          "npcDialogKo": "마르하바! 두바이에 오신 것을 환영합니다. 환승 승객은 이쪽으로요. 4시간이요? 면세점 구경할 시간 충분해요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Shukran! This airport looks incredible. Where's the famous gold souk?", "correct": true, "feedback": "아랍어로 감사를 표현하고 유명한 금 시장을 물어봅니다."},
+              {"text": "Thank you! Is there a place to see the iconic Dubai duty free?", "correct": true, "feedback": "두바이 면세점에 대한 관심을 표현합니다."},
+              {"text": "It's too hot here.", "correct": false, "feedback": "공항 내부는 에어컨이 나옵니다."},
+              {"text": "I don't like Middle Eastern airports.", "correct": false, "feedback": "차별적인 발언은 적절하지 않습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_DUB_002",
+          "category": "transfer",
+          "day": 1,
+          "location": "두바이 공항 골드 수크",
+          "situation": "공항 내 금 시장(골드 수크)을 구경한다. 화려한 금 장신구가 가득하다.",
+          "npcDialog": "22 karat gold, very pure! Dubai price is best in world. This necklace only 2000 dollars. Special price for you, my friend!",
+          "npcDialogKo": "22캐럿 금, 아주 순수해요! 두바이 가격이 세계 최고예요. 이 목걸이 2000달러밖에 안해요. 친구니까 특별 가격!",
+          "playerResponse": {
+            "choices": [
+              {"text": "It's beautiful! Can I try it on? What's the weight?", "correct": true, "feedback": "관심을 보이면서 상세 정보를 물어봅니다."},
+              {"text": "Just looking for now. How does gold pricing work here?", "correct": true, "feedback": "금 가격 시스템에 대해 물어보는 것이 좋습니다."},
+              {"text": "I can't afford anything here.", "correct": false, "feedback": "구경만 해도 괜찮습니다."},
+              {"text": "This is all overpriced.", "correct": false, "feedback": "두바이 금 가격은 실제로 경쟁력이 있습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_DUB_003",
+          "category": "transfer",
+          "day": 1,
+          "location": "두바이 공항 아랍 카페",
+          "situation": "아랍 스타일 카페에서 전통 음료를 주문한다.",
+          "npcDialog": "Would you like Arabic coffee with dates? Very traditional. Or fresh camel milk - healthy and unique Dubai experience!",
+          "npcDialogKo": "대추야자와 함께 아랍 커피 드시겠어요? 아주 전통적이에요. 아니면 신선한 낙타 우유 - 건강하고 독특한 두바이 경험이에요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Arabic coffee sounds perfect! How is it different from regular coffee?", "correct": true, "feedback": "아랍 커피의 특징을 물어보는 것이 좋습니다."},
+              {"text": "I'm curious about camel milk! What does it taste like?", "correct": true, "feedback": "새로운 것을 시도하려는 열린 마음입니다."},
+              {"text": "Camel milk? That's disgusting.", "correct": false, "feedback": "다른 문화의 음식을 비하하지 마세요."},
+              {"text": "Just normal coffee, nothing weird.", "correct": false, "feedback": "'weird'라는 표현은 무례합니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_DUB_004",
+          "category": "transfer",
+          "day": 1,
+          "location": "두바이 공항 면세점",
+          "situation": "세계 최대 면세점 중 하나에서 쇼핑을 즐긴다. 럭셔리 브랜드가 가득하다.",
+          "npcDialog": "Tax free shopping! Chanel, Louis Vuitton, Rolex - all cheaper here. We also have world's largest duty free liquor section.",
+          "npcDialogKo": "면세 쇼핑이에요! 샤넬, 루이비통, 롤렉스 - 여기가 다 저렴해요. 세계 최대 면세 주류 구역도 있어요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Wow, so many options! Do you have any Dubai exclusives?", "correct": true, "feedback": "두바이 한정 상품을 물어보는 것이 좋습니다."},
+              {"text": "Are the prices really cheaper than other airports?", "correct": true, "feedback": "가격 비교를 하는 현명한 소비자입니다."},
+              {"text": "I can't afford luxury brands.", "correct": false, "feedback": "구경만 해도 괜찮습니다."},
+              {"text": "Duty free is all a scam anyway.", "correct": false, "feedback": "부정적인 일반화는 적절하지 않습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_DUB_005",
+          "category": "transfer",
+          "day": 1,
+          "location": "두바이 공항 스파",
+          "situation": "공항 내 스파를 발견했다. 긴 비행 중 마사지가 땡긴다.",
+          "npcDialog": "Long flight? Try our express massage - 30 minutes for tired travelers. Also have shower facilities if you want to freshen up.",
+          "npcDialogKo": "긴 비행이요? 피곤한 여행자를 위한 익스프레스 마사지 - 30분이에요. 샤워 시설도 있으니 씻고 싶으시면요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "A 30-minute massage sounds perfect. How much is it?", "correct": true, "feedback": "스파 이용을 고려하면서 가격을 확인합니다."},
+              {"text": "Is there a quick shower option? I'd love to freshen up.", "correct": true, "feedback": "샤워 시설을 이용하려는 실용적인 선택입니다."},
+              {"text": "Airport spas are overpriced.", "correct": false, "feedback": "시도해보지 않고 판단하는 것은 좋지 않습니다."},
+              {"text": "I don't have time for that.", "correct": false, "feedback": "4시간이면 충분한 시간입니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_DUB_006",
+          "category": "transfer",
+          "day": 1,
+          "location": "두바이 공항 게이트",
+          "situation": "암스테르담행 비행기 탑승 시간이다. 두바이에서의 호화로운 경험이 인상적이었다.",
+          "npcDialog": "Boarding for Amsterdam flight. Emirates wishes you a pleasant journey. Ma'a salama - goodbye! Visit Dubai again soon!",
+          "npcDialogKo": "암스테르담행 탑승입니다. 에미레이트 항공이 즐거운 여행 되시길 바랍니다. 마아 살라마 - 안녕히 가세요! 곧 두바이에 다시 오세요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Shukran! Dubai airport was amazing. I'll definitely come back for a real visit!", "correct": true, "feedback": "두바이에 대한 긍정적인 인상을 표현합니다."},
+              {"text": "Thank you for the great service. This was the best layover!", "correct": true, "feedback": "서비스에 대한 감사를 표현합니다."},
+              {"text": "Finally, the flight.", "correct": false, "feedback": "부정적인 뉘앙스가 있습니다."},
+              {"text": "I'm tired of waiting.", "correct": false, "feedback": "불평은 적절하지 않습니다."}
+            ]
+          }
+        }
+      ]
+    },
+    "frankfurt": {
+      "city": "프랑크푸르트",
+      "airport": "프랑크푸르트 국제공항",
+      "layoverHours": 2,
+      "scenes": [
+        {
+          "id": "TR_FRA_001",
+          "category": "transfer",
+          "day": 1,
+          "location": "프랑크푸르트 공항 도착",
+          "situation": "유럽 최대 허브 공항 중 하나인 프랑크푸르트에 도착했다. 효율적인 독일 시스템.",
+          "npcDialog": "Willkommen! Welcome to Frankfurt. Your connecting flight to Amsterdam is in Terminal 1, Gate B. You have 2 hours - follow the signs.",
+          "npcDialogKo": "빌코멘! 프랑크푸르트에 오신 것을 환영합니다. 암스테르담 연결편은 터미널 1, 게이트 B예요. 2시간 있어요 - 표지판 따라가세요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Danke! Is 2 hours enough time if I want to grab something to eat?", "correct": true, "feedback": "독일어로 감사하면서 시간 여유를 확인합니다."},
+              {"text": "Thank you! How long is the walk to Gate B?", "correct": true, "feedback": "거리를 확인하는 것이 중요합니다."},
+              {"text": "Why only 2 hours? That's too short.", "correct": false, "feedback": "연결 시간은 항공사가 결정합니다."},
+              {"text": "German airports are so complicated.", "correct": false, "feedback": "프랑크푸르트 공항은 표지판이 잘 되어 있습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_FRA_002",
+          "category": "transfer",
+          "day": 1,
+          "location": "프랑크푸르트 공항 맥주집",
+          "situation": "짧은 환승 시간이지만 독일 맥주를 맛보고 싶다.",
+          "npcDialog": "German beer before your flight? We have Weissbier, Pilsner, Dunkel. Brezel - pretzel - goes perfect with beer!",
+          "npcDialogKo": "비행 전에 독일 맥주요? 바이스비어, 필스너, 둔켈 있어요. 브레첼 - 프레첼 - 맥주랑 완벽해요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'll try a small Weissbier and a pretzel. Prost!", "correct": true, "feedback": "독일 맥주 문화를 경험하며 건배를 외칩니다."},
+              {"text": "What's the difference between these beers?", "correct": true, "feedback": "맥주 종류에 대해 물어보는 것이 좋습니다."},
+              {"text": "Beer before flying? That's irresponsible.", "correct": false, "feedback": "한 잔 정도는 괜찮습니다."},
+              {"text": "German beer is overrated.", "correct": false, "feedback": "시도해보지 않고 판단하지 마세요."}
+            ]
+          }
+        },
+        {
+          "id": "TR_FRA_003",
+          "category": "transfer",
+          "day": 1,
+          "location": "프랑크푸르트 공항 게이트",
+          "situation": "암스테르담행 비행기 탑승. 짧은 유럽 내 비행이다.",
+          "npcDialog": "Boarding for Amsterdam. Flight time only 50 minutes. Auf Wiedersehen! Have a good stay in the Netherlands!",
+          "npcDialogKo": "암스테르담행 탑승입니다. 비행 시간 50분밖에 안 돼요. 아우프 비더제헨! 네덜란드에서 좋은 시간 보내세요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Danke schön! Such a short flight - I'll barely sit down!", "correct": true, "feedback": "짧은 비행에 대한 재치 있는 코멘트입니다."},
+              {"text": "Only 50 minutes? That's quick! Auf Wiedersehen!", "correct": true, "feedback": "독일어로 작별 인사를 합니다."},
+              {"text": "50 minutes? Why did I have to transfer then?", "correct": false, "feedback": "직항이 없거나 비용 문제일 수 있습니다."},
+              {"text": "Finally done with Germany.", "correct": false, "feedback": "부정적인 표현은 적절하지 않습니다."}
+            ]
+          }
+        }
+      ]
+    },
+    "hongkong": {
+      "city": "홍콩",
+      "airport": "홍콩 국제공항",
+      "layoverHours": 3,
+      "scenes": [
+        {
+          "id": "TR_HKG_001",
+          "category": "transfer",
+          "day": 1,
+          "location": "홍콩 공항 도착",
+          "situation": "아시아의 허브 공항 홍콩에 도착했다. 활기찬 분위기와 다양한 상점들.",
+          "npcDialog": "Welcome to Hong Kong! Transfer this way. You have 3 hours - try our famous dim sum or explore Sky Bridge!",
+          "npcDialogKo": "홍콩에 오신 것을 환영합니다! 환승은 이쪽으로요. 3시간 있어요 - 유명한 딤섬 드시거나 스카이 브릿지 구경하세요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "M̀h'gōi! Dim sum sounds amazing. Where can I find it?", "correct": true, "feedback": "광동어로 감사를 표현하며 딤섬 위치를 물어봅니다."},
+              {"text": "What's the Sky Bridge? That sounds interesting!", "correct": true, "feedback": "공항 명소에 대한 관심을 표현합니다."},
+              {"text": "Hong Kong is too crowded.", "correct": false, "feedback": "부정적인 선입견은 적절하지 않습니다."},
+              {"text": "I'll just sit and wait.", "correct": false, "feedback": "3시간 동안 공항을 즐길 수 있습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_HKG_002",
+          "category": "transfer",
+          "day": 1,
+          "location": "홍콩 공항 딤섬 레스토랑",
+          "situation": "정통 홍콩 딤섬을 맛보려 한다. 하가우, 슈마이 등 다양한 메뉴가 있다.",
+          "npcDialog": "Dim sum! We have har gow - shrimp dumpling, siu mai - pork dumpling, char siu bao - BBQ pork bun. Very fresh, made here!",
+          "npcDialogKo": "딤섬이요! 하가우 - 새우만두, 슈마이 - 돼지고기 만두, 차슈바오 - 바베큐 돼지고기 빵 있어요. 아주 신선해요, 여기서 만들어요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'd love to try har gow and char siu bao! What tea goes well with dim sum?", "correct": true, "feedback": "딤섬과 함께 마실 차를 물어보는 것이 좋습니다."},
+              {"text": "Can I get a sampler plate with different types?", "correct": true, "feedback": "다양한 종류를 시도하고 싶어하는 합리적인 요청입니다."},
+              {"text": "I don't eat Chinese food.", "correct": false, "feedback": "홍콩에서 딤섬을 거부하는 것은 아쉬운 선택입니다."},
+              {"text": "Is this authentic or airport food?", "correct": false, "feedback": "무례하게 들릴 수 있습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_HKG_003",
+          "category": "transfer",
+          "day": 1,
+          "location": "홍콩 공항 면세점",
+          "situation": "홍콩 공항 면세점을 둘러본다. 전자제품과 화장품이 유명하다.",
+          "npcDialog": "Electronics very cheap here! Latest phones, cameras, all genuine. Also cosmetics - Korean and Japanese brands, good price!",
+          "npcDialogKo": "전자제품 아주 저렴해요! 최신 폰, 카메라, 전부 정품. 화장품도 - 한국, 일본 브랜드, 좋은 가격!",
+          "playerResponse": {
+            "choices": [
+              {"text": "What are the best deals right now? Any airport exclusives?", "correct": true, "feedback": "특별 할인이나 공항 한정 상품을 물어봅니다."},
+              {"text": "Do these electronics come with international warranty?", "correct": true, "feedback": "보증 여부를 확인하는 현명한 질문입니다."},
+              {"text": "I'll just look online for better prices.", "correct": false, "feedback": "면세 가격은 종종 온라인보다 저렴합니다."},
+              {"text": "Hong Kong electronics are probably counterfeit.", "correct": false, "feedback": "공항 면세점 제품은 정품입니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_HKG_004",
+          "category": "transfer",
+          "day": 1,
+          "location": "홍콩 공항 게이트",
+          "situation": "다음 비행기 탑승 시간이다. 홍콩의 활기찬 분위기가 인상적이었다.",
+          "npcDialog": "Now boarding. Thank you for visiting Hong Kong. Joigin! Hope to see you for a longer visit next time!",
+          "npcDialogKo": "탑승을 시작합니다. 홍콩을 방문해주셔서 감사합니다. 재견! 다음엔 더 오래 계시길 바라요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "The dim sum was incredible! I'll definitely come back to explore the city!", "correct": true, "feedback": "홍콩에 대한 긍정적인 인상을 표현합니다."},
+              {"text": "Joigin! This was a great layover, Hong Kong is amazing!", "correct": true, "feedback": "광동어로 작별 인사를 합니다."},
+              {"text": "Time to leave finally.", "correct": false, "feedback": "부정적인 뉘앙스가 있습니다."},
+              {"text": "The layover was too short.", "correct": false, "feedback": "불평보다는 긍정적으로 표현하세요."}
+            ]
+          }
+        }
+      ]
+    },
+    "singapore": {
+      "city": "싱가포르",
+      "airport": "창이 국제공항",
+      "layoverHours": 4,
+      "scenes": [
+        {
+          "id": "TR_SIN_001",
+          "category": "transfer",
+          "day": 1,
+          "location": "싱가포르 창이 공항 도착",
+          "situation": "세계 최고의 공항으로 유명한 싱가포르 창이 공항에 도착했다.",
+          "npcDialog": "Welcome to Changi Airport! World's best airport 10 years running! Have you seen our Jewel? Indoor waterfall, gardens - must see!",
+          "npcDialogKo": "창이 공항에 오신 것을 환영합니다! 10년 연속 세계 최고의 공항이에요! 주얼 보셨어요? 실내 폭포, 정원 - 꼭 보세요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "The Jewel sounds amazing! How do I get there from here?", "correct": true, "feedback": "창이 주얼에 대한 관심을 표현합니다."},
+              {"text": "World's best airport? I can't wait to explore! Any recommendations?", "correct": true, "feedback": "공항 탐험에 대한 열정을 보여줍니다."},
+              {"text": "Every airport claims to be the best.", "correct": false, "feedback": "창이 공항은 실제로 여러 상을 수상했습니다."},
+              {"text": "I just want to sit somewhere quiet.", "correct": false, "feedback": "창이 공항의 특별한 경험을 놓치게 됩니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_SIN_002",
+          "category": "transfer",
+          "day": 1,
+          "location": "창이 공항 주얼 (HSBC Rain Vortex)",
+          "situation": "세계 최대 실내 폭포 앞에 서 있다. 장관이다.",
+          "npcDialog": "HSBC Rain Vortex - tallest indoor waterfall in the world! 40 meters high. At night there's light show. Want to take photo?",
+          "npcDialogKo": "HSBC 레인 보텍스 - 세계에서 가장 높은 실내 폭포예요! 40미터 높이. 밤에는 조명 쇼가 있어요. 사진 찍을까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "This is incredible! Yes, please take a photo. How did they build this inside an airport?", "correct": true, "feedback": "경이로움을 표현하며 사진을 요청합니다."},
+              {"text": "I've never seen anything like this! Is the light show happening soon?", "correct": true, "feedback": "조명 쇼 시간을 확인합니다."},
+              {"text": "It's just water falling.", "correct": false, "feedback": "건축 공학적 업적을 무시하는 발언입니다."},
+              {"text": "Seems like a waste of water.", "correct": false, "feedback": "물은 재순환됩니다. 부정적인 발언은 적절하지 않습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_SIN_003",
+          "category": "transfer",
+          "day": 1,
+          "location": "창이 공항 호커 센터",
+          "situation": "공항 내 호커 스타일 푸드코트에서 싱가포르 음식을 먹으려 한다.",
+          "npcDialog": "Authentic Singapore food! Chicken rice - our national dish! Or laksa - spicy coconut noodle soup. Kaya toast for dessert!",
+          "npcDialogKo": "정통 싱가포르 음식이에요! 치킨 라이스 - 우리 국민 음식! 아니면 락사 - 매운 코코넛 국수. 디저트는 카야 토스트!",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'll have the chicken rice! What makes Singapore's version special?", "correct": true, "feedback": "싱가포르 치킨 라이스의 특별함을 물어봅니다."},
+              {"text": "Laksa sounds delicious! How spicy is it? Can I adjust the heat?", "correct": true, "feedback": "매운 정도를 확인하는 것이 좋습니다."},
+              {"text": "Airport food is always overpriced.", "correct": false, "feedback": "호커 스타일 음식은 보통 합리적인 가격입니다."},
+              {"text": "I'll just have fast food.", "correct": false, "feedback": "현지 음식을 시도하지 않는 것은 아쉬운 선택입니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_SIN_004",
+          "category": "transfer",
+          "day": 1,
+          "location": "창이 공항 버터플라이 가든",
+          "situation": "공항 내 나비 정원을 발견했다. 천 마리 이상의 나비가 있다.",
+          "npcDialog": "Our Butterfly Garden! Over 1,000 butterflies from 40 species. All real, not display. They may land on you - don't be scared!",
+          "npcDialogKo": "나비 정원이에요! 40종 1,000마리 이상의 나비가 있어요. 전부 진짜예요, 전시품 아니에요. 나비가 앉을 수도 있어요 - 무서워하지 마세요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "A butterfly garden in an airport? This is magical! Which species are local to Singapore?", "correct": true, "feedback": "현지 나비 종에 대해 물어보는 것이 좋습니다."},
+              {"text": "I hope one lands on me! Are there any tips for attracting them?", "correct": true, "feedback": "나비와 교감하려는 열린 마음입니다."},
+              {"text": "I don't like bugs.", "correct": false, "feedback": "나비는 아름다운 곤충입니다."},
+              {"text": "This seems unsanitary for an airport.", "correct": false, "feedback": "정원은 잘 관리되어 있습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_SIN_005",
+          "category": "transfer",
+          "day": 1,
+          "location": "창이 공항 게이트",
+          "situation": "다음 비행기 탑승 시간이다. 창이 공항은 정말 특별했다.",
+          "npcDialog": "Now boarding. Thank you for visiting Changi! We hope you enjoyed our airport. Come back to Singapore soon!",
+          "npcDialogKo": "탑승을 시작합니다. 창이를 방문해주셔서 감사합니다! 공항을 즐기셨길 바라요. 곧 싱가포르에 다시 오세요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "This is the most amazing airport I've ever seen! I'll definitely visit Singapore properly next time!", "correct": true, "feedback": "창이 공항에 대한 감동을 표현합니다."},
+              {"text": "The Jewel and butterfly garden were incredible! Thank you for such a unique experience!", "correct": true, "feedback": "특정 경험에 대한 감사를 표현합니다."},
+              {"text": "Just another airport.", "correct": false, "feedback": "창이 공항의 특별함을 무시하는 발언입니다."},
+              {"text": "Glad to be leaving.", "correct": false, "feedback": "부정적인 표현은 적절하지 않습니다."}
+            ]
+          }
+        }
+      ]
+    },
+    "taipei": {
+      "city": "타이페이",
+      "airport": "타오위안 국제공항",
+      "layoverHours": 3,
+      "scenes": [
+        {
+          "id": "TR_TPE_001",
+          "category": "transfer",
+          "day": 1,
+          "location": "타이페이 타오위안 공항 도착",
+          "situation": "대만 타이페이 공항에 도착했다. 친절한 분위기와 깔끔한 공항.",
+          "npcDialog": "Huānyíng! Welcome to Taiwan! Transfer passengers please follow signs. You have 3 hours - try our famous boba tea!",
+          "npcDialogKo": "환잉! 대만에 오신 것을 환영합니다! 환승 승객은 표지판을 따라가세요. 3시간 있어요 - 유명한 버블티 드세요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Xièxiè! Boba tea is on my list! Where's the best place to get it?", "correct": true, "feedback": "중국어로 감사하며 버블티 장소를 물어봅니다."},
+              {"text": "Thank you! What else should I try with 3 hours?", "correct": true, "feedback": "다른 추천을 요청하는 것이 좋습니다."},
+              {"text": "Boba tea is overrated.", "correct": false, "feedback": "시도해보지 않고 판단하지 마세요."},
+              {"text": "I'll just wait at the gate.", "correct": false, "feedback": "대만 문화를 경험할 기회를 놓치게 됩니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_TPE_002",
+          "category": "transfer",
+          "day": 1,
+          "location": "타이페이 공항 버블티 가게",
+          "situation": "대만 발명품인 버블티를 주문한다. 다양한 맛과 토핑이 있다.",
+          "npcDialog": "Original boba tea from Taiwan! Milk tea with tapioca pearls - classic! Or try taro, brown sugar, mango. Sugar level? Ice level?",
+          "npcDialogKo": "대만 오리지널 버블티예요! 밀크티에 타피오카 펄 - 클래식! 아니면 타로, 흑설탕, 망고 드셔보세요. 당도는요? 얼음은요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'll try the classic milk tea with 50% sugar and less ice. How chewy are the pearls?", "correct": true, "feedback": "커스터마이즈하면서 펄에 대해 물어봅니다."},
+              {"text": "What's the most popular choice? I want the authentic Taiwanese experience!", "correct": true, "feedback": "인기 메뉴를 물어보는 것이 좋습니다."},
+              {"text": "Just give me whatever.", "correct": false, "feedback": "버블티는 개인 취향에 맞게 주문하는 것이 좋습니다."},
+              {"text": "These drinks have too much sugar.", "correct": false, "feedback": "당도를 조절할 수 있습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_TPE_003",
+          "category": "transfer",
+          "day": 1,
+          "location": "타이페이 공항 대만 간식 가게",
+          "situation": "대만 유명 간식인 파인애플 케이크를 발견했다.",
+          "npcDialog": "Pineapple cake! Taiwan's most famous souvenir. This brand won gold medal. Perfect gift - very popular with tourists!",
+          "npcDialogKo": "파인애플 케이크! 대만에서 가장 유명한 기념품이에요. 이 브랜드는 금메달 탔어요. 완벽한 선물 - 관광객들한테 아주 인기있어요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Can I try a sample? I'd love to bring some back as gifts!", "correct": true, "feedback": "시식을 요청하고 선물용으로 고려합니다."},
+              {"text": "What makes Taiwanese pineapple cake special compared to others?", "correct": true, "feedback": "대만 파인애플 케이크의 특별함을 물어봅니다."},
+              {"text": "All pineapple cakes taste the same.", "correct": false, "feedback": "대만 파인애플 케이크는 특별한 레시피가 있습니다."},
+              {"text": "Too sweet for me.", "correct": false, "feedback": "시도해보지 않고 거절하는 것은 아쉽습니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_TPE_004",
+          "category": "transfer",
+          "day": 1,
+          "location": "타이페이 공항 게이트",
+          "situation": "다음 비행기 탑승 시간이다. 대만의 친절함이 인상적이었다.",
+          "npcDialog": "Now boarding. Thank you for stopping in Taiwan! Zàijiàn - goodbye! Come back for night markets and more boba!",
+          "npcDialogKo": "탑승을 시작합니다. 대만에 들러주셔서 감사합니다! 짜이지엔 - 안녕히 가세요! 야시장과 버블티 더 먹으러 다시 오세요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "The boba tea was amazing! I'll definitely come back to explore the night markets!", "correct": true, "feedback": "대만에 대한 관심과 재방문 의사를 표현합니다."},
+              {"text": "Xièxiè! Everyone here was so friendly! Taiwan is on my bucket list now!", "correct": true, "feedback": "친절함에 감사하며 여행 계획을 언급합니다."},
+              {"text": "Finally boarding.", "correct": false, "feedback": "부정적인 뉘앙스가 있습니다."},
+              {"text": "Nothing special about this place.", "correct": false, "feedback": "무례한 발언입니다."}
+            ]
+          }
+        }
+      ]
+    },
+    "tokyo": {
+      "city": "도쿄",
+      "airport": "나리타 국제공항",
+      "layoverHours": 3,
+      "scenes": [
+        {
+          "id": "TR_TYO_001",
+          "category": "transfer",
+          "day": 1,
+          "location": "도쿄 나리타 공항 도착",
+          "situation": "일본 도쿄 나리타 공항에 도착했다. 깨끗하고 정돈된 일본 공항.",
+          "npcDialog": "Irasshaimase! Welcome to Narita Airport. Transfer gate is in Terminal 1. You have 3 hours - try Japanese food in the basement!",
+          "npcDialogKo": "이랏샤이마세! 나리타 공항에 오신 것을 환영합니다. 환승 게이트는 터미널 1에 있어요. 3시간 있어요 - 지하에서 일본 음식 드세요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Arigatou! What Japanese food do you recommend?", "correct": true, "feedback": "일본어로 감사하며 음식 추천을 요청합니다."},
+              {"text": "Thank you! I've always wanted to try real Japanese ramen.", "correct": true, "feedback": "일본 음식에 대한 관심을 표현합니다."},
+              {"text": "Airport food is always bad.", "correct": false, "feedback": "일본 공항 음식은 품질이 좋기로 유명합니다."},
+              {"text": "I'll just wait at the gate.", "correct": false, "feedback": "일본 문화를 경험할 기회를 놓치게 됩니다."}
+            ]
+          }
+        },
+        {
+          "id": "TR_TYO_002",
+          "category": "transfer",
+          "day": 1,
+          "location": "나리타 공항 라멘 가게",
+          "situation": "공항에서 정통 일본 라멘을 주문한다. 자동판매기로 주문하는 시스템이다.",
+          "npcDialog": "Ticket machine here. Choose ramen - tonkotsu, shoyu, miso. Push button, give ticket to me. Oishii - delicious!",
+          "npcDialogKo": "티켓 기계 여기 있어요. 라멘 선택 - 돈코츠, 쇼유, 미소. 버튼 누르고, 티켓 저한테 주세요. 오이시이 - 맛있어요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Tonkotsu please! Is that the pork bone broth one?", "correct": true, "feedback": "돈코츠에 대해 확인하며 주문합니다."},
+              {"text": "What's the most popular choice? I want the authentic experience!", "correct": true, "feedback": "현지인 추천을 물어봅니다."},
+              {"text": "This machine is confusing.", "correct": false, "feedback": "새로운 시스템에 불평하기보다 배워보세요."},
+              {"text": "I don't like noodle soups.", "correct": false, "feedback": "시도해보지 않고 거부하지 마세요."}
+            ]
+          }
+        },
+        {
+          "id": "TR_TYO_003",
+          "category": "transfer",
+          "day": 1,
+          "location": "나리타 공항 편의점",
+          "situation": "일본 편의점의 다양한 상품에 놀란다. 간식과 음료를 고른다.",
+          "npcDialog": "Japanese konbini - convenience store! Onigiri, bento, matcha sweets, Kit Kat flavors only in Japan! Very popular with tourists!",
+          "npcDialogKo": "일본 콘비니 - 편의점이에요! 오니기리, 벤토, 말차 과자, 일본에만 있는 킷캣 맛! 관광객들에게 아주 인기있어요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "So many unique Kit Kat flavors! I need to try the matcha one.", "correct": true, "feedback": "일본 한정 상품에 관심을 보입니다."},
+              {"text": "What's the best onigiri flavor for a first-timer?", "correct": true, "feedback": "현지인 추천을 요청합니다."},
+              {"text": "Convenience store food isn't real food.", "correct": false, "feedback": "일본 편의점 음식은 품질이 높습니다."},
+              {"text": "This is too expensive.", "correct": false, "feedback": "가격보다 경험에 집중하세요."}
+            ]
+          }
+        },
+        {
+          "id": "TR_TYO_004",
+          "category": "transfer",
+          "day": 1,
+          "location": "나리타 공항 게이트",
+          "situation": "다음 비행기 탑승 시간이다. 짧지만 일본을 맛볼 수 있었다.",
+          "npcDialog": "Now boarding for your connecting flight. Thank you for visiting Japan! Sayonara - come back and explore Tokyo properly!",
+          "npcDialogKo": "연결편 탑승을 시작합니다. 일본에 들러주셔서 감사합니다! 사요나라 - 다시 와서 도쿄를 제대로 탐험하세요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Arigatou gozaimasu! The ramen was amazing - I definitely need to come back!", "correct": true, "feedback": "정중하게 감사하며 재방문 의사를 표현합니다."},
+              {"text": "Sayonara! Even the airport food was incredible. Japan is on my bucket list!", "correct": true, "feedback": "일본에 대한 긍정적 인상을 표현합니다."},
+              {"text": "Finally boarding.", "correct": false, "feedback": "부정적인 뉘앙스가 있습니다."},
+              {"text": "The layover was too short.", "correct": false, "feedback": "경험에 감사하는 것이 좋습니다."}
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

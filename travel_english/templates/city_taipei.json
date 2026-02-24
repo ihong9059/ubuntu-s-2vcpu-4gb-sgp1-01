@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "taipei",
+  "cityName": "타이페이",
+  "country": "대만",
+  "description": "야시장의 천국, 친절한 사람들의 현대적 도시",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_TPE_001",
+      "category": "landmark",
+      "day": 2,
+      "location": "타이페이 101",
+      "situation": "세계에서 가장 빠른 엘리베이터를 타고 전망대에 오른다",
+      "npcDialog": "Taipei 101 was world's tallest until 2010! The elevator reaches 89th floor in 37 seconds. Don't miss the giant wind damper!",
+      "npcDialogKo": "타이페이 101은 2010년까지 세계 최고층이었어요! 엘리베이터가 37초에 89층 도착해요. 거대한 윈드 댐퍼 놓치지 마세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "37 seconds? That's incredible speed!", "correct": true},
+          {"text": "I want to see the wind damper!", "correct": true},
+          {"text": "I've seen taller buildings.", "correct": false},
+          {"text": "Observation decks are boring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_002",
+      "category": "food",
+      "day": 2,
+      "location": "스린 야시장",
+      "situation": "타이베이 최대 야시장을 탐험한다",
+      "npcDialog": "Shilin is Taiwan's biggest night market! Stinky tofu, bubble tea, oyster omelette - all Taiwan classics! Basement food court is the best!",
+      "npcDialogKo": "스린은 대만 최대 야시장이에요! 취두부, 버블티, 굴전 - 다 대만 대표 음식! 지하 푸드코트가 제일 좋아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I have to try stinky tofu!", "correct": true},
+          {"text": "Taiwan invented bubble tea, right?", "correct": true},
+          {"text": "Stinky tofu sounds disgusting.", "correct": false},
+          {"text": "Night markets are too crowded.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_003",
+      "category": "culture",
+      "day": 3,
+      "location": "고궁박물관",
+      "situation": "세계 최대 중국 예술품 컬렉션을 관람한다",
+      "npcDialog": "National Palace Museum has 700,000 artifacts! The Jadeite Cabbage is most famous. Too many to display - they rotate every 3 months!",
+      "npcDialogKo": "고궁박물관에는 70만 점의 유물이 있어요! 비취 배추가 제일 유명해요. 너무 많아서 3개월마다 바꿔 전시해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "700,000 artifacts? Mind-blowing!", "correct": true},
+          {"text": "I must see the Jadeite Cabbage!", "correct": true},
+          {"text": "Museums are boring.", "correct": false},
+          {"text": "Chinese art doesn't interest me.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_004",
+      "category": "food",
+      "day": 3,
+      "location": "딘타이펑",
+      "situation": "세계적으로 유명한 샤오롱바오를 먹는다",
+      "npcDialog": "Din Tai Fung started here in Taipei! Our xiaolongbao have exactly 18 folds each. Careful - the soup inside is hot!",
+      "npcDialogKo": "딘타이펑은 타이베이에서 시작됐어요! 샤오롱바오에 정확히 18개 주름이 있어요. 조심하세요 - 안에 뜨거운 육수가 있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "18 folds? Such precision!", "correct": true},
+          {"text": "I'll be careful with the hot soup.", "correct": true},
+          {"text": "They're just dumplings.", "correct": false},
+          {"text": "I don't eat pork.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_005",
+      "category": "nature",
+      "day": 4,
+      "location": "지우펀",
+      "situation": "센과 치히로의 배경이 된 마을을 방문한다",
+      "npcDialog": "Jiufen inspired Spirited Away! The red lanterns at night are magical. Try taro balls and tea in the old teahouses!",
+      "npcDialogKo": "지우펀은 센과 치히로에 영감을 줬어요! 밤에 빨간 등불이 마법 같아요. 전통 찻집에서 토란 경단과 차 드세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Just like in the movie!", "correct": true},
+          {"text": "Red lanterns at night sounds magical.", "correct": true},
+          {"text": "I haven't seen Spirited Away.", "correct": false},
+          {"text": "It's just a tourist trap.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_006",
+      "category": "transport",
+      "day": 2,
+      "location": "타이베이 MRT",
+      "situation": "깨끗하고 효율적인 지하철을 이용한다",
+      "npcDialog": "Taipei MRT is super clean! No eating or drinking allowed. Get EasyCard for all transport and convenience stores too!",
+      "npcDialogKo": "타이베이 MRT는 정말 깨끗해요! 음식 음료 금지예요. 이지카드 사면 교통에 편의점에서도 써요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "So clean and efficient!", "correct": true},
+          {"text": "EasyCard sounds very convenient.", "correct": true},
+          {"text": "No eating? That's too strict.", "correct": false},
+          {"text": "I prefer taxis.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_007",
+      "category": "food",
+      "day": 4,
+      "location": "라오허 야시장",
+      "situation": "현지인이 사랑하는 야시장을 방문한다",
+      "npcDialog": "Raohe is more local than Shilin! The pepper pork bun at the entrance is famous - 30 minute line but worth it! Try snake soup if you dare!",
+      "npcDialogKo": "라오허는 스린보다 로컬이에요! 입구 후추 돼지고기 빵이 유명해요 - 30분 줄이지만 가치 있어요! 용기 있으면 뱀탕도 드세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "30 minutes for a bun? Must be amazing!", "correct": true},
+          {"text": "I want the authentic local experience.", "correct": true},
+          {"text": "I don't wait that long for food.", "correct": false},
+          {"text": "Snake soup? No way.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_008",
+      "category": "culture",
+      "day": 3,
+      "location": "중정기념당",
+      "situation": "장개석 기념관을 방문한다",
+      "npcDialog": "Chiang Kai-shek Memorial has the changing of the guard every hour! The plaza with Liberty Square Gate is huge. Early morning tai chi is beautiful to watch.",
+      "npcDialogKo": "중정기념당에서 매시간 근위병 교대식이 있어요! 자유광장 문이 있는 광장이 엄청 커요. 이른 아침 태극권 보기 좋아요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "The guard ceremony sounds impressive!", "correct": true},
+          {"text": "I'd love to see the morning tai chi.", "correct": true},
+          {"text": "Political monuments don't interest me.", "correct": false},
+          {"text": "It's just propaganda.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_009",
+      "category": "local",
+      "day": 5,
+      "location": "베이터우 온천",
+      "situation": "타이베이 근교 온천 마을을 방문한다",
+      "npcDialog": "Beitou has natural hot springs! Public baths are cheap, or try a fancy hotel spa. The green sulfur spring is unique to here!",
+      "npcDialogKo": "베이터우에 천연 온천이 있어요! 대중탕은 싸고, 고급 호텔 스파도 있어요. 녹색 유황 온천은 여기만의 특색이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Green sulfur springs? I must try!", "correct": true},
+          {"text": "Hot springs after sightseeing sounds perfect.", "correct": true},
+          {"text": "Public baths are uncomfortable.", "correct": false},
+          {"text": "I don't like hot water.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_010",
+      "category": "food",
+      "day": 2,
+      "location": "버블티 가게",
+      "situation": "버블티의 원조를 맛본다",
+      "npcDialog": "Taiwan invented bubble tea in 1988! Choose your sugar and ice level - we customize everything. Black sugar fresh milk is trending now!",
+      "npcDialogKo": "대만이 1988년 버블티를 발명했어요! 당도와 얼음 양을 고르세요 - 다 맞춤이에요. 흑설탕 생우유가 요즘 인기예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Bubble tea from where it was invented!", "correct": true},
+          {"text": "I love the customization options.", "correct": true},
+          {"text": "Bubble tea is overrated.", "correct": false},
+          {"text": "Too much sugar for me.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_011",
+      "category": "nature",
+      "day": 4,
+      "location": "양밍산 국립공원",
+      "situation": "타이베이 근교의 화산 국립공원을 방문한다",
+      "npcDialog": "Yangmingshan has volcanic landscapes! Steam vents, hot springs, flower seasons. In March the cherry blossoms are stunning!",
+      "npcDialogKo": "양밍산에는 화산 지형이 있어요! 증기 분출구, 온천, 꽃 축제. 3월 벚꽃이 장관이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Volcanic steam vents? So cool!", "correct": true},
+          {"text": "Nature so close to the city is perfect.", "correct": true},
+          {"text": "Hiking is too tiring.", "correct": false},
+          {"text": "I prefer staying in the city.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_012",
+      "category": "shopping",
+      "day": 3,
+      "location": "용캉제",
+      "situation": "트렌디한 골목을 구경한다",
+      "npcDialog": "Yongkang Street is hipster heaven! Boutiques, cafes, mango shaved ice. The original Din Tai Fung is here too!",
+      "npcDialogKo": "용캉제는 힙스터 천국이에요! 부티크, 카페, 망고 빙수. 딘타이펑 원조 매장도 여기 있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Mango shaved ice sounds refreshing!", "correct": true},
+          {"text": "I love exploring trendy neighborhoods.", "correct": true},
+          {"text": "Hipster areas are pretentious.", "correct": false},
+          {"text": "I prefer shopping malls.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_013",
+      "category": "culture",
+      "day": 5,
+      "location": "룽산사",
+      "situation": "타이베이에서 가장 오래된 사원을 방문한다",
+      "npcDialog": "Longshan Temple is from 1738! Very sacred to locals. You can try moon blocks for fortune telling - toss them and ask your question!",
+      "npcDialogKo": "룽산사는 1738년 것이에요! 현지인들에게 매우 신성해요. 달 블록으로 점을 봐요 - 던지면서 질문하세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'd love to try the fortune telling!", "correct": true},
+          {"text": "The temple architecture is beautiful.", "correct": true},
+          {"text": "Temples are all the same.", "correct": false},
+          {"text": "Fortune telling is fake.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_014",
+      "category": "food",
+      "day": 4,
+      "location": "닭고기밥 가게",
+      "situation": "대만식 닭고기밥을 먹는다",
+      "npcDialog": "Taiwan's chicken rice is different from Hainan! Shredded chicken on rice with special sauce. Add a bowl of bamboo soup - perfect combo!",
+      "npcDialogKo": "대만 닭고기밥은 하이난식과 달라요! 찢은 닭고기에 특제 소스. 죽순 스프 추가하면 완벽 조합!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll try the combo!", "correct": true},
+          {"text": "Simple but looks delicious.", "correct": true},
+          {"text": "Just chicken and rice?", "correct": false},
+          {"text": "I prefer fried chicken.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_015",
+      "category": "local",
+      "day": 3,
+      "location": "마오콩 곤돌라",
+      "situation": "차 농장 위로 곤돌라를 탄다",
+      "npcDialog": "Maokong Gondola goes over tea plantations! Try the glass-bottom cabins for a thrill. Tea farms at the top have amazing views!",
+      "npcDialogKo": "마오콩 곤돌라가 차밭 위를 지나요! 바닥이 유리인 캐빈으로 스릴을 느껴보세요. 위에 차 농장 전망이 끝내줘요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Glass-bottom cabin? Count me in!", "correct": true},
+          {"text": "Tea at a tea farm sounds authentic.", "correct": true},
+          {"text": "Cable cars scare me.", "correct": false},
+          {"text": "I don't drink tea.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_016",
+      "category": "shopping",
+      "day": 5,
+      "location": "신이 지구",
+      "situation": "타이베이의 럭셔리 쇼핑 지구를 방문한다",
+      "npcDialog": "Xinyi District has all the malls! Taipei 101 mall, Breeze, ATT 4 FUN. The rooftop bars have the best city views!",
+      "npcDialogKo": "신이 지구에 모든 쇼핑몰이 있어요! 타이페이 101몰, 브리즈, ATT 4 FUN. 루프탑 바에서 도시 전망이 최고예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Rooftop bar with city views sounds perfect.", "correct": true},
+          {"text": "So many malls to explore!", "correct": true},
+          {"text": "Luxury shopping isn't my thing.", "correct": false},
+          {"text": "Malls are all the same.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_017",
+      "category": "food",
+      "day": 5,
+      "location": "대만 아침식사 가게",
+      "situation": "전통 대만식 아침을 먹는다",
+      "npcDialog": "Taiwanese breakfast is unique! Egg crepe - danbing - with soy milk. Sweet or salty soy milk? Locals love salty with fried bread!",
+      "npcDialogKo": "대만식 아침은 독특해요! 달걀 크레이프 - 단빙 - 에 두유. 달콤한 두유 짭짤한 두유? 현지인은 짭짤한 거에 튀긴 빵을 좋아해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll try it the local way - salty!", "correct": true},
+          {"text": "Egg crepe for breakfast? I'm curious.", "correct": true},
+          {"text": "I prefer Western breakfast.", "correct": false},
+          {"text": "Soy milk for breakfast is weird.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_018",
+      "category": "nature",
+      "day": 5,
+      "location": "상수기",
+      "situation": "옛 철도가 된 하이킹 코스를 걷는다",
+      "npcDialog": "Shifen is famous for sky lanterns! Write your wish, light it, and watch it float away. The old train street is also unique!",
+      "npcDialogKo": "스펀은 천등으로 유명해요! 소원 쓰고, 불 붙이고, 날아가는 거 보세요. 옛 기차 거리도 독특해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Releasing a sky lantern with my wish!", "correct": true},
+          {"text": "The train track street looks so unique.", "correct": true},
+          {"text": "Sky lanterns are bad for environment.", "correct": false},
+          {"text": "It's too far from Taipei.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_019",
+      "category": "culture",
+      "day": 4,
+      "location": "바오안 궁",
+      "situation": "유네스코 문화유산 사원을 방문한다",
+      "npcDialog": "Baoan Temple won UNESCO Asia-Pacific Heritage Award! The roof decorations are incredible. Free traditional puppet shows on weekends!",
+      "npcDialogKo": "바오안 궁은 유네스코 아시아태평양 유산상을 받았어요! 지붕 장식이 끝내줘요. 주말에 무료 전통 인형극도 해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "UNESCO award-winning temple! Must see.", "correct": true},
+          {"text": "Free puppet shows? That's wonderful!", "correct": true},
+          {"text": "I've seen enough temples.", "correct": false},
+          {"text": "Puppet shows are for kids.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TPE_020",
+      "category": "food",
+      "day": 3,
+      "location": "우육면 가게",
+      "situation": "대만의 국민 음식 소고기 국수를 먹는다",
+      "npcDialog": "Beef noodle soup is Taiwan's national dish! Hours of slow-cooking. Braised or clear broth? Add pickled vegetables for authentic taste!",
+      "npcDialogKo": "우육면은 대만 국민 음식이에요! 몇 시간 푹 끓여요. 조림 국물 아님 맑은 국물? 절임 채소 넣으면 진짜 맛!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Taiwan's national dish? I must try!", "correct": true},
+          {"text": "I'll try the braised broth version.", "correct": true},
+          {"text": "Soup noodles are too hot in this weather.", "correct": false},
+          {"text": "I don't eat beef.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

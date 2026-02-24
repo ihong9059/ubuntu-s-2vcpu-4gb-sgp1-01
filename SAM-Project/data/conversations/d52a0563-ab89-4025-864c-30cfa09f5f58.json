@@ -1,0 +1,20 @@
+{
+  "id": "d52a0563-ab89-4025-864c-30cfa09f5f58",
+  "title": "안녕",
+  "member_id": "bangchan",
+  "created_at": "2026-02-13T02:29:58.463570",
+  "updated_at": "2026-02-13T02:30:02.086031",
+  "messages": [
+    {
+      "role": "user",
+      "content": "안녕",
+      "timestamp": "2026-02-13T02:29:58.976534"
+    },
+    {
+      "role": "assistant",
+      "content": "STAY~! 안녕! 👋 Hey there! 잘 지내고 있었어요? 이렇게 찾아와줘서 고마워요. 😄",
+      "timestamp": "2026-02-13T02:30:02.084161",
+      "member_id": "bangchan"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "ec325d01-909f-4fb2-8e8a-ab307ddabcd3",
+  "title": "New Chat",
+  "member_id": "leeknow",
+  "created_at": "2026-02-12T15:50:29.165892",
+  "updated_at": "2026-02-12T15:50:29.553682",
+  "messages": [
+    {
+      "role": "user",
+      "content": "리노 안녕",
+      "timestamp": "2026-02-12T15:50:29.553656"
+    }
+  ]
+}

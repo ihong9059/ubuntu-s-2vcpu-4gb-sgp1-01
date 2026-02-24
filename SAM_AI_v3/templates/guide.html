@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>SAM AI v3 - 사용설명서</title>
+    <link rel="stylesheet" href="/static/css/style.css?v=5">
+    <style>
+        body {
+            overflow: auto;
+            padding: 0;
+        }
+        .doc-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+            padding-top: max(40px, env(safe-area-inset-top));
+        }
+        .doc-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        .doc-header h1 {
+            color: var(--accent);
+            font-size: 28px;
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .btn-back:hover {
+            background: var(--accent);
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            color: var(--accent);
+            font-size: 22px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+        .section h3 {
+            color: var(--text-primary);
+            font-size: 18px;
+            margin: 20px 0 12px;
+        }
+        .section p, .section li {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .section ul, .section ol {
+            padding-left: 24px;
+        }
+        .section li {
+            margin-bottom: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+        th {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        td {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+        }
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+        }
+        .card-title {
+            color: var(--accent);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        code {
+            background: var(--bg-tertiary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 14px;
+            color: var(--accent);
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-green { background: #2d5a3d; color: #4ecdc4; }
+        .badge-blue { background: #1e3a5f; color: #64b5f6; }
+        .badge-purple { background: #3d2d5a; color: #b39ddb; }
+        .badge-orange { background: #5a3d2d; color: #ffb74d; }
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+        .nav-links a {
+            flex: 1;
+            padding: 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+        .nav-links a:hover {
+            background: var(--bg-tertiary);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+        .shortcut {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .key {
+            display: inline-block;
+            padding: 4px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="doc-container">
+        <header class="doc-header">
+            <h1>SAM AI v3 사용설명서</h1>
+            <a href="/" class="btn-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                채팅으로 돌아가기
+            </a>
+        </header>
+
+        <section class="section">
+            <h2>시작하기</h2>
+            <p>SAM AI v3는 여러 AI 서비스를 하나의 인터페이스에서 사용할 수 있는 멀티 AI 채팅 애플리케이션입니다.</p>
+
+            <h3>지원 AI 프로바이더</h3>
+            <table>
+                <tr>
+                    <th>프로바이더</th>
+                    <th>모델</th>
+                    <th>특징</th>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-purple">Claude</span></td>
+                    <td>claude-sonnet-4, claude-haiku-4</td>
+                    <td>Anthropic AI, 뛰어난 분석력</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-green">GPT</span></td>
+                    <td>gpt-4o, gpt-4o-mini, gpt-4.1</td>
+                    <td>OpenAI, 범용적 성능</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-blue">Gemini</span></td>
+                    <td>gemini-2.5-flash/pro, gemini-2.0</td>
+                    <td>Google AI, 빠른 응답</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-orange">Ollama</span></td>
+                    <td>gemma3:4b 등</td>
+                    <td>로컬 AI, 무료, 오프라인</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="section">
+            <h2>API 키 설정</h2>
+            <p>처음 사용 시 Settings에서 API 키를 설정해야 합니다.</p>
+
+            <div class="card">
+                <div class="card-title">설정 방법</div>
+                <ol>
+                    <li>왼쪽 하단 <strong>Settings</strong> 버튼 클릭</li>
+                    <li>각 프로바이더의 API 키 입력:
+                        <ul>
+                            <li><strong>Claude</strong>: <code>sk-ant-...</code> 형식</li>
+                            <li><strong>OpenAI</strong>: <code>sk-...</code> 형식</li>
+                            <li><strong>Gemini</strong>: <code>AI...</code> 형식</li>
+                            <li><strong>Ollama</strong>: API 키 불필요 (로컬)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Save API Keys</strong> 버튼 클릭</li>
+                </ol>
+            </div>
+
+            <h3>API 키 발급처</h3>
+            <table>
+                <tr>
+                    <th>프로바이더</th>
+                    <th>발급 사이트</th>
+                </tr>
+                <tr>
+                    <td>Claude</td>
+                    <td>https://console.anthropic.com</td>
+                </tr>
+                <tr>
+                    <td>OpenAI</td>
+                    <td>https://platform.openai.com/api-keys</td>
+                </tr>
+                <tr>
+                    <td>Gemini</td>
+                    <td>https://aistudio.google.com/apikey</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="section">
+            <h2>채팅 모드</h2>
+
+            <div class="card">
+                <div class="card-title">Single 모드</div>
+                <p>선택한 하나의 AI와 대화합니다. 가장 기본적인 모드입니다.</p>
+                <ul>
+                    <li>상단에서 원하는 AI 프로바이더 선택</li>
+                    <li>모델도 선택 가능 (기본값 자동 적용)</li>
+                    <li>메시지 입력 후 전송</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Compare 모드</div>
+                <p>모든 온라인 AI에게 동시에 질문하고 응답을 비교합니다.</p>
+                <ul>
+                    <li>같은 질문에 대한 다양한 관점 확인</li>
+                    <li>AI별 응답이 나란히 표시됨</li>
+                    <li>각 AI의 강점 비교 가능</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Smart 모드</div>
+                <p>여러 AI의 응답을 수집하여 최적의 답변으로 통합합니다.</p>
+                <ul>
+                    <li><strong>Phase 1</strong>: 모든 온라인 AI에게 질문 전송</li>
+                    <li><strong>Phase 2</strong>: 응답 수집 후 통합 답변 생성</li>
+                    <li>Synthesizer 우선순위: Claude > Gemini > OpenAI</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>파일 첨부</h2>
+
+            <h3>지원 형식</h3>
+            <table>
+                <tr>
+                    <th>유형</th>
+                    <th>확장자</th>
+                </tr>
+                <tr>
+                    <td>이미지</td>
+                    <td>.png, .jpg, .jpeg, .gif, .webp</td>
+                </tr>
+                <tr>
+                    <td>문서</td>
+                    <td>.pdf, .txt, .md, .csv, .docx</td>
+                </tr>
+            </table>
+
+            <h3>첨부 방법</h3>
+            <ol>
+                <li>메시지 입력창 왼쪽의 클립 아이콘 클릭</li>
+                <li>파일 선택 (최대 20MB)</li>
+                <li>메시지와 함께 전송</li>
+            </ol>
+        </section>
+
+        <section class="section">
+            <h2>대화 관리</h2>
+            <ul>
+                <li><strong>새 대화</strong>: 사이드바 상단의 + 버튼</li>
+                <li><strong>대화 기록</strong>: 사이드바에서 이전 대화 선택</li>
+                <li><strong>대화 삭제</strong>: 대화 항목에 마우스 오버 후 휴지통 아이콘</li>
+                <li><strong>제목 변경</strong>: 대화 항목에 마우스 오버 후 편집 아이콘</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>단축키</h2>
+            <table>
+                <tr>
+                    <th>단축키</th>
+                    <th>기능</th>
+                </tr>
+                <tr>
+                    <td><span class="shortcut"><span class="key">Enter</span></span></td>
+                    <td>메시지 전송</td>
+                </tr>
+                <tr>
+                    <td><span class="shortcut"><span class="key">Shift</span> + <span class="key">Enter</span></span></td>
+                    <td>줄바꿈</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="section">
+            <h2>Ollama (로컬 AI) 상세 설명</h2>
+            <p>Ollama는 로컬 컴퓨터에서 AI 모델을 실행하는 오픈소스 프로젝트입니다. 인터넷 연결 없이 완전히 오프라인으로 작동하며, API 비용이 발생하지 않습니다.</p>
+
+            <h3>Ollama의 장점</h3>
+            <div class="card">
+                <ul>
+                    <li><strong>무료</strong>: API 호출 비용 없음</li>
+                    <li><strong>오프라인 사용</strong>: 인터넷 연결 불필요</li>
+                    <li><strong>데이터 프라이버시</strong>: 모든 데이터가 로컬에서 처리됨</li>
+                    <li><strong>다양한 모델</strong>: Llama, Gemma, Mistral 등 다양한 오픈소스 모델 지원</li>
+                </ul>
+            </div>
+
+            <h3>시스템 요구사항</h3>
+            <p>Ollama를 사용하려면 충분한 하드웨어 리소스가 필요합니다.</p>
+            <table>
+                <tr>
+                    <th>모델</th>
+                    <th>필요 RAM</th>
+                    <th>권장 사양</th>
+                </tr>
+                <tr>
+                    <td>gemma3:4b (4B 파라미터)</td>
+                    <td>약 3~4 GB</td>
+                    <td>8GB RAM 이상</td>
+                </tr>
+                <tr>
+                    <td>llama3:8b (8B 파라미터)</td>
+                    <td>약 5~6 GB</td>
+                    <td>16GB RAM 이상</td>
+                </tr>
+                <tr>
+                    <td>llama3:70b (70B 파라미터)</td>
+                    <td>약 40 GB</td>
+                    <td>64GB RAM 이상</td>
+                </tr>
+            </table>
+
+            <h3>클라우드 서버에서 Ollama를 사용할 수 없는 이유</h3>
+            <div class="card" style="border-color: #e94560;">
+                <div class="card-title" style="color: #e94560;">메모리 제한 문제</div>
+                <p>이 서버(do-server)의 사양:</p>
+                <ul>
+                    <li><strong>총 RAM</strong>: 3.8 GB</li>
+                    <li><strong>사용 가능 RAM</strong>: 약 2.5 GB</li>
+                    <li><strong>CPU</strong>: 2코어</li>
+                </ul>
+                <p style="margin-top: 16px;">gemma3:4b 모델은 약 <strong>3~4 GB의 RAM</strong>이 필요하지만, 서버의 사용 가능한 메모리는 약 2.5 GB입니다. 또한 다른 웹 서비스들(약 15개)이 이미 실행 중이므로, Ollama를 실행하면:</p>
+                <ol>
+                    <li>메모리 부족으로 시스템이 느려지거나 불안정해질 수 있음</li>
+                    <li>기존 서비스들의 성능에 영향을 줄 수 있음</li>
+                    <li>OOM(Out of Memory) 에러로 서비스가 강제 종료될 수 있음</li>
+                </ol>
+            </div>
+
+            <h3>Ollama 사용 조건</h3>
+            <div class="card">
+                <div class="card-title">로컬 PC에서 사용하기</div>
+                <p>Ollama는 다음 환경에서 사용하는 것이 적합합니다:</p>
+                <ul>
+                    <li><strong>개인 PC/Mac</strong>: 8GB 이상 RAM 권장</li>
+                    <li><strong>고성능 클라우드 서버</strong>: 8GB 이상 RAM, 전용 리소스</li>
+                    <li><strong>GPU 서버</strong>: NVIDIA GPU가 있으면 더욱 빠른 응답</li>
+                </ul>
+                <p style="margin-top: 16px;">설치 방법 (macOS):</p>
+                <pre style="background: var(--bg-tertiary); padding: 12px; border-radius: 8px; margin-top: 8px;"><code># Homebrew로 설치
+brew install ollama
+
+# 서버 시작
+brew services start ollama
+
+# 모델 다운로드
+ollama pull gemma3:4b</code></pre>
+            </div>
+
+            <h3>대안: 클라우드 AI 사용</h3>
+            <p>서버 환경에서는 Claude, GPT, Gemini 같은 클라우드 AI를 사용하는 것이 효율적입니다:</p>
+            <ul>
+                <li>서버 리소스를 거의 사용하지 않음 (API 호출만)</li>
+                <li>항상 최신 모델 사용 가능</li>
+                <li>안정적인 응답 품질</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>문제 해결</h2>
+
+            <div class="card">
+                <div class="card-title">AI가 응답하지 않음</div>
+                <ol>
+                    <li>Settings에서 API 키가 올바르게 입력되었는지 확인</li>
+                    <li>상단의 상태 표시등 확인 (녹색 = 온라인)</li>
+                    <li>인터넷 연결 상태 확인</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <div class="card-title">응답이 느림</div>
+                <ul>
+                    <li>Compare/Smart 모드는 여러 AI를 호출하므로 시간이 더 걸림</li>
+                    <li>Ollama는 로컬 하드웨어 성능에 따라 다름</li>
+                    <li>네트워크 상태에 따라 응답 시간이 달라질 수 있음</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="nav-links">
+            <a href="/">채팅으로 돌아가기</a>
+            <a href="/architecture">동작 원리 보기</a>
+        </div>
+    </div>
+</body>
+</html>

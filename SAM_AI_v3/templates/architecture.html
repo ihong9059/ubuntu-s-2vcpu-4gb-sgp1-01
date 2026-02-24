@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>SAM AI v3 - 동작 원리</title>
+    <link rel="stylesheet" href="/static/css/style.css?v=5">
+    <style>
+        body {
+            overflow: auto;
+            padding: 0;
+        }
+        .doc-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+            padding-top: max(40px, env(safe-area-inset-top));
+        }
+        .doc-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        .doc-header h1 {
+            color: var(--accent);
+            font-size: 28px;
+        }
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .btn-back:hover {
+            background: var(--accent);
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            color: var(--accent);
+            font-size: 22px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+        .section h3 {
+            color: var(--text-primary);
+            font-size: 18px;
+            margin: 20px 0 12px;
+        }
+        .section p, .section li {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .section ul, .section ol {
+            padding-left: 24px;
+        }
+        .section li {
+            margin-bottom: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+        th {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        td {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+        }
+        code {
+            background: var(--bg-tertiary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 14px;
+            color: var(--accent);
+        }
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            overflow-x: auto;
+            margin: 16px 0;
+        }
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: var(--text-secondary);
+        }
+        .diagram {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .diagram-title {
+            color: var(--accent);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .flow-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+        }
+        .flow-row {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .flow-box {
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            min-width: 120px;
+            text-align: center;
+        }
+        .flow-box.client { background: #1e3a5f; color: #64b5f6; border: 2px solid #64b5f6; }
+        .flow-box.server { background: #2d5a3d; color: #4ecdc4; border: 2px solid #4ecdc4; }
+        .flow-box.ai { background: #3d2d5a; color: #b39ddb; border: 2px solid #b39ddb; }
+        .flow-box.data { background: #5a3d2d; color: #ffb74d; border: 2px solid #ffb74d; }
+        .flow-arrow {
+            color: var(--text-muted);
+            font-size: 20px;
+        }
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+        }
+        .card-title {
+            color: var(--accent);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .file-tree {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+        .file-tree .folder { color: #64b5f6; }
+        .file-tree .file { color: var(--text-secondary); }
+        .file-tree .comment { color: var(--text-muted); font-style: italic; }
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .badge-green { background: #2d5a3d; color: #4ecdc4; }
+        .badge-blue { background: #1e3a5f; color: #64b5f6; }
+        .badge-purple { background: #3d2d5a; color: #b39ddb; }
+        .badge-orange { background: #5a3d2d; color: #ffb74d; }
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+        .nav-links a {
+            flex: 1;
+            padding: 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+        .nav-links a:hover {
+            background: var(--bg-tertiary);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+        @media (max-width: 600px) {
+            .flow-row { flex-direction: column; }
+            .flow-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="doc-container">
+        <header class="doc-header">
+            <h1>SAM AI v3 동작 원리</h1>
+            <a href="/" class="btn-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+                채팅으로 돌아가기
+            </a>
+        </header>
+
+        <section class="section">
+            <h2>시스템 개요</h2>
+            <p>SAM AI v3는 Flask 백엔드와 Vanilla JavaScript 프론트엔드로 구성된 멀티 AI 채팅 애플리케이션입니다.</p>
+
+            <div class="diagram">
+                <div class="diagram-title">전체 아키텍처</div>
+                <div class="flow-container">
+                    <div class="flow-row">
+                        <div class="flow-box client">Browser<br>(Vanilla JS)</div>
+                        <span class="flow-arrow">&#8596;</span>
+                        <div class="flow-box server">Flask Server<br>(Python)</div>
+                        <span class="flow-arrow">&#8596;</span>
+                        <div class="flow-box ai">AI Providers<br>(Claude, GPT, Gemini, Ollama)</div>
+                    </div>
+                    <div class="flow-row">
+                        <div class="flow-box data">JSON Storage<br>(대화 기록)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>폴더 구조</h2>
+            <div class="card">
+                <pre class="file-tree"><span class="folder">SAM_AI_v3/</span>
+├── <span class="file">app.py</span>                 <span class="comment"># Flask 메인 애플리케이션</span>
+├── <span class="file">config.py</span>              <span class="comment"># 설정 파일 (포트, 모델, 프롬프트)</span>
+├── <span class="file">requirements.txt</span>       <span class="comment"># Python 의존성</span>
+│
+├── <span class="folder">services/</span>              <span class="comment"># 백엔드 서비스 모듈</span>
+│   ├── <span class="file">ai_dispatcher.py</span>       <span class="comment"># AI 프로바이더 라우팅</span>
+│   ├── <span class="file">claude_service.py</span>      <span class="comment"># Claude API 연동</span>
+│   ├── <span class="file">openai_service.py</span>      <span class="comment"># OpenAI API 연동</span>
+│   ├── <span class="file">gemini_service.py</span>      <span class="comment"># Gemini API 연동</span>
+│   ├── <span class="file">ollama_service.py</span>      <span class="comment"># Ollama 로컬 AI 연동</span>
+│   ├── <span class="file">conversation_manager.py</span> <span class="comment"># 대화 관리</span>
+│   ├── <span class="file">config_manager.py</span>      <span class="comment"># 설정 관리</span>
+│   └── <span class="file">file_service.py</span>        <span class="comment"># 파일 업로드 처리</span>
+│
+├── <span class="folder">templates/</span>             <span class="comment"># HTML 템플릿</span>
+│   └── <span class="file">index.html</span>             <span class="comment"># 메인 페이지</span>
+│
+├── <span class="folder">static/</span>                <span class="comment"># 정적 파일</span>
+│   ├── <span class="folder">css/</span>                   <span class="comment"># 스타일시트</span>
+│   ├── <span class="folder">js/</span>                    <span class="comment"># JavaScript 모듈</span>
+│   └── <span class="folder">lib/</span>                   <span class="comment"># 외부 라이브러리</span>
+│
+└── <span class="folder">data/</span>                  <span class="comment"># 데이터 저장소</span>
+    ├── <span class="file">config.json</span>            <span class="comment"># API 키 및 설정</span>
+    ├── <span class="folder">conversations/</span>         <span class="comment"># 대화 기록 (JSON)</span>
+    └── <span class="folder">uploads/</span>               <span class="comment"># 업로드된 파일</span></pre>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>API 엔드포인트</h2>
+
+            <h3>채팅 API</h3>
+            <table>
+                <tr>
+                    <th>Method</th>
+                    <th>Endpoint</th>
+                    <th>설명</th>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-green">POST</span></td>
+                    <td><code>/api/chat</code></td>
+                    <td>Single 모드 채팅 (SSE 스트리밍)</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-green">POST</span></td>
+                    <td><code>/api/chat/multi</code></td>
+                    <td>Compare 모드 (다중 AI 병렬)</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-green">POST</span></td>
+                    <td><code>/api/chat/smart</code></td>
+                    <td>Smart 모드 (수집 + 통합)</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-green">POST</span></td>
+                    <td><code>/api/chat/stop</code></td>
+                    <td>응답 생성 중단</td>
+                </tr>
+            </table>
+
+            <h3>대화 관리 API</h3>
+            <table>
+                <tr>
+                    <th>Method</th>
+                    <th>Endpoint</th>
+                    <th>설명</th>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-blue">GET</span></td>
+                    <td><code>/api/conversations</code></td>
+                    <td>대화 목록 조회</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-green">POST</span></td>
+                    <td><code>/api/conversations</code></td>
+                    <td>새 대화 생성</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-blue">GET</span></td>
+                    <td><code>/api/conversations/&lt;id&gt;</code></td>
+                    <td>특정 대화 조회</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-orange">PUT</span></td>
+                    <td><code>/api/conversations/&lt;id&gt;</code></td>
+                    <td>대화 수정</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-purple">DELETE</span></td>
+                    <td><code>/api/conversations/&lt;id&gt;</code></td>
+                    <td>대화 삭제</td>
+                </tr>
+            </table>
+
+            <h3>설정 API</h3>
+            <table>
+                <tr>
+                    <th>Method</th>
+                    <th>Endpoint</th>
+                    <th>설명</th>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-blue">GET</span></td>
+                    <td><code>/api/config</code></td>
+                    <td>설정 조회 (API 키 마스킹)</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-green">POST</span></td>
+                    <td><code>/api/config/keys</code></td>
+                    <td>API 키 저장</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-blue">GET</span></td>
+                    <td><code>/api/providers/status</code></td>
+                    <td>프로바이더 상태 조회</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="section">
+            <h2>채팅 모드 동작 원리</h2>
+
+            <h3>Single 모드</h3>
+            <div class="diagram">
+                <div class="flow-container">
+                    <div class="flow-row">
+                        <div class="flow-box client">사용자 입력</div>
+                        <span class="flow-arrow">&#8594;</span>
+                        <div class="flow-box server">/api/chat</div>
+                        <span class="flow-arrow">&#8594;</span>
+                        <div class="flow-box ai">선택된 AI</div>
+                    </div>
+                    <div class="flow-row">
+                        <div class="flow-box client">실시간 표시</div>
+                        <span class="flow-arrow">&#8592;</span>
+                        <div class="flow-box server">SSE 스트리밍</div>
+                        <span class="flow-arrow">&#8592;</span>
+                        <div class="flow-box ai">토큰 생성</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Compare 모드</h3>
+            <div class="diagram">
+                <div class="flow-container">
+                    <div class="flow-row">
+                        <div class="flow-box client">사용자 입력</div>
+                        <span class="flow-arrow">&#8594;</span>
+                        <div class="flow-box server">/api/chat/multi</div>
+                    </div>
+                    <div class="flow-row">
+                        <div class="flow-box ai">Claude</div>
+                        <div class="flow-box ai">GPT</div>
+                        <div class="flow-box ai">Gemini</div>
+                        <div class="flow-box ai">Ollama</div>
+                    </div>
+                    <div class="flow-row">
+                        <div class="flow-box server">병렬 스트리밍</div>
+                        <span class="flow-arrow">&#8594;</span>
+                        <div class="flow-box client">AI별 응답 표시</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Smart 모드</h3>
+            <div class="diagram">
+                <div class="flow-container">
+                    <div class="flow-row">
+                        <div class="flow-box client">사용자 입력</div>
+                        <span class="flow-arrow">&#8594;</span>
+                        <div class="flow-box server">/api/chat/smart</div>
+                    </div>
+                    <div class="flow-row">
+                        <span style="color: var(--text-muted)">Phase 1: Gathering</span>
+                    </div>
+                    <div class="flow-row">
+                        <div class="flow-box ai">Claude</div>
+                        <div class="flow-box ai">GPT</div>
+                        <div class="flow-box ai">Gemini</div>
+                    </div>
+                    <div class="flow-row">
+                        <span style="color: var(--text-muted)">Phase 2: Synthesizing</span>
+                    </div>
+                    <div class="flow-row">
+                        <div class="flow-box data">응답 수집</div>
+                        <span class="flow-arrow">&#8594;</span>
+                        <div class="flow-box ai">Synthesizer AI</div>
+                        <span class="flow-arrow">&#8594;</span>
+                        <div class="flow-box client">통합 답변</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>실시간 스트리밍 (SSE)</h2>
+            <p>Server-Sent Events를 사용하여 AI 응답을 실시간으로 전송합니다.</p>
+
+            <div class="card">
+                <div class="card-title">SSE 이벤트 형식</div>
+                <pre><code>event: token
+data: {"content": "Hello", "provider": "claude"}
+
+event: done
+data: {"provider": "claude", "full_response": "Hello, world!"}
+
+event: error
+data: {"error": "API key invalid", "provider": "claude"}</code></pre>
+            </div>
+
+            <h3>SSE 특징</h3>
+            <ul>
+                <li><strong>단방향</strong>: 서버에서 클라이언트로만 전송</li>
+                <li><strong>자동 재연결</strong>: 연결 끊김 시 자동 복구</li>
+                <li><strong>가벼움</strong>: WebSocket보다 단순하고 가벼움</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>기술 스택</h2>
+
+            <h3>백엔드</h3>
+            <table>
+                <tr>
+                    <th>기술</th>
+                    <th>용도</th>
+                </tr>
+                <tr>
+                    <td>Python 3.9+</td>
+                    <td>서버 런타임</td>
+                </tr>
+                <tr>
+                    <td>Flask</td>
+                    <td>웹 프레임워크</td>
+                </tr>
+                <tr>
+                    <td>Flask-CORS</td>
+                    <td>크로스 도메인 지원</td>
+                </tr>
+                <tr>
+                    <td>anthropic, openai, google-generativeai</td>
+                    <td>AI SDK</td>
+                </tr>
+            </table>
+
+            <h3>프론트엔드</h3>
+            <table>
+                <tr>
+                    <th>기술</th>
+                    <th>용도</th>
+                </tr>
+                <tr>
+                    <td>Vanilla JavaScript</td>
+                    <td>UI 로직 (프레임워크 없음)</td>
+                </tr>
+                <tr>
+                    <td>CSS3</td>
+                    <td>다크 모드 스타일링</td>
+                </tr>
+                <tr>
+                    <td>Marked.js</td>
+                    <td>마크다운 렌더링</td>
+                </tr>
+                <tr>
+                    <td>Highlight.js</td>
+                    <td>코드 하이라이팅</td>
+                </tr>
+                <tr>
+                    <td>Service Worker</td>
+                    <td>PWA, 오프라인 캐싱</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="section">
+            <h2>데이터 저장</h2>
+            <p>모든 데이터는 JSON 파일로 로컬에 저장됩니다.</p>
+
+            <div class="card">
+                <div class="card-title">대화 데이터 구조</div>
+                <pre><code>{
+  "id": "uuid-string",
+  "title": "대화 제목",
+  "created_at": "2025-02-11T12:00:00",
+  "updated_at": "2025-02-11T12:30:00",
+  "messages": [
+    {
+      "role": "user",
+      "content": "안녕하세요",
+      "timestamp": "2025-02-11T12:00:00"
+    },
+    {
+      "role": "assistant",
+      "content": "안녕하세요! 무엇을 도와드릴까요?",
+      "provider": "claude",
+      "timestamp": "2025-02-11T12:00:01"
+    }
+  ]
+}</code></pre>
+            </div>
+        </section>
+
+        <div class="nav-links">
+            <a href="/">채팅으로 돌아가기</a>
+            <a href="/guide">사용설명서 보기</a>
+        </div>
+    </div>
+</body>
+</html>

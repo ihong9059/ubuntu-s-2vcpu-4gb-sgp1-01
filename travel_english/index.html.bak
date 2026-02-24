@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel English - 여행 영어 회화</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #e94560;
+            margin-bottom: 20px;
+        }
+        header h1 { font-size: 2em; color: #e94560; }
+        header p { color: #aaa; margin-top: 5px; }
+
+        .screen { display: none; }
+        .screen.active { display: block; }
+
+        /* 선택 카드 스타일 */
+        .selection-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .selection-section h3 {
+            color: #4ecca3;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        /* 도시 그리드 */
+        .city-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+        }
+        .city-card {
+            padding: 12px;
+            background: rgba(255,255,255,0.08);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .city-card:hover { background: rgba(255,255,255,0.15); }
+        .city-card.selected {
+            border-color: #4ecca3;
+            background: rgba(78, 204, 163, 0.2);
+        }
+        .city-card .flag { font-size: 1.5em; }
+        .city-card .name { font-size: 0.95em; margin-top: 5px; }
+        .city-card .country { font-size: 0.75em; color: #888; }
+        .city-card .status {
+            font-size: 0.7em;
+            margin-top: 5px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        .city-card .status.ready { background: #4ecca3; color: #000; }
+        .city-card .status.coming { background: #666; color: #ccc; }
+
+        /* 옵션 그리드 */
+        .option-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 10px;
+        }
+        .option-card {
+            padding: 15px;
+            background: rgba(255,255,255,0.08);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .option-card:hover { background: rgba(255,255,255,0.15); }
+        .option-card.selected {
+            border-color: #e94560;
+            background: rgba(233, 69, 96, 0.2);
+        }
+        .option-card .icon { font-size: 1.3em; }
+        .option-card .title { font-weight: bold; margin: 5px 0; }
+        .option-card .desc { font-size: 0.8em; color: #aaa; }
+
+        /* 예산 카드 */
+        .budget-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        .budget-card {
+            padding: 20px;
+            background: rgba(255,255,255,0.08);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .budget-card:hover { background: rgba(255,255,255,0.15); }
+        .budget-card.selected {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.15);
+        }
+        .budget-card .icon { font-size: 2em; }
+        .budget-card .title { font-weight: bold; margin: 10px 0 5px; }
+        .budget-card .desc { font-size: 0.85em; color: #aaa; }
+
+        /* 선택 요약 */
+        .summary-bar {
+            background: rgba(78, 204, 163, 0.2);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .summary-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .summary-item .label { color: #888; font-size: 0.85em; }
+        .summary-item .value { color: #4ecca3; font-weight: bold; }
+
+        /* 버튼 */
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(233, 69, 96, 0.4);
+        }
+        .btn-primary:disabled {
+            background: #555;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: #4ecca3;
+            border: 1px solid #4ecca3;
+        }
+
+        .action-area {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* 지역 탭 */
+        .region-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .region-tab {
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 20px;
+            color: #aaa;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.2s;
+        }
+        .region-tab:hover { background: rgba(255,255,255,0.2); }
+        .region-tab.active {
+            background: #4ecca3;
+            color: #000;
+        }
+
+        /* 알림 */
+        .notice {
+            background: rgba(233, 69, 96, 0.2);
+            border-left: 4px solid #e94560;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 20px;
+        }
+        .notice p { font-size: 0.9em; color: #ddd; }
+
+        /* 시나리오 정보 박스 */
+        .scenario-info {
+            background: rgba(78, 204, 163, 0.1);
+            border: 1px solid #4ecca3;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .scenario-info.show { display: block; }
+        .scenario-info h4 {
+            color: #4ecca3;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .info-item {
+            background: rgba(255,255,255,0.05);
+            padding: 12px;
+            border-radius: 8px;
+        }
+        .info-item .info-label {
+            font-size: 0.8em;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        .info-item .info-value {
+            font-size: 1.1em;
+            color: #fff;
+        }
+        .route-preview {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .route-city {
+            background: rgba(233, 69, 96, 0.3);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+        }
+        .route-arrow {
+            color: #4ecca3;
+        }
+
+        /* 예산 카드 경로 정보 */
+        .budget-card .route-info {
+            font-size: 0.75em;
+            color: #4ecca3;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* 헤더 버튼 */
+        .header-buttons {
+            margin-top: 15px;
+        }
+        .header-buttons a {
+            color: #aaa;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 0.9em;
+            transition: color 0.2s;
+        }
+        .header-buttons a:hover {
+            color: #4ecca3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✈️ Travel English</h1>
+            <p>여행 상황별 영어 회화 학습</p>
+            <div class="header-buttons">
+                <a href="/help.html">📖 사용법</a>
+                <a href="/stats.html">📊 통계</a>
+                <a href="/audio_test.html">🔊 음성테스트</a>
+            </div>
+        </header>
+
+        <div id="main-screen" class="screen active">
+            <!-- 알림 -->
+            <div class="notice" style="background: rgba(78, 204, 163, 0.2); border-left: 4px solid #4ecca3;">
+                <p>🎉 <strong>4개 도시</strong> 시나리오 이용 가능! 암스테르담, 파리, 도쿄, 뉴욕 (각 24개 조합, 총 96개 시나리오)</p>
+            </div>
+
+            <!-- 선택 요약 -->
+            <div class="summary-bar">
+                <div class="summary-item">
+                    <span class="label">출발지</span>
+                    <span class="value">🇰🇷 서울</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">도착지</span>
+                    <span class="value" id="summary-dest">선택하세요</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">예산</span>
+                    <span class="value" id="summary-budget">선택하세요</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">목적</span>
+                    <span class="value" id="summary-purpose">선택하세요</span>
+                </div>
+            </div>
+
+            <!-- 도착지 선택 -->
+            <div class="selection-section">
+                <h3>🛬 도착지 선택</h3>
+                <div class="region-tabs">
+                    <button class="region-tab active" onclick="filterRegion('all')">전체</button>
+                    <button class="region-tab" onclick="filterRegion('europe')">유럽</button>
+                    <button class="region-tab" onclick="filterRegion('asia')">아시아</button>
+                    <button class="region-tab" onclick="filterRegion('america')">미주</button>
+                    <button class="region-tab" onclick="filterRegion('oceania')">오세아니아</button>
+                </div>
+                <div class="city-grid" id="city-grid"></div>
+            </div>
+
+            <!-- 예산 선택 -->
+            <div class="selection-section">
+                <h3>💰 예산 선택</h3>
+                <div class="budget-grid">
+                    <div class="budget-card" onclick="selectBudget('budget')">
+                        <div class="icon">💸</div>
+                        <div class="title">최저가</div>
+                        <div class="desc">저가항공, 호스텔, 길거리음식</div>
+                        <div class="route-info">✈️ 2회 경유 (110개 씬)</div>
+                    </div>
+                    <div class="budget-card" onclick="selectBudget('economy')">
+                        <div class="icon">💵</div>
+                        <div class="title">절감형</div>
+                        <div class="desc">일반항공, 게스트하우스, 로컬식당</div>
+                        <div class="route-info">✈️ 1회 경유 (108개 씬)</div>
+                    </div>
+                    <div class="budget-card selected" onclick="selectBudget('normal')">
+                        <div class="icon">💎</div>
+                        <div class="title">일반</div>
+                        <div class="desc">직항, 호텔, 레스토랑</div>
+                        <div class="route-info">✈️ 직항 (105개 씬)</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 목적 선택 -->
+            <div class="selection-section">
+                <h3>🎯 여행 목적</h3>
+                <div class="option-grid" id="purpose-grid"></div>
+            </div>
+
+            <!-- 시나리오 정보 -->
+            <div class="scenario-info" id="scenario-info">
+                <h4>📋 선택한 시나리오 정보</h4>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">총 학습 씬</div>
+                        <div class="info-value" id="info-scenes">-</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">예상 학습 시간</div>
+                        <div class="info-value" id="info-time">-</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">여행 기간</div>
+                        <div class="info-value">10일</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">항공 경로</div>
+                        <div class="info-value" id="info-route">-</div>
+                    </div>
+                </div>
+                <div class="route-preview" id="route-preview"></div>
+            </div>
+
+            <!-- 이어하기 알림 -->
+            <div class="resume-notice" id="resume-notice" style="display: none;">
+                <div style="background: rgba(78, 204, 163, 0.2); border: 1px solid #4ecca3; border-radius: 10px; padding: 15px; margin-bottom: 20px; text-align: center;">
+                    <p style="margin-bottom: 10px;">📚 <strong>이전 학습 기록이 있습니다</strong></p>
+                    <p id="resume-info" style="font-size: 0.9em; color: #aaa; margin-bottom: 15px;"></p>
+                    <button class="btn btn-primary" onclick="resumeLearning()" style="margin-right: 10px;">
+                        ▶️ 이어하기
+                    </button>
+                    <button class="btn btn-secondary" onclick="clearSavedProgress()">
+                        🔄 처음부터
+                    </button>
+                </div>
+            </div>
+
+            <!-- 시작 버튼 -->
+            <div class="action-area">
+                <button class="btn btn-primary" id="start-btn" onclick="startLearning()" disabled>
+                    🎬 학습 시작
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 상태
+        const state = {
+            destination: null,
+            budget: 'normal',
+            purpose: null
+        };
+
+        // 도시 데이터
+        const cities = [
+            // 유럽 (암스테르담, 파리 이용 가능)
+            { id: 'amsterdam', name: '암스테르담', country: '네덜란드', flag: '🇳🇱', region: 'europe', ready: true },
+            { id: 'paris', name: '파리', country: '프랑스', flag: '🇫🇷', region: 'europe', ready: true },
+            { id: 'london', name: '런던', country: '영국', flag: '🇬🇧', region: 'europe', ready: true },
+            { id: 'rome', name: '로마', country: '이탈리아', flag: '🇮🇹', region: 'europe', ready: true },
+            { id: 'barcelona', name: '바르셀로나', country: '스페인', flag: '🇪🇸', region: 'europe', ready: true },
+            { id: 'prague', name: '프라하', country: '체코', flag: '🇨🇿', region: 'europe', ready: false },
+            { id: 'vienna', name: '비엔나', country: '오스트리아', flag: '🇦🇹', region: 'europe', ready: false },
+            { id: 'istanbul', name: '이스탄불', country: '터키', flag: '🇹🇷', region: 'europe', ready: false },
+            // 아시아 (도쿄 이용 가능)
+            { id: 'tokyo', name: '도쿄', country: '일본', flag: '🇯🇵', region: 'asia', ready: true },
+            { id: 'osaka', name: '오사카', country: '일본', flag: '🇯🇵', region: 'asia', ready: false },
+            { id: 'bangkok', name: '방콕', country: '태국', flag: '🇹🇭', region: 'asia', ready: true },
+            { id: 'singapore', name: '싱가포르', country: '싱가포르', flag: '🇸🇬', region: 'asia', ready: true },
+            { id: 'hongkong', name: '홍콩', country: '홍콩', flag: '🇭🇰', region: 'asia', ready: false },
+            { id: 'taipei', name: '타이베이', country: '대만', flag: '🇹🇼', region: 'asia', ready: false },
+            { id: 'hanoi', name: '하노이', country: '베트남', flag: '🇻🇳', region: 'asia', ready: false },
+            { id: 'bali', name: '발리', country: '인도네시아', flag: '🇮🇩', region: 'asia', ready: false },
+            { id: 'beijing', name: '베이징', country: '중국', flag: '🇨🇳', region: 'asia', ready: false },
+            { id: 'shanghai', name: '상하이', country: '중국', flag: '🇨🇳', region: 'asia', ready: false },
+            // 미주 (뉴욕 이용 가능)
+            { id: 'newyork', name: '뉴욕', country: '미국', flag: '🇺🇸', region: 'america', ready: true },
+            { id: 'losangeles', name: 'LA', country: '미국', flag: '🇺🇸', region: 'america', ready: true },
+            { id: 'sanfrancisco', name: '샌프란시스코', country: '미국', flag: '🇺🇸', region: 'america', ready: false },
+            { id: 'lasvegas', name: '라스베이거스', country: '미국', flag: '🇺🇸', region: 'america', ready: false },
+            { id: 'vancouver', name: '밴쿠버', country: '캐나다', flag: '🇨🇦', region: 'america', ready: false },
+            { id: 'cancun', name: '칸쿤', country: '멕시코', flag: '🇲🇽', region: 'america', ready: false },
+            // 오세아니아
+            { id: 'sydney', name: '시드니', country: '호주', flag: '🇦🇺', region: 'oceania', ready: true },
+            { id: 'melbourne', name: '멜버른', country: '호주', flag: '🇦🇺', region: 'oceania', ready: false },
+            { id: 'auckland', name: '오클랜드', country: '뉴질랜드', flag: '🇳🇿', region: 'oceania', ready: false },
+            { id: 'guam', name: '괌', country: '미국', flag: '🇬🇺', region: 'oceania', ready: false },
+            // 기타
+            { id: 'dubai', name: '두바이', country: 'UAE', flag: '🇦🇪', region: 'asia', ready: true },
+            { id: 'cebu', name: '세부', country: '필리핀', flag: '🇵🇭', region: 'asia', ready: false }
+        ];
+
+        // 목적 데이터
+        const purposes = [
+            { id: 'tourism', icon: '🏛️', title: '관광', desc: '관광지, 맛집, 휴식' },
+            { id: 'backpacking', icon: '🎒', title: '배낭여행', desc: '저예산, 현지체험' },
+            { id: 'business', icon: '💼', title: '출장', desc: '비즈니스 미팅' },
+            { id: 'study', icon: '📚', title: '어학연수', desc: '학교, 홈스테이' },
+            { id: 'working_holiday', icon: '🛠️', title: '워홀', desc: '아르바이트, 장기체류' },
+            { id: 'honeymoon', icon: '💑', title: '신혼여행', desc: '로맨틱, 리조트' },
+            { id: 'family', icon: '👨‍👩‍👧‍👦', title: '가족여행', desc: '아이 동반, 안전' },
+            { id: 'adventure', icon: '🧗', title: '모험', desc: '액티비티, 트레킹' }
+        ];
+
+        // 초기화
+        function init() {
+            renderCities('all');
+            renderPurposes();
+            updateStartButton();
+        }
+
+        // 도시 렌더링
+        function renderCities(region) {
+            const grid = document.getElementById('city-grid');
+            const filtered = region === 'all' ? cities : cities.filter(c => c.region === region);
+
+            grid.innerHTML = filtered.map(city => `
+                <div class="city-card ${state.destination === city.id ? 'selected' : ''} ${!city.ready ? 'disabled' : ''}"
+                     onclick="selectCity('${city.id}')">
+                    <div class="flag">${city.flag}</div>
+                    <div class="name">${city.name}</div>
+                    <div class="country">${city.country}</div>
+                    <div class="status ${city.ready ? 'ready' : 'coming'}">${city.ready ? '이용가능' : '준비중'}</div>
+                </div>
+            `).join('');
+        }
+
+        // 목적 렌더링
+        function renderPurposes() {
+            const grid = document.getElementById('purpose-grid');
+            grid.innerHTML = purposes.map(p => `
+                <div class="option-card ${state.purpose === p.id ? 'selected' : ''}"
+                     onclick="selectPurpose('${p.id}')">
+                    <span class="icon">${p.icon}</span>
+                    <div class="title">${p.title}</div>
+                    <div class="desc">${p.desc}</div>
+                </div>
+            `).join('');
+        }
+
+        // 지역 필터
+        function filterRegion(region) {
+            document.querySelectorAll('.region-tab').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            renderCities(region);
+        }
+
+        // 도시 선택
+        function selectCity(cityId) {
+            const city = cities.find(c => c.id === cityId);
+            if (!city.ready) {
+                alert(`${city.name} 시나리오는 준비 중입니다.`);
+                return;
+            }
+            state.destination = cityId;
+            document.getElementById('summary-dest').textContent = `${city.flag} ${city.name}`;
+            renderCities(document.querySelector('.region-tab.active').textContent === '전체' ? 'all' :
+                        document.querySelector('.region-tab.active').textContent.toLowerCase());
+            updateStartButton();
+        }
+
+        // 예산 선택
+        function selectBudget(budget) {
+            state.budget = budget;
+            document.querySelectorAll('.budget-card').forEach(card => card.classList.remove('selected'));
+            event.target.closest('.budget-card').classList.add('selected');
+
+            const labels = { budget: '💸 최저가', economy: '💵 절감형', normal: '💎 일반' };
+            document.getElementById('summary-budget').textContent = labels[budget];
+            updateStartButton();
+        }
+
+        // 목적 선택
+        function selectPurpose(purposeId) {
+            state.purpose = purposeId;
+            const purpose = purposes.find(p => p.id === purposeId);
+            document.getElementById('summary-purpose').textContent = `${purpose.icon} ${purpose.title}`;
+            renderPurposes();
+            updateStartButton();
+        }
+
+        // 도시별/예산별 시나리오 정보
+        const budgetInfoByCity = {
+            amsterdam: {
+                budget: { scenes: 117, route: ['서울', '베이징', '모스크바'], routeType: '2회 경유' },
+                economy: { scenes: 113, route: ['서울', '이스탄불'], routeType: '1회 경유' },
+                normal: { scenes: 105, route: ['서울'], routeType: '직항' }
+            },
+            paris: {
+                budget: { scenes: 117, route: ['서울', '베이징', '모스크바'], routeType: '2회 경유' },
+                economy: { scenes: 113, route: ['서울', '이스탄불'], routeType: '1회 경유' },
+                normal: { scenes: 105, route: ['서울'], routeType: '직항' }
+            },
+            tokyo: {
+                budget: { scenes: 105, route: ['서울'], routeType: '직항 (LCC)' },
+                economy: { scenes: 105, route: ['서울'], routeType: '직항 (일반)' },
+                normal: { scenes: 105, route: ['서울'], routeType: '직항 (FSC)' }
+            },
+            newyork: {
+                budget: { scenes: 108, route: ['서울', '프랑크푸르트'], routeType: '1회 경유' },
+                economy: { scenes: 111, route: ['서울', '두바이'], routeType: '1회 경유' },
+                normal: { scenes: 105, route: ['서울'], routeType: '직항' }
+            }
+        };
+
+        // 기본 예산 정보 (암스테르담 기준)
+        const budgetInfo = budgetInfoByCity.amsterdam;
+
+        // 시작 버튼 업데이트
+        function updateStartButton() {
+            const btn = document.getElementById('start-btn');
+            const ready = state.destination && state.budget && state.purpose;
+            btn.disabled = !ready;
+
+            if (ready) {
+                const city = cities.find(c => c.id === state.destination);
+                btn.textContent = `🎬 ${city.name} 학습 시작`;
+                updateScenarioInfo(city);
+            } else {
+                btn.textContent = '🎬 학습 시작';
+                document.getElementById('scenario-info').classList.remove('show');
+            }
+        }
+
+        // 시나리오 정보 업데이트
+        function updateScenarioInfo(city) {
+            const info = budgetInfo[state.budget];
+            const scenarioInfo = document.getElementById('scenario-info');
+
+            document.getElementById('info-scenes').textContent = `${info.scenes}개`;
+            document.getElementById('info-time').textContent = `약 ${Math.round(info.scenes * 0.5)}분`;
+            document.getElementById('info-route').textContent = info.routeType;
+
+            // 경로 미리보기
+            const routePreview = document.getElementById('route-preview');
+            const fullRoute = [...info.route, city.name];
+            routePreview.innerHTML = fullRoute.map((c, i) => {
+                const isLast = i === fullRoute.length - 1;
+                return `<span class="route-city">${c}</span>${!isLast ? '<span class="route-arrow">→</span>' : ''}`;
+            }).join('');
+
+            scenarioInfo.classList.add('show');
+        }
+
+        // 학습 시작
+        async function startLearning() {
+            const city = cities.find(c => c.id === state.destination);
+            if (!city || !city.ready) {
+                alert('이용 가능한 도시를 선택해주세요.');
+                return;
+            }
+
+            // 동적 시나리오 파일명 생성: city_budget_purpose.json
+            const filename = `${state.destination}_${state.budget}_${state.purpose}.json`;
+
+            // 학습 페이지로 이동
+            window.location.href = `/learn.html?scenario=${filename}`;
+        }
+
+        // 저장된 진행 상황 확인
+        function checkSavedProgress() {
+            const saved = localStorage.getItem('travel_english_progress');
+            if (saved) {
+                const progress = JSON.parse(saved);
+                const resumeNotice = document.getElementById('resume-notice');
+                const resumeInfo = document.getElementById('resume-info');
+
+                // 시나리오 파일명에서 정보 추출
+                const parts = progress.scenarioFile.replace('.json', '').split('_');
+                const cityName = parts[0] === 'amsterdam' ? '암스테르담' : parts[0];
+                const budgetName = { budget: '최저가', economy: '절감형', normal: '일반' }[parts[1]] || parts[1];
+                const purposeName = {
+                    tourism: '관광', backpacking: '배낭여행', business: '출장',
+                    study: '어학연수', working_holiday: '워홀', honeymoon: '신혼여행',
+                    family: '가족여행', adventure: '모험'
+                }[parts[2]] || parts[2];
+
+                resumeInfo.innerHTML = `
+                    ${cityName} / ${budgetName} / ${purposeName}<br>
+                    진행: ${progress.sceneIndex}씬 완료 | 정답: ${progress.correctCount}/${progress.totalAnswered}
+                `;
+                resumeNotice.style.display = 'block';
+
+                // 저장된 시나리오 정보 전역 저장
+                window.savedProgress = progress;
+            }
+        }
+
+        // 이어하기
+        function resumeLearning() {
+            if (window.savedProgress) {
+                window.location.href = `/learn.html?scenario=${window.savedProgress.scenarioFile}`;
+            }
+        }
+
+        // 저장된 진행 상황 삭제
+        function clearSavedProgress() {
+            localStorage.removeItem('travel_english_progress');
+            document.getElementById('resume-notice').style.display = 'none';
+            window.savedProgress = null;
+        }
+
+        // 초기화 실행
+        init();
+        checkSavedProgress();
+
+        // 기본값 설정
+        selectBudget('normal');
+        selectPurpose('tourism');
+    </script>
+</body>
+</html>

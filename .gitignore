@@ -23,5 +23,14 @@
 **/venv/
 **/.venv/
 
+# Build output
+**/.next/
+
 # Uploads and temp
 uploads/
+
+# Misc
+nul
+rathole-cnc-client.log
+.local/
+speedtest-cli/

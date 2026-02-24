@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "vancouver",
+  "cityName": "밴쿠버",
+  "country": "캐나다",
+  "description": "산과 바다가 만나는 도시, 자연과 도시의 완벽한 조화",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_VAN_001",
+      "category": "nature",
+      "day": 2,
+      "location": "스탠리 파크",
+      "situation": "북미 최대 도심 공원을 방문한다",
+      "npcDialog": "Stanley Park is bigger than Central Park! Bike the seawall for ocean and mountain views. The totem poles tell Indigenous stories!",
+      "npcDialogKo": "스탠리 파크는 센트럴 파크보다 커요! 시월로 자전거 타면 바다와 산이 보여요. 토템폴이 원주민 이야기를 해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Bigger than Central Park? Wow!", "correct": true},
+          {"text": "I'd love to learn about the totem poles.", "correct": true},
+          {"text": "Parks are all the same.", "correct": false},
+          {"text": "I prefer city sightseeing.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_002",
+      "category": "landmark",
+      "day": 3,
+      "location": "캐필라노 서스펜션 브릿지",
+      "situation": "140미터 높이의 흔들다리를 건넌다",
+      "npcDialog": "Capilano Bridge is 140 meters long, 70 meters high! The Cliffwalk is even scarier - attached to the cliff face. Ready for adventure?",
+      "npcDialogKo": "캐필라노 다리는 140미터 길이, 70미터 높이예요! 클리프워크는 더 무서워요 - 절벽에 붙어있어요. 모험 준비됐어요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "70 meters high? Thrilling!", "correct": true},
+          {"text": "I'll try the Cliffwalk too!", "correct": true},
+          {"text": "That sounds terrifying.", "correct": false},
+          {"text": "I don't like heights.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_003",
+      "category": "food",
+      "day": 2,
+      "location": "그랜빌 아일랜드",
+      "situation": "공공 시장에서 신선한 음식을 즐긴다",
+      "npcDialog": "Granville Island Market has the freshest seafood! BC salmon, Dungeness crab, oysters. The street performers add to the vibe!",
+      "npcDialogKo": "그랜빌 아일랜드 마켓에 가장 신선한 해산물이 있어요! BC 연어, 던지니스 크랩, 굴. 거리 공연자들이 분위기 내요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Fresh BC salmon sounds amazing!", "correct": true},
+          {"text": "I love markets with street performers!", "correct": true},
+          {"text": "Markets are too crowded.", "correct": false},
+          {"text": "I don't eat seafood.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_004",
+      "category": "nature",
+      "day": 4,
+      "location": "그라우스 마운틴",
+      "situation": "곤돌라를 타고 산 정상에 오른다",
+      "npcDialog": "Grouse Mountain has amazing city views! Ski in winter, hiking in summer. Grinder and Coola - our grizzly bears - live at the top!",
+      "npcDialogKo": "그라우스 마운틴에서 도시 전망이 끝내줘요! 겨울엔 스키, 여름엔 하이킹. 그라인더와 쿨라 - 회색곰이 정상에 살아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Grizzly bears at the top? Amazing!", "correct": true},
+          {"text": "City and ocean views together!", "correct": true},
+          {"text": "Mountains aren't my thing.", "correct": false},
+          {"text": "Too much effort to get there.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_005",
+      "category": "local",
+      "day": 3,
+      "location": "가스타운",
+      "situation": "밴쿠버에서 가장 오래된 동네를 산책한다",
+      "npcDialog": "Gastown is where Vancouver began! The steam clock whistles every 15 minutes. Cobblestone streets, boutiques, and great coffee!",
+      "npcDialogKo": "가스타운은 밴쿠버가 시작된 곳이에요! 증기시계가 15분마다 휘슬을 불어요. 자갈길, 부티크, 맛있는 커피!",
+      "playerResponse": {
+        "choices": [
+          {"text": "A steam-powered clock? How unique!", "correct": true},
+          {"text": "I love exploring historic neighborhoods.", "correct": true},
+          {"text": "Old neighborhoods are boring.", "correct": false},
+          {"text": "I prefer modern areas.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_006",
+      "category": "food",
+      "day": 4,
+      "location": "일식 레스토랑",
+      "situation": "밴쿠버의 유명한 스시를 먹는다",
+      "npcDialog": "Vancouver has the best sushi outside Japan! Fresh Pacific fish, creative rolls. Try the wild salmon - it's BC's specialty!",
+      "npcDialogKo": "밴쿠버는 일본 밖에서 최고의 스시가 있어요! 신선한 태평양 생선, 창의적인 롤. 자연산 연어 드세요 - BC 특산물이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Best sushi outside Japan? High praise!", "correct": true},
+          {"text": "Wild salmon sushi sounds amazing.", "correct": true},
+          {"text": "Sushi is only good in Japan.", "correct": false},
+          {"text": "I don't eat raw fish.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_007",
+      "category": "culture",
+      "day": 3,
+      "location": "인류학 박물관",
+      "situation": "원주민 예술과 문화를 배운다",
+      "npcDialog": "UBC Museum of Anthropology has stunning First Nations art! The Great Hall's totem poles are massive. Bill Reid's sculptures are treasures!",
+      "npcDialogKo": "UBC 인류학 박물관에 놀라운 원주민 예술이 있어요! 그레이트 홀의 토템폴이 거대해요. 빌 리드 조각이 보물이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "First Nations art is so powerful.", "correct": true},
+          {"text": "The Great Hall sounds impressive!", "correct": true},
+          {"text": "I'm not interested in native cultures.", "correct": false},
+          {"text": "Museums are boring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_008",
+      "category": "nature",
+      "day": 5,
+      "location": "휘슬러 (당일치기)",
+      "situation": "세계적인 스키 리조트 마을을 방문한다",
+      "npcDialog": "Whistler hosted the 2010 Olympics! 2 hours from Vancouver. Summer has hiking and zip-lining, winter has world-class skiing!",
+      "npcDialogKo": "휘슬러는 2010년 올림픽을 개최했어요! 밴쿠버에서 2시간. 여름엔 하이킹과 짚라인, 겨울엔 세계적인 스키!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Olympic venue? That's impressive!", "correct": true},
+          {"text": "Zip-lining in the mountains sounds fun!", "correct": true},
+          {"text": "2 hours is too far.", "correct": false},
+          {"text": "I don't like ski resorts.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_009",
+      "category": "local",
+      "day": 4,
+      "location": "차이나타운",
+      "situation": "북미에서 세 번째로 큰 차이나타운을 방문한다",
+      "npcDialog": "Vancouver's Chinatown is third largest in North America! The Sun Yat-sen Garden is a peaceful oasis. Amazing BBQ duck and dim sum!",
+      "npcDialogKo": "밴쿠버 차이나타운은 북미에서 세 번째로 커요! 쑨원 정원은 평화로운 오아시스예요. BBQ 오리와 딤섬이 끝내줘요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "A classical Chinese garden sounds peaceful.", "correct": true},
+          {"text": "Third largest? I'll need time to explore!", "correct": true},
+          {"text": "Chinatowns are all the same.", "correct": false},
+          {"text": "I prefer other neighborhoods.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_010",
+      "category": "beach",
+      "day": 2,
+      "location": "잉글리쉬 베이",
+      "situation": "도심 해변에서 일몰을 감상한다",
+      "npcDialog": "English Bay has Vancouver's best sunsets! Beach volleyball, paddleboarding, or just relax. The mountains turn pink at sunset - magical!",
+      "npcDialogKo": "잉글리쉬 베이에서 밴쿠버 최고의 일몰을 봐요! 비치 발리볼, 패들보드, 아니면 그냥 쉬세요. 일몰 때 산이 분홍색으로 변해요 - 마법이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Pink mountains at sunset? I must see this!", "correct": true},
+          {"text": "Beach in the city with mountain views!", "correct": true},
+          {"text": "City beaches aren't real beaches.", "correct": false},
+          {"text": "I prefer swimming pools.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_011",
+      "category": "food",
+      "day": 3,
+      "location": "푸틴 레스토랑",
+      "situation": "캐나다 명물 푸틴을 먹는다",
+      "npcDialog": "Poutine is Canada's comfort food! Fries, cheese curds, gravy. Try our loaded versions with pulled pork or Montreal smoked meat!",
+      "npcDialogKo": "푸틴은 캐나다 소울푸드예요! 감자튀김, 치즈 커드, 그레이비. 풀드 포크나 몬트리올 훈제 고기 올린 것도 드셔보세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Canada's signature dish - I must try it!", "correct": true},
+          {"text": "Loaded poutine sounds indulgent!", "correct": true},
+          {"text": "Fries with gravy? That's weird.", "correct": false},
+          {"text": "Too many calories.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_012",
+      "category": "entertainment",
+      "day": 5,
+      "location": "플라이오버 캐나다",
+      "situation": "캐나다 전역을 4D로 체험한다",
+      "npcDialog": "FlyOver Canada is a flight simulation over all of Canada! Feel the wind, smell the pine forests. 8 minutes of flying coast to coast!",
+      "npcDialogKo": "플라이오버 캐나다는 캐나다 전역 비행 시뮬레이션이에요! 바람을 느끼고, 소나무 숲 냄새 맡아요. 8분간 해안에서 해안으로 날아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Flying over Canada without leaving Vancouver!", "correct": true},
+          {"text": "4D with scents? That's immersive!", "correct": true},
+          {"text": "Simulations aren't the real thing.", "correct": false},
+          {"text": "I get motion sickness.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_013",
+      "category": "nature",
+      "day": 4,
+      "location": "린 캐니언",
+      "situation": "무료 서스펜션 브릿지를 체험한다",
+      "npcDialog": "Lynn Canyon is free and less crowded than Capilano! The suspension bridge, waterfall hikes, swimming holes. True Pacific Northwest nature!",
+      "npcDialogKo": "린 캐니언은 무료이고 캐필라노보다 한적해요! 흔들다리, 폭포 하이킹, 수영장. 진정한 태평양 북서부 자연!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Free and less crowded? Perfect!", "correct": true},
+          {"text": "Swimming holes in nature sound refreshing.", "correct": true},
+          {"text": "I already saw Capilano.", "correct": false},
+          {"text": "Hiking isn't for me.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_014",
+      "category": "shopping",
+      "day": 3,
+      "location": "롭슨 스트리트",
+      "situation": "밴쿠버 메인 쇼핑 거리를 산책한다",
+      "npcDialog": "Robson Street is Vancouver's shopping heart! International brands, Canadian designers. Great people-watching with coffee!",
+      "npcDialogKo": "롭슨 스트리트는 밴쿠버 쇼핑 심장이에요! 국제 브랜드, 캐나다 디자이너. 커피 마시면서 사람 구경하기 좋아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Canadian designers? I want to discover them!", "correct": true},
+          {"text": "Coffee and people-watching sounds relaxing.", "correct": true},
+          {"text": "Shopping streets bore me.", "correct": false},
+          {"text": "I prefer online shopping.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_015",
+      "category": "food",
+      "day": 5,
+      "location": "재패독",
+      "situation": "밴쿠버 명물 재퍼니즈 핫도그를 먹는다",
+      "npcDialog": "Japadog is Vancouver's invention! Japanese toppings on hot dogs - teriyaki, nori, bonito flakes. Oroshi sounds weird but it's amazing!",
+      "npcDialogKo": "재패독은 밴쿠버 발명품이에요! 핫도그에 일본 토핑 - 데리야끼, 김, 가쓰오부시. 오로시는 이상하게 들리지만 끝내줘요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Japanese hot dogs? Only in Vancouver!", "correct": true},
+          {"text": "I'll try the weird-sounding one!", "correct": true},
+          {"text": "That sounds like a strange combination.", "correct": false},
+          {"text": "I like normal hot dogs.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_016",
+      "category": "culture",
+      "day": 2,
+      "location": "캐나다 플레이스",
+      "situation": "올림픽 성화대와 크루즈 터미널을 방문한다",
+      "npcDialog": "Canada Place looks like a ship! The 2010 Olympic Cauldron is here. Cruise ships dock right downtown - amazing views of the port!",
+      "npcDialogKo": "캐나다 플레이스는 배처럼 생겼어요! 2010년 올림픽 성화대가 여기 있어요. 크루즈선이 다운타운에 정박해요 - 항구 전망 끝내줘요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The Olympic Cauldron! Historic!", "correct": true},
+          {"text": "Cruise ships in downtown is so convenient.", "correct": true},
+          {"text": "Just a cruise terminal.", "correct": false},
+          {"text": "I'm not interested in ports.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_017",
+      "category": "local",
+      "day": 5,
+      "location": "커머셜 드라이브",
+      "situation": "다문화 동네를 탐험한다",
+      "npcDialog": "Commercial Drive is Vancouver's eclectic neighborhood! Italian cafes, Ethiopian restaurants, vintage shops. Very bohemian vibe!",
+      "npcDialogKo": "커머셜 드라이브는 밴쿠버의 다채로운 동네예요! 이탈리안 카페, 에티오피안 레스토랑, 빈티지 샵. 보헤미안 분위기!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Italian and Ethiopian on one street? Love it!", "correct": true},
+          {"text": "Bohemian neighborhoods are my favorite.", "correct": true},
+          {"text": "Too alternative for me.", "correct": false},
+          {"text": "I prefer mainstream areas.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_018",
+      "category": "nature",
+      "day": 2,
+      "location": "퀸 엘리자베스 파크",
+      "situation": "밴쿠버의 가장 높은 지점에서 전망을 즐긴다",
+      "npcDialog": "Queen Elizabeth Park is Vancouver's highest point! Bloedel Conservatory has tropical birds. Quarry garden is stunning year-round!",
+      "npcDialogKo": "퀸 엘리자베스 파크는 밴쿠버에서 가장 높은 곳이에요! 블로델 온실에 열대 새가 있어요. 채석장 정원이 연중 아름다워요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Tropical birds in a dome? Fascinating!", "correct": true},
+          {"text": "Highest point means best views!", "correct": true},
+          {"text": "I've seen enough parks.", "correct": false},
+          {"text": "Bird domes aren't interesting.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_019",
+      "category": "nightlife",
+      "day": 4,
+      "location": "예일타운",
+      "situation": "트렌디한 바와 레스토랑 지역을 즐긴다",
+      "npcDialog": "Yaletown was warehouses, now it's trendy! Rooftop patios, craft cocktails, upscale dining. The converted brick buildings are gorgeous!",
+      "npcDialogKo": "예일타운은 창고 지대였는데, 지금은 트렌디해요! 루프탑 파티오, 크래프트 칵테일, 고급 식당. 개조된 벽돌 건물이 멋져요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Warehouse-to-trendy transformations are fascinating!", "correct": true},
+          {"text": "Rooftop patios are perfect for Vancouver.", "correct": true},
+          {"text": "Trendy areas are overpriced.", "correct": false},
+          {"text": "I prefer casual bars.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VAN_020",
+      "category": "food",
+      "day": 5,
+      "location": "리치몬드 나이트 마켓",
+      "situation": "아시아 스타일 야시장을 방문한다",
+      "npcDialog": "Richmond Night Market is North America's largest! Asian street food from every country. Carnival games, live entertainment. Summer weekends only!",
+      "npcDialogKo": "리치몬드 나이트 마켓은 북미 최대예요! 모든 아시아 나라 길거리 음식. 카니발 게임, 라이브 공연. 여름 주말만 해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "North America's largest night market!", "correct": true},
+          {"text": "All Asian street foods in one place!", "correct": true},
+          {"text": "Night markets are too crowded.", "correct": false},
+          {"text": "I don't like street food.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

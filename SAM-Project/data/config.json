@@ -1,0 +1,9 @@
+{
+  "api_keys": {
+    "gemini": ""
+  },
+  "preferences": {
+    "default_member": "bangchan",
+    "tts_enabled": true
+  }
+}

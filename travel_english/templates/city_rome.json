@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "rome",
+  "cityName": "로마",
+  "country": "이탈리아",
+  "description": "영원의 도시, 로마 제국의 영광과 르네상스 예술의 보고",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_ROM_001",
+      "category": "landmark",
+      "day": 2,
+      "location": "콜로세움",
+      "situation": "고대 로마 원형경기장을 관람한다",
+      "npcDialog": "Buongiorno! The Colosseum could hold 50,000 spectators! Skip-the-line tickets save hours. Would you like an audio guide?",
+      "npcDialogKo": "본조르노! 콜로세움은 5만 명 수용했어요! 줄 안 서는 티켓으로 몇 시간 절약해요. 오디오 가이드 원하세요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Yes, please! I want to learn about the gladiators.", "correct": true},
+          {"text": "Skip-the-line sounds great. How much is it?", "correct": true},
+          {"text": "50,000 seems exaggerated.", "correct": false},
+          {"text": "Old ruins are not interesting.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_002",
+      "category": "landmark",
+      "day": 2,
+      "location": "트레비 분수",
+      "situation": "동전을 던지며 소원을 빈다",
+      "npcDialog": "Legend says throw one coin to return to Rome, two for love, three for marriage! Use your right hand over left shoulder. Buona fortuna!",
+      "npcDialogKo": "전설에 따르면 동전 하나는 로마 재방문, 둘은 사랑, 셋은 결혼! 오른손으로 왼쪽 어깨 너머로 던지세요. 행운을 빌어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll definitely throw one! I want to come back.", "correct": true},
+          {"text": "How much money gets collected from the fountain?", "correct": true},
+          {"text": "Throwing money seems wasteful.", "correct": false},
+          {"text": "I don't believe in wishes.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_003",
+      "category": "food",
+      "day": 3,
+      "location": "트라스테베레 피자집",
+      "situation": "정통 로마 피자를 주문한다",
+      "npcDialog": "Ciao! Roman pizza is thin and crispy, not like Naples! Try our Pizza Margherita or Cacio e Pepe pizza. Made in wood-fired oven!",
+      "npcDialogKo": "챠오! 로마 피자는 나폴리와 달리 얇고 바삭해요! 마르게리타나 까치오 에 페페 피자 드셔보세요. 화덕에서 구워요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Margherita please! I love the classic taste.", "correct": true},
+          {"text": "What's Cacio e Pepe pizza like?", "correct": true},
+          {"text": "I prefer American pizza.", "correct": false},
+          {"text": "Is there pineapple pizza?", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_004",
+      "category": "culture",
+      "day": 3,
+      "location": "바티칸 시국",
+      "situation": "시스티나 성당 천장화를 감상한다",
+      "npcDialog": "The Sistine Chapel ceiling took Michelangelo 4 years! No photos inside, but you can buy postcards. The Creation of Adam is breathtaking!",
+      "npcDialogKo": "시스티나 성당 천장은 미켈란젤로가 4년 걸렸어요! 내부 촬영 금지지만 엽서 살 수 있어요. 아담의 창조가 숨막혀요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "4 years on his back! That's incredible dedication.", "correct": true},
+          {"text": "I'll definitely look for The Creation of Adam.", "correct": true},
+          {"text": "Why can't I take photos?", "correct": false},
+          {"text": "Religious art doesn't interest me.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_005",
+      "category": "food",
+      "day": 4,
+      "location": "젤라테리아",
+      "situation": "이탈리아 젤라토를 맛본다",
+      "npcDialog": "Gelato artigianale! We make fresh daily. Pistachio, stracciatella, or limone? You can try before choosing. Due gusti or tre gusti?",
+      "npcDialogKo": "수제 젤라토예요! 매일 신선하게 만들어요. 피스타치오, 스트라치아텔라, 리모네? 맛보고 고르세요. 두 가지? 세 가지?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Can I try the pistachio? It looks amazing!", "correct": true},
+          {"text": "I'll have tre gusti - pistachio, chocolate, and lemon.", "correct": true},
+          {"text": "Ice cream is ice cream.", "correct": false},
+          {"text": "I only eat vanilla.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_006",
+      "category": "landmark",
+      "day": 4,
+      "location": "판테온",
+      "situation": "고대 로마 신전을 방문한다",
+      "npcDialog": "The Pantheon is 2000 years old and the dome is still the world's largest unreinforced concrete dome! When it rains, water comes through the oculus.",
+      "npcDialogKo": "판테온은 2000년 됐고 돔은 아직도 세계 최대 무보강 콘크리트 돔이에요! 비 오면 오쿨루스로 물이 들어와요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "2000 years old! The Romans were incredible engineers.", "correct": true},
+          {"text": "Where does the rain go when it comes inside?", "correct": true},
+          {"text": "Old buildings are boring.", "correct": false},
+          {"text": "I've seen bigger domes.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_007",
+      "category": "food",
+      "day": 5,
+      "location": "로마 카페",
+      "situation": "이탈리아식 에스프레소를 마신다",
+      "npcDialog": "Un caffè? In Italy, caffè means espresso! Stand at the bar like a local - it's cheaper. Cappuccino is only for breakfast, you know.",
+      "npcDialogKo": "커피요? 이탈리아에서 카페는 에스프레소예요! 로컬처럼 바에서 서서 마시면 저렴해요. 카푸치노는 아침에만 마셔요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll have an espresso at the bar like a local!", "correct": true},
+          {"text": "Why is cappuccino only for breakfast?", "correct": true},
+          {"text": "I want a large iced caramel latte.", "correct": false},
+          {"text": "Standing is uncomfortable.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_008",
+      "category": "landmark",
+      "day": 5,
+      "location": "스페인 계단",
+      "situation": "유명한 계단에서 휴식한다",
+      "npcDialog": "The Spanish Steps are famous from Roman Holiday! 135 steps connect Piazza di Spagna to Trinità dei Monti church. Great for people watching!",
+      "npcDialogKo": "스페인 계단은 로마의 휴일로 유명해요! 135계단이 스페인 광장과 트리니타 데이 몬티 성당을 연결해요. 사람 구경 최고예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I loved that movie! Is eating gelato here allowed?", "correct": true},
+          {"text": "135 steps! I'll work off my pasta.", "correct": true},
+          {"text": "Steps are just steps.", "correct": false},
+          {"text": "Too many tourists here.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_009",
+      "category": "shopping",
+      "day": 6,
+      "location": "비아 델 코르소",
+      "situation": "이탈리아 패션 거리에서 쇼핑한다",
+      "npcDialog": "Via del Corso has the best Italian fashion! Looking for leather goods? Italian leather is world-famous. We also have beautiful silk scarves.",
+      "npcDialogKo": "비아 델 코르소에 이탈리아 패션이 다 있어요! 가죽 제품 찾으세요? 이탈리아 가죽은 세계적으로 유명해요. 실크 스카프도 예뻐요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'd love to see the leather bags!", "correct": true},
+          {"text": "What makes Italian leather so special?", "correct": true},
+          {"text": "Italian fashion is overpriced.", "correct": false},
+          {"text": "I don't care about fashion.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_010",
+      "category": "food",
+      "day": 6,
+      "location": "오스테리아",
+      "situation": "로마 전통 파스타를 주문한다",
+      "npcDialog": "Try our four Roman pastas! Carbonara, Amatriciana, Cacio e Pepe, or Gricia. All made with guanciale - that's cured pork cheek. Delizioso!",
+      "npcDialogKo": "로마 4대 파스타 드셔보세요! 카르보나라, 아마트리치아나, 까치오 에 페페, 그리치아. 전부 관찰레 - 돼지 볼살로 만들어요. 맛있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll try the authentic Carbonara! No cream, right?", "correct": true},
+          {"text": "What's the difference between them?", "correct": true},
+          {"text": "I prefer cream-based pasta.", "correct": false},
+          {"text": "All pasta tastes the same.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_011",
+      "category": "culture",
+      "day": 7,
+      "location": "로마 포로",
+      "situation": "고대 로마 광장 유적을 탐험한다",
+      "npcDialog": "The Roman Forum was the heart of ancient Rome! Senators walked these streets. The Temple of Saturn still has eight columns standing.",
+      "npcDialogKo": "로마 포로는 고대 로마의 심장이었어요! 원로원 의원들이 이 거리를 걸었어요. 사투르누스 신전에 아직 8개 기둥이 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I can almost imagine the senators walking here!", "correct": true},
+          {"text": "How old are these ruins exactly?", "correct": true},
+          {"text": "It's just piles of rocks.", "correct": false},
+          {"text": "History is boring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_012",
+      "category": "landmark",
+      "day": 7,
+      "location": "성 베드로 대성당",
+      "situation": "세계 최대 성당을 방문한다",
+      "npcDialog": "St. Peter's Basilica is the largest church in the world! Climbing the dome offers amazing views. Dress code: no shorts or bare shoulders.",
+      "npcDialogKo": "성 베드로 대성당은 세계 최대 성당이에요! 돔에 올라가면 경치가 끝내줘요. 복장: 반바지, 민소매 안 돼요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll definitely climb the dome! How many steps?", "correct": true},
+          {"text": "Good thing I brought a scarf to cover my shoulders.", "correct": true},
+          {"text": "Dress codes are old-fashioned.", "correct": false},
+          {"text": "Churches are all the same.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_013",
+      "category": "transport",
+      "day": 3,
+      "location": "베스파 렌탈",
+      "situation": "이탈리아 스쿠터를 빌린다",
+      "npcDialog": "A Vespa tour of Rome! Very romantic, very Italian! You need a license though. We also have guided Vespa tours if you prefer.",
+      "npcDialogKo": "로마에서 베스파 투어! 아주 로맨틱하고 이탈리안해요! 면허 필요해요. 가이드 베스파 투어도 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "A guided tour sounds perfect! What do we see?", "correct": true},
+          {"text": "I have an international license. How much for rental?", "correct": true},
+          {"text": "Scooters are dangerous.", "correct": false},
+          {"text": "I prefer walking.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_014",
+      "category": "food",
+      "day": 8,
+      "location": "와인 바",
+      "situation": "이탈리아 와인을 시음한다",
+      "npcDialog": "Welcome to our enoteca! Would you like to try local wines? Frascati is from the hills near Rome. Chianti from Tuscany is also excellent.",
+      "npcDialogKo": "에노테카에 오신 걸 환영해요! 로컬 와인 드셔볼래요? 프라스카티는 로마 근교 언덕에서 나요. 토스카나 키안티도 훌륭해요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'd love to try Frascati since it's local!", "correct": true},
+          {"text": "Can you recommend a good red wine?", "correct": true},
+          {"text": "Wine all tastes the same to me.", "correct": false},
+          {"text": "I don't drink alcohol.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_015",
+      "category": "culture",
+      "day": 8,
+      "location": "보르게세 미술관",
+      "situation": "베르니니 조각품을 감상한다",
+      "npcDialog": "Bernini's sculptures here are masterpieces! Apollo and Daphne looks so real. Reservations are required - only 360 visitors every 2 hours.",
+      "npcDialogKo": "여기 베르니니 조각품은 걸작이에요! 아폴로와 다프네가 정말 실감나요. 예약 필수 - 2시간마다 360명만 입장해요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I made a reservation! Where's Apollo and Daphne?", "correct": true},
+          {"text": "The marble looks like real skin! How is that possible?", "correct": true},
+          {"text": "360 people is too crowded.", "correct": false},
+          {"text": "Sculptures are outdated art.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_016",
+      "category": "landmark",
+      "day": 4,
+      "location": "보카 델라 베리타",
+      "situation": "진실의 입에 손을 넣는다",
+      "npcDialog": "The Mouth of Truth! Legend says it bites liars' hands off! Put your hand in and say something true. Don't worry, it's just a legend!",
+      "npcDialogKo": "진실의 입이에요! 전설에 따르면 거짓말쟁이 손을 물어요! 손 넣고 진실을 말하세요. 걱정 마세요, 전설일 뿐이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Okay, I'm brave! *puts hand in* I love Rome!", "correct": true},
+          {"text": "This is from Roman Holiday too, right?", "correct": true},
+          {"text": "That's a silly superstition.", "correct": false},
+          {"text": "What if it's dirty inside?", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_017",
+      "category": "food",
+      "day": 5,
+      "location": "메르카토",
+      "situation": "캄포 데 피오리 시장에서 장을 본다",
+      "npcDialog": "Fresh produce every morning! Try our sun-dried tomatoes, olive oil, and pecorino cheese. We also have fresh pasta and Roman artichokes!",
+      "npcDialogKo": "매일 아침 신선한 농산물! 썬드라이 토마토, 올리브 오일, 페코리노 치즈 드셔보세요. 생파스타와 로마 아티초크도 있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The olive oil smells amazing! Can I taste it?", "correct": true},
+          {"text": "What are Roman artichokes like?", "correct": true},
+          {"text": "I can buy this at a supermarket.", "correct": false},
+          {"text": "Markets are too crowded.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_018",
+      "category": "culture",
+      "day": 6,
+      "location": "트라스테베레",
+      "situation": "로마의 밤문화를 즐긴다",
+      "npcDialog": "Trastevere is the heart of Roman nightlife! Cobblestone streets, outdoor restaurants, live music. The neighborhood comes alive after sunset!",
+      "npcDialogKo": "트라스테베레는 로마 밤문화의 심장이에요! 돌길, 야외 레스토랑, 라이브 음악. 해 지면 동네가 살아나요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "This atmosphere is magical! Any restaurant recommendations?", "correct": true},
+          {"text": "I love the cobblestone streets! Very romantic.", "correct": true},
+          {"text": "Nightlife is too noisy.", "correct": false},
+          {"text": "I prefer staying at the hotel.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_019",
+      "category": "transport",
+      "day": 2,
+      "location": "테르미니 역",
+      "situation": "로마 중앙역에서 기차를 탄다",
+      "npcDialog": "Termini Station is the main hub! Validate your ticket before boarding. The machine stamps the date and time. Otherwise you'll get a fine!",
+      "npcDialogKo": "테르미니 역이 중앙 허브예요! 승차 전 티켓 펀칭하세요. 기계가 날짜와 시간을 찍어요. 안 하면 벌금 물어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Thanks for the tip! Where's the validation machine?", "correct": true},
+          {"text": "I almost forgot to validate! That was close.", "correct": true},
+          {"text": "Why do I need to validate?", "correct": false},
+          {"text": "I'll just say I forgot.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_ROM_020",
+      "category": "food",
+      "day": 8,
+      "location": "로마 레스토랑",
+      "situation": "마지막 밤 만찬을 즐긴다",
+      "npcDialog": "Your last night in Rome! Let's make it special. Antipasto, primo, secondo, dolce - the full Italian experience! Limoncello to finish?",
+      "npcDialogKo": "로마에서 마지막 밤이네요! 특별하게 해드릴게요. 전채, 프리모, 세콘도, 돌체 - 정통 이탈리안 코스! 리몬첼로로 마무리?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Yes! I want the full Italian experience!", "correct": true},
+          {"text": "Limoncello sounds perfect! What's for dessert?", "correct": true},
+          {"text": "Four courses is too much food.", "correct": false},
+          {"text": "I just want something quick.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "sydney",
+  "cityName": "시드니",
+  "country": "호주",
+  "description": "오페라하우스와 해변, 자연과 도시가 어우러진 곳",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_SYD_001",
+      "category": "landmark",
+      "day": 2,
+      "location": "오페라 하우스",
+      "situation": "세계적인 건축물을 관람한다",
+      "npcDialog": "G'day! The Opera House has over 1 million roof tiles! Backstage tours are fantastic. Or catch a show tonight - there's ballet, opera, and concerts!",
+      "npcDialogKo": "굿데이! 오페라 하우스 지붕에 타일이 백만 개 넘어요! 백스테이지 투어 환상적이에요. 아니면 오늘 밤 공연 보세요 - 발레, 오페라, 콘서트!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Backstage tour sounds amazing! What will I see?", "correct": true},
+          {"text": "1 million tiles! The architecture is incredible.", "correct": true},
+          {"text": "Opera is boring.", "correct": false},
+          {"text": "It looks smaller than in photos.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_002",
+      "category": "landmark",
+      "day": 2,
+      "location": "하버 브릿지",
+      "situation": "시드니 아이콘을 체험한다",
+      "npcDialog": "The Harbour Bridge climb takes you 134 meters high! Best views of Sydney. Or walk across for free - the pedestrian path is on the east side!",
+      "npcDialogKo": "하버 브릿지 클라임은 134미터 높이까지 올라가요! 시드니 최고 전망이에요. 아니면 무료로 걸어서 건너세요 - 보행로는 동쪽에 있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll do the bridge climb! What's the experience like?", "correct": true},
+          {"text": "134 meters! Are there harnesses?", "correct": true},
+          {"text": "Walking on bridges is scary.", "correct": false},
+          {"text": "Why would I pay to walk?", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_003",
+      "category": "landmark",
+      "day": 3,
+      "location": "본다이 비치",
+      "situation": "호주에서 가장 유명한 해변을 방문한다",
+      "npcDialog": "Bondi Beach is Australia's most famous! The waves are perfect for surfing. We offer lessons for beginners. Or just relax - the cafes are great!",
+      "npcDialogKo": "본다이 비치는 호주에서 가장 유명해요! 파도가 서핑하기 딱이에요. 초보자 레슨도 있어요. 아니면 그냥 휴식 - 카페가 좋아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Surfing lessons sound fun! How long is a session?", "correct": true},
+          {"text": "The beach is beautiful! Is swimming safe?", "correct": true},
+          {"text": "Beaches are too sandy.", "correct": false},
+          {"text": "I don't like the sun.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_004",
+      "category": "food",
+      "day": 3,
+      "location": "피쉬 마켓",
+      "situation": "시드니 피쉬 마켓에서 해산물을 즐긴다",
+      "npcDialog": "Sydney Fish Market is the biggest in the Southern Hemisphere! Fresh oysters, prawns, lobster - pick your seafood and we'll cook it! Barramundi is local!",
+      "npcDialogKo": "시드니 피쉬 마켓은 남반구 최대예요! 신선한 굴, 새우, 랍스터 - 해산물 고르면 요리해드려요! 바라문디가 로컬이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Fresh oysters please! Sydney rock oysters?", "correct": true},
+          {"text": "What's barramundi like? I'd love to try local!", "correct": true},
+          {"text": "Fish markets smell bad.", "correct": false},
+          {"text": "I prefer frozen seafood.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_005",
+      "category": "culture",
+      "day": 4,
+      "location": "타롱가 동물원",
+      "situation": "호주 고유 동물들을 만난다",
+      "npcDialog": "Taronga Zoo has the best harbour views! Koalas, kangaroos, platypus - all Australian animals! The ferry from Circular Quay is part of the experience!",
+      "npcDialogKo": "타롱가 동물원 항구 전망이 최고예요! 코알라, 캥거루, 오리너구리 - 호주 동물 다 있어요! 서큘러 키에서 페리 타는 것도 경험이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Can I hold a koala? They're so cute!", "correct": true},
+          {"text": "Ferry with harbour views - perfect way to get there!", "correct": true},
+          {"text": "Zoos are cruel to animals.", "correct": false},
+          {"text": "I can see animals on TV.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_006",
+      "category": "landmark",
+      "day": 4,
+      "location": "더 록스",
+      "situation": "시드니 역사지구를 탐험한다",
+      "npcDialog": "The Rocks is Sydney's oldest neighborhood! Convict history from 1788. Weekend markets are great. The pubs are Australia's oldest too!",
+      "npcDialogKo": "더 록스는 시드니에서 가장 오래된 동네예요! 1788년 죄수 역사. 주말 마켓이 좋아요. 펍도 호주에서 가장 오래됐어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Convict history sounds fascinating! Any walking tours?", "correct": true},
+          {"text": "I'd love to try Australia's oldest pub!", "correct": true},
+          {"text": "Old buildings are boring.", "correct": false},
+          {"text": "I don't drink beer.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_007",
+      "category": "food",
+      "day": 5,
+      "location": "호주 카페",
+      "situation": "호주식 브런치를 즐긴다",
+      "npcDialog": "Aussie brunch is famous! Avocado smash, eggs benedict, or flat white coffee. Our baristas take coffee very seriously. Flat white or long black?",
+      "npcDialogKo": "호주 브런치는 유명해요! 아보카도 스매시, 에그 베네딕트, 플랫 화이트 커피. 바리스타들이 커피에 진심이에요. 플랫 화이트? 롱 블랙?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Flat white please! Australians invented it, right?", "correct": true},
+          {"text": "Avocado smash sounds perfect for brunch!", "correct": true},
+          {"text": "Coffee is just coffee.", "correct": false},
+          {"text": "Avocado toast is overrated.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_008",
+      "category": "landmark",
+      "day": 5,
+      "location": "본다이 투 쿠지 워크",
+      "situation": "해안 절벽 산책로를 걷는다",
+      "npcDialog": "The coastal walk is 6km of stunning views! Bondi to Coogee, passing Bronte and Tamarama beaches. Take 2-3 hours, bring water. The cliffs are breathtaking!",
+      "npcDialogKo": "해안 산책로는 6km 끝내주는 경치예요! 본다이에서 쿠지까지, 브론테와 타마라마 해변 지나요. 2-3시간 걸려요, 물 챙기세요. 절벽이 숨막혀요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "6km along the cliffs! I'll bring my camera.", "correct": true},
+          {"text": "Can I swim at the beaches along the way?", "correct": true},
+          {"text": "Walking is too tiring.", "correct": false},
+          {"text": "6km is too far.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_009",
+      "category": "culture",
+      "day": 6,
+      "location": "블루 마운틴",
+      "situation": "세 자매봉을 방문한다",
+      "npcDialog": "Blue Mountains is a day trip from Sydney! The Three Sisters rock formation is sacred to Aboriginal people. The haze from eucalyptus makes them look blue!",
+      "npcDialogKo": "블루 마운틴은 시드니 당일치기예요! 세 자매봉은 원주민에게 신성해요. 유칼립투스 연무 때문에 파랗게 보여요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Aboriginal sacred site! What's the legend?", "correct": true},
+          {"text": "The blue haze is so unique! Can we hike?", "correct": true},
+          {"text": "Day trips are too tiring.", "correct": false},
+          {"text": "Mountains look the same everywhere.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_010",
+      "category": "food",
+      "day": 6,
+      "location": "미트 파이 가게",
+      "situation": "호주 국민 간식을 맛본다",
+      "npcDialog": "Aussie meat pie! It's our national food. Classic beef, or try pepper steak. Add tomato sauce on top - that's the Aussie way! Goes great with a beer.",
+      "npcDialogKo": "호주 미트 파이! 국민 음식이에요. 클래식 비프, 아니면 페퍼 스테이크. 위에 토마토 소스 뿌리세요 - 호주 스타일! 맥주랑 잘 어울려요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Classic beef with tomato sauce! Very Aussie!", "correct": true},
+          {"text": "What other fillings do you have?", "correct": true},
+          {"text": "Meat pies are too heavy.", "correct": false},
+          {"text": "I prefer pizza.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_011",
+      "category": "shopping",
+      "day": 7,
+      "location": "퀸 빅토리아 빌딩",
+      "situation": "역사적인 쇼핑몰에서 쇼핑한다",
+      "npcDialog": "QVB is Sydney's most beautiful building! From 1898, with stained glass and ornate clocks. High-end shops and great tea rooms. Very elegant!",
+      "npcDialogKo": "QVB는 시드니에서 가장 아름다운 건물이에요! 1898년부터, 스테인드글라스와 화려한 시계. 고급 상점과 티룸. 아주 우아해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The architecture is stunning! Can I just browse?", "correct": true},
+          {"text": "Tea room sounds lovely! Is it traditional?", "correct": true},
+          {"text": "Old buildings are drafty.", "correct": false},
+          {"text": "I prefer modern malls.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_012",
+      "category": "landmark",
+      "day": 7,
+      "location": "맨리 비치",
+      "situation": "페리를 타고 맨리 해변에 간다",
+      "npcDialog": "The ferry to Manly is a Sydney must-do! 30 minutes through the harbour. Manly Beach is great for families. The corso has shops and restaurants!",
+      "npcDialogKo": "맨리행 페리는 시드니 필수예요! 항구 30분 통과. 맨리 비치는 가족에게 좋아요. 코르소에 상점과 레스토랑이 있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Ferry through the harbour! Best way to see Sydney.", "correct": true},
+          {"text": "Is the beach good for swimming?", "correct": true},
+          {"text": "30 minutes is too long.", "correct": false},
+          {"text": "I get seasick on ferries.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_013",
+      "category": "food",
+      "day": 4,
+      "location": "차이나타운",
+      "situation": "시드니 차이나타운에서 딤섬을 먹는다",
+      "npcDialog": "Sydney Chinatown has the best yum cha! Dumplings, spring rolls, custard buns pushed around on carts. Point to what you want! Very fresh!",
+      "npcDialogKo": "시드니 차이나타운 얌차가 최고예요! 만두, 춘권, 커스터드 번 카트에 실려 나와요. 원하는 거 가리키세요! 아주 신선해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I love yum cha! Which dumplings are best?", "correct": true},
+          {"text": "Point to order? That makes it easy!", "correct": true},
+          {"text": "Carts are unhygienic.", "correct": false},
+          {"text": "Chinese food everywhere is the same.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_014",
+      "category": "culture",
+      "day": 8,
+      "location": "시드니 수족관",
+      "situation": "호주 해양 생물을 만난다",
+      "npcDialog": "SEA LIFE Sydney has Great Barrier Reef fish, sharks, and dugongs! The underwater tunnel is amazing. You can even dive with sharks!",
+      "npcDialogKo": "시라이프 시드니에 그레이트 배리어 리프 물고기, 상어, 듀공이 있어요! 수중 터널이 끝내줘요. 상어랑 다이빙도 해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Shark diving! Is it safe?", "correct": true},
+          {"text": "Dugongs! I've never seen one before.", "correct": true},
+          {"text": "Aquariums are boring.", "correct": false},
+          {"text": "I prefer seeing fish in the ocean.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_015",
+      "category": "transport",
+      "day": 2,
+      "location": "오팔 카드 판매점",
+      "situation": "대중교통 카드를 구매한다",
+      "npcDialog": "Opal card works on trains, buses, ferries, and light rail! Tap on and off. Sunday is capped at $8.90 - ride unlimited! Very good deal!",
+      "npcDialogKo": "오팔 카드는 기차, 버스, 페리, 경전철에서 다 써요! 탭온 탭오프. 일요일은 $8.90 상한 - 무제한이에요! 아주 좋은 거래예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Sunday unlimited! I'll plan my big trips then.", "correct": true},
+          {"text": "Where can I top up the card?", "correct": true},
+          {"text": "Too many cards to manage.", "correct": false},
+          {"text": "I'll just use taxis.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_016",
+      "category": "food",
+      "day": 5,
+      "location": "바비큐 공원",
+      "situation": "호주식 바비큐를 체험한다",
+      "npcDialog": "Public BBQs are free in Australia! Just clean up after. We're grilling snags - that's sausages. Chuck some prawns on the barbie too!",
+      "npcDialogKo": "공공 바비큐가 호주에서 무료예요! 정리만 하면 돼요. 스내그 굽고 있어요 - 소시지예요. 새우도 바비에 던져요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Free public BBQs! That's so Australian!", "correct": true},
+          {"text": "Prawns on the barbie! The classic!", "correct": true},
+          {"text": "Public BBQs seem dirty.", "correct": false},
+          {"text": "I don't eat grilled food.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_017",
+      "category": "culture",
+      "day": 3,
+      "location": "원주민 문화센터",
+      "situation": "호주 원주민 문화를 배운다",
+      "npcDialog": "Aboriginal culture is over 60,000 years old! The oldest living culture. We offer didgeridoo lessons and dreamtime stories. Very spiritual experience.",
+      "npcDialogKo": "원주민 문화는 6만 년이 넘었어요! 가장 오래된 살아있는 문화. 디저리두 레슨과 드림타임 이야기가 있어요. 아주 영적인 경험이에요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "60,000 years! I'd love to learn about Dreamtime.", "correct": true},
+          {"text": "Can I try playing the didgeridoo?", "correct": true},
+          {"text": "Ancient history is boring.", "correct": false},
+          {"text": "I'm not spiritual.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_018",
+      "category": "shopping",
+      "day": 6,
+      "location": "패딩턴 마켓",
+      "situation": "주말 마켓에서 쇼핑한다",
+      "npcDialog": "Paddington Markets every Saturday! Local designers, vintage fashion, handmade jewelry. Very Sydney! The jacaranda trees are blooming - so pretty!",
+      "npcDialogKo": "패딩턴 마켓 매주 토요일! 로컬 디자이너, 빈티지 패션, 수제 주얼리. 아주 시드니다워요! 자카란다 나무가 피었어요 - 너무 예뻐요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Local designers! I love unique finds.", "correct": true},
+          {"text": "The purple jacaranda flowers are gorgeous!", "correct": true},
+          {"text": "Markets are too crowded.", "correct": false},
+          {"text": "I prefer department stores.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_019",
+      "category": "landmark",
+      "day": 8,
+      "location": "달링 하버",
+      "situation": "시드니 워터프론트를 즐긴다",
+      "npcDialog": "Darling Harbour is Sydney's playground! Museums, restaurants, fireworks on Saturdays. The Chinese Garden is beautiful and peaceful. Great for families!",
+      "npcDialogKo": "달링 하버는 시드니의 놀이터예요! 박물관, 레스토랑, 토요일엔 불꽃놀이. 중국 정원이 아름답고 평화로워요. 가족에게 좋아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Fireworks on Saturday! What time?", "correct": true},
+          {"text": "The waterfront at sunset must be stunning.", "correct": true},
+          {"text": "Waterfront areas are too touristy.", "correct": false},
+          {"text": "Fireworks are for kids.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SYD_020",
+      "category": "food",
+      "day": 8,
+      "location": "시드니 레스토랑",
+      "situation": "마지막 밤 저녁을 즐긴다",
+      "npcDialog": "Last night in Sydney! Try our modern Australian - Asian and Mediterranean influences. Finish with a lamington or pavlova. Cheers mate!",
+      "npcDialogKo": "시드니 마지막 밤이네요! 모던 오스트레일리안 드셔보세요 - 아시안과 지중해 영향. 래밍턴이나 파블로바로 마무리. 치어스 메이트!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Modern Australian sounds unique! What do you recommend?", "correct": true},
+          {"text": "Cheers mate! I'll try the pavlova!", "correct": true},
+          {"text": "Fusion food isn't authentic.", "correct": false},
+          {"text": "I prefer simple food.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

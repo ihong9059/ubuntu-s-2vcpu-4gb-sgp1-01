@@ -1,0 +1,3184 @@
+{
+  "info": {
+    "departure": "서울/인천",
+    "destination": "파리",
+    "country": "프랑스",
+    "purpose": "가족여행",
+    "budget": "일반",
+    "duration": "10일",
+    "sceneCount": 105,
+    "generatedAt": "2026-02-08T15:55:01.838312",
+    "templateVersion": "2.0"
+  },
+  "composition": {
+    "common": 50,
+    "city": 20,
+    "purpose": 20,
+    "budget": 15,
+    "transfer": 0
+  },
+  "route": [
+    {
+      "city": "서울",
+      "lat": 37.5665,
+      "lng": 126.978
+    },
+    {
+      "city": "파리",
+      "lat": 48.8566,
+      "lng": 2.3522
+    }
+  ],
+  "scenes": [
+    {
+      "id": "C001",
+      "category": "airport_departure",
+      "day": 1,
+      "location": "인천공항 체크인 카운터",
+      "situation": "항공사 카운터에서 체크인을 하고 있다",
+      "npcDialog": "Good morning! May I see your passport and booking confirmation?",
+      "npcDialogKo": "안녕하세요! 여권과 예약 확인서를 보여주시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Here's my passport and e-ticket.",
+            "correct": true
+          },
+          {
+            "text": "Sure, here you go.",
+            "correct": true
+          },
+          {
+            "text": "I don't have a passport.",
+            "correct": false
+          },
+          {
+            "text": "What is passport?",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 0
+    },
+    {
+      "id": "C002",
+      "category": "airport_departure",
+      "day": 1,
+      "location": "인천공항 체크인 카운터",
+      "situation": "좌석 선호도를 물어본다",
+      "npcDialog": "Do you have a seat preference? Window or aisle?",
+      "npcDialogKo": "좌석 선호가 있으신가요? 창가 아니면 통로?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Window seat, please.",
+            "correct": true
+          },
+          {
+            "text": "Aisle seat, please.",
+            "correct": true
+          },
+          {
+            "text": "I want to sit on the wing.",
+            "correct": false
+          },
+          {
+            "text": "Give me the pilot seat.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 1
+    },
+    {
+      "id": "C003",
+      "category": "airport_departure",
+      "day": 1,
+      "location": "인천공항 체크인 카운터",
+      "situation": "수하물을 부치려고 한다",
+      "npcDialog": "How many bags are you checking in today?",
+      "npcDialogKo": "오늘 몇 개의 가방을 부치시나요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Just one bag, please.",
+            "correct": true
+          },
+          {
+            "text": "Two bags to check in.",
+            "correct": true
+          },
+          {
+            "text": "I want to check in myself.",
+            "correct": false
+          },
+          {
+            "text": "No bag, only me.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 2
+    },
+    {
+      "id": "C004",
+      "category": "airport_departure",
+      "day": 1,
+      "location": "인천공항 보안검색대",
+      "situation": "보안요원이 소지품을 확인한다",
+      "npcDialog": "Please place your laptop and liquids in a separate tray.",
+      "npcDialogKo": "노트북과 액체류는 별도 트레이에 놓아주세요.",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Okay, I'll take them out.",
+            "correct": true
+          },
+          {
+            "text": "Sure, no problem.",
+            "correct": true
+          },
+          {
+            "text": "I don't want to.",
+            "correct": false
+          },
+          {
+            "text": "What is tray?",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 3
+    },
+    {
+      "id": "C005",
+      "category": "airport_departure",
+      "day": 1,
+      "location": "인천공항 보안검색대",
+      "situation": "금속탐지기가 울렸다",
+      "npcDialog": "Please step aside. Do you have anything metal in your pockets?",
+      "npcDialogKo": "옆으로 비켜주세요. 주머니에 금속류가 있나요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Oh, I forgot my belt. Let me remove it.",
+            "correct": true
+          },
+          {
+            "text": "I might have some coins. Here they are.",
+            "correct": true
+          },
+          {
+            "text": "I have a gun.",
+            "correct": false
+          },
+          {
+            "text": "It's not my problem.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 4
+    },
+    {
+      "id": "C006",
+      "category": "airport_departure",
+      "day": 1,
+      "location": "인천공항 출국장",
+      "situation": "탑승구를 찾고 있다",
+      "npcDialog": "Can I help you find something?",
+      "npcDialogKo": "뭔가 찾는 걸 도와드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, where is gate 25?",
+            "correct": true
+          },
+          {
+            "text": "I'm looking for my gate. It's gate 25.",
+            "correct": true
+          },
+          {
+            "text": "No, go away.",
+            "correct": false
+          },
+          {
+            "text": "I'm lost forever.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 5
+    },
+    {
+      "id": "C007",
+      "category": "airport_departure",
+      "day": 1,
+      "location": "인천공항 면세점",
+      "situation": "면세점에서 쇼핑을 하고 있다",
+      "npcDialog": "Would you like to see anything in particular?",
+      "npcDialogKo": "특별히 보고 싶은 것이 있으신가요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I'm looking for some perfume.",
+            "correct": true
+          },
+          {
+            "text": "Just browsing, thank you.",
+            "correct": true
+          },
+          {
+            "text": "Everything is too expensive.",
+            "correct": false
+          },
+          {
+            "text": "I hate shopping.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 6
+    },
+    {
+      "id": "C008",
+      "category": "airport_departure",
+      "day": 1,
+      "location": "인천공항 탑승구",
+      "situation": "탑승이 시작되었다",
+      "npcDialog": "We're now boarding rows 20 to 35. May I see your boarding pass?",
+      "npcDialogKo": "20~35열 탑승을 시작합니다. 탑승권을 보여주시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Here's my boarding pass.",
+            "correct": true
+          },
+          {
+            "text": "Yes, I'm in row 28.",
+            "correct": true
+          },
+          {
+            "text": "I lost my ticket.",
+            "correct": false
+          },
+          {
+            "text": "I don't want to board.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 7
+    },
+    {
+      "id": "C009",
+      "category": "inflight",
+      "day": 1,
+      "location": "기내",
+      "situation": "좌석을 찾고 있다",
+      "npcDialog": "Can I help you find your seat?",
+      "npcDialogKo": "좌석 찾는 것을 도와드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, I'm looking for seat 28A.",
+            "correct": true
+          },
+          {
+            "text": "Where is row 28?",
+            "correct": true
+          },
+          {
+            "text": "I want first class.",
+            "correct": false
+          },
+          {
+            "text": "This plane is too small.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 8
+    },
+    {
+      "id": "C010",
+      "category": "inflight",
+      "day": 1,
+      "location": "기내",
+      "situation": "짐을 선반에 넣으려 한다",
+      "npcDialog": "Let me help you with your bag. Is this your carry-on?",
+      "npcDialogKo": "가방 넣는 것 도와드릴게요. 이게 기내용 가방인가요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, thank you so much.",
+            "correct": true
+          },
+          {
+            "text": "That would be great, thanks.",
+            "correct": true
+          },
+          {
+            "text": "Don't touch my bag!",
+            "correct": false
+          },
+          {
+            "text": "It's none of your business.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 9
+    },
+    {
+      "id": "C011",
+      "category": "inflight",
+      "day": 1,
+      "location": "기내",
+      "situation": "음료 서비스가 시작되었다",
+      "npcDialog": "What would you like to drink? We have juice, water, coffee, and tea.",
+      "npcDialogKo": "음료는 뭘로 드릴까요? 주스, 물, 커피, 차가 있습니다.",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Orange juice, please.",
+            "correct": true
+          },
+          {
+            "text": "Can I have some water?",
+            "correct": true
+          },
+          {
+            "text": "I want beer and vodka.",
+            "correct": false
+          },
+          {
+            "text": "Nothing, leave me alone.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 10
+    },
+    {
+      "id": "C012",
+      "category": "inflight",
+      "day": 1,
+      "location": "기내",
+      "situation": "기내식 선택을 물어본다",
+      "npcDialog": "For your meal, would you like beef or chicken?",
+      "npcDialogKo": "식사로 소고기와 닭고기 중 뭘로 드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Chicken, please.",
+            "correct": true
+          },
+          {
+            "text": "I'll have the beef.",
+            "correct": true
+          },
+          {
+            "text": "I want pizza.",
+            "correct": false
+          },
+          {
+            "text": "Both of them.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 11
+    },
+    {
+      "id": "C013",
+      "category": "inflight",
+      "day": 1,
+      "location": "기내",
+      "situation": "담요를 요청하려 한다",
+      "npcDialog": "Is there anything else I can get for you?",
+      "npcDialogKo": "다른 필요한 것 있으신가요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Could I get a blanket, please?",
+            "correct": true
+          },
+          {
+            "text": "May I have a pillow?",
+            "correct": true
+          },
+          {
+            "text": "I want to sleep in first class.",
+            "correct": false
+          },
+          {
+            "text": "Make the plane go faster.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 12
+    },
+    {
+      "id": "C014",
+      "category": "inflight",
+      "day": 1,
+      "location": "기내",
+      "situation": "화장실을 이용하려 한다",
+      "npcDialog": "Excuse me, the seatbelt sign is on. Could you wait a moment?",
+      "npcDialogKo": "죄송합니다, 안전벨트 사인이 켜져있어요. 잠시 기다려주시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Oh, I see. I'll wait.",
+            "correct": true
+          },
+          {
+            "text": "Okay, I'll go back to my seat.",
+            "correct": true
+          },
+          {
+            "text": "I don't care about the sign.",
+            "correct": false
+          },
+          {
+            "text": "It's an emergency!",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 13
+    },
+    {
+      "id": "C015",
+      "category": "inflight",
+      "day": 1,
+      "location": "기내",
+      "situation": "입국신고서 작성을 도와달라고 한다",
+      "npcDialog": "Do you need help filling out the arrival card?",
+      "npcDialogKo": "입국신고서 작성하는 데 도움이 필요하신가요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, what should I write for 'purpose of visit'?",
+            "correct": true
+          },
+          {
+            "text": "Where do I write my hotel address?",
+            "correct": true
+          },
+          {
+            "text": "I can't read English.",
+            "correct": false
+          },
+          {
+            "text": "Throw it away.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 14
+    },
+    {
+      "id": "C016",
+      "category": "inflight",
+      "day": 1,
+      "location": "기내",
+      "situation": "이어폰을 요청한다",
+      "npcDialog": "Would you like headphones for the entertainment system?",
+      "npcDialogKo": "엔터테인먼트 시스템용 헤드폰 드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, please.",
+            "correct": true
+          },
+          {
+            "text": "That would be great, thank you.",
+            "correct": true
+          },
+          {
+            "text": "I brought my own headphones.",
+            "correct": true
+          },
+          {
+            "text": "Your headphones are ugly.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 15
+    },
+    {
+      "id": "C017",
+      "category": "inflight",
+      "day": 1,
+      "location": "기내",
+      "situation": "난기류로 안전벨트 착용 안내가 나온다",
+      "npcDialog": "Please return to your seat and fasten your seatbelt. We're experiencing turbulence.",
+      "npcDialogKo": "좌석으로 돌아가 안전벨트를 매주세요. 난기류가 있습니다.",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Okay, I'll sit down right away.",
+            "correct": true
+          },
+          {
+            "text": "Is it going to be a rough ride?",
+            "correct": true
+          },
+          {
+            "text": "I'm not afraid of turbulence.",
+            "correct": false
+          },
+          {
+            "text": "I want to stand.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 16
+    },
+    {
+      "id": "C018",
+      "category": "inflight",
+      "day": 1,
+      "location": "기내",
+      "situation": "착륙 준비 안내가 나온다",
+      "npcDialog": "We'll be landing in 30 minutes. Please put your tray table up and seat in the upright position.",
+      "npcDialogKo": "30분 후 착륙합니다. 테이블을 접고 좌석을 바로 세워주세요.",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Sure, I'll do that now.",
+            "correct": true
+          },
+          {
+            "text": "Okay, thank you for letting me know.",
+            "correct": true
+          },
+          {
+            "text": "I don't want to land.",
+            "correct": false
+          },
+          {
+            "text": "30 more minutes of flying please.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 17
+    },
+    {
+      "id": "C019",
+      "category": "arrival",
+      "day": 1,
+      "location": "도착 공항 입국심사대",
+      "situation": "입국심사관이 질문한다",
+      "npcDialog": "What is the purpose of your visit?",
+      "npcDialogKo": "방문 목적이 무엇인가요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I'm here for tourism.",
+            "correct": true
+          },
+          {
+            "text": "Sightseeing and vacation.",
+            "correct": true
+          },
+          {
+            "text": "I'm here to work illegally.",
+            "correct": false
+          },
+          {
+            "text": "None of your business.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 18
+    },
+    {
+      "id": "C020",
+      "category": "arrival",
+      "day": 1,
+      "location": "도착 공항 입국심사대",
+      "situation": "체류 기간을 묻는다",
+      "npcDialog": "How long will you be staying?",
+      "npcDialogKo": "얼마나 체류하실 건가요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "About 10 days.",
+            "correct": true
+          },
+          {
+            "text": "I'll be here for two weeks.",
+            "correct": true
+          },
+          {
+            "text": "Forever.",
+            "correct": false
+          },
+          {
+            "text": "I don't know yet.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 19
+    },
+    {
+      "id": "C021",
+      "category": "arrival",
+      "day": 1,
+      "location": "도착 공항 입국심사대",
+      "situation": "숙소를 묻는다",
+      "npcDialog": "Where will you be staying?",
+      "npcDialogKo": "어디에서 묵으실 건가요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I'm staying at the Hilton Hotel.",
+            "correct": true
+          },
+          {
+            "text": "At a hotel in the city center.",
+            "correct": true
+          },
+          {
+            "text": "On the street.",
+            "correct": false
+          },
+          {
+            "text": "At your house.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 20
+    },
+    {
+      "id": "C022",
+      "category": "arrival",
+      "day": 1,
+      "location": "도착 공항 입국심사대",
+      "situation": "귀국 항공권을 물어본다",
+      "npcDialog": "Do you have a return ticket?",
+      "npcDialogKo": "귀국 항공권이 있나요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, here's my return ticket.",
+            "correct": true
+          },
+          {
+            "text": "Yes, I'm flying back on the 15th.",
+            "correct": true
+          },
+          {
+            "text": "No, I'm not going back.",
+            "correct": false
+          },
+          {
+            "text": "I threw it away.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 21
+    },
+    {
+      "id": "C023",
+      "category": "arrival",
+      "day": 1,
+      "location": "도착 공항 수하물 수취대",
+      "situation": "수하물을 찾고 있다",
+      "npcDialog": "Which carousel is your luggage on?",
+      "npcDialogKo": "어느 수하물 벨트에서 찾으시나요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I think it's carousel 5.",
+            "correct": true
+          },
+          {
+            "text": "I'm not sure. My flight was from Seoul.",
+            "correct": true
+          },
+          {
+            "text": "I don't have luggage.",
+            "correct": false
+          },
+          {
+            "text": "Someone stole my luggage.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 22
+    },
+    {
+      "id": "C024",
+      "category": "arrival",
+      "day": 1,
+      "location": "도착 공항 수하물 수취대",
+      "situation": "수하물이 나오지 않는다",
+      "npcDialog": "Is there a problem with your luggage?",
+      "npcDialogKo": "수하물에 문제가 있나요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, my bag hasn't come out yet.",
+            "correct": true
+          },
+          {
+            "text": "I can't find my suitcase. It's a black one.",
+            "correct": true
+          },
+          {
+            "text": "Your airline lost my bag!",
+            "correct": false
+          },
+          {
+            "text": "I want money for this.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 23
+    },
+    {
+      "id": "C025",
+      "category": "arrival",
+      "day": 1,
+      "location": "도착 공항 환전소",
+      "situation": "환전을 하려고 한다",
+      "npcDialog": "How much would you like to exchange?",
+      "npcDialogKo": "얼마를 환전하시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I'd like to exchange 500 dollars.",
+            "correct": true
+          },
+          {
+            "text": "Can I exchange 300 dollars to euros?",
+            "correct": true
+          },
+          {
+            "text": "Give me all your money.",
+            "correct": false
+          },
+          {
+            "text": "I want free money.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 24
+    },
+    {
+      "id": "C026",
+      "category": "arrival",
+      "day": 1,
+      "location": "도착 공항 환전소",
+      "situation": "환율을 확인한다",
+      "npcDialog": "Today's rate is 1.08 euros per dollar. Is that okay?",
+      "npcDialogKo": "오늘 환율은 달러당 1.08유로입니다. 괜찮으세요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, that's fine.",
+            "correct": true
+          },
+          {
+            "text": "Okay, please proceed.",
+            "correct": true
+          },
+          {
+            "text": "That's too expensive, change it.",
+            "correct": false
+          },
+          {
+            "text": "I want better rate.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 25
+    },
+    {
+      "id": "C027",
+      "category": "arrival",
+      "day": 1,
+      "location": "도착 공항 교통 안내소",
+      "situation": "시내로 가는 방법을 묻는다",
+      "npcDialog": "How can I help you today?",
+      "npcDialogKo": "어떻게 도와드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "How do I get to the city center?",
+            "correct": true
+          },
+          {
+            "text": "What's the best way to get downtown?",
+            "correct": true
+          },
+          {
+            "text": "Take me there now.",
+            "correct": false
+          },
+          {
+            "text": "I hate public transportation.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 26
+    },
+    {
+      "id": "C028",
+      "category": "arrival",
+      "day": 1,
+      "location": "도착 공항 기차역",
+      "situation": "기차표를 구매한다",
+      "npcDialog": "Where would you like to go?",
+      "npcDialogKo": "어디로 가시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "One ticket to Central Station, please.",
+            "correct": true
+          },
+          {
+            "text": "How much is a ticket to the city center?",
+            "correct": true
+          },
+          {
+            "text": "I want to go everywhere.",
+            "correct": false
+          },
+          {
+            "text": "Drive me there.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 27
+    },
+    {
+      "id": "C029",
+      "category": "hotel_basic",
+      "day": 1,
+      "location": "호텔 로비",
+      "situation": "호텔에 도착해서 체크인을 한다",
+      "npcDialog": "Good evening! Do you have a reservation?",
+      "npcDialogKo": "안녕하세요! 예약하셨나요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, I have a reservation under Kim.",
+            "correct": true
+          },
+          {
+            "text": "Yes, I booked online. Here's my confirmation.",
+            "correct": true
+          },
+          {
+            "text": "No, but give me the best room.",
+            "correct": false
+          },
+          {
+            "text": "I don't need reservation.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 28
+    },
+    {
+      "id": "C030",
+      "category": "hotel_basic",
+      "day": 1,
+      "location": "호텔 프론트",
+      "situation": "조식 포함 여부를 확인한다",
+      "npcDialog": "Your room includes breakfast. It's served from 7 to 10 AM.",
+      "npcDialogKo": "객실에 조식이 포함되어 있습니다. 7시부터 10시까지입니다.",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Great, where is the breakfast room?",
+            "correct": true
+          },
+          {
+            "text": "Perfect, thank you for the information.",
+            "correct": true
+          },
+          {
+            "text": "I want lunch too.",
+            "correct": false
+          },
+          {
+            "text": "That's too early.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 29
+    },
+    {
+      "id": "C031",
+      "category": "hotel_basic",
+      "day": 1,
+      "location": "호텔 프론트",
+      "situation": "와이파이 비밀번호를 묻는다",
+      "npcDialog": "Is there anything else you need?",
+      "npcDialogKo": "다른 필요하신 것 있으신가요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, what's the WiFi password?",
+            "correct": true
+          },
+          {
+            "text": "Could you tell me the WiFi password?",
+            "correct": true
+          },
+          {
+            "text": "I need faster internet.",
+            "correct": false
+          },
+          {
+            "text": "Your WiFi is probably bad.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 30
+    },
+    {
+      "id": "CITY_PAR_001",
+      "category": "landmark",
+      "day": 2,
+      "location": "에펠탑",
+      "situation": "에펠탑 전망대 티켓을 구매한다",
+      "npcDialog": "Bonjour! Would you like tickets to the top? Elevator or stairs? Stairs are cheaper but 674 steps!",
+      "npcDialogKo": "봉주르! 꼭대기 티켓 원하세요? 엘리베이터? 계단? 계단이 저렴한데 674계단이에요!",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I'll take the elevator! What's the view like from the top?",
+            "correct": true
+          },
+          {
+            "text": "674 steps sounds like a challenge! I'll do the stairs.",
+            "correct": true
+          },
+          {
+            "text": "That's too many steps and too expensive.",
+            "correct": false
+          },
+          {
+            "text": "The Eiffel Tower is overrated.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 31
+    },
+    {
+      "id": "CITY_PAR_008",
+      "category": "museum",
+      "day": 2,
+      "location": "오르세 미술관",
+      "situation": "인상파 작품들을 감상한다",
+      "npcDialog": "The Impressionist collection is on the 5th floor. Monet's Water Lilies, Van Gogh's Starry Night... Magnificent!",
+      "npcDialogKo": "인상파 컬렉션은 5층에 있어요. 모네의 수련, 반 고흐의 별이 빛나는 밤... 장관이에요!",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I can't wait to see the Water Lilies! Is photography allowed?",
+            "correct": true
+          },
+          {
+            "text": "Which floor should I start from?",
+            "correct": true
+          },
+          {
+            "text": "I've seen these paintings online.",
+            "correct": false
+          },
+          {
+            "text": "Art doesn't interest me.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 32
+    },
+    {
+      "id": "CITY_PAR_015",
+      "category": "activity",
+      "day": 2,
+      "location": "베르사유 궁전",
+      "situation": "베르사유 궁전 당일치기 여행",
+      "npcDialog": "Versailles is 40 minutes by train. The Hall of Mirrors is spectacular! Book online to skip the line.",
+      "npcDialogKo": "베르사유는 기차로 40분이에요. 거울의 방이 장관이에요! 줄 안 서려면 온라인 예약하세요.",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I've always wanted to see the Hall of Mirrors! How much time should I plan?",
+            "correct": true
+          },
+          {
+            "text": "Is the garden worth visiting too?",
+            "correct": true
+          },
+          {
+            "text": "40 minutes is too far.",
+            "correct": false
+          },
+          {
+            "text": "Palaces are all the same.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 33
+    },
+    {
+      "id": "P_FAM_001",
+      "category": "accommodation",
+      "location": "호텔",
+      "situation": "패밀리룸 체크인",
+      "npcDialog": "Welcome! Your family room is ready. It has two queen beds.",
+      "npcDialogKo": "환영합니다! 패밀리룸 준비됐어요. 퀸 베드 2개 있어요.",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Perfect! Is there a crib available?",
+            "correct": true
+          },
+          {
+            "text": "Great! Where's the children's play area?",
+            "correct": true
+          },
+          {
+            "text": "We wanted a suite.",
+            "correct": false
+          },
+          {
+            "text": "This room is too small.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 2,
+      "sceneIndex": 34
+    },
+    {
+      "id": "P_FAM_009",
+      "category": "activity",
+      "location": "테마파크",
+      "situation": "테마파크 입장",
+      "npcDialog": "Welcome to the park! Your child must be this tall for some rides.",
+      "npcDialogKo": "공원에 오신 것을 환영해요! 일부 놀이기구는 키 제한이 있어요.",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Which rides are safe for toddlers?",
+            "correct": true
+          },
+          {
+            "text": "Are there any height restrictions we should know about?",
+            "correct": true
+          },
+          {
+            "text": "Height restrictions are stupid.",
+            "correct": false
+          },
+          {
+            "text": "My kid can ride anything.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 2,
+      "sceneIndex": 35
+    },
+    {
+      "id": "P_FAM_017",
+      "category": "activity",
+      "location": "공원",
+      "situation": "놀이시설 문의",
+      "npcDialog": "The playground is just ahead.",
+      "npcDialogKo": "놀이터가 바로 앞에 있어요.",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Great! Is it suitable for a 3-year-old?",
+            "correct": true
+          },
+          {
+            "text": "Are there any swings and slides?",
+            "correct": true
+          },
+          {
+            "text": "Playgrounds are for babies.",
+            "correct": false
+          },
+          {
+            "text": "My kids don't play outside.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 2,
+      "sceneIndex": 36
+    },
+    {
+      "id": "B_NOR_001",
+      "category": "accommodation",
+      "location": "호텔 프론트",
+      "situation": "호텔 체크인 및 업그레이드 문의",
+      "npcDialog": "Good evening! Your room is ready. Would you like an upgrade to a suite for 50 euros more?",
+      "npcDialogKo": "안녕하세요! 객실 준비되었습니다. 50유로 추가하시면 스위트룸으로 업그레이드 가능한데요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "That sounds nice. What does the suite include?",
+            "correct": true
+          },
+          {
+            "text": "What's the difference between the rooms?",
+            "correct": true
+          },
+          {
+            "text": "Give me the upgrade for free.",
+            "correct": false
+          },
+          {
+            "text": "That's a rip-off.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 2,
+      "sceneIndex": 37
+    },
+    {
+      "id": "B_NOR_009",
+      "category": "activity",
+      "location": "관광지",
+      "situation": "VIP 스킵더라인 입장",
+      "npcDialog": "The regular line is about 2 hours. Would you like skip-the-line tickets?",
+      "npcDialogKo": "일반 줄은 약 2시간 기다려야 해요. 줄 안서는 티켓 원하세요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, how much extra is it?",
+            "correct": true
+          },
+          {
+            "text": "Definitely, I don't want to wait.",
+            "correct": true
+          },
+          {
+            "text": "Waiting is fine.",
+            "correct": false
+          },
+          {
+            "text": "I should get VIP for free.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 2,
+      "sceneIndex": 38
+    },
+    {
+      "id": "CITY_PAR_002",
+      "category": "museum",
+      "day": 3,
+      "location": "루브르 박물관",
+      "situation": "모나리자를 찾아 루브르를 탐험한다",
+      "npcDialog": "Looking for the Mona Lisa? It's in the Denon Wing, but expect crowds! I recommend the audio guide.",
+      "npcDialogKo": "모나리자 찾으세요? 드농 윙에 있는데 사람이 많아요! 오디오 가이드 추천해요.",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Thanks! How long should I plan for the whole museum?",
+            "correct": true
+          },
+          {
+            "text": "I'll get the audio guide. Is it available in Korean?",
+            "correct": true
+          },
+          {
+            "text": "I've seen the Mona Lisa in pictures already.",
+            "correct": false
+          },
+          {
+            "text": "Museums are boring.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 39
+    },
+    {
+      "id": "CITY_PAR_009",
+      "category": "shopping",
+      "day": 3,
+      "location": "마레 지구",
+      "situation": "빈티지 샵과 부티크를 구경한다",
+      "npcDialog": "Le Marais has the best vintage shops! This jacket is from the 70s. Very fashionable in Paris now.",
+      "npcDialogKo": "마레에 최고의 빈티지 숍이 있어요! 이 재킷은 70년대거예요. 지금 파리에서 아주 유행해요.",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "It's so stylish! Can I try it on?",
+            "correct": true
+          },
+          {
+            "text": "I love vintage fashion! What else do you recommend?",
+            "correct": true
+          },
+          {
+            "text": "Old clothes are just used clothes.",
+            "correct": false
+          },
+          {
+            "text": "I only buy new things.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 40
+    },
+    {
+      "id": "CITY_PAR_016",
+      "category": "shopping",
+      "day": 3,
+      "location": "갤러리 라파예트",
+      "situation": "백화점에서 쇼핑과 전망을 즐긴다",
+      "npcDialog": "The rooftop terrace is free! Amazing view of the Opera and Eiffel Tower. Would you like to see our perfume section?",
+      "npcDialogKo": "옥상 테라스는 무료예요! 오페라와 에펠탑 전망이 멋져요. 향수 구역 보시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "A free rooftop view? I'll definitely check that out first!",
+            "correct": true
+          },
+          {
+            "text": "Yes, I'd love to see the French perfumes!",
+            "correct": true
+          },
+          {
+            "text": "I'm not buying anything expensive.",
+            "correct": false
+          },
+          {
+            "text": "Department stores are all the same.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 41
+    },
+    {
+      "id": "P_FAM_002",
+      "category": "accommodation",
+      "location": "호텔",
+      "situation": "아기 침대 요청",
+      "npcDialog": "Do you need anything else for your room?",
+      "npcDialogKo": "객실에 더 필요한 것 있으세요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, we need a crib for our baby.",
+            "correct": true
+          },
+          {
+            "text": "Can you bring a baby bed and a bed rail?",
+            "correct": true
+          },
+          {
+            "text": "The baby will sleep on the floor.",
+            "correct": false
+          },
+          {
+            "text": "We didn't bring kids.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 3,
+      "sceneIndex": 42
+    },
+    {
+      "id": "P_FAM_010",
+      "category": "activity",
+      "location": "쇼핑몰",
+      "situation": "키즈카페/놀이시설 이용",
+      "npcDialog": "Would you like to leave your kids at our play center?",
+      "npcDialogKo": "아이들을 놀이센터에 맡기시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "How does it work? Is there supervision?",
+            "correct": true
+          },
+          {
+            "text": "Is it safe? How long can they stay?",
+            "correct": true
+          },
+          {
+            "text": "I'll leave them all day.",
+            "correct": false
+          },
+          {
+            "text": "They can take care of themselves.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 3,
+      "sceneIndex": 43
+    },
+    {
+      "id": "P_FAM_018",
+      "category": "sightseeing",
+      "location": "관광지",
+      "situation": "가족 사진 요청",
+      "npcDialog": "Would you like a family photo?",
+      "npcDialogKo": "가족 사진 찍어드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes please! Can you get all of us in the frame?",
+            "correct": true
+          },
+          {
+            "text": "That would be great! Say 'cheese', kids!",
+            "correct": true
+          },
+          {
+            "text": "We don't take photos.",
+            "correct": false
+          },
+          {
+            "text": "Photos are a waste of time.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 3,
+      "sceneIndex": 44
+    },
+    {
+      "id": "B_NOR_002",
+      "category": "accommodation",
+      "location": "호텔 컨시어지",
+      "situation": "컨시어지에게 레스토랑 추천 요청",
+      "npcDialog": "How may I assist you this evening?",
+      "npcDialogKo": "오늘 저녁 어떻게 도와드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Could you recommend a nice restaurant nearby?",
+            "correct": true
+          },
+          {
+            "text": "Can you make a reservation for me?",
+            "correct": true
+          },
+          {
+            "text": "Find me the cheapest place.",
+            "correct": false
+          },
+          {
+            "text": "You should know what I want.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 3,
+      "sceneIndex": 45
+    },
+    {
+      "id": "B_NOR_010",
+      "category": "activity",
+      "location": "스파",
+      "situation": "스파/마사지 예약",
+      "npcDialog": "Would you like to book a spa treatment?",
+      "npcDialogKo": "스파 트리트먼트 예약하시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, what massage options do you have?",
+            "correct": true
+          },
+          {
+            "text": "I'd like a 60-minute deep tissue massage.",
+            "correct": true
+          },
+          {
+            "text": "Spas are a waste of money.",
+            "correct": false
+          },
+          {
+            "text": "Give me a free massage.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 3,
+      "sceneIndex": 46
+    },
+    {
+      "id": "CITY_PAR_003",
+      "category": "food",
+      "day": 4,
+      "location": "파리 카페",
+      "situation": "본고장 크루아상과 카페오레를 주문한다",
+      "npcDialog": "Bonjour! Un café au lait et un croissant? Our croissants are baked fresh every morning. Très délicieux!",
+      "npcDialogKo": "봉주르! 카페오레와 크루아상요? 크루아상은 매일 아침 갓 구워요. 아주 맛있어요!",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes please! This is the real Parisian breakfast experience!",
+            "correct": true
+          },
+          {
+            "text": "And a pain au chocolat too, please! I love French pastries.",
+            "correct": true
+          },
+          {
+            "text": "Why is everything so expensive in Paris?",
+            "correct": false
+          },
+          {
+            "text": "I prefer American coffee.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 47
+    },
+    {
+      "id": "CITY_PAR_010",
+      "category": "landmark",
+      "day": 4,
+      "location": "개선문",
+      "situation": "개선문 전망대에 올라간다",
+      "npcDialog": "You can climb 284 steps to the top of the Arc de Triomphe. The view of 12 avenues meeting here is unique!",
+      "npcDialogKo": "개선문 꼭대기까지 284계단 올라갈 수 있어요. 12개 거리가 만나는 전망이 독특해요!",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "284 steps - that's a good workout! Is it worth the climb?",
+            "correct": true
+          },
+          {
+            "text": "What time does it close? I'd love to see the sunset.",
+            "correct": true
+          },
+          {
+            "text": "Too many stairs today.",
+            "correct": false
+          },
+          {
+            "text": "I can see it from the street.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 48
+    },
+    {
+      "id": "CITY_PAR_017",
+      "category": "food",
+      "day": 4,
+      "location": "와인바",
+      "situation": "프랑스 와인을 테이스팅한다",
+      "npcDialog": "French wine tasting! Bordeaux, Burgundy, Champagne... I can recommend based on your taste. Sweet or dry?",
+      "npcDialogKo": "프랑스 와인 시음이에요! 보르도, 부르고뉴, 샴페인... 취향에 맞게 추천해드려요. 달콤한 것? 드라이한 것?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I'd like to try Burgundy. What makes it special?",
+            "correct": true
+          },
+          {
+            "text": "Champagne in Paris - that's a dream come true!",
+            "correct": true
+          },
+          {
+            "text": "Wine all tastes the same to me.",
+            "correct": false
+          },
+          {
+            "text": "I don't drink alcohol.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 49
+    },
+    {
+      "id": "P_FAM_003",
+      "category": "food",
+      "location": "레스토랑",
+      "situation": "유아식 문의",
+      "npcDialog": "Will the little one be eating too?",
+      "npcDialogKo": "아기도 같이 드시나요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, do you have any baby food options?",
+            "correct": true
+          },
+          {
+            "text": "Can you blend something soft for the baby?",
+            "correct": true
+          },
+          {
+            "text": "Babies don't eat.",
+            "correct": false
+          },
+          {
+            "text": "Just give them adult food.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 4,
+      "sceneIndex": 50
+    },
+    {
+      "id": "P_FAM_011",
+      "category": "emergency",
+      "location": "관광지",
+      "situation": "아이를 잃어버렸을 때",
+      "npcDialog": "Is everything okay? You look worried.",
+      "npcDialogKo": "괜찮으세요? 걱정되어 보이는데요.",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I can't find my child! Can you help me?",
+            "correct": true
+          },
+          {
+            "text": "My daughter is missing! Where's the lost child center?",
+            "correct": true
+          },
+          {
+            "text": "She'll find her way back.",
+            "correct": false
+          },
+          {
+            "text": "Kids get lost all the time.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 4,
+      "sceneIndex": 51
+    },
+    {
+      "id": "P_FAM_019",
+      "category": "food",
+      "location": "레스토랑",
+      "situation": "아이 음식 포장 요청",
+      "npcDialog": "Would you like anything else?",
+      "npcDialogKo": "다른 거 필요하세요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Can we get the kids' meal to go? They're tired.",
+            "correct": true
+          },
+          {
+            "text": "Could you pack this up for later?",
+            "correct": true
+          },
+          {
+            "text": "Just throw it away.",
+            "correct": false
+          },
+          {
+            "text": "Kids don't need to eat.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 4,
+      "sceneIndex": 52
+    },
+    {
+      "id": "B_NOR_003",
+      "category": "accommodation",
+      "location": "호텔 객실",
+      "situation": "룸서비스 주문",
+      "npcDialog": "Room service, how may I help you?",
+      "npcDialogKo": "룸서비스입니다, 어떻게 도와드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I'd like to order breakfast for tomorrow morning.",
+            "correct": true
+          },
+          {
+            "text": "Could I get a bottle of wine sent up?",
+            "correct": true
+          },
+          {
+            "text": "Bring me everything on the menu.",
+            "correct": false
+          },
+          {
+            "text": "Room service is too slow.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 4,
+      "sceneIndex": 53
+    },
+    {
+      "id": "B_NOR_011",
+      "category": "shopping",
+      "location": "백화점",
+      "situation": "면세 쇼핑 및 택스리펀",
+      "npcDialog": "Are you visiting from abroad? You may be eligible for tax refund.",
+      "npcDialogKo": "해외에서 오셨나요? 택스 리펀 받으실 수 있어요.",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, how do I get the tax refund?",
+            "correct": true
+          },
+          {
+            "text": "Can you prepare the documents for me?",
+            "correct": true
+          },
+          {
+            "text": "Tax refund is too complicated.",
+            "correct": false
+          },
+          {
+            "text": "Just give me the discount now.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 4,
+      "sceneIndex": 54
+    },
+    {
+      "id": "CITY_PAR_004",
+      "category": "shopping",
+      "day": 5,
+      "location": "샹젤리제 거리",
+      "situation": "샹젤리제 명품 거리를 구경한다",
+      "npcDialog": "Welcome to Louis Vuitton on the Champs-Élysées! Would you like to see our Paris exclusive items?",
+      "npcDialogKo": "샹젤리제 루이비통에 오신 것을 환영해요! 파리 한정 상품 보시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes! What's special about the Paris exclusives?",
+            "correct": true
+          },
+          {
+            "text": "I'm just browsing. This store is beautiful!",
+            "correct": true
+          },
+          {
+            "text": "I can't afford anything here.",
+            "correct": false
+          },
+          {
+            "text": "Luxury brands are just logos.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 55
+    },
+    {
+      "id": "CITY_PAR_011",
+      "category": "food",
+      "day": 5,
+      "location": "마카롱 가게",
+      "situation": "라뒤레에서 마카롱을 고른다",
+      "npcDialog": "Ladurée macarons! We have rose, pistachio, caramel, lavender... Would you like a box?",
+      "npcDialogKo": "라뒤레 마카롱이에요! 장미, 피스타치오, 카라멜, 라벤더... 박스로 드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "They're like little works of art! I'll take an assorted box.",
+            "correct": true
+          },
+          {
+            "text": "Which flavor is the most popular? I want to try the best one!",
+            "correct": true
+          },
+          {
+            "text": "Macarons are too sweet and overpriced.",
+            "correct": false
+          },
+          {
+            "text": "I don't eat desserts.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 56
+    },
+    {
+      "id": "CITY_PAR_018",
+      "category": "activity",
+      "day": 5,
+      "location": "파리 오페라",
+      "situation": "오페라 가르니에 투어",
+      "npcDialog": "The Palais Garnier inspired Phantom of the Opera! The ceiling by Chagall is breathtaking. Tour available now.",
+      "npcDialogKo": "팔레 가르니에가 오페라의 유령에 영감을 줬어요! 샤갈의 천장화가 숨막혀요. 투어 가능해요.",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I love Phantom of the Opera! Can I see the famous chandelier?",
+            "correct": true
+          },
+          {
+            "text": "Chagall painted the ceiling? I had no idea! Let's do the tour.",
+            "correct": true
+          },
+          {
+            "text": "I'm not into opera.",
+            "correct": false
+          },
+          {
+            "text": "It's just an old building.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 57
+    },
+    {
+      "id": "P_FAM_004",
+      "category": "food",
+      "location": "레스토랑",
+      "situation": "키즈 메뉴 주문",
+      "npcDialog": "We have a special kids menu. Would you like one?",
+      "npcDialogKo": "키즈 메뉴가 있어요. 드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes please! Does it come with a toy?",
+            "correct": true
+          },
+          {
+            "text": "What options are there? My child is picky.",
+            "correct": true
+          },
+          {
+            "text": "Kids menus are too small.",
+            "correct": false
+          },
+          {
+            "text": "Just give them the adult portion.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 5,
+      "sceneIndex": 58
+    },
+    {
+      "id": "P_FAM_012",
+      "category": "emergency",
+      "location": "호텔",
+      "situation": "아이가 아플 때",
+      "npcDialog": "Is there anything wrong?",
+      "npcDialogKo": "문제가 있나요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "My child has a fever. Is there a doctor nearby?",
+            "correct": true
+          },
+          {
+            "text": "Where's the nearest pediatric clinic?",
+            "correct": true
+          },
+          {
+            "text": "Kids get sick, it's fine.",
+            "correct": false
+          },
+          {
+            "text": "They're just pretending.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 5,
+      "sceneIndex": 59
+    },
+    {
+      "id": "P_FAM_020",
+      "category": "utility",
+      "location": "휴게소",
+      "situation": "이동 중 휴식",
+      "npcDialog": "Would you like to stop for a break?",
+      "npcDialogKo": "잠깐 쉬어가시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, the kids need a bathroom break.",
+            "correct": true
+          },
+          {
+            "text": "Let's stop here. They need to stretch their legs.",
+            "correct": true
+          },
+          {
+            "text": "Kids don't need breaks.",
+            "correct": false
+          },
+          {
+            "text": "We'll stop when we get there.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 5,
+      "sceneIndex": 60
+    },
+    {
+      "id": "B_NOR_004",
+      "category": "transport",
+      "location": "항공사 체크인",
+      "situation": "직항 비즈니스 체크인",
+      "npcDialog": "Welcome to business class check-in. May I see your passport?",
+      "npcDialogKo": "비즈니스 클래스 체크인에 오신 것을 환영합니다. 여권 보여주시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Here you go. Is the lounge open now?",
+            "correct": true
+          },
+          {
+            "text": "Can I get priority boarding?",
+            "correct": true
+          },
+          {
+            "text": "Where's my champagne?",
+            "correct": false
+          },
+          {
+            "text": "Upgrade me to first class.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 5,
+      "sceneIndex": 61
+    },
+    {
+      "id": "B_NOR_012",
+      "category": "transport",
+      "location": "공항 라운지",
+      "situation": "공항 라운지 이용",
+      "npcDialog": "Welcome to the lounge. May I see your boarding pass?",
+      "npcDialogKo": "라운지에 오신 것을 환영합니다. 탑승권 보여주시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Here you go. Where are the showers?",
+            "correct": true
+          },
+          {
+            "text": "Is there a quiet area to work?",
+            "correct": true
+          },
+          {
+            "text": "This lounge looks cheap.",
+            "correct": false
+          },
+          {
+            "text": "I deserve first class lounge.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 5,
+      "sceneIndex": 62
+    },
+    {
+      "id": "CITY_PAR_005",
+      "category": "landmark",
+      "day": 6,
+      "location": "노트르담 대성당",
+      "situation": "복원 중인 노트르담 대성당 주변을 방문한다",
+      "npcDialog": "Notre-Dame is still being restored after the fire. You can see the progress from the plaza. It's still very moving.",
+      "npcDialogKo": "노트르담은 화재 후 아직 복원 중이에요. 광장에서 진행 상황을 볼 수 있어요. 여전히 감동적이에요.",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I heard about the fire. It's good to see the restoration progress.",
+            "correct": true
+          },
+          {
+            "text": "Even from outside, it's magnificent. When will it reopen?",
+            "correct": true
+          },
+          {
+            "text": "It's disappointing we can't go inside.",
+            "correct": false
+          },
+          {
+            "text": "I've seen bigger churches.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 63
+    },
+    {
+      "id": "CITY_PAR_012",
+      "category": "activity",
+      "day": 6,
+      "location": "몽마르뜨",
+      "situation": "몽마르뜨 언덕에서 화가들을 만난다",
+      "npcDialog": "Would you like a portrait? I can do caricature or realistic style. 15 minutes only!",
+      "npcDialogKo": "초상화 그려드릴까요? 캐리커처나 사실적 스타일 가능해요. 15분이면 돼요!",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "A caricature sounds fun! How much is it?",
+            "correct": true
+          },
+          {
+            "text": "I'd love a realistic portrait as a Paris souvenir!",
+            "correct": true
+          },
+          {
+            "text": "Street artists are all the same.",
+            "correct": false
+          },
+          {
+            "text": "I don't like having my picture drawn.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 64
+    },
+    {
+      "id": "CITY_PAR_019",
+      "category": "food",
+      "day": 6,
+      "location": "에스카르고 레스토랑",
+      "situation": "달팽이 요리에 도전한다",
+      "npcDialog": "Escargot - French snails with garlic butter! A true Parisian delicacy. Brave enough to try?",
+      "npcDialogKo": "에스카르고 - 마늘 버터 달팽이요! 진정한 파리 별미예요. 시도해볼 용기 있으세요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "When in Paris! I'll try six. How do I eat them properly?",
+            "correct": true
+          },
+          {
+            "text": "I've always wanted to try escargot! Is it chewy?",
+            "correct": true
+          },
+          {
+            "text": "Eating snails is disgusting.",
+            "correct": false
+          },
+          {
+            "text": "I can't eat something like that.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 65
+    },
+    {
+      "id": "P_FAM_005",
+      "category": "utility",
+      "location": "관광지",
+      "situation": "유모차 대여",
+      "npcDialog": "Would you like to rent a stroller?",
+      "npcDialogKo": "유모차 대여하시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes please! How much per day?",
+            "correct": true
+          },
+          {
+            "text": "That would be great. Where do I return it?",
+            "correct": true
+          },
+          {
+            "text": "Strollers are for lazy parents.",
+            "correct": false
+          },
+          {
+            "text": "The kids can walk.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 6,
+      "sceneIndex": 66
+    },
+    {
+      "id": "P_FAM_013",
+      "category": "emergency",
+      "location": "약국",
+      "situation": "어린이용 약 구매",
+      "npcDialog": "How can I help you today?",
+      "npcDialogKo": "오늘 어떻게 도와드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I need children's fever medicine.",
+            "correct": true
+          },
+          {
+            "text": "What do you have for a child's stomach ache?",
+            "correct": true
+          },
+          {
+            "text": "Just give them adult medicine.",
+            "correct": false
+          },
+          {
+            "text": "Medicine is unnecessary.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 6,
+      "sceneIndex": 67
+    },
+    {
+      "id": "B_NOR_005",
+      "category": "food",
+      "location": "레스토랑",
+      "situation": "파인다이닝 예약 확인",
+      "npcDialog": "Good evening. Do you have a reservation?",
+      "npcDialogKo": "안녕하세요. 예약하셨나요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, reservation for Kim at 7 PM.",
+            "correct": true
+          },
+          {
+            "text": "I booked a table for two.",
+            "correct": true
+          },
+          {
+            "text": "I don't need a reservation.",
+            "correct": false
+          },
+          {
+            "text": "Just give me any table.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 6,
+      "sceneIndex": 68
+    },
+    {
+      "id": "B_NOR_013",
+      "category": "transport",
+      "location": "렌터카 회사",
+      "situation": "렌터카 예약 및 보험",
+      "npcDialog": "Here's your rental car. Would you like additional insurance coverage?",
+      "npcDialogKo": "렌터카 여기 있습니다. 추가 보험 들으시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "What does the full coverage include?",
+            "correct": true
+          },
+          {
+            "text": "Yes, I'd like the comprehensive insurance.",
+            "correct": true
+          },
+          {
+            "text": "Insurance is a scam.",
+            "correct": false
+          },
+          {
+            "text": "I never crash.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 6,
+      "sceneIndex": 69
+    },
+    {
+      "id": "CITY_PAR_006",
+      "category": "activity",
+      "day": 7,
+      "location": "세느강",
+      "situation": "세느강 유람선(바토무슈)을 탄다",
+      "npcDialog": "Bateaux-Mouches departing in 10 minutes! The sunset cruise is the most romantic. Great view of all the bridges!",
+      "npcDialogKo": "바토무슈 10분 후 출발해요! 일몰 크루즈가 가장 로맨틱해요. 모든 다리가 잘 보여요!",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Perfect timing! Is there commentary in English?",
+            "correct": true
+          },
+          {
+            "text": "The sunset cruise sounds amazing! How long is it?",
+            "correct": true
+          },
+          {
+            "text": "Boat tours are tourist traps.",
+            "correct": false
+          },
+          {
+            "text": "I'd rather walk along the river.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 70
+    },
+    {
+      "id": "CITY_PAR_013",
+      "category": "landmark",
+      "day": 7,
+      "location": "사크레쾨르 대성당",
+      "situation": "사크레쾨르에서 파리 전경을 감상한다",
+      "npcDialog": "From here you can see all of Paris! On a clear day, you can see 50 kilometers. The basilica is free to enter.",
+      "npcDialogKo": "여기서 파리 전체가 보여요! 맑은 날엔 50킬로미터까지 보여요. 성당 입장은 무료예요.",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "What an incredible view! This is the best panorama of Paris!",
+            "correct": true
+          },
+          {
+            "text": "Free entry? That's wonderful. Is there a dress code?",
+            "correct": true
+          },
+          {
+            "text": "There are too many tourists here.",
+            "correct": false
+          },
+          {
+            "text": "I'm tired of climbing hills.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 71
+    },
+    {
+      "id": "CITY_PAR_020",
+      "category": "activity",
+      "day": 7,
+      "location": "파리 야경",
+      "situation": "에펠탑 야경을 감상한다",
+      "npcDialog": "The Eiffel Tower sparkles every hour on the hour at night! Best view from Trocadéro. Magic of Paris!",
+      "npcDialogKo": "에펠탑이 밤에 매시간 반짝거려요! 트로카데로에서 가장 잘 보여요. 파리의 마법이에요!",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "It really sparkles? That's magical! What time does it start?",
+            "correct": true
+          },
+          {
+            "text": "This is the perfect way to end my Paris trip!",
+            "correct": true
+          },
+          {
+            "text": "Lights are a waste of electricity.",
+            "correct": false
+          },
+          {
+            "text": "I've seen enough of the Eiffel Tower.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 72
+    },
+    {
+      "id": "P_FAM_006",
+      "category": "utility",
+      "location": "쇼핑몰/공항",
+      "situation": "기저귀 교환대 위치 문의",
+      "npcDialog": "Can I help you find something?",
+      "npcDialogKo": "뭔가 찾는 거 도와드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Where's the nearest baby changing room?",
+            "correct": true
+          },
+          {
+            "text": "Is there a diaper changing station nearby?",
+            "correct": true
+          },
+          {
+            "text": "I'll change the diaper anywhere.",
+            "correct": false
+          },
+          {
+            "text": "We don't use diapers.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 7,
+      "sceneIndex": 73
+    },
+    {
+      "id": "P_FAM_014",
+      "category": "emergency",
+      "location": "병원",
+      "situation": "소아과 방문",
+      "npcDialog": "What brings you in today?",
+      "npcDialogKo": "오늘 어떻게 오셨어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "My son has had a fever since yesterday.",
+            "correct": true
+          },
+          {
+            "text": "She's been vomiting. Is it food poisoning?",
+            "correct": true
+          },
+          {
+            "text": "The kid is fine.",
+            "correct": false
+          },
+          {
+            "text": "We just wanted to visit.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 7,
+      "sceneIndex": 74
+    },
+    {
+      "id": "B_NOR_006",
+      "category": "food",
+      "location": "레스토랑",
+      "situation": "코스 요리와 와인 주문",
+      "npcDialog": "Would you like to try our tasting menu with wine pairing?",
+      "npcDialogKo": "와인 페어링과 함께하는 테이스팅 메뉴 드셔보시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "That sounds wonderful. What wines are included?",
+            "correct": true
+          },
+          {
+            "text": "Yes, please. Is there a vegetarian option?",
+            "correct": true
+          },
+          {
+            "text": "Just bring me a burger.",
+            "correct": false
+          },
+          {
+            "text": "Wine pairing is pretentious.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 7,
+      "sceneIndex": 75
+    },
+    {
+      "id": "B_NOR_014",
+      "category": "accommodation",
+      "location": "호텔",
+      "situation": "발렛 파킹",
+      "npcDialog": "Would you like valet parking for your vehicle?",
+      "npcDialogKo": "발렛 파킹 이용하시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, please. How much is it per day?",
+            "correct": true
+          },
+          {
+            "text": "Sure, here are my keys.",
+            "correct": true
+          },
+          {
+            "text": "Valet parking is for lazy people.",
+            "correct": false
+          },
+          {
+            "text": "Park it for free.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 7,
+      "sceneIndex": 76
+    },
+    {
+      "id": "CITY_PAR_007",
+      "category": "food",
+      "day": 8,
+      "location": "비스트로",
+      "situation": "프랑스 정통 요리를 맛본다",
+      "npcDialog": "Tonight's special: Coq au Vin - chicken braised in wine, and Boeuf Bourguignon. Classic French cuisine!",
+      "npcDialogKo": "오늘의 특선: 코코뱅 - 와인에 조린 닭고기, 그리고 부르기뇽. 클래식 프랑스 요리예요!",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I'll try the Coq au Vin! What wine pairs well with it?",
+            "correct": true
+          },
+          {
+            "text": "Both sound delicious! Which one is more traditional?",
+            "correct": true
+          },
+          {
+            "text": "French food is too heavy.",
+            "correct": false
+          },
+          {
+            "text": "Do you have anything simple?",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 77
+    },
+    {
+      "id": "CITY_PAR_014",
+      "category": "food",
+      "day": 8,
+      "location": "치즈 가게",
+      "situation": "프랑스 치즈 전문점에서 시식한다",
+      "npcDialog": "French cheese! We have 400 varieties. Try Camembert, Brie, Roquefort. Some are very strong!",
+      "npcDialogKo": "프랑스 치즈예요! 400종류가 있어요. 카망베르, 브리, 로크포르 드셔보세요. 일부는 아주 강해요!",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "400 varieties! What do you recommend for a first-timer?",
+            "correct": true
+          },
+          {
+            "text": "I'd like to try Camembert. How do French people eat it?",
+            "correct": true
+          },
+          {
+            "text": "French cheese smells bad.",
+            "correct": false
+          },
+          {
+            "text": "I only eat processed cheese.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 78
+    },
+    {
+      "id": "P_FAM_007",
+      "category": "activity",
+      "location": "관광지",
+      "situation": "어린이 할인 문의",
+      "npcDialog": "How many tickets would you like?",
+      "npcDialogKo": "몇 장 드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Two adults and one child. Is there a kids' discount?",
+            "correct": true
+          },
+          {
+            "text": "Do children under 5 get in free?",
+            "correct": true
+          },
+          {
+            "text": "Kids should always be free.",
+            "correct": false
+          },
+          {
+            "text": "I won't pay for my kids.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 8,
+      "sceneIndex": 79
+    },
+    {
+      "id": "P_FAM_015",
+      "category": "utility",
+      "location": "공항/쇼핑몰",
+      "situation": "수유실 문의",
+      "npcDialog": "Can I help you find something?",
+      "npcDialogKo": "뭔가 찾는 거 도와드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Where is the nursing room?",
+            "correct": true
+          },
+          {
+            "text": "Is there a private area for breastfeeding?",
+            "correct": true
+          },
+          {
+            "text": "I'll nurse anywhere.",
+            "correct": false
+          },
+          {
+            "text": "Nursing rooms are unnecessary.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 8,
+      "sceneIndex": 80
+    },
+    {
+      "id": "B_NOR_007",
+      "category": "transport",
+      "location": "호텔 앞",
+      "situation": "택시/우버 호출",
+      "npcDialog": "Shall I call a taxi for you, or would you prefer to use the app?",
+      "npcDialogKo": "택시 불러드릴까요, 아니면 앱 사용하시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Please call a taxi. I'm going to the opera house.",
+            "correct": true
+          },
+          {
+            "text": "I'll use the app. What's the address here?",
+            "correct": true
+          },
+          {
+            "text": "Taxis are too expensive.",
+            "correct": false
+          },
+          {
+            "text": "I'll walk... no, actually drive me.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 8,
+      "sceneIndex": 81
+    },
+    {
+      "id": "B_NOR_015",
+      "category": "utility",
+      "location": "공항",
+      "situation": "짐 배송 서비스 이용",
+      "npcDialog": "Would you like us to deliver your luggage directly to your hotel?",
+      "npcDialogKo": "수하물을 호텔로 직접 배송해드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "That would be great! How long does it take?",
+            "correct": true
+          },
+          {
+            "text": "Yes, what time will it arrive?",
+            "correct": true
+          },
+          {
+            "text": "I'll carry my own bags.",
+            "correct": false
+          },
+          {
+            "text": "Why would I pay for that?",
+            "correct": false
+          }
+        ]
+      },
+      "day": 8,
+      "sceneIndex": 82
+    },
+    {
+      "id": "P_FAM_008",
+      "category": "activity",
+      "location": "관광지",
+      "situation": "가족 패스 구매",
+      "npcDialog": "We have a family pass that saves you money.",
+      "npcDialogKo": "돈 아끼는 가족 패스가 있어요.",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "That sounds great! How many people does it cover?",
+            "correct": true
+          },
+          {
+            "text": "How much is the family pass?",
+            "correct": true
+          },
+          {
+            "text": "Family passes are a scam.",
+            "correct": false
+          },
+          {
+            "text": "We'll buy individual tickets.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 9,
+      "sceneIndex": 83
+    },
+    {
+      "id": "P_FAM_016",
+      "category": "information",
+      "location": "관광안내소",
+      "situation": "아이에게 안전한 장소 문의",
+      "npcDialog": "What kind of places are you looking for?",
+      "npcDialogKo": "어떤 장소를 찾으세요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "What attractions are safe for young children?",
+            "correct": true
+          },
+          {
+            "text": "Where can we go that's kid-friendly?",
+            "correct": true
+          },
+          {
+            "text": "Kids can go anywhere.",
+            "correct": false
+          },
+          {
+            "text": "Safety doesn't matter.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 9,
+      "sceneIndex": 84
+    },
+    {
+      "id": "B_NOR_008",
+      "category": "activity",
+      "location": "투어 회사",
+      "situation": "프라이빗 투어 예약",
+      "npcDialog": "Would you like a private guide for your city tour?",
+      "npcDialogKo": "시티 투어에 개인 가이드 원하세요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, can the guide speak Korean?",
+            "correct": true
+          },
+          {
+            "text": "How much is a private half-day tour?",
+            "correct": true
+          },
+          {
+            "text": "Private tours are overpriced.",
+            "correct": false
+          },
+          {
+            "text": "I can guide myself.",
+            "correct": false
+          }
+        ]
+      },
+      "day": 9,
+      "sceneIndex": 85
+    },
+    {
+      "id": "C032",
+      "category": "hotel_basic",
+      "day": 9,
+      "location": "호텔 객실",
+      "situation": "에어컨/히터 조절이 안 된다",
+      "npcDialog": "Front desk, how may I help you?",
+      "npcDialogKo": "프론트입니다, 어떻게 도와드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "The air conditioning in my room isn't working.",
+            "correct": true
+          },
+          {
+            "text": "I can't figure out how to adjust the temperature.",
+            "correct": true
+          },
+          {
+            "text": "This room is terrible!",
+            "correct": false
+          },
+          {
+            "text": "I want a new hotel.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 86
+    },
+    {
+      "id": "C033",
+      "category": "hotel_basic",
+      "day": 9,
+      "location": "호텔 객실",
+      "situation": "수건을 추가로 요청한다",
+      "npcDialog": "Housekeeping, can I help you?",
+      "npcDialogKo": "하우스키핑입니다, 도와드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Could I get some extra towels, please?",
+            "correct": true
+          },
+          {
+            "text": "I need more towels for my room.",
+            "correct": true
+          },
+          {
+            "text": "Your towels are too small.",
+            "correct": false
+          },
+          {
+            "text": "I want 100 towels.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 87
+    },
+    {
+      "id": "C034",
+      "category": "hotel_basic",
+      "day": 9,
+      "location": "호텔 프론트",
+      "situation": "체크아웃 시간을 확인한다",
+      "npcDialog": "Good morning! How can I assist you today?",
+      "npcDialogKo": "좋은 아침입니다! 어떻게 도와드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "What time is checkout?",
+            "correct": true
+          },
+          {
+            "text": "Could I get a late checkout?",
+            "correct": true
+          },
+          {
+            "text": "I'm never leaving.",
+            "correct": false
+          },
+          {
+            "text": "Cancel my checkout.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 88
+    },
+    {
+      "id": "C035",
+      "category": "hotel_basic",
+      "day": 9,
+      "location": "호텔 프론트",
+      "situation": "체크아웃을 한다",
+      "npcDialog": "Are you checking out today?",
+      "npcDialogKo": "오늘 체크아웃 하시나요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, I'd like to check out.",
+            "correct": true
+          },
+          {
+            "text": "Yes, here's my room key.",
+            "correct": true
+          },
+          {
+            "text": "I changed my mind.",
+            "correct": false
+          },
+          {
+            "text": "Checkout is for losers.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 89
+    },
+    {
+      "id": "C036",
+      "category": "hotel_basic",
+      "day": 9,
+      "location": "호텔 프론트",
+      "situation": "짐을 맡기려고 한다",
+      "npcDialog": "Would you like us to store your luggage?",
+      "npcDialogKo": "짐을 보관해드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, I'll pick it up around 3 PM.",
+            "correct": true
+          },
+          {
+            "text": "That would be great. My flight is this evening.",
+            "correct": true
+          },
+          {
+            "text": "Guard it with your life.",
+            "correct": false
+          },
+          {
+            "text": "Don't touch my bags.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 90
+    },
+    {
+      "id": "C037",
+      "category": "restaurant_basic",
+      "day": 9,
+      "location": "레스토랑",
+      "situation": "자리를 안내받는다",
+      "npcDialog": "Good evening! Table for how many?",
+      "npcDialogKo": "안녕하세요! 몇 분이세요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Table for two, please.",
+            "correct": true
+          },
+          {
+            "text": "Just one, please.",
+            "correct": true
+          },
+          {
+            "text": "Table for twenty.",
+            "correct": false
+          },
+          {
+            "text": "I'll sit wherever I want.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 91
+    },
+    {
+      "id": "C038",
+      "category": "restaurant_basic",
+      "day": 9,
+      "location": "레스토랑",
+      "situation": "메뉴를 받고 주문한다",
+      "npcDialog": "Are you ready to order?",
+      "npcDialogKo": "주문하시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, I'll have the pasta, please.",
+            "correct": true
+          },
+          {
+            "text": "Could I have a few more minutes?",
+            "correct": true
+          },
+          {
+            "text": "Bring me everything.",
+            "correct": false
+          },
+          {
+            "text": "I don't like your menu.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 92
+    },
+    {
+      "id": "C039",
+      "category": "restaurant_basic",
+      "day": 9,
+      "location": "레스토랑",
+      "situation": "음료를 주문한다",
+      "npcDialog": "What would you like to drink?",
+      "npcDialogKo": "음료는 뭘로 드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I'll have a glass of water, please.",
+            "correct": true
+          },
+          {
+            "text": "Could I see the wine list?",
+            "correct": true
+          },
+          {
+            "text": "Something free.",
+            "correct": false
+          },
+          {
+            "text": "I only drink champagne.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 93
+    },
+    {
+      "id": "C040",
+      "category": "restaurant_basic",
+      "day": 10,
+      "location": "레스토랑",
+      "situation": "알레르기에 대해 물어본다",
+      "npcDialog": "Do you have any food allergies?",
+      "npcDialogKo": "음식 알레르기가 있으신가요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, I'm allergic to nuts.",
+            "correct": true
+          },
+          {
+            "text": "No, I can eat anything.",
+            "correct": true
+          },
+          {
+            "text": "I'm allergic to bad food.",
+            "correct": false
+          },
+          {
+            "text": "That's personal.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 94
+    },
+    {
+      "id": "C041",
+      "category": "restaurant_basic",
+      "day": 10,
+      "location": "레스토랑",
+      "situation": "계산서를 요청한다",
+      "npcDialog": "Can I get you anything else?",
+      "npcDialogKo": "다른 것 필요하신가요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Just the bill, please.",
+            "correct": true
+          },
+          {
+            "text": "Could we have the check?",
+            "correct": true
+          },
+          {
+            "text": "I'm not paying.",
+            "correct": false
+          },
+          {
+            "text": "This meal was free, right?",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 95
+    },
+    {
+      "id": "C042",
+      "category": "restaurant_basic",
+      "day": 10,
+      "location": "레스토랑",
+      "situation": "카드로 계산한다",
+      "npcDialog": "How would you like to pay?",
+      "npcDialogKo": "어떻게 결제하시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I'll pay by card.",
+            "correct": true
+          },
+          {
+            "text": "Can I pay with credit card?",
+            "correct": true
+          },
+          {
+            "text": "I don't have money.",
+            "correct": false
+          },
+          {
+            "text": "My friend will pay later.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 96
+    },
+    {
+      "id": "C043",
+      "category": "transport_basic",
+      "day": 10,
+      "location": "택시 승강장",
+      "situation": "택시를 탄다",
+      "npcDialog": "Where to?",
+      "npcDialogKo": "어디로 갈까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "To the city center, please.",
+            "correct": true
+          },
+          {
+            "text": "Can you take me to this address?",
+            "correct": true
+          },
+          {
+            "text": "Just drive around.",
+            "correct": false
+          },
+          {
+            "text": "I don't know.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 97
+    },
+    {
+      "id": "C044",
+      "category": "transport_basic",
+      "day": 10,
+      "location": "택시 안",
+      "situation": "요금을 확인한다",
+      "npcDialog": "That'll be 25 euros.",
+      "npcDialogKo": "25유로입니다.",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Here you go. Keep the change.",
+            "correct": true
+          },
+          {
+            "text": "Can I pay by card?",
+            "correct": true
+          },
+          {
+            "text": "That's too expensive!",
+            "correct": false
+          },
+          {
+            "text": "I only have Korean won.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 98
+    },
+    {
+      "id": "C045",
+      "category": "transport_basic",
+      "day": 10,
+      "location": "지하철역",
+      "situation": "표를 구매한다",
+      "npcDialog": "How can I help you?",
+      "npcDialogKo": "어떻게 도와드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "One ticket to Central Station, please.",
+            "correct": true
+          },
+          {
+            "text": "How much is a day pass?",
+            "correct": true
+          },
+          {
+            "text": "I want to ride for free.",
+            "correct": false
+          },
+          {
+            "text": "Which button gives free tickets?",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 99
+    },
+    {
+      "id": "C046",
+      "category": "transport_basic",
+      "day": 10,
+      "location": "버스 정류장",
+      "situation": "버스 노선을 물어본다",
+      "npcDialog": "Can I help you with directions?",
+      "npcDialogKo": "방향 안내해드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Does this bus go to the museum?",
+            "correct": true
+          },
+          {
+            "text": "Which bus goes to the city center?",
+            "correct": true
+          },
+          {
+            "text": "Drive me there yourself.",
+            "correct": false
+          },
+          {
+            "text": "Buses are too slow.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 100
+    },
+    {
+      "id": "C047",
+      "category": "transport_basic",
+      "day": 10,
+      "location": "거리에서",
+      "situation": "길을 물어본다",
+      "npcDialog": "Excuse me, are you lost?",
+      "npcDialogKo": "실례합니다, 길을 잃으셨나요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, I'm looking for the train station.",
+            "correct": true
+          },
+          {
+            "text": "Could you tell me how to get to the museum?",
+            "correct": true
+          },
+          {
+            "text": "I'm not lost, you're lost.",
+            "correct": false
+          },
+          {
+            "text": "Mind your own business.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 101
+    },
+    {
+      "id": "C048",
+      "category": "return",
+      "day": 10,
+      "location": "공항",
+      "situation": "공항에 도착해서 체크인한다",
+      "npcDialog": "Good morning! Where are you flying to today?",
+      "npcDialogKo": "안녕하세요! 오늘 어디로 가시나요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I'm flying to Seoul.",
+            "correct": true
+          },
+          {
+            "text": "To Incheon, Korea.",
+            "correct": true
+          },
+          {
+            "text": "I don't want to go home.",
+            "correct": false
+          },
+          {
+            "text": "Anywhere but here.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 102
+    },
+    {
+      "id": "C049",
+      "category": "return",
+      "day": 10,
+      "location": "공항 면세점",
+      "situation": "마지막 쇼핑을 한다",
+      "npcDialog": "Last minute shopping? Can I help you find something?",
+      "npcDialogKo": "마지막 쇼핑하세요? 뭔가 찾는 거 도와드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "I'm looking for some chocolate as a gift.",
+            "correct": true
+          },
+          {
+            "text": "Do you have any local souvenirs?",
+            "correct": true
+          },
+          {
+            "text": "Everything is too expensive.",
+            "correct": false
+          },
+          {
+            "text": "I have no money left.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 103
+    },
+    {
+      "id": "C050",
+      "category": "return",
+      "day": 10,
+      "location": "귀국 비행기 기내",
+      "situation": "세관신고서 작성을 도와달라고 한다",
+      "npcDialog": "Do you need a customs declaration form?",
+      "npcDialogKo": "세관신고서가 필요하신가요?",
+      "playerResponse": {
+        "choices": [
+          {
+            "text": "Yes, please. What do I need to declare?",
+            "correct": true
+          },
+          {
+            "text": "Do I need to declare gifts I bought?",
+            "correct": true
+          },
+          {
+            "text": "I'm not declaring anything.",
+            "correct": false
+          },
+          {
+            "text": "Customs is stupid.",
+            "correct": false
+          }
+        ]
+      },
+      "sceneIndex": 104
+    }
+  ]
+}

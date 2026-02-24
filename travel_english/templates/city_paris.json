@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "paris",
+  "cityName": "파리",
+  "country": "프랑스",
+  "description": "예술, 패션, 미식의 도시 파리의 특색 있는 관광지와 문화",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_PAR_001",
+      "category": "landmark",
+      "day": 2,
+      "location": "에펠탑",
+      "situation": "에펠탑 전망대 티켓을 구매한다",
+      "npcDialog": "Bonjour! Would you like tickets to the top? Elevator or stairs? Stairs are cheaper but 674 steps!",
+      "npcDialogKo": "봉주르! 꼭대기 티켓 원하세요? 엘리베이터? 계단? 계단이 저렴한데 674계단이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll take the elevator! What's the view like from the top?", "correct": true},
+          {"text": "674 steps sounds like a challenge! I'll do the stairs.", "correct": true},
+          {"text": "That's too many steps and too expensive.", "correct": false},
+          {"text": "The Eiffel Tower is overrated.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_002",
+      "category": "museum",
+      "day": 3,
+      "location": "루브르 박물관",
+      "situation": "모나리자를 찾아 루브르를 탐험한다",
+      "npcDialog": "Looking for the Mona Lisa? It's in the Denon Wing, but expect crowds! I recommend the audio guide.",
+      "npcDialogKo": "모나리자 찾으세요? 드농 윙에 있는데 사람이 많아요! 오디오 가이드 추천해요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Thanks! How long should I plan for the whole museum?", "correct": true},
+          {"text": "I'll get the audio guide. Is it available in Korean?", "correct": true},
+          {"text": "I've seen the Mona Lisa in pictures already.", "correct": false},
+          {"text": "Museums are boring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_003",
+      "category": "food",
+      "day": 2,
+      "location": "파리 카페",
+      "situation": "본고장 크루아상과 카페오레를 주문한다",
+      "npcDialog": "Bonjour! Un café au lait et un croissant? Our croissants are baked fresh every morning. Très délicieux!",
+      "npcDialogKo": "봉주르! 카페오레와 크루아상요? 크루아상은 매일 아침 갓 구워요. 아주 맛있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Yes please! This is the real Parisian breakfast experience!", "correct": true},
+          {"text": "And a pain au chocolat too, please! I love French pastries.", "correct": true},
+          {"text": "Why is everything so expensive in Paris?", "correct": false},
+          {"text": "I prefer American coffee.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_004",
+      "category": "shopping",
+      "day": 5,
+      "location": "샹젤리제 거리",
+      "situation": "샹젤리제 명품 거리를 구경한다",
+      "npcDialog": "Welcome to Louis Vuitton on the Champs-Élysées! Would you like to see our Paris exclusive items?",
+      "npcDialogKo": "샹젤리제 루이비통에 오신 것을 환영해요! 파리 한정 상품 보시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Yes! What's special about the Paris exclusives?", "correct": true},
+          {"text": "I'm just browsing. This store is beautiful!", "correct": true},
+          {"text": "I can't afford anything here.", "correct": false},
+          {"text": "Luxury brands are just logos.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_005",
+      "category": "landmark",
+      "day": 4,
+      "location": "노트르담 대성당",
+      "situation": "복원 중인 노트르담 대성당 주변을 방문한다",
+      "npcDialog": "Notre-Dame is still being restored after the fire. You can see the progress from the plaza. It's still very moving.",
+      "npcDialogKo": "노트르담은 화재 후 아직 복원 중이에요. 광장에서 진행 상황을 볼 수 있어요. 여전히 감동적이에요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I heard about the fire. It's good to see the restoration progress.", "correct": true},
+          {"text": "Even from outside, it's magnificent. When will it reopen?", "correct": true},
+          {"text": "It's disappointing we can't go inside.", "correct": false},
+          {"text": "I've seen bigger churches.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_006",
+      "category": "activity",
+      "day": 3,
+      "location": "세느강",
+      "situation": "세느강 유람선(바토무슈)을 탄다",
+      "npcDialog": "Bateaux-Mouches departing in 10 minutes! The sunset cruise is the most romantic. Great view of all the bridges!",
+      "npcDialogKo": "바토무슈 10분 후 출발해요! 일몰 크루즈가 가장 로맨틱해요. 모든 다리가 잘 보여요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Perfect timing! Is there commentary in English?", "correct": true},
+          {"text": "The sunset cruise sounds amazing! How long is it?", "correct": true},
+          {"text": "Boat tours are tourist traps.", "correct": false},
+          {"text": "I'd rather walk along the river.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_007",
+      "category": "food",
+      "day": 4,
+      "location": "비스트로",
+      "situation": "프랑스 정통 요리를 맛본다",
+      "npcDialog": "Tonight's special: Coq au Vin - chicken braised in wine, and Boeuf Bourguignon. Classic French cuisine!",
+      "npcDialogKo": "오늘의 특선: 코코뱅 - 와인에 조린 닭고기, 그리고 부르기뇽. 클래식 프랑스 요리예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll try the Coq au Vin! What wine pairs well with it?", "correct": true},
+          {"text": "Both sound delicious! Which one is more traditional?", "correct": true},
+          {"text": "French food is too heavy.", "correct": false},
+          {"text": "Do you have anything simple?", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_008",
+      "category": "museum",
+      "day": 5,
+      "location": "오르세 미술관",
+      "situation": "인상파 작품들을 감상한다",
+      "npcDialog": "The Impressionist collection is on the 5th floor. Monet's Water Lilies, Van Gogh's Starry Night... Magnificent!",
+      "npcDialogKo": "인상파 컬렉션은 5층에 있어요. 모네의 수련, 반 고흐의 별이 빛나는 밤... 장관이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I can't wait to see the Water Lilies! Is photography allowed?", "correct": true},
+          {"text": "Which floor should I start from?", "correct": true},
+          {"text": "I've seen these paintings online.", "correct": false},
+          {"text": "Art doesn't interest me.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_009",
+      "category": "shopping",
+      "day": 6,
+      "location": "마레 지구",
+      "situation": "빈티지 샵과 부티크를 구경한다",
+      "npcDialog": "Le Marais has the best vintage shops! This jacket is from the 70s. Very fashionable in Paris now.",
+      "npcDialogKo": "마레에 최고의 빈티지 숍이 있어요! 이 재킷은 70년대거예요. 지금 파리에서 아주 유행해요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "It's so stylish! Can I try it on?", "correct": true},
+          {"text": "I love vintage fashion! What else do you recommend?", "correct": true},
+          {"text": "Old clothes are just used clothes.", "correct": false},
+          {"text": "I only buy new things.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_010",
+      "category": "landmark",
+      "day": 2,
+      "location": "개선문",
+      "situation": "개선문 전망대에 올라간다",
+      "npcDialog": "You can climb 284 steps to the top of the Arc de Triomphe. The view of 12 avenues meeting here is unique!",
+      "npcDialogKo": "개선문 꼭대기까지 284계단 올라갈 수 있어요. 12개 거리가 만나는 전망이 독특해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "284 steps - that's a good workout! Is it worth the climb?", "correct": true},
+          {"text": "What time does it close? I'd love to see the sunset.", "correct": true},
+          {"text": "Too many stairs today.", "correct": false},
+          {"text": "I can see it from the street.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_011",
+      "category": "food",
+      "day": 3,
+      "location": "마카롱 가게",
+      "situation": "라뒤레에서 마카롱을 고른다",
+      "npcDialog": "Ladurée macarons! We have rose, pistachio, caramel, lavender... Would you like a box?",
+      "npcDialogKo": "라뒤레 마카롱이에요! 장미, 피스타치오, 카라멜, 라벤더... 박스로 드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "They're like little works of art! I'll take an assorted box.", "correct": true},
+          {"text": "Which flavor is the most popular? I want to try the best one!", "correct": true},
+          {"text": "Macarons are too sweet and overpriced.", "correct": false},
+          {"text": "I don't eat desserts.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_012",
+      "category": "activity",
+      "day": 7,
+      "location": "몽마르뜨",
+      "situation": "몽마르뜨 언덕에서 화가들을 만난다",
+      "npcDialog": "Would you like a portrait? I can do caricature or realistic style. 15 minutes only!",
+      "npcDialogKo": "초상화 그려드릴까요? 캐리커처나 사실적 스타일 가능해요. 15분이면 돼요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "A caricature sounds fun! How much is it?", "correct": true},
+          {"text": "I'd love a realistic portrait as a Paris souvenir!", "correct": true},
+          {"text": "Street artists are all the same.", "correct": false},
+          {"text": "I don't like having my picture drawn.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_013",
+      "category": "landmark",
+      "day": 6,
+      "location": "사크레쾨르 대성당",
+      "situation": "사크레쾨르에서 파리 전경을 감상한다",
+      "npcDialog": "From here you can see all of Paris! On a clear day, you can see 50 kilometers. The basilica is free to enter.",
+      "npcDialogKo": "여기서 파리 전체가 보여요! 맑은 날엔 50킬로미터까지 보여요. 성당 입장은 무료예요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "What an incredible view! This is the best panorama of Paris!", "correct": true},
+          {"text": "Free entry? That's wonderful. Is there a dress code?", "correct": true},
+          {"text": "There are too many tourists here.", "correct": false},
+          {"text": "I'm tired of climbing hills.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_014",
+      "category": "food",
+      "day": 5,
+      "location": "치즈 가게",
+      "situation": "프랑스 치즈 전문점에서 시식한다",
+      "npcDialog": "French cheese! We have 400 varieties. Try Camembert, Brie, Roquefort. Some are very strong!",
+      "npcDialogKo": "프랑스 치즈예요! 400종류가 있어요. 카망베르, 브리, 로크포르 드셔보세요. 일부는 아주 강해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "400 varieties! What do you recommend for a first-timer?", "correct": true},
+          {"text": "I'd like to try Camembert. How do French people eat it?", "correct": true},
+          {"text": "French cheese smells bad.", "correct": false},
+          {"text": "I only eat processed cheese.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_015",
+      "category": "activity",
+      "day": 4,
+      "location": "베르사유 궁전",
+      "situation": "베르사유 궁전 당일치기 여행",
+      "npcDialog": "Versailles is 40 minutes by train. The Hall of Mirrors is spectacular! Book online to skip the line.",
+      "npcDialogKo": "베르사유는 기차로 40분이에요. 거울의 방이 장관이에요! 줄 안 서려면 온라인 예약하세요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I've always wanted to see the Hall of Mirrors! How much time should I plan?", "correct": true},
+          {"text": "Is the garden worth visiting too?", "correct": true},
+          {"text": "40 minutes is too far.", "correct": false},
+          {"text": "Palaces are all the same.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_016",
+      "category": "shopping",
+      "day": 7,
+      "location": "갤러리 라파예트",
+      "situation": "백화점에서 쇼핑과 전망을 즐긴다",
+      "npcDialog": "The rooftop terrace is free! Amazing view of the Opera and Eiffel Tower. Would you like to see our perfume section?",
+      "npcDialogKo": "옥상 테라스는 무료예요! 오페라와 에펠탑 전망이 멋져요. 향수 구역 보시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "A free rooftop view? I'll definitely check that out first!", "correct": true},
+          {"text": "Yes, I'd love to see the French perfumes!", "correct": true},
+          {"text": "I'm not buying anything expensive.", "correct": false},
+          {"text": "Department stores are all the same.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_017",
+      "category": "food",
+      "day": 6,
+      "location": "와인바",
+      "situation": "프랑스 와인을 테이스팅한다",
+      "npcDialog": "French wine tasting! Bordeaux, Burgundy, Champagne... I can recommend based on your taste. Sweet or dry?",
+      "npcDialogKo": "프랑스 와인 시음이에요! 보르도, 부르고뉴, 샴페인... 취향에 맞게 추천해드려요. 달콤한 것? 드라이한 것?",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'd like to try Burgundy. What makes it special?", "correct": true},
+          {"text": "Champagne in Paris - that's a dream come true!", "correct": true},
+          {"text": "Wine all tastes the same to me.", "correct": false},
+          {"text": "I don't drink alcohol.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_018",
+      "category": "activity",
+      "day": 8,
+      "location": "파리 오페라",
+      "situation": "오페라 가르니에 투어",
+      "npcDialog": "The Palais Garnier inspired Phantom of the Opera! The ceiling by Chagall is breathtaking. Tour available now.",
+      "npcDialogKo": "팔레 가르니에가 오페라의 유령에 영감을 줬어요! 샤갈의 천장화가 숨막혀요. 투어 가능해요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I love Phantom of the Opera! Can I see the famous chandelier?", "correct": true},
+          {"text": "Chagall painted the ceiling? I had no idea! Let's do the tour.", "correct": true},
+          {"text": "I'm not into opera.", "correct": false},
+          {"text": "It's just an old building.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_019",
+      "category": "food",
+      "day": 7,
+      "location": "에스카르고 레스토랑",
+      "situation": "달팽이 요리에 도전한다",
+      "npcDialog": "Escargot - French snails with garlic butter! A true Parisian delicacy. Brave enough to try?",
+      "npcDialogKo": "에스카르고 - 마늘 버터 달팽이요! 진정한 파리 별미예요. 시도해볼 용기 있으세요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "When in Paris! I'll try six. How do I eat them properly?", "correct": true},
+          {"text": "I've always wanted to try escargot! Is it chewy?", "correct": true},
+          {"text": "Eating snails is disgusting.", "correct": false},
+          {"text": "I can't eat something like that.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PAR_020",
+      "category": "activity",
+      "day": 8,
+      "location": "파리 야경",
+      "situation": "에펠탑 야경을 감상한다",
+      "npcDialog": "The Eiffel Tower sparkles every hour on the hour at night! Best view from Trocadéro. Magic of Paris!",
+      "npcDialogKo": "에펠탑이 밤에 매시간 반짝거려요! 트로카데로에서 가장 잘 보여요. 파리의 마법이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "It really sparkles? That's magical! What time does it start?", "correct": true},
+          {"text": "This is the perfect way to end my Paris trip!", "correct": true},
+          {"text": "Lights are a waste of electricity.", "correct": false},
+          {"text": "I've seen enough of the Eiffel Tower.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

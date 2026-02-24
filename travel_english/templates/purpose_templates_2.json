@@ -1,0 +1,1314 @@
+{
+  "templateType": "purpose",
+  "description": "목적별로 명확히 구분되는 활동 상황 (2/2)",
+  "templates": {
+    "working_holiday": {
+      "name": "워홀",
+      "description": "아르바이트, 장기체류",
+      "sceneCount": 20,
+      "scenes": [
+        {
+          "id": "P_WOR_001",
+          "category": "work",
+          "location": "카페/레스토랑",
+          "situation": "일자리 문의",
+          "npcDialog": "Can I help you?",
+          "npcDialogKo": "도와드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'm looking for work. Are you hiring?",  "correct": true},
+              {"text": "Do you have any job openings?", "correct": true},
+              {"text": "Give me a job now.", "correct": false},
+              {"text": "I don't really want to work.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_002",
+          "category": "work",
+          "location": "회사/상점",
+          "situation": "이력서 제출",
+          "npcDialog": "Are you here about the job posting?",
+          "npcDialogKo": "채용 공고 보고 오셨어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, I'd like to submit my resume.", "correct": true},
+              {"text": "I brought my CV. Who should I give it to?", "correct": true},
+              {"text": "Just hire me without looking.", "correct": false},
+              {"text": "I didn't bring anything.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_003",
+          "category": "work",
+          "location": "사무실",
+          "situation": "면접 보기",
+          "npcDialog": "Thanks for coming in. Tell me about yourself.",
+          "npcDialogKo": "와주셔서 감사합니다. 자기소개 해주세요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'm from Korea and I'm on a working holiday visa.", "correct": true},
+              {"text": "I have experience in customer service.", "correct": true},
+              {"text": "I don't like talking about myself.", "correct": false},
+              {"text": "What do you want to know?", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_004",
+          "category": "work",
+          "location": "사무실",
+          "situation": "근무 조건 협의",
+          "npcDialog": "What hours are you available to work?",
+          "npcDialogKo": "언제 일할 수 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'm flexible. I can work weekends too.", "correct": true},
+              {"text": "I prefer mornings, but I can adjust.", "correct": true},
+              {"text": "I only work 2 hours a day.", "correct": false},
+              {"text": "Whenever I feel like it.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_005",
+          "category": "work",
+          "location": "직장",
+          "situation": "급여 문의",
+          "npcDialog": "Do you have any questions about the position?",
+          "npcDialogKo": "포지션에 대해 질문 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "What's the hourly wage?", "correct": true},
+              {"text": "How often is payday?", "correct": true},
+              {"text": "I want double the pay.", "correct": false},
+              {"text": "Money doesn't matter.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_006",
+          "category": "utility",
+          "location": "세무서",
+          "situation": "세금/연금 관련",
+          "npcDialog": "Are you here to register for tax?",
+          "npcDialogKo": "세금 등록하러 오셨나요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, I just started working. What do I need?", "correct": true},
+              {"text": "How do I get a tax file number?", "correct": true},
+              {"text": "I don't want to pay taxes.", "correct": false},
+              {"text": "Taxes are unfair.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_007",
+          "category": "utility",
+          "location": "은행",
+          "situation": "급여 받을 계좌 개설",
+          "npcDialog": "What type of account would you like to open?",
+          "npcDialogKo": "어떤 종류의 계좌를 개설하시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "A basic checking account for my salary.", "correct": true},
+              {"text": "I need an account to receive my wages.", "correct": true},
+              {"text": "The one with free money.", "correct": false},
+              {"text": "Just put cash in my hand.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_008",
+          "category": "accommodation",
+          "location": "부동산",
+          "situation": "장기 숙소 계약",
+          "npcDialog": "Looking for a long-term rental?",
+          "npcDialogKo": "장기 임대 찾으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, I'll be here for about a year.", "correct": true},
+              {"text": "What's available in my budget?", "correct": true},
+              {"text": "I want a mansion for cheap.", "correct": false},
+              {"text": "Rent should be free.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_009",
+          "category": "accommodation",
+          "location": "아파트",
+          "situation": "보증금 문의",
+          "npcDialog": "The bond is 4 weeks' rent. Any questions?",
+          "npcDialogKo": "보증금은 4주치 렌트예요. 질문 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "When do I get it back?", "correct": true},
+              {"text": "Is it refundable if I leave early?", "correct": true},
+              {"text": "I won't pay a deposit.", "correct": false},
+              {"text": "That's way too much.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_010",
+          "category": "accommodation",
+          "location": "아파트",
+          "situation": "공과금 문의",
+          "npcDialog": "Bills are not included in the rent.",
+          "npcDialogKo": "공과금은 렌트에 포함 안 돼요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "How much are utilities usually?", "correct": true},
+              {"text": "What bills do I need to pay separately?", "correct": true},
+              {"text": "I won't pay bills.", "correct": false},
+              {"text": "Include everything for free.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_011",
+          "category": "utility",
+          "location": "통신사",
+          "situation": "인터넷 설치",
+          "npcDialog": "Would you like to set up home internet?",
+          "npcDialogKo": "집 인터넷 설치하시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, what's your cheapest plan?", "correct": true},
+              {"text": "How fast is your standard plan?", "correct": true},
+              {"text": "Internet should be free.", "correct": false},
+              {"text": "I'll steal my neighbor's WiFi.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_012",
+          "category": "shopping",
+          "location": "가구점/중고매장",
+          "situation": "가구/가전 구매",
+          "npcDialog": "Looking for something specific?",
+          "npcDialogKo": "특별히 찾는 게 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I need a cheap bed and desk.", "correct": true},
+              {"text": "Do you have second-hand appliances?", "correct": true},
+              {"text": "Everything's too expensive.", "correct": false},
+              {"text": "Give me stuff for free.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_013",
+          "category": "shopping",
+          "location": "온라인/벼룩시장",
+          "situation": "중고물품 거래",
+          "npcDialog": "Are you interested in this item?",
+          "npcDialogKo": "이 물건 관심 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, can I see it in person first?", "correct": true},
+              {"text": "Is the price negotiable?", "correct": true},
+              {"text": "I'll take it for free.", "correct": false},
+              {"text": "This looks like garbage.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_014",
+          "category": "utility",
+          "location": "병원",
+          "situation": "현지 병원 등록",
+          "npcDialog": "Are you registering as a new patient?",
+          "npcDialogKo": "신규 환자로 등록하시나요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, I just moved here. What documents do I need?", "correct": true},
+              {"text": "Do you accept my working holiday insurance?", "correct": true},
+              {"text": "I don't need a doctor.", "correct": false},
+              {"text": "Healthcare should be free.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_015",
+          "category": "utility",
+          "location": "이민국",
+          "situation": "비자 연장 신청",
+          "npcDialog": "How can I help you today?",
+          "npcDialogKo": "오늘 어떻게 도와드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'd like to apply for a visa extension.", "correct": true},
+              {"text": "What are the requirements for extending my visa?", "correct": true},
+              {"text": "Just extend it automatically.", "correct": false},
+              {"text": "Visas are too complicated.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_016",
+          "category": "utility",
+          "location": "세무서",
+          "situation": "세금 환급 신청",
+          "npcDialog": "Are you filing for a tax return?",
+          "npcDialogKo": "세금 환급 신청하시나요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, I'm leaving the country soon.", "correct": true},
+              {"text": "How do I claim my tax back?", "correct": true},
+              {"text": "Give me all my money back.", "correct": false},
+              {"text": "I never paid taxes anyway.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_017",
+          "category": "work",
+          "location": "직장",
+          "situation": "퇴직 절차",
+          "npcDialog": "So you're leaving us. When's your last day?",
+          "npcDialogKo": "그럼 그만두시는 거군요. 마지막 날이 언제예요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "In two weeks. I'll finish all my duties.", "correct": true},
+              {"text": "I'm giving 2 weeks' notice as required.", "correct": true},
+              {"text": "I'm leaving today.", "correct": false},
+              {"text": "I don't care about notice.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_018",
+          "category": "utility",
+          "location": "집/이사업체",
+          "situation": "짐 정리 및 배송",
+          "npcDialog": "Need help shipping your belongings home?",
+          "npcDialogKo": "짐 본국으로 배송하는 거 도움 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, how much for 2 boxes to Korea?", "correct": true},
+              {"text": "What's the cheapest shipping option?", "correct": true},
+              {"text": "Ship it for free.", "correct": false},
+              {"text": "I'll leave everything here.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_019",
+          "category": "work",
+          "location": "직장",
+          "situation": "레퍼런스(추천서) 요청",
+          "npcDialog": "Is there anything else you need before you go?",
+          "npcDialogKo": "가기 전에 더 필요한 거 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Could you write me a reference letter?", "correct": true},
+              {"text": "May I use you as a reference for future jobs?", "correct": true},
+              {"text": "You have to write me a good review.", "correct": false},
+              {"text": "I don't need references.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_WOR_020",
+          "category": "social",
+          "location": "직장/친구들",
+          "situation": "송별 인사",
+          "npcDialog": "We'll miss you! When are you leaving?",
+          "npcDialogKo": "보고싶을 거예요! 언제 떠나세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Next week. Thank you for everything!", "correct": true},
+              {"text": "I'll really miss you all. Let's keep in touch!", "correct": true},
+              {"text": "Finally, I'm out of here.", "correct": false},
+              {"text": "I won't miss anyone.", "correct": false}
+            ]
+          }
+        }
+      ]
+    },
+    "honeymoon": {
+      "name": "신혼여행",
+      "description": "로맨틱, 리조트",
+      "sceneCount": 20,
+      "scenes": [
+        {
+          "id": "P_HON_001",
+          "category": "accommodation",
+          "location": "리조트",
+          "situation": "허니문 패키지 문의",
+          "npcDialog": "Welcome! Are you here for a honeymoon?",
+          "npcDialogKo": "환영합니다! 신혼여행으로 오셨나요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! Do you have any honeymoon packages?", "correct": true},
+              {"text": "We just got married! What special offers do you have?", "correct": true},
+              {"text": "We're not really in love.", "correct": false},
+              {"text": "It's just a normal trip.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_002",
+          "category": "accommodation",
+          "location": "호텔",
+          "situation": "스위트룸 체크인",
+          "npcDialog": "Your honeymoon suite is ready. Would you like champagne sent up?",
+          "npcDialogKo": "허니문 스위트 준비됐어요. 샴페인 보내드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "That would be wonderful, thank you!", "correct": true},
+              {"text": "Yes please! We're celebrating!", "correct": true},
+              {"text": "We don't drink.", "correct": false},
+              {"text": "Champagne is overrated.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_003",
+          "category": "food",
+          "location": "레스토랑",
+          "situation": "로맨틱 디너 예약",
+          "npcDialog": "Would you like a table by the window for a romantic dinner?",
+          "npcDialogKo": "로맨틱 디너를 위해 창가 자리 드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, that sounds perfect!", "correct": true},
+              {"text": "Do you have candlelit tables?", "correct": true},
+              {"text": "Romance is overrated.", "correct": false},
+              {"text": "We'll eat anywhere.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_004",
+          "category": "activity",
+          "location": "스파",
+          "situation": "커플 스파 예약",
+          "npcDialog": "Would you like to book a couples massage?",
+          "npcDialogKo": "커플 마사지 예약하시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! What packages do you have?", "correct": true},
+              {"text": "That sounds amazing. What's included?", "correct": true},
+              {"text": "Spas are boring.", "correct": false},
+              {"text": "We don't like being touched.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_005",
+          "category": "activity",
+          "location": "호텔",
+          "situation": "서프라이즈 준비 요청",
+          "npcDialog": "Is there anything special we can arrange for your partner?",
+          "npcDialogKo": "파트너를 위해 특별히 준비해드릴 것 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Can you put rose petals on the bed?", "correct": true},
+              {"text": "I'd like to surprise them with flowers in the room.", "correct": true},
+              {"text": "We don't do surprises.", "correct": false},
+              {"text": "That's too cheesy.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_006",
+          "category": "food",
+          "location": "호텔",
+          "situation": "기념일 케이크 주문",
+          "npcDialog": "Would you like a special cake for the occasion?",
+          "npcDialogKo": "기념일 특별 케이크 원하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! Can it say 'Just Married' on it?", "correct": true},
+              {"text": "That would be lovely. What flavors do you have?", "correct": true},
+              {"text": "We don't like cake.", "correct": false},
+              {"text": "Cakes are too sweet.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_007",
+          "category": "accommodation",
+          "location": "호텔",
+          "situation": "꽃/샴페인 객실 배달 요청",
+          "npcDialog": "Room service. What can I get for you?",
+          "npcDialogKo": "룸서비스입니다. 뭘 드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "A bottle of champagne and a flower bouquet, please.", "correct": true},
+              {"text": "Can you send up roses and strawberries?", "correct": true},
+              {"text": "Just bring water.", "correct": false},
+              {"text": "Nothing romantic please.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_008",
+          "category": "activity",
+          "location": "리조트",
+          "situation": "프라이빗 비치 이용",
+          "npcDialog": "Would you like access to our private beach?",
+          "npcDialogKo": "프라이빗 비치 이용하시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! Can we reserve a cabana?", "correct": true},
+              {"text": "That sounds perfect for relaxing together.", "correct": true},
+              {"text": "We don't like beaches.", "correct": false},
+              {"text": "Is it free?", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_009",
+          "category": "activity",
+          "location": "관광지",
+          "situation": "커플 사진 촬영",
+          "npcDialog": "Would you like a professional photo session?",
+          "npcDialogKo": "전문 사진 촬영 원하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! We want honeymoon photos here.", "correct": true},
+              {"text": "That would be a wonderful memory. How much?", "correct": true},
+              {"text": "We don't photograph well.", "correct": false},
+              {"text": "Photos are pointless.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_010",
+          "category": "activity",
+          "location": "항구",
+          "situation": "선셋 크루즈",
+          "npcDialog": "Interested in our romantic sunset cruise?",
+          "npcDialogKo": "로맨틱 선셋 크루즈 관심 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "That sounds magical! What time does it depart?", "correct": true},
+              {"text": "Is dinner included on the cruise?", "correct": true},
+              {"text": "Sunsets are boring.", "correct": false},
+              {"text": "We get seasick.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_011",
+          "category": "activity",
+          "location": "와이너리",
+          "situation": "와이너리 투어",
+          "npcDialog": "Would you like a private wine tasting tour?",
+          "npcDialogKo": "프라이빗 와인 시음 투어 원하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! Is it just the two of us?", "correct": true},
+              {"text": "That sounds romantic. What wines do you feature?", "correct": true},
+              {"text": "We don't drink wine.", "correct": false},
+              {"text": "Winery tours are pretentious.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_012",
+          "category": "activity",
+          "location": "리조트",
+          "situation": "로맨틱 액티비티 예약",
+          "npcDialog": "We have couples cooking classes and dance lessons.",
+          "npcDialogKo": "커플 요리 수업과 댄스 레슨이 있어요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "A dance lesson sounds fun! What kind of dance?", "correct": true},
+              {"text": "We'd love to try the cooking class together!", "correct": true},
+              {"text": "We're not the active type.", "correct": false},
+              {"text": "That's too much effort.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_013",
+          "category": "shopping",
+          "location": "기념품샵",
+          "situation": "기념품에 각인 요청",
+          "npcDialog": "Would you like engraving on this item?",
+          "npcDialogKo": "이 아이템에 각인 하시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! Can you put our names and wedding date?", "correct": true},
+              {"text": "That would be a perfect keepsake!", "correct": true},
+              {"text": "Engraving is too expensive.", "correct": false},
+              {"text": "We won't remember this trip anyway.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_014",
+          "category": "activity",
+          "location": "스파",
+          "situation": "커플 마사지",
+          "npcDialog": "You can enjoy the massage together in the same room.",
+          "npcDialogKo": "같은 방에서 함께 마사지 받으실 수 있어요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Perfect! Do you have aromatherapy options?", "correct": true},
+              {"text": "Wonderful! How long is the treatment?", "correct": true},
+              {"text": "We prefer separate rooms.", "correct": false},
+              {"text": "Massages are uncomfortable.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_015",
+          "category": "food",
+          "location": "레스토랑",
+          "situation": "캔들라잇 디너",
+          "npcDialog": "Your candlelit table is ready.",
+          "npcDialogKo": "캔들라잇 테이블 준비됐습니다.",
+          "playerResponse": {
+            "choices": [
+              {"text": "It looks beautiful! Thank you!", "correct": true},
+              {"text": "This is so romantic. Can we order wine?", "correct": true},
+              {"text": "Candles are a fire hazard.", "correct": false},
+              {"text": "I can't read the menu in this light.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_016",
+          "category": "accommodation",
+          "location": "호텔",
+          "situation": "뷰 좋은 방 요청",
+          "npcDialog": "Would you like a room with an ocean view?",
+          "npcDialogKo": "바다 전망 객실 원하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! That would be perfect for us.", "correct": true},
+              {"text": "Absolutely! Is a balcony included?", "correct": true},
+              {"text": "The view doesn't matter.", "correct": false},
+              {"text": "We'll keep the curtains closed.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_017",
+          "category": "accommodation",
+          "location": "호텔",
+          "situation": "늦은 조식 요청",
+          "npcDialog": "Breakfast is served from 7 to 10 AM.",
+          "npcDialogKo": "조식은 7시부터 10시까지예요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Can we get room service instead? We want to sleep in.", "correct": true},
+              {"text": "Is it possible to have breakfast in bed?", "correct": true},
+              {"text": "That's too early.", "correct": false},
+              {"text": "We skip breakfast.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_018",
+          "category": "accommodation",
+          "location": "호텔",
+          "situation": "침대 데코레이션 요청",
+          "npcDialog": "Would you like us to decorate the room?",
+          "npcDialogKo": "객실 꾸며드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! Rose petals on the bed would be amazing.", "correct": true},
+              {"text": "Can you make a heart shape with flowers?", "correct": true},
+              {"text": "That's too cheesy.", "correct": false},
+              {"text": "We're not that romantic.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_019",
+          "category": "utility",
+          "location": "호텔",
+          "situation": "허니문 인증서 요청",
+          "npcDialog": "Would you like a honeymoon certificate?",
+          "npcDialogKo": "허니문 인증서 원하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! That would be a nice keepsake.", "correct": true},
+              {"text": "Can you include our names and dates?", "correct": true},
+              {"text": "Certificates are meaningless.", "correct": false},
+              {"text": "We don't need paper.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_HON_020",
+          "category": "food",
+          "location": "레스토랑",
+          "situation": "특별한 디저트로 프로포즈 연출",
+          "npcDialog": "Would you like to hide the ring in a dessert?",
+          "npcDialogKo": "디저트에 반지를 숨길까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "That's perfect! Please keep it a secret!", "correct": true},
+              {"text": "Yes! What dessert do you recommend for this?", "correct": true},
+              {"text": "Choking hazard, no thanks.", "correct": false},
+              {"text": "We're already married.", "correct": false}
+            ]
+          }
+        }
+      ]
+    },
+    "family": {
+      "name": "가족여행",
+      "description": "아이 동반, 안전",
+      "sceneCount": 20,
+      "scenes": [
+        {
+          "id": "P_FAM_001",
+          "category": "accommodation",
+          "location": "호텔",
+          "situation": "패밀리룸 체크인",
+          "npcDialog": "Welcome! Your family room is ready. It has two queen beds.",
+          "npcDialogKo": "환영합니다! 패밀리룸 준비됐어요. 퀸 베드 2개 있어요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Perfect! Is there a crib available?", "correct": true},
+              {"text": "Great! Where's the children's play area?", "correct": true},
+              {"text": "We wanted a suite.", "correct": false},
+              {"text": "This room is too small.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_002",
+          "category": "accommodation",
+          "location": "호텔",
+          "situation": "아기 침대 요청",
+          "npcDialog": "Do you need anything else for your room?",
+          "npcDialogKo": "객실에 더 필요한 것 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, we need a crib for our baby.", "correct": true},
+              {"text": "Can you bring a baby bed and a bed rail?", "correct": true},
+              {"text": "The baby will sleep on the floor.", "correct": false},
+              {"text": "We didn't bring kids.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_003",
+          "category": "food",
+          "location": "레스토랑",
+          "situation": "유아식 문의",
+          "npcDialog": "Will the little one be eating too?",
+          "npcDialogKo": "아기도 같이 드시나요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, do you have any baby food options?", "correct": true},
+              {"text": "Can you blend something soft for the baby?", "correct": true},
+              {"text": "Babies don't eat.", "correct": false},
+              {"text": "Just give them adult food.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_004",
+          "category": "food",
+          "location": "레스토랑",
+          "situation": "키즈 메뉴 주문",
+          "npcDialog": "We have a special kids menu. Would you like one?",
+          "npcDialogKo": "키즈 메뉴가 있어요. 드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes please! Does it come with a toy?", "correct": true},
+              {"text": "What options are there? My child is picky.", "correct": true},
+              {"text": "Kids menus are too small.", "correct": false},
+              {"text": "Just give them the adult portion.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_005",
+          "category": "utility",
+          "location": "관광지",
+          "situation": "유모차 대여",
+          "npcDialog": "Would you like to rent a stroller?",
+          "npcDialogKo": "유모차 대여하시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes please! How much per day?", "correct": true},
+              {"text": "That would be great. Where do I return it?", "correct": true},
+              {"text": "Strollers are for lazy parents.", "correct": false},
+              {"text": "The kids can walk.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_006",
+          "category": "utility",
+          "location": "쇼핑몰/공항",
+          "situation": "기저귀 교환대 위치 문의",
+          "npcDialog": "Can I help you find something?",
+          "npcDialogKo": "뭔가 찾는 거 도와드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Where's the nearest baby changing room?", "correct": true},
+              {"text": "Is there a diaper changing station nearby?", "correct": true},
+              {"text": "I'll change the diaper anywhere.", "correct": false},
+              {"text": "We don't use diapers.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_007",
+          "category": "activity",
+          "location": "관광지",
+          "situation": "어린이 할인 문의",
+          "npcDialog": "How many tickets would you like?",
+          "npcDialogKo": "몇 장 드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Two adults and one child. Is there a kids' discount?", "correct": true},
+              {"text": "Do children under 5 get in free?", "correct": true},
+              {"text": "Kids should always be free.", "correct": false},
+              {"text": "I won't pay for my kids.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_008",
+          "category": "activity",
+          "location": "관광지",
+          "situation": "가족 패스 구매",
+          "npcDialog": "We have a family pass that saves you money.",
+          "npcDialogKo": "돈 아끼는 가족 패스가 있어요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "That sounds great! How many people does it cover?", "correct": true},
+              {"text": "How much is the family pass?", "correct": true},
+              {"text": "Family passes are a scam.", "correct": false},
+              {"text": "We'll buy individual tickets.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_009",
+          "category": "activity",
+          "location": "테마파크",
+          "situation": "테마파크 입장",
+          "npcDialog": "Welcome to the park! Your child must be this tall for some rides.",
+          "npcDialogKo": "공원에 오신 것을 환영해요! 일부 놀이기구는 키 제한이 있어요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Which rides are safe for toddlers?", "correct": true},
+              {"text": "Are there any height restrictions we should know about?", "correct": true},
+              {"text": "Height restrictions are stupid.", "correct": false},
+              {"text": "My kid can ride anything.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_010",
+          "category": "activity",
+          "location": "쇼핑몰",
+          "situation": "키즈카페/놀이시설 이용",
+          "npcDialog": "Would you like to leave your kids at our play center?",
+          "npcDialogKo": "아이들을 놀이센터에 맡기시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "How does it work? Is there supervision?", "correct": true},
+              {"text": "Is it safe? How long can they stay?", "correct": true},
+              {"text": "I'll leave them all day.", "correct": false},
+              {"text": "They can take care of themselves.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_011",
+          "category": "emergency",
+          "location": "관광지",
+          "situation": "아이를 잃어버렸을 때",
+          "npcDialog": "Is everything okay? You look worried.",
+          "npcDialogKo": "괜찮으세요? 걱정되어 보이는데요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "I can't find my child! Can you help me?", "correct": true},
+              {"text": "My daughter is missing! Where's the lost child center?", "correct": true},
+              {"text": "She'll find her way back.", "correct": false},
+              {"text": "Kids get lost all the time.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_012",
+          "category": "emergency",
+          "location": "호텔",
+          "situation": "아이가 아플 때",
+          "npcDialog": "Is there anything wrong?",
+          "npcDialogKo": "문제가 있나요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "My child has a fever. Is there a doctor nearby?", "correct": true},
+              {"text": "Where's the nearest pediatric clinic?", "correct": true},
+              {"text": "Kids get sick, it's fine.", "correct": false},
+              {"text": "They're just pretending.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_013",
+          "category": "emergency",
+          "location": "약국",
+          "situation": "어린이용 약 구매",
+          "npcDialog": "How can I help you today?",
+          "npcDialogKo": "오늘 어떻게 도와드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I need children's fever medicine.", "correct": true},
+              {"text": "What do you have for a child's stomach ache?", "correct": true},
+              {"text": "Just give them adult medicine.", "correct": false},
+              {"text": "Medicine is unnecessary.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_014",
+          "category": "emergency",
+          "location": "병원",
+          "situation": "소아과 방문",
+          "npcDialog": "What brings you in today?",
+          "npcDialogKo": "오늘 어떻게 오셨어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "My son has had a fever since yesterday.", "correct": true},
+              {"text": "She's been vomiting. Is it food poisoning?", "correct": true},
+              {"text": "The kid is fine.", "correct": false},
+              {"text": "We just wanted to visit.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_015",
+          "category": "utility",
+          "location": "공항/쇼핑몰",
+          "situation": "수유실 문의",
+          "npcDialog": "Can I help you find something?",
+          "npcDialogKo": "뭔가 찾는 거 도와드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Where is the nursing room?", "correct": true},
+              {"text": "Is there a private area for breastfeeding?", "correct": true},
+              {"text": "I'll nurse anywhere.", "correct": false},
+              {"text": "Nursing rooms are unnecessary.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_016",
+          "category": "information",
+          "location": "관광안내소",
+          "situation": "아이에게 안전한 장소 문의",
+          "npcDialog": "What kind of places are you looking for?",
+          "npcDialogKo": "어떤 장소를 찾으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "What attractions are safe for young children?", "correct": true},
+              {"text": "Where can we go that's kid-friendly?", "correct": true},
+              {"text": "Kids can go anywhere.", "correct": false},
+              {"text": "Safety doesn't matter.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_017",
+          "category": "activity",
+          "location": "공원",
+          "situation": "놀이시설 문의",
+          "npcDialog": "The playground is just ahead.",
+          "npcDialogKo": "놀이터가 바로 앞에 있어요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Great! Is it suitable for a 3-year-old?", "correct": true},
+              {"text": "Are there any swings and slides?", "correct": true},
+              {"text": "Playgrounds are for babies.", "correct": false},
+              {"text": "My kids don't play outside.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_018",
+          "category": "sightseeing",
+          "location": "관광지",
+          "situation": "가족 사진 요청",
+          "npcDialog": "Would you like a family photo?",
+          "npcDialogKo": "가족 사진 찍어드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes please! Can you get all of us in the frame?", "correct": true},
+              {"text": "That would be great! Say 'cheese', kids!", "correct": true},
+              {"text": "We don't take photos.", "correct": false},
+              {"text": "Photos are a waste of time.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_019",
+          "category": "food",
+          "location": "레스토랑",
+          "situation": "아이 음식 포장 요청",
+          "npcDialog": "Would you like anything else?",
+          "npcDialogKo": "다른 거 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Can we get the kids' meal to go? They're tired.", "correct": true},
+              {"text": "Could you pack this up for later?", "correct": true},
+              {"text": "Just throw it away.", "correct": false},
+              {"text": "Kids don't need to eat.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_FAM_020",
+          "category": "utility",
+          "location": "휴게소",
+          "situation": "이동 중 휴식",
+          "npcDialog": "Would you like to stop for a break?",
+          "npcDialogKo": "잠깐 쉬어가시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, the kids need a bathroom break.", "correct": true},
+              {"text": "Let's stop here. They need to stretch their legs.", "correct": true},
+              {"text": "Kids don't need breaks.", "correct": false},
+              {"text": "We'll stop when we get there.", "correct": false}
+            ]
+          }
+        }
+      ]
+    },
+    "adventure": {
+      "name": "모험",
+      "description": "액티비티, 트레킹",
+      "sceneCount": 20,
+      "scenes": [
+        {
+          "id": "P_ADV_001",
+          "category": "activity",
+          "location": "액티비티 센터",
+          "situation": "액티비티 예약",
+          "npcDialog": "Welcome! What adventure are you looking for today?",
+          "npcDialogKo": "환영합니다! 오늘 어떤 모험을 찾으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "What extreme sports do you offer?", "correct": true},
+              {"text": "I want to try something exciting! What do you recommend?", "correct": true},
+              {"text": "Something easy and safe.", "correct": false},
+              {"text": "I'm not really adventurous.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_002",
+          "category": "activity",
+          "location": "장비 대여소",
+          "situation": "안전 장비 착용",
+          "npcDialog": "Here's your helmet and harness. Let me help you put it on.",
+          "npcDialogKo": "헬멧과 하네스예요. 착용 도와드릴게요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Thanks! Is it tight enough?", "correct": true},
+              {"text": "How do I know if it's properly secured?", "correct": true},
+              {"text": "Safety gear is for beginners.", "correct": false},
+              {"text": "I don't need a helmet.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_003",
+          "category": "activity",
+          "location": "액티비티 센터",
+          "situation": "건강/체력 확인",
+          "npcDialog": "Do you have any health conditions we should know about?",
+          "npcDialogKo": "저희가 알아야 할 건강 상태가 있나요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "No, I'm healthy and in good shape.", "correct": true},
+              {"text": "I have a slight heart condition. Is it still safe?", "correct": true},
+              {"text": "Health doesn't matter for adventure.", "correct": false},
+              {"text": "I never get sick.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_004",
+          "category": "activity",
+          "location": "액티비티 현장",
+          "situation": "가이드 안전 설명 듣기",
+          "npcDialog": "Listen carefully to the safety briefing before we start.",
+          "npcDialogKo": "시작하기 전에 안전 설명을 잘 들어주세요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'm listening carefully. What's the most important thing?", "correct": true},
+              {"text": "Got it. Can you repeat the emergency signals?", "correct": true},
+              {"text": "I don't need instructions.", "correct": false},
+              {"text": "Let's just start already.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_005",
+          "category": "utility",
+          "location": "액티비티 센터",
+          "situation": "보험 확인",
+          "npcDialog": "This activity requires signing a waiver. Do you have insurance?",
+          "npcDialogKo": "이 활동은 서약서 서명이 필요해요. 보험 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, I have travel insurance that covers adventure sports.", "correct": true},
+              {"text": "What does the waiver cover?", "correct": true},
+              {"text": "Insurance is a waste of money.", "correct": false},
+              {"text": "Nothing will happen to me.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_006",
+          "category": "activity",
+          "location": "스카이다이빙 센터",
+          "situation": "스카이다이빙",
+          "npcDialog": "Ready to jump from 15,000 feet?",
+          "npcDialogKo": "15,000피트에서 점프할 준비 됐나요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! I'm so nervous but excited!", "correct": true},
+              {"text": "Let's do this! How long is the freefall?", "correct": true},
+              {"text": "This seems too dangerous.", "correct": false},
+              {"text": "I changed my mind.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_007",
+          "category": "activity",
+          "location": "번지점프 현장",
+          "situation": "번지점프",
+          "npcDialog": "Step to the edge. Jump on three!",
+          "npcDialogKo": "가장자리로 오세요. 셋에 점프하세요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Here I go! One... two... three!", "correct": true},
+              {"text": "Oh my god, this is terrifying but amazing!", "correct": true},
+              {"text": "I can't do this.", "correct": false},
+              {"text": "This was a mistake.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_008",
+          "category": "activity",
+          "location": "다이빙 센터",
+          "situation": "스쿠버다이빙",
+          "npcDialog": "Remember your hand signals underwater. Ready to dive?",
+          "npcDialogKo": "수중 수신호 기억하세요. 다이빙할 준비 됐나요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! How deep are we going?", "correct": true},
+              {"text": "I'm ready. Will we see any sharks?", "correct": true},
+              {"text": "Water scares me.", "correct": false},
+              {"text": "I forgot everything you said.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_009",
+          "category": "activity",
+          "location": "강",
+          "situation": "래프팅",
+          "npcDialog": "Hold on tight! We're entering the rapids!",
+          "npcDialogKo": "꽉 잡으세요! 급류로 들어갑니다!",
+          "playerResponse": {
+            "choices": [
+              {"text": "This is amazing! What do I do if I fall out?", "correct": true},
+              {"text": "I'm holding on! This is so fun!", "correct": true},
+              {"text": "I don't want to get wet.", "correct": false},
+              {"text": "This is too scary.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_010",
+          "category": "activity",
+          "location": "산림",
+          "situation": "짚라인",
+          "npcDialog": "Lean back and enjoy the view as you zip across!",
+          "npcDialogKo": "뒤로 기대고 건너가면서 경치를 즐기세요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "This is incredible! How fast am I going?", "correct": true},
+              {"text": "Woohoo! Can I do it again?", "correct": true},
+              {"text": "I'm too scared to look.", "correct": false},
+              {"text": "Get me down now.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_011",
+          "category": "activity",
+          "location": "산",
+          "situation": "트레킹",
+          "npcDialog": "The trail gets steeper from here. How are you feeling?",
+          "npcDialogKo": "여기서부터 길이 더 가팔라져요. 상태는 어떠세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'm good! How much further to the summit?", "correct": true},
+              {"text": "A bit tired but let's keep going!", "correct": true},
+              {"text": "I can't go any further.", "correct": false},
+              {"text": "Carry me.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_012",
+          "category": "activity",
+          "location": "암벽",
+          "situation": "암벽등반",
+          "npcDialog": "Use the holds carefully. I've got you on belay.",
+          "npcDialogKo": "홀드를 조심히 사용하세요. 빌레이 잡고 있어요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Got it! How do I get past this overhang?", "correct": true},
+              {"text": "My arms are burning but I'm almost there!", "correct": true},
+              {"text": "This is too hard.", "correct": false},
+              {"text": "Just pull me up.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_013",
+          "category": "activity",
+          "location": "해변",
+          "situation": "서핑 강습",
+          "npcDialog": "Paddle hard and pop up when you feel the wave!",
+          "npcDialogKo": "힘차게 패들링하고 파도 느껴지면 일어나세요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Like this? How's my stance?", "correct": true},
+              {"text": "I did it! I'm actually surfing!", "correct": true},
+              {"text": "I keep falling off.", "correct": false},
+              {"text": "Surfing is impossible.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_014",
+          "category": "activity",
+          "location": "절벽",
+          "situation": "패러글라이딩",
+          "npcDialog": "Run off the cliff and we'll glide together!",
+          "npcDialogKo": "절벽에서 뛰어내리면 같이 날 거예요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "This is the most amazing view I've ever seen!", "correct": true},
+              {"text": "I can't believe I'm flying! How do we steer?", "correct": true},
+              {"text": "I can't jump off a cliff.", "correct": false},
+              {"text": "This is too high.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_015",
+          "category": "activity",
+          "location": "호수/강",
+          "situation": "카약/카누",
+          "npcDialog": "Paddle on alternate sides to go straight.",
+          "npcDialogKo": "직진하려면 번갈아가며 노를 저으세요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Got it! This is so peaceful.", "correct": true},
+              {"text": "How do I turn around?", "correct": true},
+              {"text": "I'm going in circles.", "correct": false},
+              {"text": "This is boring.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_016",
+          "category": "activity",
+          "location": "동굴",
+          "situation": "동굴 탐험",
+          "npcDialog": "Stay close and watch your head. The ceiling gets low here.",
+          "npcDialogKo": "가까이 붙고 머리 조심하세요. 천장이 낮아져요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "This is incredible! How old is this cave?", "correct": true},
+              {"text": "I'll be careful. Are there any underground rivers?", "correct": true},
+              {"text": "I'm claustrophobic.", "correct": false},
+              {"text": "It's too dark in here.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_017",
+          "category": "activity",
+          "location": "자연보호구역",
+          "situation": "야생동물 투어",
+          "npcDialog": "Keep quiet and don't make sudden movements.",
+          "npcDialogKo": "조용히 하고 갑작스러운 움직임은 피하세요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "I understand. What animals might we see?", "correct": true},
+              {"text": "This is so exciting! Can I take photos?", "correct": true},
+              {"text": "I want to touch the animals.", "correct": false},
+              {"text": "Animals don't scare me.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_018",
+          "category": "activity",
+          "location": "캠핑장",
+          "situation": "캠핑 장비 사용",
+          "npcDialog": "Need help setting up your tent?",
+          "npcDialogKo": "텐트 설치 도움 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes please! I've never camped before.", "correct": true},
+              {"text": "Which side faces into the wind?", "correct": true},
+              {"text": "Camping is uncomfortable.", "correct": false},
+              {"text": "I'd rather stay in a hotel.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_019",
+          "category": "emergency",
+          "location": "야외",
+          "situation": "응급처치 상황",
+          "npcDialog": "Are you okay? What happened?",
+          "npcDialogKo": "괜찮으세요? 무슨 일이에요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I twisted my ankle. Do you have a first aid kit?", "correct": true},
+              {"text": "I got stung by something. It's swelling.", "correct": true},
+              {"text": "I'm fine, leave me alone.", "correct": false},
+              {"text": "Injuries heal themselves.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_ADV_020",
+          "category": "emergency",
+          "location": "산/바다",
+          "situation": "구조 요청",
+          "npcDialog": "Do you need emergency assistance?",
+          "npcDialogKo": "응급 지원이 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! My friend is injured and can't walk.", "correct": true},
+              {"text": "Please call for help! We're stuck on the cliff.", "correct": true},
+              {"text": "We can handle it ourselves.", "correct": false},
+              {"text": "It's not that serious.", "correct": false}
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

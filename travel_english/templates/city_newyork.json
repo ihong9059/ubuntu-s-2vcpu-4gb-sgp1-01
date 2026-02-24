@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "newyork",
+  "cityName": "뉴욕",
+  "country": "미국",
+  "description": "세계의 수도 뉴욕의 다양한 문화와 에너지 넘치는 경험",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_NYC_001",
+      "category": "landmark",
+      "day": 2,
+      "location": "자유의 여신상",
+      "situation": "자유의 여신상 페리를 타고 리버티 섬으로 간다",
+      "npcDialog": "Ferry to Liberty Island departing! Crown access requires advance tickets. The view from the pedestal is also amazing!",
+      "npcDialogKo": "리버티 섬행 페리 출발합니다! 왕관 입장은 사전 티켓 필요해요. 받침대에서 보는 경치도 멋져요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I have crown tickets! How many steps to the top?", "correct": true},
+          {"text": "The pedestal view sounds good! Is it crowded up there?", "correct": true},
+          {"text": "Just a statue isn't exciting.", "correct": false},
+          {"text": "The line is too long.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_002",
+      "category": "landmark",
+      "day": 3,
+      "location": "엠파이어 스테이트 빌딩",
+      "situation": "엠파이어 스테이트 빌딩 전망대에 올라간다",
+      "npcDialog": "Empire State Building! 86th floor open-air deck. Sunrise tickets available - fewer crowds, incredible view of NYC waking up!",
+      "npcDialogKo": "엠파이어 스테이트 빌딩이에요! 86층 야외 전망대요. 선라이즈 티켓도 있어요 - 사람 적고 뉴욕이 깨어나는 멋진 전망!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Sunrise sounds magical! What time would I need to arrive?", "correct": true},
+          {"text": "This is the building from so many movies! Can I see Central Park from here?", "correct": true},
+          {"text": "I've seen taller buildings.", "correct": false},
+          {"text": "Observation decks are all the same.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_003",
+      "category": "activity",
+      "day": 2,
+      "location": "센트럴파크",
+      "situation": "센트럴파크에서 자전거를 대여한다",
+      "npcDialog": "Bike rental for Central Park! 1 hour, 2 hours, or full day. The loop around the park is 6 miles. Maps are free!",
+      "npcDialogKo": "센트럴파크 자전거 대여예요! 1시간, 2시간, 또는 하루 종일. 공원 한 바퀴가 6마일이에요. 지도는 무료!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll take 2 hours! What are the must-see spots in the park?", "correct": true},
+          {"text": "6 miles sounds perfect! Is there a Bethesda Fountain route?", "correct": true},
+          {"text": "It's just a park.", "correct": false},
+          {"text": "I'd rather walk.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_004",
+      "category": "food",
+      "day": 3,
+      "location": "피자 가게",
+      "situation": "뉴욕 스타일 피자를 맛본다",
+      "npcDialog": "New York slice! Fold it in half like a real New Yorker. We got plain, pepperoni, and today's special - white pizza.",
+      "npcDialogKo": "뉴욕 슬라이스예요! 진짜 뉴요커처럼 반으로 접어서 드세요. 플레인, 페퍼로니, 오늘의 스페셜 - 화이트 피자 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll try pepperoni! So I fold it? That's the authentic way?", "correct": true},
+          {"text": "One plain slice please! This looks like real New York pizza!", "correct": true},
+          {"text": "I prefer Chicago style.", "correct": false},
+          {"text": "Pizza is just pizza everywhere.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_005",
+      "category": "activity",
+      "day": 4,
+      "location": "브로드웨이",
+      "situation": "브로드웨이 뮤지컬 티켓을 구한다",
+      "npcDialog": "TKTS booth! Same-day Broadway tickets 20-50% off. Hamilton, Lion King, Wicked - what genre do you like?",
+      "npcDialogKo": "TKTS 부스예요! 당일 브로드웨이 티켓 20-50% 할인. 해밀턴, 라이온킹, 위키드 - 어떤 장르 좋아하세요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "I've always wanted to see Hamilton! Are there any tickets left?", "correct": true},
+          {"text": "What's playing tonight? I'm open to recommendations!", "correct": true},
+          {"text": "Musicals are too expensive.", "correct": false},
+          {"text": "I don't understand English well enough.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_006",
+      "category": "landmark",
+      "day": 5,
+      "location": "타임스 스퀘어",
+      "situation": "타임스 스퀘어의 화려한 광고판을 구경한다",
+      "npcDialog": "Times Square - the Crossroads of the World! Those digital billboards cost $1-4 million per year. Best at night for photos!",
+      "npcDialogKo": "타임스 스퀘어 - 세계의 교차로예요! 저 디지털 광고판은 연간 1-4백만 달러예요. 사진은 밤에 찍는 게 최고!",
+      "playerResponse": {
+        "choices": [
+          {"text": "It's even more impressive in person! The lights are incredible!", "correct": true},
+          {"text": "I'll definitely come back at night for photos! Any tips?", "correct": true},
+          {"text": "Too many tourists here.", "correct": false},
+          {"text": "It's just advertisements.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_007",
+      "category": "museum",
+      "day": 4,
+      "location": "메트로폴리탄 미술관",
+      "situation": "세계 최대 미술관 중 하나를 탐험한다",
+      "npcDialog": "The Met! Over 2 million artworks. Egyptian Temple of Dendur, European paintings, American wing... You could spend a week here!",
+      "npcDialogKo": "메트예요! 200만 점 이상의 작품이에요. 이집트 덴두르 신전, 유럽 회화, 미국관... 일주일도 부족해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "2 million artworks! What are the highlights I shouldn't miss?", "correct": true},
+          {"text": "I want to see the Egyptian Temple! Is there a rooftop too?", "correct": true},
+          {"text": "I can see art online.", "correct": false},
+          {"text": "Museums are exhausting.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_008",
+      "category": "food",
+      "day": 5,
+      "location": "베이글 가게",
+      "situation": "뉴욕 베이글을 주문한다",
+      "npcDialog": "New York bagels! Plain, everything, sesame? Cream cheese, lox, or bacon egg cheese? We've been making these for 60 years!",
+      "npcDialogKo": "뉴욕 베이글이에요! 플레인, 에브리씽, 참깨? 크림치즈, 훈제연어, 베이컨에그치즈? 60년간 만들어왔어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "An everything bagel with cream cheese and lox please! The classic!", "correct": true},
+          {"text": "60 years! What makes New York bagels special?", "correct": true},
+          {"text": "It's just bread with a hole.", "correct": false},
+          {"text": "I prefer toast.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_009",
+      "category": "activity",
+      "day": 6,
+      "location": "하이라인",
+      "situation": "폐선로 위에 만든 공중정원을 산책한다",
+      "npcDialog": "The High Line! An elevated park on old railway tracks. 1.5 miles long with art installations and great city views!",
+      "npcDialogKo": "하이라인이에요! 오래된 철도 위에 만든 공중 공원이에요. 1.5마일 길이에 예술 작품과 도시 전망이 멋져요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "What a creative use of old railway! Where's the best entrance?", "correct": true},
+          {"text": "Art installations too? This sounds unique! Any food vendors?", "correct": true},
+          {"text": "It's just a walkway.", "correct": false},
+          {"text": "I'd rather walk on ground level.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_010",
+      "category": "shopping",
+      "day": 7,
+      "location": "5번가",
+      "situation": "5번가에서 윈도우 쇼핑을 즐긴다",
+      "npcDialog": "Fifth Avenue! Tiffany's, Saks, Apple Store flagship. Even if you're not buying, the window displays are art!",
+      "npcDialogKo": "5번가예요! 티파니, 삭스, 애플스토어 플래그십. 안 사더라도 윈도우 진열이 예술이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Breakfast at Tiffany's vibes! Can I look around inside?", "correct": true},
+          {"text": "The window displays are beautiful! When do they change?", "correct": true},
+          {"text": "I can't afford anything here.", "correct": false},
+          {"text": "Shopping isn't my thing.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_011",
+      "category": "food",
+      "day": 4,
+      "location": "첼시 마켓",
+      "situation": "첼시 마켓에서 다양한 음식을 맛본다",
+      "npcDialog": "Chelsea Market! Lobster, tacos, gelato, bakeries - 35+ vendors. This building used to be the Oreo cookie factory!",
+      "npcDialogKo": "첼시 마켓이에요! 랍스터, 타코, 젤라또, 베이커리 - 35개 이상 가게. 이 건물은 원래 오레오 쿠키 공장이었어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Oreo factory? That's cool history! What's the must-try food here?", "correct": true},
+          {"text": "I want to try the lobster! Is there seating inside?", "correct": true},
+          {"text": "Food halls are overpriced.", "correct": false},
+          {"text": "Too many choices stresses me out.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_012",
+      "category": "landmark",
+      "day": 3,
+      "location": "9/11 메모리얼",
+      "situation": "9/11 추모 공원을 방문한다",
+      "npcDialog": "The 9/11 Memorial. The reflecting pools sit where the Twin Towers stood. Names of all 2,977 victims are engraved here.",
+      "npcDialogKo": "9/11 메모리얼이에요. 반사 풀이 쌍둥이 빌딩이 있던 자리에 있어요. 2,977명 희생자 전원의 이름이 새겨져 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "This is such a moving place. How long should I plan to spend here?", "correct": true},
+          {"text": "The memorial is beautifully done. Is the museum worth visiting too?", "correct": true},
+          {"text": "This is too sad.", "correct": false},
+          {"text": "I've read about it, that's enough.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_013",
+      "category": "activity",
+      "day": 6,
+      "location": "브루클린 브릿지",
+      "situation": "브루클린 다리를 걸어서 건넌다",
+      "npcDialog": "Brooklyn Bridge walk! Best from Brooklyn to Manhattan - that way you walk toward the skyline. About 30 minutes each way.",
+      "npcDialogKo": "브루클린 다리 걷기! 브루클린에서 맨해튼 방향이 최고예요 - 스카이라인을 향해 걸어요. 편도 약 30분이에요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Walking toward Manhattan skyline sounds perfect! Is it crowded?", "correct": true},
+          {"text": "30 minutes with that view? I'm in! Where's the best photo spot?", "correct": true},
+          {"text": "Walking 30 minutes is too far.", "correct": false},
+          {"text": "I can see the bridge from the street.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_014",
+      "category": "food",
+      "day": 7,
+      "location": "핫도그 카트",
+      "situation": "길거리 핫도그를 맛본다",
+      "npcDialog": "Hot dog! Most New York thing ever. Mustard, ketchup, sauerkraut, onions? Only $2. Pretzel too?",
+      "npcDialogKo": "핫도그요! 가장 뉴욕다운 거예요. 머스타드, 케첩, 사워크라우트, 양파? 2달러밖에 안 해요. 프레첼도요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Mustard and sauerkraut please! This is the real NYC experience!", "correct": true},
+          {"text": "I'll have both! Nothing like a NYC street hot dog!", "correct": true},
+          {"text": "Street food isn't clean.", "correct": false},
+          {"text": "Hot dogs aren't real food.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_015",
+      "category": "culture",
+      "day": 5,
+      "location": "할렘",
+      "situation": "할렘에서 재즈와 가스펠을 체험한다",
+      "npcDialog": "Harlem - the soul of Black culture in NYC! Sunday gospel at Abyssinian Baptist Church is incredible. Jazz clubs at night!",
+      "npcDialogKo": "할렘 - 뉴욕 흑인 문화의 영혼이에요! 일요일 에비시니안 침례교회 가스펠이 믿기 어려워요. 밤엔 재즈 클럽!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Gospel service sounds amazing! Do I need to dress up?", "correct": true},
+          {"text": "Jazz in Harlem - the birthplace! Which club do you recommend?", "correct": true},
+          {"text": "Religious services aren't for tourists.", "correct": false},
+          {"text": "I'm not into that kind of music.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_016",
+      "category": "activity",
+      "day": 8,
+      "location": "록펠러 센터",
+      "situation": "Top of the Rock 전망대에서 뉴욕 스카이라인을 본다",
+      "npcDialog": "Top of the Rock! Many say the view is better than Empire State because you can SEE the Empire State Building from here!",
+      "npcDialogKo": "탑 오브 더 록이에요! 엠파이어 스테이트보다 전망이 낫다는 사람이 많아요 - 여기서 엠파이어 스테이트가 보이거든요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "That makes sense! Empire State in the view is perfect! Is Central Park visible too?", "correct": true},
+          {"text": "Both directions - park and buildings? This is the spot!", "correct": true},
+          {"text": "Another observation deck?", "correct": false},
+          {"text": "I've seen enough skyline.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_017",
+      "category": "food",
+      "day": 6,
+      "location": "차이나타운",
+      "situation": "차이나타운에서 딤섬을 먹는다",
+      "npcDialog": "Dim sum in Chinatown! Har gow, siu mai, char siu bao - carts come around, point at what you want. Very authentic!",
+      "npcDialogKo": "차이나타운 딤섬이에요! 하가우, 슈마이, 차슈바오 - 카트가 돌아다니면 원하는 거 가리키세요. 아주 정통이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Cart service sounds fun! What's the must-try dim sum?", "correct": true},
+          {"text": "I love har gow! Is this one of the famous dim sum places?", "correct": true},
+          {"text": "I'm not adventurous with food.", "correct": false},
+          {"text": "Chinatown is too crowded.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_018",
+      "category": "shopping",
+      "day": 7,
+      "location": "소호",
+      "situation": "소호에서 부티크와 갤러리를 둘러본다",
+      "npcDialog": "SoHo! The cast-iron architecture is amazing. Boutiques, galleries, and great brunch spots. Very instagrammable!",
+      "npcDialogKo": "소호예요! 주철 건축물이 멋져요. 부티크, 갤러리, 브런치 맛집도 있어요. 인스타그램 하기 좋아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The architecture is beautiful! Any local designer shops you recommend?", "correct": true},
+          {"text": "Perfect for photos! What's the best street to walk?", "correct": true},
+          {"text": "SoHo is too trendy for me.", "correct": false},
+          {"text": "Everything is expensive here.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_019",
+      "category": "activity",
+      "day": 8,
+      "location": "야구장",
+      "situation": "양키 스타디움에서 야구를 관람한다",
+      "npcDialog": "Yankees game! Hot dog, beer, cracker jacks - the classic combo. 'New York, New York' after a win is unforgettable!",
+      "npcDialogKo": "양키스 경기예요! 핫도그, 맥주, 크래커잭 - 클래식 조합이에요. 이기면 '뉴욕, 뉴욕' 노래가 잊을 수 없어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "A Yankees game - bucket list checked! What should I order first?", "correct": true},
+          {"text": "I hope they win so I can hear the song! Where should I sit?", "correct": true},
+          {"text": "I don't understand baseball.", "correct": false},
+          {"text": "Sports aren't my thing.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_NYC_020",
+      "category": "landmark",
+      "day": 8,
+      "location": "그랜드 센트럴 터미널",
+      "situation": "역사적인 기차역의 건축미를 감상한다",
+      "npcDialog": "Grand Central Terminal! Look up at the ceiling - it's a painted sky with zodiac constellations. The Whispering Gallery is fun to try!",
+      "npcDialogKo": "그랜드 센트럴 터미널이에요! 천장을 보세요 - 별자리가 그려진 하늘이에요. 속삭임 갤러리 체험해보세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The ceiling is stunning! How does the Whispering Gallery work?", "correct": true},
+          {"text": "This station is like a palace! Is there a tour available?", "correct": true},
+          {"text": "It's just a train station.", "correct": false},
+          {"text": "I've seen grand stations before.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

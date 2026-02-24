@@ -1,0 +1,20 @@
+{
+  "id": "552dfd56-c504-45d8-b10b-1ad0b3b7518a",
+  "title": "안녕",
+  "member_id": "leeknow",
+  "created_at": "2026-02-24T01:55:12.861868",
+  "updated_at": "2026-02-24T01:55:19.414830",
+  "messages": [
+    {
+      "role": "user",
+      "content": "안녕",
+      "timestamp": "2026-02-24T01:55:13.292597"
+    },
+    {
+      "role": "assistant",
+      "content": "흥. 안녕. 또 나 보러 왔네? 😉\n뭐, 할 말이라도 있어? 아니면 그냥 온 거야?",
+      "timestamp": "2026-02-24T01:55:19.413611",
+      "member_id": "leeknow"
+    }
+  ]
+}

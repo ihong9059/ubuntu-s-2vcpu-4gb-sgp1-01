@@ -1,0 +1,1365 @@
+{
+  "info": {
+    "departure": "서울",
+    "destination": "파리",
+    "budget": 2000,
+    "duration": 14,
+    "level": "beginner"
+  },
+  "route": [
+    {
+      "city": "서울",
+      "country": "대한민국",
+      "lat": 37.5665,
+      "lng": 126.978
+    },
+    {
+      "city": "파리",
+      "country": "프랑스",
+      "lat": 48.8566,
+      "lng": 2.3522
+    }
+  ],
+  "scenes": [
+    {
+      "day": 1,
+      "location": "인천국제공항 체크인 카운터",
+      "city": "서울",
+      "situation": "파리행 비행기 탑승을 위해 공항 체크인 카운터에 도착했습니다. 직원이 여권과 티켓을 요청합니다.",
+      "dialogues": [
+        {
+          "speaker": "staff",
+          "english": "Good morning! May I see your passport and booking confirmation, please?",
+          "korean": "좋은 아침이에요! 여권과 예약 확인서를 보여주시겠어요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "여권과 예약 확인서를 건네며 응답하세요.",
+        "choices": [
+          {
+            "text": "Here you go. I'm flying to Paris today.",
+            "correct": true,
+            "feedback": "완벽해요! 자연스럽게 여권을 건네며 목적지를 말했습니다."
+          },
+          {
+            "text": "Sure, here is my passport and confirmation.",
+            "correct": true,
+            "feedback": "좋아요! 정중하게 서류를 건네는 표현입니다."
+          },
+          {
+            "text": "I don't have my passport.",
+            "correct": false,
+            "feedback": "여권 없이는 탑승할 수 없어요. 여권을 준비해서 보여줘야 합니다."
+          },
+          {
+            "text": "What is a passport?",
+            "correct": false,
+            "feedback": "passport는 여권이에요. 해외여행 시 반드시 필요한 신분증입니다."
+          }
+        ]
+      }
+    },
+    {
+      "day": 1,
+      "location": "인천국제공항 체크인 카운터",
+      "city": "서울",
+      "situation": "직원이 좌석 선호도를 물어봅니다. 창가석이나 복도석을 선택할 수 있습니다.",
+      "dialogues": [
+        {
+          "speaker": "staff",
+          "english": "Would you prefer a window seat or an aisle seat?",
+          "korean": "창가석과 복도석 중 어느 쪽을 원하세요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "원하는 좌석을 선택하여 대답하세요.",
+        "choices": [
+          {
+            "text": "A window seat, please. I love watching the view.",
+            "correct": true,
+            "feedback": "좋아요! 창가석을 자연스럽게 요청했습니다."
+          },
+          {
+            "text": "I'd like an aisle seat, please.",
+            "correct": true,
+            "feedback": "훌륭해요! 복도석을 정중하게 요청하는 표현입니다."
+          },
+          {
+            "text": "I want the pilot's seat.",
+            "correct": false,
+            "feedback": "조종석은 승객이 앉을 수 없어요! window seat 또는 aisle seat 중에 골라야 합니다."
+          },
+          {
+            "text": "Give me the best seat now!",
+            "correct": false,
+            "feedback": "너무 무례한 표현이에요. 'please'를 붙여 정중하게 요청하세요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 1,
+      "location": "인천국제공항 수하물 접수",
+      "city": "서울",
+      "situation": "체크인 직원이 부칠 짐이 있는지 물어봅니다.",
+      "dialogues": [
+        {
+          "speaker": "staff",
+          "english": "Do you have any bags to check in?",
+          "korean": "부칠 짐이 있으신가요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "짐에 대해 응답하세요.",
+        "choices": [
+          {
+            "text": "Yes, I have one suitcase to check in.",
+            "correct": true,
+            "feedback": "완벽해요! 부칠 짐이 하나 있다고 명확하게 말했습니다."
+          },
+          {
+            "text": "No, I only have carry-on luggage.",
+            "correct": true,
+            "feedback": "좋아요! 기내 수하물만 있다고 알려주는 표현입니다."
+          },
+          {
+            "text": "I have ten bags to check in.",
+            "correct": false,
+            "feedback": "보통 무료 수하물은 1~2개예요. 10개는 추가 요금이 많이 나올 수 있습니다."
+          },
+          {
+            "text": "What does check in mean?",
+            "correct": false,
+            "feedback": "check in은 짐을 부치는 것을 의미해요. 미리 알아두면 좋습니다."
+          }
+        ]
+      }
+    },
+    {
+      "day": 1,
+      "location": "인천국제공항 보안검색대",
+      "city": "서울",
+      "situation": "보안검색대에서 직원이 가방에서 노트북과 액체류를 꺼내라고 안내합니다.",
+      "dialogues": [
+        {
+          "speaker": "staff",
+          "english": "Please take out your laptop and any liquids from your bag.",
+          "korean": "가방에서 노트북과 액체류를 꺼내주세요."
+        }
+      ],
+      "playerResponse": {
+        "prompt": "보안검색 안내에 응답하세요.",
+        "choices": [
+          {
+            "text": "Sure, let me take them out right away.",
+            "correct": true,
+            "feedback": "좋아요! 협조적으로 바로 꺼내겠다고 응답했습니다."
+          },
+          {
+            "text": "Of course. Here is my laptop and liquids.",
+            "correct": true,
+            "feedback": "훌륭해요! 안내에 따라 물건을 꺼내며 응답했습니다."
+          },
+          {
+            "text": "No, I don't want to.",
+            "correct": false,
+            "feedback": "보안검색은 의무사항이에요. 거부하면 탑승할 수 없습니다."
+          },
+          {
+            "text": "I will keep everything in my bag.",
+            "correct": false,
+            "feedback": "보안검색 시 노트북과 액체류는 반드시 꺼내야 합니다."
+          }
+        ]
+      }
+    },
+    {
+      "day": 1,
+      "location": "인천국제공항 탑승구",
+      "city": "서울",
+      "situation": "탑승구에서 대기 중, 옆 승객이 말을 걸어옵니다.",
+      "dialogues": [
+        {
+          "speaker": "passenger",
+          "english": "Excuse me, is this the gate for the flight to Paris?",
+          "korean": "실례합니다, 여기가 파리행 탑승구 맞나요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "옆 승객의 질문에 대답하세요.",
+        "choices": [
+          {
+            "text": "Yes, this is the right gate for Paris.",
+            "correct": true,
+            "feedback": "완벽해요! 맞다고 확인해주는 친절한 응답입니다."
+          },
+          {
+            "text": "I think so. Let me check my boarding pass.",
+            "correct": true,
+            "feedback": "좋아요! 보딩패스를 확인하겠다는 신중한 응답이에요."
+          },
+          {
+            "text": "I don't speak English.",
+            "correct": false,
+            "feedback": "영어로 대화하는 연습을 해봐요! 간단한 질문에 답해보세요."
+          },
+          {
+            "text": "Go away, please.",
+            "correct": false,
+            "feedback": "무례한 표현이에요. 모르더라도 'Sorry, I'm not sure.'라고 말할 수 있어요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 1,
+      "location": "비행기 기내",
+      "city": "기내",
+      "situation": "기내에 탑승하여 자리를 찾고 있습니다. 승무원이 도와주려 합니다.",
+      "dialogues": [
+        {
+          "speaker": "flight_attendant",
+          "english": "Welcome aboard! Can I help you find your seat?",
+          "korean": "탑승을 환영합니다! 좌석을 찾는 것을 도와드릴까요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "승무원의 도움 제안에 응답하세요.",
+        "choices": [
+          {
+            "text": "Yes, please. I'm in seat 24A.",
+            "correct": true,
+            "feedback": "완벽해요! 좌석 번호를 말하며 도움을 요청했습니다."
+          },
+          {
+            "text": "Thank you, but I found it already.",
+            "correct": true,
+            "feedback": "좋아요! 이미 찾았다고 감사하며 응답했습니다."
+          },
+          {
+            "text": "I don't need help. Leave me alone.",
+            "correct": false,
+            "feedback": "너무 무례해요. 도움이 필요 없을 때는 'No, thank you.'라고 하면 돼요."
+          },
+          {
+            "text": "Where is the exit?",
+            "correct": false,
+            "feedback": "방금 탑승했는데 출구를 묻는 것은 상황에 맞지 않아요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 1,
+      "location": "비행기 기내",
+      "city": "기내",
+      "situation": "기내 식사 시간입니다. 승무원이 메뉴를 안내합니다.",
+      "dialogues": [
+        {
+          "speaker": "flight_attendant",
+          "english": "For today's meal, we have chicken with rice or pasta with tomato sauce. Which would you like?",
+          "korean": "오늘 식사는 치킨라이스와 토마토 파스타가 있습니다. 어떤 걸로 드릴까요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "기내식을 선택하세요.",
+        "choices": [
+          {
+            "text": "I'll have the chicken with rice, please.",
+            "correct": true,
+            "feedback": "좋아요! 'I'll have ~'는 음식을 주문할 때 자주 쓰는 표현이에요."
+          },
+          {
+            "text": "The pasta, please.",
+            "correct": true,
+            "feedback": "간결하고 좋아요! 짧지만 정중한 주문 표현입니다."
+          },
+          {
+            "text": "I want steak and lobster.",
+            "correct": false,
+            "feedback": "메뉴에 없는 음식이에요. 제공되는 메뉴 중에서 선택해야 합니다."
+          },
+          {
+            "text": "I don't eat food.",
+            "correct": false,
+            "feedback": "장거리 비행에서는 식사를 하는 것이 좋아요. 메뉴 중 하나를 선택해보세요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 1,
+      "location": "비행기 기내",
+      "city": "기내",
+      "situation": "음료 서비스 시간입니다. 승무원이 음료를 물어봅니다.",
+      "dialogues": [
+        {
+          "speaker": "flight_attendant",
+          "english": "Would you like something to drink? We have water, juice, coffee, and tea.",
+          "korean": "음료는 뭘로 드릴까요? 물, 주스, 커피, 차가 있습니다."
+        }
+      ],
+      "playerResponse": {
+        "prompt": "원하는 음료를 주문하세요.",
+        "choices": [
+          {
+            "text": "Could I have some orange juice, please?",
+            "correct": true,
+            "feedback": "완벽해요! 'Could I have ~'는 정중한 요청 표현입니다."
+          },
+          {
+            "text": "Water, please.",
+            "correct": true,
+            "feedback": "좋아요! 간단하지만 정중하게 물을 요청했습니다."
+          },
+          {
+            "text": "Give me a beer right now!",
+            "correct": false,
+            "feedback": "무례한 표현이에요. 또한 맥주는 선택지에 없었습니다. 정중하게 요청하세요."
+          },
+          {
+            "text": "I want everything.",
+            "correct": false,
+            "feedback": "모든 음료를 달라는 것은 적절하지 않아요. 하나를 선택해서 요청하세요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 1,
+      "location": "샤를 드 골 공항 입국심사",
+      "city": "파리",
+      "situation": "파리 샤를 드 골 공항에 도착하여 입국심사대에 섰습니다. 심사관이 질문합니다.",
+      "dialogues": [
+        {
+          "speaker": "officer",
+          "english": "What is the purpose of your visit to France?",
+          "korean": "프랑스 방문 목적이 무엇인가요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "방문 목적을 말하세요.",
+        "choices": [
+          {
+            "text": "I'm here for sightseeing. It's my vacation.",
+            "correct": true,
+            "feedback": "완벽해요! 관광 목적이라고 명확하게 답했습니다."
+          },
+          {
+            "text": "Tourism. I'm staying for two weeks.",
+            "correct": true,
+            "feedback": "좋아요! 관광 목적과 체류 기간을 함께 말했습니다."
+          },
+          {
+            "text": "I'm here to work illegally.",
+            "correct": false,
+            "feedback": "관광 비자로 일하는 것은 불법이에요. 방문 목적에 맞게 답해야 합니다."
+          },
+          {
+            "text": "I don't know why I'm here.",
+            "correct": false,
+            "feedback": "입국심사에서 목적을 모른다고 하면 문제가 될 수 있어요. 관광(sightseeing)이라고 답하세요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 1,
+      "location": "샤를 드 골 공항 입국심사",
+      "city": "파리",
+      "situation": "입국심사관이 체류 기간과 숙소에 대해 추가 질문을 합니다.",
+      "dialogues": [
+        {
+          "speaker": "officer",
+          "english": "How long will you be staying, and where will you be staying?",
+          "korean": "얼마나 체류하실 건가요, 어디에 묵으실 건가요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "체류 기간과 숙소를 알려주세요.",
+        "choices": [
+          {
+            "text": "I'll be staying for 14 days at a hotel in central Paris.",
+            "correct": true,
+            "feedback": "완벽해요! 체류 기간과 숙소를 정확하게 말했습니다."
+          },
+          {
+            "text": "Two weeks. I have a hotel reservation near the Eiffel Tower.",
+            "correct": true,
+            "feedback": "좋아요! 구체적인 숙소 위치까지 알려주는 좋은 답변입니다."
+          },
+          {
+            "text": "I'm staying forever.",
+            "correct": false,
+            "feedback": "관광 비자로는 영구 체류가 불가해요. 정확한 기간을 말해야 합니다."
+          },
+          {
+            "text": "I have no plans.",
+            "correct": false,
+            "feedback": "계획이 없다고 하면 입국이 거부될 수 있어요. 숙소와 기간을 준비해두세요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 1,
+      "location": "샤를 드 골 공항 수하물 찾는 곳",
+      "city": "파리",
+      "situation": "수하물을 찾으러 왔는데, 자기 짐이 나오지 않습니다. 직원에게 도움을 요청합니다.",
+      "dialogues": [
+        {
+          "speaker": "player",
+          "english": "(You need to ask for help about your missing luggage.)",
+          "korean": "(짐이 나오지 않아 도움을 요청해야 합니다.)"
+        },
+        {
+          "speaker": "staff",
+          "english": "How can I help you?",
+          "korean": "어떻게 도와드릴까요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "분실된 수하물에 대해 도움을 요청하세요.",
+        "choices": [
+          {
+            "text": "Excuse me, my luggage hasn't arrived. Can you help me find it?",
+            "correct": true,
+            "feedback": "완벽해요! 상황을 설명하며 정중하게 도움을 요청했습니다."
+          },
+          {
+            "text": "I can't find my suitcase. It's a large black bag.",
+            "correct": true,
+            "feedback": "좋아요! 짐의 특징을 설명하면 찾는 데 도움이 됩니다."
+          },
+          {
+            "text": "Someone stole my bag!",
+            "correct": false,
+            "feedback": "도둑맞았다고 단정짓지 마세요. 수하물이 지연될 수도 있습니다."
+          },
+          {
+            "text": "Never mind, I'll just leave.",
+            "correct": false,
+            "feedback": "짐을 찾지 않고 가면 안 돼요. 직원에게 도움을 요청하세요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 1,
+      "location": "샤를 드 골 공항 택시 승강장",
+      "city": "파리",
+      "situation": "공항에서 시내 호텔까지 택시를 타려고 합니다. 택시 기사에게 목적지를 알려야 합니다.",
+      "dialogues": [
+        {
+          "speaker": "taxi_driver",
+          "english": "Hello! Where would you like to go?",
+          "korean": "안녕하세요! 어디로 가실 건가요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "호텔 주소를 알려주세요.",
+        "choices": [
+          {
+            "text": "To Hotel Le Marais, please. Here's the address.",
+            "correct": true,
+            "feedback": "완벽해요! 호텔 이름을 말하고 주소를 보여주는 것이 좋습니다."
+          },
+          {
+            "text": "Can you take me to central Paris, near the Louvre Museum?",
+            "correct": true,
+            "feedback": "좋아요! 유명한 랜드마크 근처로 요청하면 기사가 쉽게 이해합니다."
+          },
+          {
+            "text": "Just drive anywhere.",
+            "correct": false,
+            "feedback": "목적지 없이 타면 요금만 올라가요. 정확한 목적지를 말해야 합니다."
+          },
+          {
+            "text": "I don't know where my hotel is.",
+            "correct": false,
+            "feedback": "호텔 주소를 미리 준비해두세요. 스마트폰에 저장해두면 편리합니다."
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "location": "호텔 프론트 데스크",
+      "city": "파리",
+      "situation": "호텔에 도착하여 체크인을 하려고 합니다. 프론트 직원이 맞이합니다.",
+      "dialogues": [
+        {
+          "speaker": "receptionist",
+          "english": "Welcome to our hotel! Do you have a reservation?",
+          "korean": "호텔에 오신 것을 환영합니다! 예약하셨나요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "체크인을 위해 응답하세요.",
+        "choices": [
+          {
+            "text": "Yes, I have a reservation under the name Kim.",
+            "correct": true,
+            "feedback": "완벽해요! 예약자 이름을 말하면 빠르게 체크인할 수 있습니다."
+          },
+          {
+            "text": "Yes, here is my booking confirmation.",
+            "correct": true,
+            "feedback": "좋아요! 예약 확인서를 보여주는 것도 좋은 방법입니다."
+          },
+          {
+            "text": "No, I just walked in. Give me a room.",
+            "correct": false,
+            "feedback": "예약 없이 방을 요구하는 것은 좋지 않아요. 사전 예약이 중요합니다."
+          },
+          {
+            "text": "What is a reservation?",
+            "correct": false,
+            "feedback": "reservation은 예약이라는 뜻이에요. 호텔에 미리 방을 예약하는 것입니다."
+          }
+        ]
+      }
+    },
+    {
+      "day": 2,
+      "location": "호텔 프론트 데스크",
+      "city": "파리",
+      "situation": "체크인 중 직원이 조식 포함 여부를 확인합니다.",
+      "dialogues": [
+        {
+          "speaker": "receptionist",
+          "english": "Your room is ready. Breakfast is served from 7 to 10 AM. Would you like a wake-up call?",
+          "korean": "방이 준비되었습니다. 조식은 7시부터 10시까지입니다. 모닝콜을 원하시나요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "모닝콜 여부를 답하세요.",
+        "choices": [
+          {
+            "text": "Yes, please. Can I get a wake-up call at 8 AM?",
+            "correct": true,
+            "feedback": "좋아요! 구체적인 시간을 말하며 모닝콜을 요청했습니다."
+          },
+          {
+            "text": "No, thank you. I'll set my own alarm.",
+            "correct": true,
+            "feedback": "좋아요! 필요 없다고 정중하게 거절했습니다."
+          },
+          {
+            "text": "Wake me up at 4 AM every day!",
+            "correct": false,
+            "feedback": "새벽 4시는 너무 이른 시간이에요. 조식 시간에 맞춰 요청하세요."
+          },
+          {
+            "text": "I don't understand what you said.",
+            "correct": false,
+            "feedback": "wake-up call은 모닝콜 서비스예요. 원하는 시간에 전화로 깨워줍니다."
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "location": "에펠탑 매표소",
+      "city": "파리",
+      "situation": "에펠탑을 방문하여 티켓을 구매하려고 합니다.",
+      "dialogues": [
+        {
+          "speaker": "staff",
+          "english": "Hello! Would you like to go to the top or the second floor? The top is 26 euros and the second floor is 17 euros.",
+          "korean": "안녕하세요! 꼭대기까지 가실 건가요, 2층까지만 가실 건가요? 꼭대기는 26유로, 2층은 17유로입니다."
+        }
+      ],
+      "playerResponse": {
+        "prompt": "에펠탑 티켓을 구매하세요.",
+        "choices": [
+          {
+            "text": "One ticket to the top, please.",
+            "correct": true,
+            "feedback": "완벽해요! 꼭대기까지 가는 티켓을 구매했습니다. 멋진 전망을 볼 수 있어요!"
+          },
+          {
+            "text": "I'd like one for the second floor, please.",
+            "correct": true,
+            "feedback": "좋아요! 2층도 충분히 멋진 전망을 즐길 수 있어요."
+          },
+          {
+            "text": "Can I go for free?",
+            "correct": false,
+            "feedback": "에펠탑은 유료 관광지예요. 티켓을 구매해야 올라갈 수 있습니다."
+          },
+          {
+            "text": "That's too expensive. I'll climb from outside.",
+            "correct": false,
+            "feedback": "에펠탑 외부 등반은 불법이에요! 티켓을 구매해서 엘리베이터나 계단을 이용하세요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 3,
+      "location": "에펠탑 전망대",
+      "city": "파리",
+      "situation": "에펠탑 전망대에서 다른 관광객이 사진을 찍어달라고 부탁합니다.",
+      "dialogues": [
+        {
+          "speaker": "tourist",
+          "english": "Excuse me, could you take a photo of us with the view behind?",
+          "korean": "실례합니다, 뒤에 풍경이 나오게 저희 사진 좀 찍어주시겠어요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "사진 촬영 부탁에 응답하세요.",
+        "choices": [
+          {
+            "text": "Of course! Say cheese! Ready? One, two, three!",
+            "correct": true,
+            "feedback": "완벽해요! 친절하게 사진을 찍어주는 표현입니다."
+          },
+          {
+            "text": "Sure, no problem. Should I take a few shots?",
+            "correct": true,
+            "feedback": "좋아요! 여러 장 찍어줄지 물어보는 세심한 표현이에요."
+          },
+          {
+            "text": "No, I'm too busy.",
+            "correct": false,
+            "feedback": "관광지에서 사진을 찍어달라는 부탁은 흔해요. 친절하게 도와주세요."
+          },
+          {
+            "text": "Only if you pay me.",
+            "correct": false,
+            "feedback": "사진 촬영 부탁은 무료 호의예요. 돈을 요구하는 것은 적절하지 않습니다."
+          }
+        ]
+      }
+    },
+    {
+      "day": 4,
+      "location": "파리 카페",
+      "city": "파리",
+      "situation": "아침에 유명한 파리 카페에 들어가 주문하려고 합니다.",
+      "dialogues": [
+        {
+          "speaker": "waiter",
+          "english": "Bonjour! What can I get for you today?",
+          "korean": "안녕하세요! 오늘 뭘로 드릴까요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "카페에서 주문하세요.",
+        "choices": [
+          {
+            "text": "I'd like a croissant and a café au lait, please.",
+            "correct": true,
+            "feedback": "완벽해요! 프랑스 카페에서 크루아상과 카페오레는 클래식한 조합이에요."
+          },
+          {
+            "text": "Can I have a coffee and a pastry, please?",
+            "correct": true,
+            "feedback": "좋아요! 간단하고 명확한 주문입니다."
+          },
+          {
+            "text": "I want kimchi jjigae.",
+            "correct": false,
+            "feedback": "프랑스 카페에서는 한식을 판매하지 않아요. 메뉴에 있는 것을 주문하세요."
+          },
+          {
+            "text": "Just water. I don't want to spend money.",
+            "correct": false,
+            "feedback": "프랑스 카페에서는 뭔가를 주문하는 것이 예의예요. 커피 한 잔이라도 주문해보세요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "location": "루브르 박물관 입구",
+      "city": "파리",
+      "situation": "루브르 박물관에 도착했습니다. 안내 직원에게 정보를 물어봅니다.",
+      "dialogues": [
+        {
+          "speaker": "staff",
+          "english": "Welcome to the Louvre! Would you like an audio guide? It's available in Korean.",
+          "korean": "루브르에 오신 것을 환영합니다! 오디오 가이드를 원하시나요? 한국어로 이용 가능합니다."
+        }
+      ],
+      "playerResponse": {
+        "prompt": "오디오 가이드에 대해 응답하세요.",
+        "choices": [
+          {
+            "text": "Yes, please! A Korean audio guide would be great.",
+            "correct": true,
+            "feedback": "좋아요! 한국어 오디오 가이드를 사용하면 작품을 더 잘 이해할 수 있어요."
+          },
+          {
+            "text": "How much is the audio guide?",
+            "correct": true,
+            "feedback": "좋아요! 가격을 먼저 확인하는 것도 현명한 선택이에요."
+          },
+          {
+            "text": "No, I already know everything about art.",
+            "correct": false,
+            "feedback": "루브르 박물관은 방대해서 오디오 가이드가 도움이 많이 돼요."
+          },
+          {
+            "text": "I don't want to go inside.",
+            "correct": false,
+            "feedback": "이미 박물관에 왔으니 들어가서 작품을 감상해보세요!"
+          }
+        ]
+      }
+    },
+    {
+      "day": 5,
+      "location": "루브르 박물관 내부",
+      "city": "파리",
+      "situation": "모나리자 앞에서 관광객이 말을 걸어옵니다.",
+      "dialogues": [
+        {
+          "speaker": "tourist",
+          "english": "The Mona Lisa is smaller than I expected! What do you think?",
+          "korean": "모나리자가 생각보다 작네요! 어떻게 생각하세요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "관광객과 모나리자에 대해 대화하세요.",
+        "choices": [
+          {
+            "text": "I agree! But it's still amazing to see it in person.",
+            "correct": true,
+            "feedback": "완벽해요! 공감하면서 자신의 감상을 표현했습니다."
+          },
+          {
+            "text": "Yes, it is! But the detail is incredible up close.",
+            "correct": true,
+            "feedback": "좋아요! 실물의 디테일에 감탄하는 자연스러운 대화예요."
+          },
+          {
+            "text": "I don't care about paintings.",
+            "correct": false,
+            "feedback": "박물관에서 그림에 관심없다고 하면 대화가 끊겨요. 간단한 감상이라도 나눠보세요."
+          },
+          {
+            "text": "What is Mona Lisa?",
+            "correct": false,
+            "feedback": "모나리자는 레오나르도 다빈치의 세계적으로 유명한 걸작이에요!"
+          }
+        ]
+      }
+    },
+    {
+      "day": 6,
+      "location": "파리 레스토랑",
+      "city": "파리",
+      "situation": "저녁 식사를 위해 프랑스 레스토랑에 들어갑니다. 직원이 인원수를 물어봅니다.",
+      "dialogues": [
+        {
+          "speaker": "host",
+          "english": "Good evening. How many in your party?",
+          "korean": "좋은 저녁이에요. 몇 분이세요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "인원수를 알려주세요.",
+        "choices": [
+          {
+            "text": "Just one, please. A table for one.",
+            "correct": true,
+            "feedback": "완벽해요! 혼자라고 명확하게 말했습니다. 혼밥도 괜찮아요!"
+          },
+          {
+            "text": "Table for one, please. Do you have a menu in English?",
+            "correct": true,
+            "feedback": "좋아요! 영어 메뉴가 있는지도 미리 물어보는 센스!"
+          },
+          {
+            "text": "I want the biggest table you have.",
+            "correct": false,
+            "feedback": "혼자인데 가장 큰 테이블을 요구하는 것은 적절하지 않아요."
+          },
+          {
+            "text": "How many people work here?",
+            "correct": false,
+            "feedback": "직원 수를 묻는 게 아니라 자신의 인원수를 알려줘야 해요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 6,
+      "location": "파리 레스토랑",
+      "city": "파리",
+      "situation": "메뉴를 받았지만 프랑스어로 되어있어 잘 모르겠습니다. 웨이터에게 추천을 부탁합니다.",
+      "dialogues": [
+        {
+          "speaker": "waiter",
+          "english": "Are you ready to order, or would you like some recommendations?",
+          "korean": "주문하시겠어요, 아니면 추천을 원하시나요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "주문하거나 추천을 요청하세요.",
+        "choices": [
+          {
+            "text": "Could you recommend something? What's the most popular dish?",
+            "correct": true,
+            "feedback": "완벽해요! 현지 인기 메뉴를 추천받는 것은 좋은 방법이에요."
+          },
+          {
+            "text": "I'd like to try a traditional French dish. What do you suggest?",
+            "correct": true,
+            "feedback": "좋아요! 전통 프랑스 요리를 요청하는 훌륭한 표현입니다."
+          },
+          {
+            "text": "I'll just have water.",
+            "correct": false,
+            "feedback": "레스토랑에서 물만 주문하는 것은 예의에 어긋나요. 메뉴 하나는 주문하세요."
+          },
+          {
+            "text": "I can read French perfectly.",
+            "correct": false,
+            "feedback": "읽을 수 없다면 솔직하게 도움을 요청하는 것이 좋아요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 7,
+      "location": "몽마르뜨 언덕",
+      "city": "파리",
+      "situation": "몽마르뜨 언덕에서 길을 잃었습니다. 지나가는 사람에게 길을 물어봅니다.",
+      "dialogues": [
+        {
+          "speaker": "player",
+          "english": "(You need to ask for directions to Sacré-Cœur.)",
+          "korean": "(사크레쾨르 대성당으로 가는 길을 물어야 합니다.)"
+        },
+        {
+          "speaker": "local",
+          "english": "Hi there! You look a bit lost. Can I help?",
+          "korean": "안녕하세요! 좀 헤매시는 것 같은데, 도와드릴까요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "사크레쾨르 대성당으로 가는 길을 물어보세요.",
+        "choices": [
+          {
+            "text": "Yes, please! How do I get to Sacré-Cœur from here?",
+            "correct": true,
+            "feedback": "완벽해요! 'How do I get to ~'는 길을 물을 때 가장 기본적인 표현이에요."
+          },
+          {
+            "text": "Could you point me to Sacré-Cœur? I think I'm lost.",
+            "correct": true,
+            "feedback": "좋아요! 길을 잃었다고 솔직하게 말하며 도움을 요청했습니다."
+          },
+          {
+            "text": "I'm not lost. I know exactly where I am.",
+            "correct": false,
+            "feedback": "길을 잃었다면 솔직하게 도움을 요청하는 것이 좋아요."
+          },
+          {
+            "text": "Take me there right now.",
+            "correct": false,
+            "feedback": "명령조는 무례해요. 길을 알려달라고 정중하게 물어보세요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 8,
+      "location": "파리 지하철역",
+      "city": "파리",
+      "situation": "파리 메트로를 처음 이용합니다. 티켓 구매가 필요합니다.",
+      "dialogues": [
+        {
+          "speaker": "staff",
+          "english": "Hello! Do you need help with the ticket machine?",
+          "korean": "안녕하세요! 티켓 발매기 사용에 도움이 필요하신가요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "지하철 티켓 구매에 대해 도움을 요청하세요.",
+        "choices": [
+          {
+            "text": "Yes, please. How do I buy a single ticket to the Champs-Élysées?",
+            "correct": true,
+            "feedback": "완벽해요! 목적지를 말하며 티켓 구매 방법을 물었습니다."
+          },
+          {
+            "text": "Can you show me how to use this machine? I'd like to go to the city center.",
+            "correct": true,
+            "feedback": "좋아요! 기계 사용법을 배우려는 적극적인 자세입니다."
+          },
+          {
+            "text": "No, I know everything about the Paris metro.",
+            "correct": false,
+            "feedback": "처음 이용하는데 도움을 거절하면 불편할 수 있어요. 모르면 물어보세요."
+          },
+          {
+            "text": "I'll just walk. The metro looks scary.",
+            "correct": false,
+            "feedback": "파리 메트로는 편리한 교통수단이에요. 한번 이용해보세요!"
+          }
+        ]
+      }
+    },
+    {
+      "day": 8,
+      "location": "샹젤리제 거리",
+      "city": "파리",
+      "situation": "샹젤리제 거리를 걷다가 기념품 가게에 들어갑니다.",
+      "dialogues": [
+        {
+          "speaker": "shopkeeper",
+          "english": "Welcome! Are you looking for something special? We have many Paris souvenirs.",
+          "korean": "어서오세요! 특별히 찾으시는 것이 있나요? 파리 기념품이 많아요."
+        }
+      ],
+      "playerResponse": {
+        "prompt": "기념품을 구매하려고 응답하세요.",
+        "choices": [
+          {
+            "text": "Yes, I'm looking for some souvenirs for my family. What do you recommend?",
+            "correct": true,
+            "feedback": "완벽해요! 가족 선물을 위한 추천을 요청하는 좋은 표현이에요."
+          },
+          {
+            "text": "Do you have any Eiffel Tower keychains or magnets?",
+            "correct": true,
+            "feedback": "좋아요! 구체적으로 원하는 기념품을 말했습니다."
+          },
+          {
+            "text": "Everything is too expensive here.",
+            "correct": false,
+            "feedback": "가격을 확인하기도 전에 비싸다고 하면 실례예요. 먼저 둘러보세요."
+          },
+          {
+            "text": "I'm just hiding from the rain.",
+            "correct": false,
+            "feedback": "가게에 들어갔으면 물건을 구경하는 것이 예의에요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 9,
+      "location": "베르사유 궁전 입구",
+      "city": "베르사유",
+      "situation": "베르사유 궁전을 방문합니다. 매표소에서 티켓을 구매하려고 합니다.",
+      "dialogues": [
+        {
+          "speaker": "staff",
+          "english": "Welcome to the Palace of Versailles! Would you like a ticket for the palace only or the palace with gardens?",
+          "korean": "베르사유 궁전에 오신 것을 환영합니다! 궁전만 입장권을 원하시나요, 아니면 정원 포함 입장권을 원하시나요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "티켓 종류를 선택하세요.",
+        "choices": [
+          {
+            "text": "I'd like the palace with gardens, please. How much is it?",
+            "correct": true,
+            "feedback": "완벽해요! 정원 포함 티켓을 선택하고 가격도 확인했습니다."
+          },
+          {
+            "text": "One ticket for both, please. The gardens look beautiful.",
+            "correct": true,
+            "feedback": "좋아요! 베르사유 정원은 꼭 봐야 할 명소예요."
+          },
+          {
+            "text": "I don't want to pay. Can I just look from outside?",
+            "correct": false,
+            "feedback": "밖에서도 볼 수 있지만, 안에 들어가면 훨씬 멋진 경험을 할 수 있어요."
+          },
+          {
+            "text": "Can I live here?",
+            "correct": false,
+            "feedback": "궁전에서 살 수는 없어요! 입장권을 구매해서 관람하세요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 10,
+      "location": "파리 빵집 (불랑제리)",
+      "city": "파리",
+      "situation": "동네 빵집에 들어가 바게트를 사려고 합니다.",
+      "dialogues": [
+        {
+          "speaker": "baker",
+          "english": "Bonjour! What would you like today? Our baguettes are fresh out of the oven.",
+          "korean": "안녕하세요! 오늘 뭘 드릴까요? 바게트가 막 구워졌어요."
+        }
+      ],
+      "playerResponse": {
+        "prompt": "빵을 주문하세요.",
+        "choices": [
+          {
+            "text": "One baguette, please. And what kind of pastries do you have?",
+            "correct": true,
+            "feedback": "완벽해요! 바게트를 주문하고 다른 빵도 물어봤습니다."
+          },
+          {
+            "text": "I'll take a fresh baguette and two croissants, please.",
+            "correct": true,
+            "feedback": "좋아요! 구체적으로 원하는 것을 주문했습니다."
+          },
+          {
+            "text": "I only eat rice. Do you have rice?",
+            "correct": false,
+            "feedback": "프랑스 빵집에서는 빵을 판매해요. 현지 음식을 즐겨보세요!"
+          },
+          {
+            "text": "Can I have all the bread for free?",
+            "correct": false,
+            "feedback": "무료로 달라는 것은 적절하지 않아요. 돈을 내고 구매하세요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 10,
+      "location": "세느강 유람선 선착장",
+      "city": "파리",
+      "situation": "세느강 유람선을 타려고 합니다. 매표소 직원과 대화합니다.",
+      "dialogues": [
+        {
+          "speaker": "staff",
+          "english": "Hello! We have a one-hour cruise for 15 euros and a dinner cruise for 70 euros. Which one would you prefer?",
+          "korean": "안녕하세요! 1시간 유람 15유로, 디너 크루즈 70유로가 있습니다. 어떤 것을 원하시나요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "유람선 코스를 선택하세요.",
+        "choices": [
+          {
+            "text": "The one-hour cruise sounds perfect. One ticket, please.",
+            "correct": true,
+            "feedback": "좋아요! 예산에 맞는 합리적인 선택이에요."
+          },
+          {
+            "text": "What time does the next one-hour cruise depart?",
+            "correct": true,
+            "feedback": "좋아요! 출발 시간을 확인하는 것은 중요합니다."
+          },
+          {
+            "text": "70 euros for dinner? That's a scam!",
+            "correct": false,
+            "feedback": "디너 크루즈는 식사가 포함된 가격이에요. 사기라고 하면 실례입니다."
+          },
+          {
+            "text": "Can I drive the boat myself?",
+            "correct": false,
+            "feedback": "유람선을 직접 운전할 수는 없어요! 승객으로 즐기세요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 11,
+      "location": "파리 약국",
+      "city": "파리",
+      "situation": "여행 중 두통이 생겨서 약국에 방문합니다.",
+      "dialogues": [
+        {
+          "speaker": "pharmacist",
+          "english": "Hello, how can I help you? Are you feeling unwell?",
+          "korean": "안녕하세요, 어떻게 도와드릴까요? 몸이 안 좋으세요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "증상을 설명하고 약을 요청하세요.",
+        "choices": [
+          {
+            "text": "I have a headache. Do you have any pain relievers?",
+            "correct": true,
+            "feedback": "완벽해요! 증상을 설명하고 진통제를 요청했습니다."
+          },
+          {
+            "text": "I've had a headache since this morning. Can you recommend something?",
+            "correct": true,
+            "feedback": "좋아요! 증상의 시작 시점까지 설명하며 추천을 요청했습니다."
+          },
+          {
+            "text": "I'm dying! Call an ambulance!",
+            "correct": false,
+            "feedback": "두통 정도라면 과장하지 마세요. 약국에서 약을 구매하면 됩니다."
+          },
+          {
+            "text": "I don't know what's wrong with me.",
+            "correct": false,
+            "feedback": "증상을 구체적으로 말해야 약사가 적절한 약을 추천해줄 수 있어요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 11,
+      "location": "노트르담 대성당 주변",
+      "city": "파리",
+      "situation": "노트르담 대성당 근처에서 현지 가이드가 투어를 안내합니다.",
+      "dialogues": [
+        {
+          "speaker": "guide",
+          "english": "We offer a walking tour of the area for 20 euros. It takes about two hours. Would you like to join?",
+          "korean": "이 지역 워킹 투어를 20유로에 제공합니다. 약 2시간 소요됩니다. 참여하시겠어요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "워킹 투어 참여 여부를 결정하세요.",
+        "choices": [
+          {
+            "text": "That sounds great! I'd love to join the tour.",
+            "correct": true,
+            "feedback": "완벽해요! 현지 가이드 투어는 역사와 문화를 배우기 좋은 방법이에요."
+          },
+          {
+            "text": "What does the tour include? Are there any famous spots nearby?",
+            "correct": true,
+            "feedback": "좋아요! 투어 내용을 미리 확인하는 것은 현명해요."
+          },
+          {
+            "text": "20 euros? I can just use my phone to look things up.",
+            "correct": false,
+            "feedback": "가이드 투어는 폰 검색과는 다른 깊은 정보를 제공해요. 가격을 따지기보다 경험을 생각해보세요."
+          },
+          {
+            "text": "Two hours is too long. Make it 30 minutes.",
+            "correct": false,
+            "feedback": "투어 시간을 줄여달라고 요구하는 것은 적절하지 않아요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 12,
+      "location": "갤러리 라파예트 백화점",
+      "city": "파리",
+      "situation": "파리의 유명 백화점에서 쇼핑을 합니다. 향수를 사려고 합니다.",
+      "dialogues": [
+        {
+          "speaker": "sales_staff",
+          "english": "Welcome! Are you looking for a particular fragrance, or would you like to try some of our bestsellers?",
+          "korean": "어서오세요! 특정 향수를 찾으시나요, 아니면 베스트셀러를 시향해보시겠어요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "향수 쇼핑에 대해 응답하세요.",
+        "choices": [
+          {
+            "text": "I'd like to try some bestsellers, please. I'm looking for a gift.",
+            "correct": true,
+            "feedback": "완벽해요! 선물용이라고 말하면 직원이 적절한 추천을 해줄 수 있어요."
+          },
+          {
+            "text": "Can you recommend a light floral scent? It's for my mother.",
+            "correct": true,
+            "feedback": "좋아요! 구체적인 향과 선물 대상을 말하면 더 좋은 추천을 받을 수 있어요."
+          },
+          {
+            "text": "I'll take the most expensive one.",
+            "correct": false,
+            "feedback": "가격만 보고 선택하기보다 향을 직접 맡아보고 고르는 것이 좋아요."
+          },
+          {
+            "text": "Perfume is a waste of money.",
+            "correct": false,
+            "feedback": "향수 매장에서 이런 말은 실례예요. 관심이 없다면 다른 매장을 방문하세요."
+          }
+        ]
+      }
+    },
+    {
+      "day": 12,
+      "location": "갤러리 라파예트 백화점 계산대",
+      "city": "파리",
+      "situation": "향수를 골라서 계산하려고 합니다. 면세 혜택에 대해 물어봅니다.",
+      "dialogues": [
+        {
+          "speaker": "cashier",
+          "english": "That will be 85 euros. Would you like to pay by card or cash?",
+          "korean": "85유로입니다. 카드로 결제하시겠어요, 현금으로 하시겠어요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "결제 방법을 선택하고 면세에 대해 물어보세요.",
+        "choices": [
+          {
+            "text": "By card, please. Also, can I get a tax refund form? I'm a tourist.",
+            "correct": true,
+            "feedback": "완벽해요! 관광객은 면세 환급을 받을 수 있으니 꼭 물어보세요."
+          },
+          {
+            "text": "I'll pay by card. Is tax-free shopping available for tourists?",
+            "correct": true,
+            "feedback": "좋아요! 면세 쇼핑 가능 여부를 확인하는 현명한 질문이에요."
+          },
+          {
+            "text": "That's too expensive. Give me a discount.",
+            "correct": false,
+            "feedback": "백화점에서는 보통 할인 협상이 어려워요. 면세 환급을 활용하세요."
+          },
+          {
+            "text": "I changed my mind. I don't want it.",
+            "correct": false,
+            "feedback": "이미 골랐다면 구매하는 것이 좋아요. 면세 혜택도 받을 수 있습니다."
+          }
+        ]
+      }
+    },
+    {
+      "day": 13,
+      "location": "호텔 프론트 데스크",
+      "city": "파리",
+      "situation": "내일 출발을 앞두고 체크아웃 시간과 공항 교통편에 대해 문의합니다.",
+      "dialogues": [
+        {
+          "speaker": "receptionist",
+          "english": "Good evening! Is there anything I can help you with for your departure tomorrow?",
+          "korean": "좋은 저녁이에요! 내일 출발에 대해 도움이 필요하신 것이 있나요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "체크아웃과 공항 교통편에 대해 물어보세요.",
+        "choices": [
+          {
+            "text": "Yes, what time is check-out? And could you arrange a taxi to the airport?",
+            "correct": true,
+            "feedback": "완벽해요! 체크아웃 시간과 공항 택시를 한 번에 요청했습니다."
+          },
+          {
+            "text": "Can I get a late check-out tomorrow? My flight is in the evening.",
+            "correct": true,
+            "feedback": "좋아요! 늦은 비행 시간에 맞춰 레이트 체크아웃을 요청하는 좋은 판단이에요."
+          },
+          {
+            "text": "I'm never leaving. I love Paris too much.",
+            "correct": false,
+            "feedback": "파리가 좋은 건 알지만, 예약된 일정에 맞춰 체크아웃해야 해요!"
+          },
+          {
+            "text": "I forgot when my flight is.",
+            "correct": false,
+            "feedback": "비행 시간은 미리 확인해두세요. 스마트폰에 일정을 저장해두면 편리합니다."
+          }
+        ]
+      }
+    },
+    {
+      "day": 14,
+      "location": "호텔 프론트 데스크",
+      "city": "파리",
+      "situation": "체크아웃 날입니다. 프론트에서 체크아웃 절차를 밟습니다.",
+      "dialogues": [
+        {
+          "speaker": "receptionist",
+          "english": "Good morning! Are you checking out today? How was your stay?",
+          "korean": "좋은 아침이에요! 오늘 체크아웃하시나요? 숙박은 어떠셨어요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "체크아웃하며 숙박 소감을 말하세요.",
+        "choices": [
+          {
+            "text": "Yes, I'm checking out. The stay was wonderful, thank you!",
+            "correct": true,
+            "feedback": "완벽해요! 감사를 표하며 체크아웃하는 좋은 표현이에요."
+          },
+          {
+            "text": "I had a great time. The room and service were excellent.",
+            "correct": true,
+            "feedback": "좋아요! 구체적으로 칭찬하면 직원도 기분이 좋아져요."
+          },
+          {
+            "text": "The room was terrible and I want my money back.",
+            "correct": false,
+            "feedback": "불만이 있었다면 숙박 중에 말했어야 해요. 체크아웃 시 갑자기 환불을 요구하면 어려울 수 있습니다."
+          },
+          {
+            "text": "I don't want to leave.",
+            "correct": false,
+            "feedback": "아쉽지만 체크아웃 시간에 맞춰 나가야 해요. 다음에 또 방문하세요!"
+          }
+        ]
+      }
+    },
+    {
+      "day": 14,
+      "location": "샤를 드 골 공항 면세점",
+      "city": "파리",
+      "situation": "출국 전 공항 면세점에서 마지막 쇼핑을 합니다.",
+      "dialogues": [
+        {
+          "speaker": "staff",
+          "english": "Hi! We have a special promotion on French chocolates today. Would you like to try a sample?",
+          "korean": "안녕하세요! 오늘 프랑스 초콜릿 특별 프로모션이 있어요. 시식해보시겠어요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "면세점 쇼핑에 대해 응답하세요.",
+        "choices": [
+          {
+            "text": "Yes, I'd love to try! I'm looking for some gifts to bring home.",
+            "correct": true,
+            "feedback": "완벽해요! 시식을 하고 선물용으로 구매하는 것은 면세점 활용의 좋은 방법이에요."
+          },
+          {
+            "text": "Sure! How much are they? I need souvenirs for my friends.",
+            "correct": true,
+            "feedback": "좋아요! 가격을 확인하고 친구들 선물을 사는 센스!"
+          },
+          {
+            "text": "No, I hate chocolate.",
+            "correct": false,
+            "feedback": "시식을 거절할 수 있지만, 'No, thank you.'라고 정중하게 말하세요."
+          },
+          {
+            "text": "I already spent all my money.",
+            "correct": false,
+            "feedback": "면세점은 시내보다 저렴할 수 있어요. 예산을 남겨두면 좋습니다."
+          }
+        ]
+      }
+    },
+    {
+      "day": 14,
+      "location": "샤를 드 골 공항 탑승구",
+      "city": "파리",
+      "situation": "서울행 비행기 탑승을 기다리고 있습니다. 옆에 앉은 프랑스 사람이 말을 걸어옵니다.",
+      "dialogues": [
+        {
+          "speaker": "french_passenger",
+          "english": "Are you heading back to Seoul? How did you enjoy Paris?",
+          "korean": "서울로 돌아가시나요? 파리는 즐거우셨어요?"
+        }
+      ],
+      "playerResponse": {
+        "prompt": "파리 여행 소감을 나누세요.",
+        "choices": [
+          {
+            "text": "Yes! I loved Paris. The food, the sights, everything was amazing.",
+            "correct": true,
+            "feedback": "완벽해요! 여행 소감을 열정적으로 공유했습니다."
+          },
+          {
+            "text": "It was a wonderful trip! I especially loved the Eiffel Tower and the Louvre.",
+            "correct": true,
+            "feedback": "좋아요! 구체적인 장소를 언급하며 즐거웠다고 말했습니다."
+          },
+          {
+            "text": "Paris was okay, I guess.",
+            "correct": false,
+            "feedback": "좀 더 긍정적으로 표현해보세요. 여행의 좋은 점을 나누면 대화가 풍성해져요."
+          },
+          {
+            "text": "I don't want to talk about it.",
+            "correct": false,
+            "feedback": "여행 소감을 나누는 것은 좋은 대화 주제예요. 열린 마음으로 이야기해보세요."
+          }
+        ]
+      }
+    }
+  ]
+}

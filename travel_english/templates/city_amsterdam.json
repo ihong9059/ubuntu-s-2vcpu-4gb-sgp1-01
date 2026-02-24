@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "amsterdam",
+  "cityName": "암스테르담",
+  "country": "네덜란드",
+  "description": "암스테르담만의 특색 있는 관광지와 문화",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_AMS_001",
+      "category": "museum",
+      "day": 3,
+      "location": "반 고흐 미술관",
+      "situation": "반 고흐 미술관 입장",
+      "npcDialog": "Welcome to the Van Gogh Museum. Would you like an audio guide?",
+      "npcDialogKo": "반 고흐 미술관에 오신 것을 환영합니다. 오디오 가이드 원하세요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Yes, do you have one in Korean?", "correct": true},
+          {"text": "Which floor has 'Sunflowers' and 'The Bedroom'?", "correct": true},
+          {"text": "I don't care about Van Gogh.", "correct": false},
+          {"text": "Art museums are boring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_002",
+      "category": "museum",
+      "day": 4,
+      "location": "안네 프랑크의 집",
+      "situation": "안네 프랑크의 집 방문",
+      "npcDialog": "Photography is not allowed inside. Please keep your voice down.",
+      "npcDialogKo": "내부 사진 촬영은 금지되어 있어요. 조용히 해주세요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I understand. How long is the tour?", "correct": true},
+          {"text": "Of course. Where was Anne's room?", "correct": true},
+          {"text": "I want to take pictures.", "correct": false},
+          {"text": "Why can't I use my phone?", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_003",
+      "category": "activity",
+      "day": 3,
+      "location": "운하",
+      "situation": "운하 크루즈 탑승",
+      "npcDialog": "Welcome aboard! The canal cruise is about one hour.",
+      "npcDialogKo": "승선을 환영합니다! 운하 크루즈는 약 1시간이에요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Great! Is there commentary in English?", "correct": true},
+          {"text": "Can we sit outside on the upper deck?", "correct": true},
+          {"text": "One hour is too long.", "correct": false},
+          {"text": "I don't like boats.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_004",
+      "category": "transport",
+      "day": 2,
+      "location": "자전거 대여소",
+      "situation": "자전거 대여하기",
+      "npcDialog": "Biking is the best way to see Amsterdam! Which size do you need?",
+      "npcDialogKo": "자전거가 암스테르담 구경하는 최고의 방법이에요! 어떤 사이즈 필요하세요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Medium, please. Do you have a bike lane map?", "correct": true},
+          {"text": "Is there a helmet? I'm not used to cycling in traffic.", "correct": true},
+          {"text": "Biking is dangerous.", "correct": false},
+          {"text": "I'll just walk.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_005",
+      "category": "activity",
+      "day": 5,
+      "location": "잔세스칸스",
+      "situation": "풍차 마을 방문",
+      "npcDialog": "Welcome to Zaanse Schans! Would you like to see inside a working windmill?",
+      "npcDialogKo": "잔세스칸스에 오신 것을 환영해요! 작동하는 풍차 내부를 보시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Yes! How do they work?", "correct": true},
+          {"text": "That sounds fascinating! Is it included in the ticket?", "correct": true},
+          {"text": "Windmills are boring.", "correct": false},
+          {"text": "I've seen enough windmills in photos.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_006",
+      "category": "shopping",
+      "day": 5,
+      "location": "치즈 가게",
+      "situation": "네덜란드 치즈 시식/구매",
+      "npcDialog": "Would you like to try some Gouda? We have aged and young varieties.",
+      "npcDialogKo": "고다 치즈 드셔보시겠어요? 숙성과 생치즈 종류가 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Yes please! What's the difference in taste?", "correct": true},
+          {"text": "Can I try the aged one? How old is it?", "correct": true},
+          {"text": "I don't eat cheese.", "correct": false},
+          {"text": "Cheese is overrated.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_007",
+      "category": "activity",
+      "day": 6,
+      "location": "큐켄호프",
+      "situation": "튤립 농장/공원 방문",
+      "npcDialog": "The tulips are in full bloom! Camera ready?",
+      "npcDialogKo": "튤립이 만개했어요! 카메라 준비하셨어요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "This is so beautiful! Which area has the most colorful tulips?", "correct": true},
+          {"text": "Amazing! Can I buy tulip bulbs to take home?", "correct": true},
+          {"text": "Flowers are boring.", "correct": false},
+          {"text": "They're just flowers.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_008",
+      "category": "activity",
+      "day": 4,
+      "location": "하이네켄 체험관",
+      "situation": "하이네켄 체험관 방문",
+      "npcDialog": "Welcome to the Heineken Experience! The tour includes two beers at the end.",
+      "npcDialogKo": "하이네켄 체험관에 오신 것을 환영해요! 투어 끝에 맥주 2잔이 포함되어 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Perfect! How long is the tour?", "correct": true},
+          {"text": "Great! Is there a brewing demonstration?", "correct": true},
+          {"text": "I don't drink beer.", "correct": false},
+          {"text": "Beer factories are boring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_009",
+      "category": "information",
+      "day": 2,
+      "location": "레드라이트 지구",
+      "situation": "레드라이트 지구 안내",
+      "npcDialog": "This is the Red Light District. Photography of the windows is not allowed.",
+      "npcDialogKo": "여기는 레드라이트 지구예요. 창문 사진 촬영은 금지되어 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I understand. Is it safe to walk around here?", "correct": true},
+          {"text": "What's the history of this area?", "correct": true},
+          {"text": "I want to take pictures anyway.", "correct": false},
+          {"text": "Rules don't apply to tourists.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_010",
+      "category": "culture",
+      "day": 3,
+      "location": "커피숍",
+      "situation": "네덜란드 커피숍 문화 설명",
+      "npcDialog": "This is a coffee shop, not a regular cafe. Do you know the difference?",
+      "npcDialogKo": "여기는 커피숍이에요, 일반 카페가 아니에요. 차이점 아세요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Oh, I heard about Dutch coffee shops. Can I just have a coffee?", "correct": true},
+          {"text": "I'm just looking around. Is it legal here?", "correct": true},
+          {"text": "I want everything.", "correct": false},
+          {"text": "Laws don't matter.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_011",
+      "category": "transport",
+      "day": 2,
+      "location": "트램 정류장",
+      "situation": "트램 이용하기",
+      "npcDialog": "You can buy a ticket from the machine or tap your card on board.",
+      "npcDialogKo": "기계에서 표를 사거나 탑승 시 카드를 탭하면 돼요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Which tram goes to Museumplein?", "correct": true},
+          {"text": "Can I use the same ticket for multiple trams?", "correct": true},
+          {"text": "I'll ride without paying.", "correct": false},
+          {"text": "Trams are too slow.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_012",
+      "category": "activity",
+      "day": 2,
+      "location": "관광안내소",
+      "situation": "I amsterdam City Card 구매",
+      "npcDialog": "The I amsterdam City Card includes free public transport and museum entries.",
+      "npcDialogKo": "I amsterdam 시티 카드에는 무료 교통과 박물관 입장이 포함되어 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "That sounds great! How many days should I get?", "correct": true},
+          {"text": "Which museums are included?", "correct": true},
+          {"text": "That's too expensive.", "correct": false},
+          {"text": "I don't need a card.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_013",
+      "category": "shopping",
+      "day": 7,
+      "location": "꽃시장",
+      "situation": "꽃시장(Bloemenmarkt) 방문",
+      "npcDialog": "Looking for tulip bulbs? We ship worldwide!",
+      "npcDialogKo": "튤립 구근 찾으세요? 전 세계 배송 가능해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Can I bring bulbs into Korea?", "correct": true},
+          {"text": "Which ones bloom in spring?", "correct": true},
+          {"text": "I don't care about flowers.", "correct": false},
+          {"text": "Flowers die anyway.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_014",
+      "category": "food",
+      "day": 4,
+      "location": "전통 레스토랑",
+      "situation": "네덜란드 전통음식 주문",
+      "npcDialog": "Would you like to try some traditional Dutch food?",
+      "npcDialogKo": "네덜란드 전통 음식 드셔보시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Yes! What's a typical Dutch dish?", "correct": true},
+          {"text": "What's stamppot? Is it good?", "correct": true},
+          {"text": "I only eat Korean food.", "correct": false},
+          {"text": "Dutch food sounds boring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_015",
+      "category": "food",
+      "day": 3,
+      "location": "길거리 포장마차",
+      "situation": "헤링(청어) 먹어보기",
+      "npcDialog": "Want to try raw herring the Dutch way? Hold it by the tail!",
+      "npcDialogKo": "네덜란드식으로 생청어 드셔보실래요? 꼬리를 잡고 먹어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Sure! Is this how locals eat it?", "correct": true},
+          {"text": "I'll try it! Any tips for a first-timer?", "correct": true},
+          {"text": "Raw fish is disgusting.", "correct": false},
+          {"text": "That looks gross.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_016",
+      "category": "shopping",
+      "day": 6,
+      "location": "와플 가게",
+      "situation": "스트롭와플 구매",
+      "npcDialog": "Fresh stroopwafel! Place it on your hot coffee to warm the syrup.",
+      "npcDialogKo": "갓 구운 스트롭와플이에요! 뜨거운 커피 위에 올려 시럽을 녹이세요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Delicious! Can I buy a box to take home?", "correct": true},
+          {"text": "Smells amazing! Are these made fresh?", "correct": true},
+          {"text": "Waffles are too sweet.", "correct": false},
+          {"text": "I don't eat sweets.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_017",
+      "category": "activity",
+      "day": 5,
+      "location": "다이아몬드 공장",
+      "situation": "다이아몬드 공장 견학",
+      "npcDialog": "Welcome to the diamond factory! Would you like to see how we cut diamonds?",
+      "npcDialogKo": "다이아몬드 공장에 오신 것을 환영해요! 다이아몬드 커팅 과정 보시겠어요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Yes! Why is Amsterdam famous for diamonds?", "correct": true},
+          {"text": "That sounds interesting! How long does cutting take?", "correct": true},
+          {"text": "Diamonds are overpriced.", "correct": false},
+          {"text": "This is just a sales pitch.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_018",
+      "category": "sightseeing",
+      "day": 6,
+      "location": "요르단 지구",
+      "situation": "요르단 지구(Jordaan) 탐방",
+      "npcDialog": "This is the Jordaan neighborhood. It's known for its cozy cafes and boutiques.",
+      "npcDialogKo": "여기는 요르단 지역이에요. 아늑한 카페와 부티크로 유명해요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "It's so charming! Any local recommendations?", "correct": true},
+          {"text": "What's the best street to explore here?", "correct": true},
+          {"text": "Old neighborhoods are all the same.", "correct": false},
+          {"text": "I prefer modern areas.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_019",
+      "category": "sightseeing",
+      "day": 2,
+      "location": "담 광장",
+      "situation": "담 광장(Dam Square) 관광",
+      "npcDialog": "This is Dam Square, the heart of Amsterdam. That's the Royal Palace.",
+      "npcDialogKo": "여기가 암스테르담의 중심인 담 광장이에요. 저기가 왕궁이에요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Can we go inside the palace?", "correct": true},
+          {"text": "What's the history of this square?", "correct": true},
+          {"text": "It's just a square.", "correct": false},
+          {"text": "I've seen better palaces.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_AMS_020",
+      "category": "food",
+      "day": 7,
+      "location": "맥주 펍",
+      "situation": "네덜란드 맥주 주문",
+      "npcDialog": "What can I get you? We have local Dutch beers on tap.",
+      "npcDialogKo": "뭘 드릴까요? 현지 네덜란드 맥주가 생맥주로 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "What local beers do you recommend?", "correct": true},
+          {"text": "I'll try a small glass of your best Dutch beer.", "correct": true},
+          {"text": "I only drink imported beer.", "correct": false},
+          {"text": "Dutch beer is probably bad.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,2329 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Travel Guide - 세계 여행 가이드</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .stat-item span {
+            font-weight: bold;
+            color: #fbbf24;
+        }
+
+        #map {
+            height: 400px;
+            width: 100%;
+            border-bottom: 3px solid #7c3aed;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Tabs for region/country selection */
+        .tab-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: #1e293b;
+            border: 2px solid #334155;
+            color: #94a3b8;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .tab-btn:hover {
+            border-color: #7c3aed;
+            color: #e2e8f0;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            border-color: #7c3aed;
+            color: white;
+        }
+
+        /* Airport list */
+        .airport-section {
+            margin-bottom: 30px;
+        }
+
+        .airport-section h2 {
+            color: #7c3aed;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 10px;
+        }
+
+        .airport-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .airport-card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .airport-card:hover {
+            border-color: #7c3aed;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
+        }
+
+        .airport-card .code {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fbbf24;
+            margin-bottom: 5px;
+        }
+
+        .airport-card .name {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 5px;
+        }
+
+        .airport-card .city {
+            font-size: 1rem;
+            color: #e2e8f0;
+        }
+
+        .airport-card .attractions-count {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: #10b981;
+        }
+
+        /* Attractions view */
+        .attractions-view {
+            display: none;
+        }
+
+        .attractions-view.active {
+            display: block;
+        }
+
+        .back-btn {
+            background: #334155;
+            border: none;
+            color: #e2e8f0;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #475569;
+        }
+
+        .airport-header {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .airport-header .code {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #fbbf24;
+        }
+
+        .airport-header .name {
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+
+        .airport-header .location {
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .attraction-card {
+            background: #1e293b;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+            will-change: box-shadow;
+        }
+
+        .attraction-card:hover {
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .attraction-image-container {
+            width: 100%;
+            height: 200px;
+            background: #334155;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .attraction-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .image-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #64748b;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .attraction-content {
+            padding: 20px;
+        }
+
+        .attraction-category {
+            display: inline-block;
+            background: rgba(124, 58, 237, 0.3);
+            color: #a78bfa;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+        }
+
+        .attraction-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #e2e8f0;
+        }
+
+        .attraction-name-en {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 10px;
+        }
+
+        .attraction-description {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .attraction-info {
+            border-top: 1px solid #334155;
+            padding-top: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .info-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .info-label {
+            color: #64748b;
+            min-width: 60px;
+        }
+
+        .info-value {
+            color: #e2e8f0;
+        }
+
+        /* Map markers */
+        .airport-marker {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 12px;
+            white-space: nowrap;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .airport-marker.has-attractions {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #94a3b8;
+        }
+
+        /* Search */
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border-radius: 25px;
+            border: 2px solid #334155;
+            background: #1e293b;
+            color: #e2e8f0;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: #7c3aed;
+        }
+
+        .search-input::placeholder {
+            color: #64748b;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.4rem;
+            }
+
+            .stats-bar {
+                gap: 15px;
+            }
+
+            .stat-item {
+                padding: 6px 15px;
+                font-size: 0.8rem;
+            }
+
+            #map {
+                height: 300px;
+            }
+
+            .attractions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .airport-header .code {
+                font-size: 2.5rem;
+            }
+
+            .tab-btn {
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .modal-content {
+            background: #1e293b;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            margin: 20px auto;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+        }
+
+        .modal-image-container {
+            width: 100%;
+            height: 400px;
+            background: #0f172a;
+            position: relative;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.7);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: rgba(124, 58, 237, 0.8);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-category {
+            display: inline-block;
+            background: rgba(124, 58, 237, 0.3);
+            color: #a78bfa;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            color: #e2e8f0;
+            margin-bottom: 10px;
+        }
+
+        .modal-address {
+            color: #94a3b8;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .modal-description {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .modal-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+        }
+
+        .modal-info-item {
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .modal-info-label {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+
+        .modal-info-value {
+            color: #e2e8f0;
+            font-size: 1rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-btn-primary {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            color: white;
+        }
+
+        .modal-btn-secondary {
+            background: #334155;
+            color: #e2e8f0;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Music Section */
+        .music-section {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #334155;
+        }
+
+        .music-player-container {
+            background: #0f172a;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .music-info {
+            flex: 1;
+        }
+
+        .music-title {
+            color: #e2e8f0;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .music-artist {
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        .music-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .music-btn {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .music-btn.playing {
+            background: linear-gradient(135deg, #dc2626 0%, #f87171 100%);
+        }
+
+        .youtube-embed {
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #334155;
+        }
+
+        .gallery-loading {
+            text-align: center;
+            color: #94a3b8;
+            padding: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 30px;
+            padding: 20px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .modal-image-container {
+                height: 250px;
+            }
+
+            .modal-title {
+                font-size: 1.5rem;
+            }
+
+            .modal-body {
+                padding: 20px;
+            }
+
+            .modal-actions {
+                flex-direction: column;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Popup styling */
+        .leaflet-popup-content-wrapper {
+            background: #1e293b;
+            color: #e2e8f0;
+            border-radius: 10px;
+        }
+
+        .leaflet-popup-tip {
+            background: #1e293b;
+        }
+
+        .popup-content {
+            padding: 5px;
+        }
+
+        .popup-content h3 {
+            color: #fbbf24;
+            margin-bottom: 5px;
+        }
+
+        .popup-content p {
+            margin: 3px 0;
+            font-size: 0.9rem;
+        }
+
+        .popup-btn {
+            background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>World Travel Guide</h1>
+        <p>세계 공항별 주요 관광지 안내</p>
+        <div class="stats-bar">
+            <div class="stat-item">공항 <span id="airport-count">0</span>개</div>
+            <div class="stat-item">관광지 <span id="attraction-count">0</span>개</div>
+            <div class="stat-item">국가 <span id="country-count">0</span>개</div>
+        </div>
+    </header>
+
+    <div id="map"></div>
+
+    <!-- Lightbox for full-size images -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">&#10094;</button>
+            <img id="lightbox-image" class="lightbox-image" src="" alt="">
+            <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">&#10095;</button>
+            <div class="lightbox-counter"><span id="lightbox-current">1</span> / <span id="lightbox-total">1</span></div>
+        </div>
+    </div>
+
+    <!-- Attraction Detail Modal -->
+    <div class="modal-overlay" id="attraction-modal">
+        <div class="modal-content">
+            <div class="modal-image-container">
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+                <img id="modal-image" class="modal-image" src="" alt="">
+            </div>
+            <div class="modal-body">
+                <span class="modal-category" id="modal-category"></span>
+                <h2 class="modal-title" id="modal-title"></h2>
+                <p class="modal-address" id="modal-address"></p>
+                <p class="modal-description" id="modal-description"></p>
+                <div class="modal-info-grid">
+                    <div class="modal-info-item">
+                        <div class="modal-info-label">도심에서 거리</div>
+                        <div class="modal-info-value" id="modal-distance"></div>
+                    </div>
+                    <div class="modal-info-item">
+                        <div class="modal-info-label">교통편</div>
+                        <div class="modal-info-value" id="modal-transport"></div>
+                    </div>
+                    <div class="modal-info-item">
+                        <div class="modal-info-label">좌표</div>
+                        <div class="modal-info-value" id="modal-coords"></div>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="modal-btn modal-btn-primary" id="modal-photos-btn">📷 사진 더보기</button>
+                    <button class="modal-btn modal-btn-secondary" id="modal-map-btn">🗺️ Google 지도</button>
+                    <button class="modal-btn modal-btn-secondary" id="modal-wiki-btn">📖 Wikipedia</button>
+                </div>
+
+                <!-- Music Player -->
+                <div id="music-section" class="music-section" style="display:none;">
+                    <h3 style="color:#e2e8f0;margin:20px 0 15px;">🎵 이 도시의 음악</h3>
+                    <div id="music-player"></div>
+                </div>
+
+                <!-- Photo Gallery -->
+                <div id="photo-gallery" class="photo-gallery" style="display:none;">
+                    <h3 style="color:#e2e8f0;margin:20px 0 15px;">📷 사진 컬렉션</h3>
+                    <div id="gallery-loading" class="gallery-loading">이미지를 불러오는 중...</div>
+                    <div id="gallery-grid" class="gallery-grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Main view: airport list -->
+        <div id="main-view">
+            <div class="search-container">
+                <input type="text" class="search-input" id="search" placeholder="공항명, 도시, 국가 검색...">
+            </div>
+
+            <div class="tab-container" id="region-tabs">
+                <button class="tab-btn active" data-region="all">전체</button>
+            </div>
+
+            <div id="airport-list">
+                <div class="loading">데이터를 불러오는 중...</div>
+            </div>
+        </div>
+
+        <!-- Attractions view -->
+        <div id="attractions-view" class="attractions-view">
+            <button class="back-btn" onclick="showMainView()">← 공항 목록으로</button>
+
+            <div class="airport-header" id="selected-airport-header">
+                <div class="code">ICN</div>
+                <div class="name">인천국제공항</div>
+                <div class="location">서울/인천, 대한민국</div>
+            </div>
+
+            <div class="attractions-grid" id="attractions-grid">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        let airportsData = null;
+        let attractionsData = null;
+        let map = null;
+        let markers = [];
+        let currentRegion = 'all';
+
+        // Airport coordinates (IATA code -> [lat, lng])
+        const airportCoords = {
+            // Asia
+            "ICN": [37.4602, 126.4407], "GMP": [37.5583, 126.7906], "PUS": [35.1796, 128.9381], "CJU": [33.5104, 126.4914], "TAE": [35.8941, 128.6589],
+            "NRT": [35.7720, 140.3929], "HND": [35.5494, 139.7798], "KIX": [34.4320, 135.2304], "ITM": [34.7855, 135.4380], "NGO": [34.8584, 136.8125],
+            "FUK": [33.5859, 130.4511], "CTS": [42.7752, 141.6924], "OKA": [26.1958, 127.6459],
+            "PEK": [40.0799, 116.6031], "PKX": [39.5098, 116.4105], "PVG": [31.1443, 121.8083], "SHA": [31.1979, 121.3363], "CAN": [23.3924, 113.2988],
+            "SZX": [22.6393, 113.8128], "CTU": [30.5785, 103.9471], "XIY": [34.4471, 108.7516], "HGH": [30.2295, 120.4344],
+            "HKG": [22.3080, 113.9185], "TPE": [25.0777, 121.2330], "TSA": [25.0694, 121.5525], "KHH": [22.5771, 120.3500],
+            "BKK": [13.6900, 100.7501], "DMK": [13.9126, 100.6068], "HKT": [8.1132, 98.3169], "CNX": [18.7669, 98.9626],
+            "SIN": [1.3644, 103.9915], "KUL": [2.7456, 101.7072], "PEN": [5.2973, 100.2769], "BKI": [5.9372, 116.0515],
+            "SGN": [10.8188, 106.6520], "HAN": [21.2212, 105.8072], "DAD": [16.0439, 108.1992], "CXR": [11.9981, 109.2192],
+            "MNL": [14.5086, 121.0194], "CEB": [10.3076, 123.9791], "CRK": [15.1859, 120.5600],
+            "CGK": [-6.1256, 106.6559], "DPS": [-8.7482, 115.1671], "SUB": [-7.3798, 112.7870],
+            "DEL": [28.5562, 77.1000], "BOM": [19.0896, 72.8656], "BLR": [13.1986, 77.7066], "MAA": [12.9941, 80.1709],
+            "CCU": [22.6547, 88.4467], "HYD": [17.2403, 78.4294],
+            "DXB": [25.2532, 55.3657], "DWC": [24.8960, 55.1714], "AUH": [24.4330, 54.6511], "SHJ": [25.3285, 55.5172],
+            "DOH": [25.2731, 51.6081], "JED": [21.6796, 39.1565], "RUH": [24.9576, 46.6988], "DMM": [26.4713, 49.7979],
+            "TLV": [32.0055, 34.8854], "IST": [41.2608, 28.7418], "SAW": [40.8986, 29.3092], "ESB": [40.1281, 32.9951], "AYT": [36.8987, 30.8005],
+            // Europe
+            "LHR": [51.4700, -0.4543], "LGW": [51.1537, -0.1821], "STN": [51.8860, 0.2389], "LTN": [51.8747, -0.3683], "LCY": [51.5053, 0.0553],
+            "MAN": [53.3654, -2.2728], "EDI": [55.9508, -3.3615], "BHX": [52.4539, -1.7480],
+            "CDG": [49.0097, 2.5479], "ORY": [48.7262, 2.3652], "NCE": [43.6584, 7.2159], "LYS": [45.7256, 5.0811], "MRS": [43.4393, 5.2214],
+            "FRA": [50.0379, 8.5622], "MUC": [48.3538, 11.7861], "BER": [52.3667, 13.5033], "DUS": [51.2895, 6.7668], "HAM": [53.6304, 9.9882],
+            "CGN": [50.8659, 7.1427], "STR": [48.6899, 9.2220],
+            "AMS": [52.3105, 4.7683], "EIN": [51.4581, 5.3923], "RTM": [51.9569, 4.4372],
+            "BRU": [50.9010, 4.4856], "CRL": [50.4592, 4.4538],
+            "FCO": [41.8003, 12.2389], "CIA": [41.7994, 12.5949], "MXP": [45.6306, 8.7281], "LIN": [45.4555, 9.2763],
+            "VCE": [45.5053, 12.3519], "NAP": [40.8860, 14.2908], "FLR": [43.8100, 11.2051],
+            "MAD": [40.4983, -3.5676], "BCN": [41.2974, 2.0833], "PMI": [39.5517, 2.7388], "AGP": [36.6749, -4.4991],
+            "ALC": [38.2822, -0.5582], "VLC": [39.4893, -0.4816], "SVQ": [37.4180, -5.8932], "IBZ": [38.8729, 1.3731],
+            "LIS": [38.7742, -9.1342], "OPO": [41.2481, -8.6814], "FAO": [37.0144, -7.9659],
+            "ZRH": [47.4647, 8.5492], "GVA": [46.2370, 6.1092], "BSL": [47.5996, 7.5299],
+            "VIE": [48.1103, 16.5697], "SZG": [47.7933, 13.0043], "INN": [47.2602, 11.3439],
+            "PRG": [50.1008, 14.2600], "WAW": [52.1657, 20.9671], "KRK": [50.0777, 19.7848], "GDN": [54.3776, 18.4662],
+            "BUD": [47.4298, 19.2611], "ATH": [37.9364, 23.9445], "SKG": [40.5197, 22.9709], "HER": [35.3397, 25.1802],
+            "JMK": [37.4351, 25.3481], "JTR": [36.3992, 25.4793],
+            "DUB": [53.4264, -6.2499], "ORK": [51.8413, -8.4911], "SNN": [52.7020, -8.9248],
+            "CPH": [55.6180, 12.6560], "ARN": [59.6519, 17.9186], "GOT": [57.6628, 12.2798],
+            "OSL": [60.1976, 11.0004], "BGO": [60.2934, 5.2181],
+            "HEL": [60.3172, 24.9633], "SVO": [55.9726, 37.4146], "DME": [55.4088, 37.9063], "VKO": [55.5915, 37.2615], "LED": [59.8003, 30.2625],
+            "KEF": [63.9850, -22.6056],
+            // North America
+            "JFK": [40.6413, -73.7781], "EWR": [40.6895, -74.1745], "LGA": [40.7769, -73.8740],
+            "LAX": [33.9425, -118.4081], "ORD": [41.9742, -87.9073], "MDW": [41.7868, -87.7522],
+            "SFO": [37.6213, -122.3790], "MIA": [25.7959, -80.2870], "ATL": [33.6407, -84.4277],
+            "DFW": [32.8998, -97.0403], "DEN": [39.8561, -104.6737], "SEA": [47.4502, -122.3088],
+            "BOS": [42.3656, -71.0096], "LAS": [36.0840, -115.1537], "PHX": [33.4373, -112.0078],
+            "IAH": [29.9902, -95.3368], "HNL": [21.3187, -157.9225], "SAN": [32.7338, -117.1933],
+            "MCO": [28.4312, -81.3081], "IAD": [38.9531, -77.4565], "DCA": [38.8512, -77.0402],
+            "YYZ": [43.6777, -79.6248], "YVR": [49.1947, -123.1792], "YUL": [45.4657, -73.7455],
+            "YYC": [51.1215, -114.0076], "YEG": [53.3097, -113.5792], "YOW": [45.3192, -75.6692],
+            "MEX": [19.4361, -99.0719], "CUN": [21.0365, -86.8771], "GDL": [20.5218, -103.3111], "SJD": [23.1518, -109.7211],
+            // South America
+            "GRU": [-23.4356, -46.4731], "GIG": [-22.8090, -43.2436], "BSB": [-15.8711, -47.9186], "CNF": [-19.6244, -43.9719],
+            "EZE": [-34.8150, -58.5348], "AEP": [-34.5592, -58.4156],
+            "SCL": [-33.3930, -70.7858], "LIM": [-12.0219, -77.1143], "CUZ": [-13.5357, -71.9388],
+            "BOG": [4.7016, -74.1469], "MDE": [6.1645, -75.4231], "CTG": [10.4424, -75.5130],
+            // Oceania
+            "SYD": [-33.9399, 151.1753], "MEL": [-37.6690, 144.8410], "BNE": [-27.3942, 153.1218],
+            "PER": [-31.9385, 115.9672], "ADL": [-34.9461, 138.5310], "OOL": [-28.1644, 153.5047], "CNS": [-16.8858, 145.7550],
+            "AKL": [-37.0082, 174.7850], "WLG": [-41.3272, 174.8050], "CHC": [-43.4894, 172.5322], "ZQN": [-45.0211, 168.7392],
+            "NAN": [-17.7554, 177.4431],
+            // Africa
+            "JNB": [-26.1392, 28.2460], "CPT": [-33.9715, 18.6021], "DUR": [-29.6144, 31.1197],
+            "CAI": [30.1219, 31.4056], "HRG": [27.1783, 33.7994], "SSH": [27.9773, 34.3950], "LXR": [25.6741, 32.7066],
+            "CMN": [33.3675, -7.5898], "RAK": [31.6069, -8.0363],
+            "NBO": [-1.3192, 36.9278], "MBA": [-4.0348, 39.5942],
+            "ADD": [8.9779, 38.7993], "LOS": [6.5774, 3.3212], "ABV": [9.0068, 7.2632],
+            "DAR": [-6.8781, 39.2026], "JRO": [-3.4294, 37.0745]
+        };
+
+        // Initialize map
+        function initMap() {
+            map = L.map('map').setView([20, 0], 2);
+
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+                maxZoom: 19
+            }).addTo(map);
+        }
+
+        // Add airport markers
+        function addAirportMarkers() {
+            markers.forEach(m => map.removeLayer(m));
+            markers = [];
+
+            Object.keys(airportsData.airports).forEach(region => {
+                Object.keys(airportsData.airports[region]).forEach(country => {
+                    const countryData = airportsData.airports[region][country];
+                    countryData.airports.forEach(airport => {
+                        const coords = airportCoords[airport.code];
+                        if (coords) {
+                            const hasAttractions = attractionsData[airport.code];
+                            const attractionCount = hasAttractions ? hasAttractions.length : 0;
+
+                            const icon = L.divIcon({
+                                className: 'custom-marker',
+                                html: `<div class="airport-marker ${hasAttractions ? 'has-attractions' : ''}">${airport.code}</div>`,
+                                iconSize: [50, 25],
+                                iconAnchor: [25, 12]
+                            });
+
+                            const marker = L.marker(coords, { icon: icon }).addTo(map);
+
+                            const popupContent = `
+                                <div class="popup-content">
+                                    <h3>${airport.code}</h3>
+                                    <p><strong>${airport.name_ko}</strong></p>
+                                    <p>${airport.city_ko}, ${countryData.country_ko}</p>
+                                    ${attractionCount > 0 ? `<p style="color: #10b981;">관광지 ${attractionCount}개</p>` : '<p style="color: #94a3b8;">관광지 정보 없음</p>'}
+                                    <button class="popup-btn" onclick="showAttractions('${airport.code}')">${attractionCount > 0 ? '관광지 보기' : '공항 정보 보기'}</button>
+                                </div>
+                            `;
+
+                            marker.bindPopup(popupContent);
+                            markers.push(marker);
+                        }
+                    });
+                });
+            });
+        }
+
+        // Load data
+        async function loadData() {
+            try {
+                const [airportsRes, attractionsRes] = await Promise.all([
+                    fetch('international_airports.json'),
+                    fetch('attractions.json')
+                ]);
+
+                airportsData = await airportsRes.json();
+                attractionsData = await attractionsRes.json();
+
+                // Update stats
+                let airportCount = 0;
+                let countryCount = 0;
+                Object.keys(airportsData.airports).forEach(region => {
+                    Object.keys(airportsData.airports[region]).forEach(country => {
+                        countryCount++;
+                        airportCount += airportsData.airports[region][country].airports.length;
+                    });
+                });
+
+                let attractionCount = 0;
+                Object.keys(attractionsData).forEach(code => {
+                    attractionCount += attractionsData[code].length;
+                });
+
+                document.getElementById('airport-count').textContent = airportCount;
+                document.getElementById('country-count').textContent = countryCount;
+                document.getElementById('attraction-count').textContent = attractionCount;
+
+                // Setup region tabs
+                setupRegionTabs();
+
+                // Render airports
+                renderAirports();
+
+                // Add markers
+                addAirportMarkers();
+
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('airport-list').innerHTML = '<div class="loading">데이터를 불러오는데 실패했습니다.</div>';
+            }
+        }
+
+        // Setup region tabs
+        function setupRegionTabs() {
+            const tabContainer = document.getElementById('region-tabs');
+            const regions = Object.keys(airportsData.airports);
+
+            const regionNames = {
+                'Asia': '아시아',
+                'Europe': '유럽',
+                'North America': '북미',
+                'South America': '남미',
+                'Oceania': '오세아니아',
+                'Africa': '아프리카'
+            };
+
+            regions.forEach(region => {
+                const btn = document.createElement('button');
+                btn.className = 'tab-btn';
+                btn.dataset.region = region;
+                btn.textContent = regionNames[region] || region;
+                btn.onclick = () => selectRegion(region);
+                tabContainer.appendChild(btn);
+            });
+        }
+
+        // Select region
+        function selectRegion(region) {
+            currentRegion = region;
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.region === region);
+            });
+            renderAirports();
+        }
+
+        // Render airports
+        function renderAirports() {
+            const container = document.getElementById('airport-list');
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            container.innerHTML = '';
+
+            const regions = currentRegion === 'all'
+                ? Object.keys(airportsData.airports)
+                : [currentRegion];
+
+            regions.forEach(region => {
+                const regionData = airportsData.airports[region];
+                const regionSection = document.createElement('div');
+                regionSection.className = 'airport-section';
+
+                const regionNames = {
+                    'Asia': '아시아',
+                    'Europe': '유럽',
+                    'North America': '북미',
+                    'South America': '남미',
+                    'Oceania': '오세아니아',
+                    'Africa': '아프리카'
+                };
+
+                let airportsHtml = '';
+
+                Object.keys(regionData).forEach(country => {
+                    const countryData = regionData[country];
+
+                    countryData.airports.forEach(airport => {
+                        // Search filter
+                        const searchMatch =
+                            airport.code.toLowerCase().includes(searchTerm) ||
+                            airport.name.toLowerCase().includes(searchTerm) ||
+                            airport.name_ko.includes(searchTerm) ||
+                            airport.city.toLowerCase().includes(searchTerm) ||
+                            airport.city_ko.includes(searchTerm) ||
+                            country.toLowerCase().includes(searchTerm) ||
+                            countryData.country_ko.includes(searchTerm);
+
+                        if (!searchTerm || searchMatch) {
+                            const attractionData = attractionsData[airport.code];
+                            const attractionCount = attractionData ? attractionData.length : 0;
+
+                            airportsHtml += `
+                                <div class="airport-card" onclick="showAttractions('${airport.code}')">
+                                    <div class="code">${airport.code}</div>
+                                    <div class="name">${airport.name_ko}</div>
+                                    <div class="city">${airport.city_ko}, ${countryData.country_ko}</div>
+                                    ${attractionCount > 0
+                                        ? `<div class="attractions-count">관광지 ${attractionCount}개</div>`
+                                        : '<div class="attractions-count" style="color: #64748b;">관광지 정보 준비중</div>'}
+                                </div>
+                            `;
+                        }
+                    });
+                });
+
+                if (airportsHtml) {
+                    regionSection.innerHTML = `
+                        <h2>${regionNames[region] || region}</h2>
+                        <div class="airport-grid">${airportsHtml}</div>
+                    `;
+                    container.appendChild(regionSection);
+                }
+            });
+
+            if (!container.innerHTML) {
+                container.innerHTML = '<div class="loading">검색 결과가 없습니다.</div>';
+            }
+        }
+
+        // Show airport as attraction when no attractions available
+        async function showAirportAsAttraction(code, airportInfo) {
+            // Store current airport code for music
+            currentAirportCode = code;
+
+            // Update header
+            document.querySelector('#selected-airport-header .code').textContent = code;
+            document.querySelector('#selected-airport-header .name').textContent = airportInfo.name_ko;
+            document.querySelector('#selected-airport-header .location').textContent = `${airportInfo.city_ko}, ${airportInfo.country_ko}`;
+
+            // Show loading state
+            const grid = document.getElementById('attractions-grid');
+            grid.innerHTML = '<div class="loading">공항 및 주변 명소 정보를 불러오는 중...</div>';
+
+            // Show view first
+            document.getElementById('main-view').style.display = 'none';
+            document.getElementById('attractions-view').classList.add('active');
+
+            // Zoom to airport
+            const coords = airportCoords[code];
+            if (coords) {
+                map.setView(coords, 8);
+            }
+
+            try {
+                const places = [];
+                const cityName = airportInfo.city || airportInfo.city_ko;
+                const airportSearchName = airportInfo.name || code + ' Airport';
+
+                // 1. 공항 정보 가져오기
+                let airportWiki = null;
+                try {
+                    const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(airportSearchName)}`);
+                    if (res.ok) airportWiki = await res.json();
+                } catch (e) {}
+
+                if (!airportWiki || airportWiki.type === 'disambiguation') {
+                    try {
+                        const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(code + ' International Airport')}`);
+                        if (res.ok) airportWiki = await res.json();
+                    } catch (e) {}
+                }
+
+                // 공항 카드 추가
+                places.push({
+                    name: airportInfo.name || airportInfo.name_ko,
+                    name_ko: airportInfo.name_ko,
+                    category: 'Airport',
+                    description: airportWiki?.extract || `${airportInfo.name_ko}는 ${airportInfo.city_ko}, ${airportInfo.country_ko}에 위치한 국제공항입니다.`,
+                    image: airportWiki?.thumbnail?.source || null,
+                    wikipedia: airportWiki?.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(airportSearchName)}`,
+                    address: `${airportInfo.city_ko}, ${airportInfo.country_ko}`,
+                    isAirport: true
+                });
+
+                // 2. 도시 정보 가져오기
+                let cityWiki = null;
+                try {
+                    const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(cityName)}`);
+                    if (res.ok) cityWiki = await res.json();
+                } catch (e) {}
+
+                if (cityWiki && cityWiki.type !== 'disambiguation') {
+                    places.push({
+                        name: cityName,
+                        name_ko: airportInfo.city_ko,
+                        category: 'City',
+                        description: cityWiki.extract || '',
+                        image: cityWiki.thumbnail?.source || null,
+                        wikipedia: cityWiki.content_urls?.desktop?.page || '',
+                        address: airportInfo.country_ko,
+                        isCity: true
+                    });
+                }
+
+                // 3. Wikipedia에서 도시의 주요 명소/랜드마크 검색
+                const landmarkSearchTerms = [
+                    `${cityName} landmark`,
+                    `${cityName} tourist attraction`,
+                    `${cityName} monument`
+                ];
+
+                for (const searchTerm of landmarkSearchTerms) {
+                    if (places.length >= 6) break; // 최대 6개까지
+
+                    try {
+                        const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(searchTerm)}&srlimit=3&format=json&origin=*`;
+                        const searchRes = await fetch(searchUrl);
+                        const searchData = await searchRes.json();
+
+                        if (searchData.query?.search) {
+                            for (const result of searchData.query.search) {
+                                if (places.length >= 6) break;
+                                // 이미 추가된 것 제외
+                                if (places.some(p => p.name.toLowerCase() === result.title.toLowerCase())) continue;
+                                // 공항, 도시 자체는 제외
+                                if (result.title.toLowerCase().includes('airport')) continue;
+                                if (result.title.toLowerCase() === cityName.toLowerCase()) continue;
+
+                                try {
+                                    const summaryRes = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(result.title)}`);
+                                    if (summaryRes.ok) {
+                                        const summaryData = await summaryRes.json();
+                                        if (summaryData.type !== 'disambiguation' && summaryData.extract) {
+                                            places.push({
+                                                name: summaryData.title,
+                                                name_ko: summaryData.title,
+                                                category: 'Landmark',
+                                                description: summaryData.extract,
+                                                image: summaryData.thumbnail?.source || null,
+                                                wikipedia: summaryData.content_urls?.desktop?.page || '',
+                                                address: `${airportInfo.city_ko}, ${airportInfo.country_ko}`,
+                                                isLandmark: true
+                                            });
+                                        }
+                                    }
+                                } catch (e) {}
+                            }
+                        }
+                    } catch (e) {}
+                }
+
+                window.currentPlaces = places;
+
+                // 카드 렌더링
+                grid.innerHTML = places.map((place, index) => `
+                    <div class="attraction-card" onclick="openAttractionModal(${index})" style="cursor:pointer;">
+                        <div class="attraction-image-container">
+                            ${place.image
+                                ? `<img src="${place.image}" alt="${place.name}" class="attraction-image" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="image-placeholder" style="display:none">Image Error</div>`
+                                : `<div class="image-placeholder" style="display:flex;align-items:center;justify-content:center;font-size:48px;">${place.isAirport ? '✈️' : place.isCity ? '🏙️' : '🏛️'}</div>`}
+                        </div>
+                        <div class="attraction-content">
+                            <span class="attraction-category" style="background:${place.isAirport ? '#3b82f6' : place.isCity ? '#8b5cf6' : '#10b981'};">${place.isAirport ? '🛫 Airport' : place.isCity ? '🏙️ City' : '🏛️ Landmark'}</span>
+                            <h3 class="attraction-name">${place.name_ko || place.name}</h3>
+                            <p class="attraction-description">${place.description.substring(0, 120)}${place.description.length > 120 ? '...' : ''}</p>
+                            <p class="attraction-address" style="font-size:0.8rem;color:#94a3b8;margin-top:5px;">${place.address}</p>
+                            ${place.wikipedia ? `<div style="margin-top:10px;"><a href="${place.wikipedia}" target="_blank" onclick="event.stopPropagation();" style="color:#10b981;text-decoration:none;font-size:0.9rem;">📖 Wikipedia</a></div>` : ''}
+                        </div>
+                    </div>
+                `).join('');
+
+                // 안내 메시지 추가
+                grid.innerHTML += `
+                    <div style="grid-column: 1/-1; padding:15px; background:#1e293b; border-radius:8px; text-align:center; margin-top:10px;">
+                        <p style="color:#94a3b8;font-size:0.9rem;margin:0;">📍 Wikipedia에서 자동으로 가져온 주변 명소입니다.</p>
+                        <p style="color:#10b981;font-size:0.85rem;margin:5px 0 0 0;">🎵 카드를 클릭하면 음악과 상세 정보를 볼 수 있습니다</p>
+                    </div>
+                `;
+
+            } catch (error) {
+                console.error('Error fetching info:', error);
+
+                const fallbackPlace = {
+                    name: airportInfo.name || airportInfo.name_ko,
+                    name_ko: airportInfo.name_ko,
+                    category: 'Airport',
+                    description: `${airportInfo.name_ko}는 ${airportInfo.city_ko}, ${airportInfo.country_ko}에 위치한 국제공항입니다.`,
+                    image: null,
+                    wikipedia: `https://en.wikipedia.org/wiki/${encodeURIComponent(airportInfo.name || code + ' Airport')}`,
+                    address: `${airportInfo.city_ko}, ${airportInfo.country_ko}`,
+                    isAirport: true
+                };
+                window.currentPlaces = [fallbackPlace];
+
+                grid.innerHTML = `
+                    <div class="attraction-card" onclick="openAttractionModal(0)" style="cursor:pointer;">
+                        <div class="attraction-image-container">
+                            <div class="image-placeholder" style="display:flex;align-items:center;justify-content:center;font-size:48px;">✈️</div>
+                        </div>
+                        <div class="attraction-content">
+                            <span class="attraction-category" style="background:#3b82f6;">🛫 Airport</span>
+                            <h3 class="attraction-name">${airportInfo.name_ko}</h3>
+                            <p class="attraction-description">${airportInfo.name_ko}는 ${airportInfo.city_ko}, ${airportInfo.country_ko}에 위치한 국제공항입니다.</p>
+                            <p class="attraction-address" style="font-size:0.8rem;color:#94a3b8;margin-top:5px;">${airportInfo.city_ko}, ${airportInfo.country_ko}</p>
+                            <div style="margin-top:15px;padding:10px;background:#1e293b;border-radius:8px;text-align:center;">
+                                <p style="color:#10b981;font-size:0.85rem;margin:0;">🎵 카드를 클릭하면 음악이 재생됩니다</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Show attractions
+        function showAttractions(code) {
+            const places = attractionsData[code];
+
+            // Store current airport code for music
+            currentAirportCode = code;
+
+            // Find airport info
+            let airportInfo = { name_ko: code, city_ko: '', country_ko: '', name: code };
+            Object.keys(airportsData.airports).forEach(region => {
+                Object.keys(airportsData.airports[region]).forEach(country => {
+                    const countryData = airportsData.airports[region][country];
+                    const found = countryData.airports.find(a => a.code === code);
+                    if (found) {
+                        airportInfo = { ...found, country_ko: countryData.country_ko };
+                    }
+                });
+            });
+
+            // If no attractions, show airport itself as attraction
+            if (!places || places.length === 0) {
+                showAirportAsAttraction(code, airportInfo);
+                return;
+            }
+
+            // Update header
+            document.querySelector('#selected-airport-header .code').textContent = code;
+            document.querySelector('#selected-airport-header .name').textContent = airportInfo.name_ko;
+            document.querySelector('#selected-airport-header .location').textContent = `${airportInfo.city_ko}, ${airportInfo.country_ko}`;
+
+            // Render attractions
+            const grid = document.getElementById('attractions-grid');
+            // Store places data for modal
+            window.currentPlaces = places;
+
+            grid.innerHTML = places.map((place, index) => `
+                <div class="attraction-card" onclick="openAttractionModal(${index})" style="cursor:pointer;">
+                    <div class="attraction-image-container">
+                        ${place.image
+                            ? `<img src="${place.image}" alt="${place.name}" class="attraction-image" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="image-placeholder" style="display:none">Image Error</div>`
+                            : (place.category_icon
+                                ? `<img src="${place.category_icon}" alt="${place.category}" style="width:64px;height:64px;margin:auto;display:block;padding-top:60px;">`
+                                : '<div class="image-placeholder">No Image</div>')}
+                    </div>
+                    <div class="attraction-content">
+                        <span class="attraction-category">${place.category || 'Attraction'}</span>
+                        <h3 class="attraction-name">${place.name}</h3>
+                        <p class="attraction-description">${place.description || ''}</p>
+                        <p class="attraction-address" style="font-size:0.8rem;color:#94a3b8;margin-top:5px;">${place.address || ''}</p>
+                        <div class="attraction-info">
+                            <div class="info-item">
+                                <span class="info-label">거리</span>
+                                <span class="info-value">${place.distance ? (place.distance / 1000).toFixed(1) + ' km' : 'N/A'}</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">교통</span>
+                                <span class="info-value">${place.transport || 'Check local transport'}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Show view
+            document.getElementById('main-view').style.display = 'none';
+            document.getElementById('attractions-view').classList.add('active');
+
+            // Zoom to airport
+            const coords = airportCoords[code];
+            if (coords) {
+                map.setView(coords, 8);
+            }
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Show main view
+        function showMainView() {
+            document.getElementById('main-view').style.display = 'block';
+            document.getElementById('attractions-view').classList.remove('active');
+            map.setView([20, 0], 2);
+        }
+
+        // Search handler
+        document.getElementById('search').addEventListener('input', () => {
+            renderAirports();
+        });
+
+        // Open attraction modal
+        function openAttractionModal(index) {
+            const place = window.currentPlaces[index];
+            if (!place) return;
+
+            const modal = document.getElementById('attraction-modal');
+            const modalImage = document.getElementById('modal-image');
+
+            // Set image
+            if (place.image) {
+                modalImage.src = place.image;
+                modalImage.style.display = 'block';
+            } else if (place.category_icon) {
+                modalImage.src = place.category_icon;
+                modalImage.style.display = 'block';
+                modalImage.style.objectFit = 'contain';
+                modalImage.style.padding = '50px';
+                modalImage.style.background = '#334155';
+            } else {
+                modalImage.style.display = 'none';
+            }
+
+            // Set content
+            document.getElementById('modal-category').textContent = place.category || 'Attraction';
+            document.getElementById('modal-title').textContent = place.name;
+            document.getElementById('modal-address').textContent = place.address || '';
+
+            // Generate description
+            let description = place.description || '';
+            if (!description || description.length < 20) {
+                description = `${place.name}은(는) ${place.category || '관광지'}입니다. `;
+                if (place.address) {
+                    description += `주소: ${place.address}. `;
+                }
+                description += '자세한 정보는 Wikipedia나 Google 지도에서 확인하세요.';
+            }
+            document.getElementById('modal-description').textContent = description;
+
+            // Set info
+            document.getElementById('modal-distance').textContent = place.distance
+                ? (place.distance / 1000).toFixed(1) + ' km'
+                : 'N/A';
+            document.getElementById('modal-transport').textContent = place.transport || 'Check local transport';
+            document.getElementById('modal-coords').textContent = place.lat && place.lng
+                ? `${place.lat.toFixed(4)}, ${place.lng.toFixed(4)}`
+                : 'N/A';
+
+            // Set button actions
+            document.getElementById('modal-map-btn').onclick = () => {
+                if (place.lat && place.lng) {
+                    window.open(`https://www.google.com/maps/search/?api=1&query=${place.lat},${place.lng}`, '_blank');
+                } else {
+                    window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.name)}`, '_blank');
+                }
+            };
+
+            document.getElementById('modal-wiki-btn').onclick = () => {
+                // Extract English name for Wikipedia search
+                let searchName = place.name;
+                // Remove Korean/Japanese/Chinese characters in parentheses
+                searchName = searchName.replace(/\s*\([^)]*[\u3131-\uD79D\u4E00-\u9FFF\u3040-\u30FF]+[^)]*\)/g, '');
+                searchName = searchName.trim();
+                window.open(`https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(searchName)}`, '_blank');
+            };
+
+            // Photos button
+            document.getElementById('modal-photos-btn').onclick = () => {
+                fetchWikipediaPhotos(place.name);
+            };
+
+            // Reset gallery when opening new modal
+            document.getElementById('photo-gallery').style.display = 'none';
+            document.getElementById('gallery-grid').innerHTML = '';
+
+            // Show music player for this attraction
+            showMusicPlayer(place.name, currentAirportCode);
+
+            // Show modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close modal
+        function closeModal() {
+            const modal = document.getElementById('attraction-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+
+            // Reset image styles
+            const modalImage = document.getElementById('modal-image');
+            modalImage.style.objectFit = 'cover';
+            modalImage.style.padding = '0';
+            modalImage.style.background = '';
+        }
+
+        // Close modal on overlay click
+        document.getElementById('attraction-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'attraction-modal') {
+                closeModal();
+            }
+        });
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+                closeModal();
+            }
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+
+        // Photo gallery variables
+        let galleryImages = [];
+        let currentImageIndex = 0;
+
+        // Fetch photos from Wikipedia Commons
+        async function fetchWikipediaPhotos(placeName) {
+            const gallery = document.getElementById('photo-gallery');
+            const loading = document.getElementById('gallery-loading');
+            const grid = document.getElementById('gallery-grid');
+
+            gallery.style.display = 'block';
+            loading.style.display = 'block';
+            grid.innerHTML = '';
+            galleryImages = [];
+
+            // Clean search name
+            let searchName = placeName;
+            searchName = searchName.replace(/\s*\([^)]*[\u3131-\uD79D\u4E00-\u9FFF\u3040-\u30FF]+[^)]*\)/g, '');
+            searchName = searchName.trim();
+
+            try {
+                // First, get the Wikipedia page to find the exact title
+                const searchUrl = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(searchName)}&format=json&origin=*`;
+                const searchRes = await fetch(searchUrl);
+                const searchData = await searchRes.json();
+
+                if (!searchData.query?.search?.length) {
+                    loading.textContent = '이미지를 찾을 수 없습니다.';
+                    return;
+                }
+
+                const pageTitle = searchData.query.search[0].title;
+
+                // Get images from the Wikipedia page
+                const imagesUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(pageTitle)}&prop=images&imlimit=50&format=json&origin=*`;
+                const imagesRes = await fetch(imagesUrl);
+                const imagesData = await imagesRes.json();
+
+                const pages = imagesData.query?.pages;
+                if (!pages) {
+                    loading.textContent = '이미지를 찾을 수 없습니다.';
+                    return;
+                }
+
+                const page = Object.values(pages)[0];
+                const images = page.images || [];
+
+                // Filter for actual image files
+                const imageFiles = images
+                    .map(img => img.title)
+                    .filter(title => /\.(jpg|jpeg|png|gif|webp)$/i.test(title))
+                    .filter(title => !/(icon|logo|flag|map|diagram|chart|symbol)/i.test(title))
+                    .slice(0, 12);
+
+                if (imageFiles.length === 0) {
+                    loading.textContent = '이미지를 찾을 수 없습니다.';
+                    return;
+                }
+
+                // Get image URLs
+                const fileNames = imageFiles.join('|');
+                const imageInfoUrl = `https://en.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(fileNames)}&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=300&format=json&origin=*`;
+                const imageInfoRes = await fetch(imageInfoUrl);
+                const imageInfoData = await imageInfoRes.json();
+
+                const imagePages = imageInfoData.query?.pages;
+                if (!imagePages) {
+                    loading.textContent = '이미지를 찾을 수 없습니다.';
+                    return;
+                }
+
+                loading.style.display = 'none';
+
+                Object.values(imagePages).forEach((imgPage, index) => {
+                    if (imgPage.imageinfo && imgPage.imageinfo[0]) {
+                        const info = imgPage.imageinfo[0];
+                        const thumbUrl = info.thumburl || info.url;
+                        const fullUrl = info.url;
+
+                        galleryImages.push({
+                            thumb: thumbUrl,
+                            full: fullUrl,
+                            title: imgPage.title.replace('File:', '')
+                        });
+
+                        grid.innerHTML += `
+                            <div class="gallery-item" onclick="openLightbox(${galleryImages.length - 1})">
+                                <img src="${thumbUrl}" alt="${imgPage.title}" loading="lazy">
+                            </div>
+                        `;
+                    }
+                });
+
+                if (galleryImages.length === 0) {
+                    loading.style.display = 'block';
+                    loading.textContent = '이미지를 찾을 수 없습니다.';
+                }
+
+            } catch (error) {
+                console.error('Error fetching photos:', error);
+                loading.textContent = '이미지를 불러오는데 실패했습니다.';
+            }
+        }
+
+        // Open lightbox
+        function openLightbox(index) {
+            if (galleryImages.length === 0) return;
+
+            currentImageIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const image = document.getElementById('lightbox-image');
+
+            image.src = galleryImages[index].full;
+            document.getElementById('lightbox-current').textContent = index + 1;
+            document.getElementById('lightbox-total').textContent = galleryImages.length;
+
+            lightbox.classList.add('active');
+        }
+
+        // Close lightbox
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        // Navigate lightbox
+        function navigateLightbox(direction) {
+            if (galleryImages.length === 0) return;
+
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
+            if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
+
+            const image = document.getElementById('lightbox-image');
+            image.src = galleryImages[currentImageIndex].full;
+            document.getElementById('lightbox-current').textContent = currentImageIndex + 1;
+        }
+
+        // Click lightbox background to close
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        });
+
+        // 관광지별 음악 매핑 - 386개 관광지에 각 나라별 대표곡 매핑
+        const attractionMusic = {
+    "Gyeongbokgung Palace": { title: "Life Goes On", artist: "BTS", spotifyId: "5FVbvttjEvQ8r2BgUcJgNg" },
+    "Changdeokgung": { title: "Boy With Luv", artist: "BTS ft. Halsey", spotifyId: "5KawlOMHjWeUjQtnuRs22c" },
+    "Changgyeonggung": { title: "Spring Day", artist: "BTS", spotifyId: "2j1fFjWHCI9KJSwcuYAOyF" },
+    "Deoksugung": { title: "Butter", artist: "BTS", spotifyId: "2bgTY4UwhfBYhGT4HUYStN" },
+    "Gyeonghuigung": { title: "FAKE LOVE", artist: "BTS", spotifyId: "6m1TWFMeon7ai9XLOzdbiR" },
+    "N Seoul Tower": { title: "ON", artist: "BTS", spotifyId: "38zsOOcu31XbbYj9BIPUF1" },
+    "Bukchon Hanok Village": { title: "DDU-DU DDU-DU", artist: "BLACKPINK", spotifyId: "4lQsB3ERTWSNaAN1IkuNRl" },
+    "L7 Myeongdong": { title: "Kill This Love", artist: "BLACKPINK", spotifyId: "6hvczQ05jc1yGlp9zhb95V" },
+    "Insadong": { title: "How You Like That", artist: "BLACKPINK", spotifyId: "4SFknyjLcyTLJFPKD2m96o" },
+    "Dongdaemun Design Plaza": { title: "Lilac", artist: "IU", spotifyId: "5xrtzzzikpG3BLbo4q1Yul" },
+    "Lotte Hotel Seoul": { title: "IDOL", artist: "BTS", spotifyId: "2AIWoHr9DF6y4KALCBKWQS" },
+    "Cheonggyecheon Stream Fashion Plaza": { title: "Blueming", artist: "IU", spotifyId: "4Dr2hJ3EnVh2Aaot6fRwDO" },
+    "The War Memorial of Korea": { title: "Love Shot", artist: "EXO", spotifyId: "0yB4jrSwN0bFtFRDR5vyMj" },
+    "National Museum of Korea": { title: "Palette", artist: "IU ft. G-Dragon", spotifyId: "3y7ByLZ05tluscOTRgEJ9Y" },
+    "Jogyesa": { title: "Permission to Dance", artist: "BTS", spotifyId: "3XYRV7ZSHqIRDG87DKTtry" },
+    "Hongdae District": { title: "Lovesick Girls", artist: "BLACKPINK", spotifyId: "4Ws314Ylb27BVsvlZOy30C" },
+    "Yeouido Park": { title: "Black Swan", artist: "BTS", spotifyId: "5a1iz510sv2W9Dt1MvFd5R" },
+    "Ichon Hangang Park": { title: "DNA", artist: "BTS", spotifyId: "2Ygw4CPjg1lg4zxTITYY2V" },
+    "Haeundae Beach": { title: "Pink Venom", artist: "BLACKPINK", spotifyId: "0skYUMpS0AcbpjcGsAbRGj" },
+    "Gamcheon Culture Village info": { title: "Mic Drop", artist: "BTS", spotifyId: "4gZGAVECoiutzp64KSHNjE" },
+    "Haedong Yonggungsa Temple": { title: "STAY", artist: "BLACKPINK", spotifyId: "3tP6QKbXvtrxiDI7QwKyUf" },
+    "Jagalchi Fish Market": { title: "Blood Sweat & Tears", artist: "BTS", spotifyId: "3AtP2FtxYeLihdWn2752qC" },
+    "Gwangalli Beach": { title: "Celebrity", artist: "IU", spotifyId: "4RewTiGEGoO7FWNZUmp1f4" },
+    "Beomeosa": { title: "Fire", artist: "BTS", spotifyId: "6MPnw1hUAW55re3PgtvWXU" },
+    "Busan Tower": { title: "Psycho", artist: "Red Velvet", spotifyId: "3CYH422oy1cZNoo0GTG1TK" },
+    "BIFF Square": { title: "Monster", artist: "EXO", spotifyId: "7GbUWl6qLW1gdngbEV2WDJ" },
+    "Taejongdae Resort Park": { title: "Growl", artist: "EXO", spotifyId: "4pi0Elz7B7cLfw37J3bYm9" },
+    "Songdo Beach": { title: "Cheer Up", artist: "TWICE", spotifyId: "7lB4rxNVc7vm33ZSZXVRAQ" },
+    "Seongsan ilchulbong": { title: "Dynamite", artist: "BTS", spotifyId: "0t1kP63rueHleOhQkYSXFY" },
+    "Hallasan Eorimok": { title: "Boy With Luv", artist: "BTS ft. Halsey", spotifyId: "5KawlOMHjWeUjQtnuRs22c" },
+    "Manjanggul Lava Tubes": { title: "Spring Day", artist: "BTS", spotifyId: "2j1fFjWHCI9KJSwcuYAOyF" },
+    "Cheonjiyeon Waterfall": { title: "Butter", artist: "BTS", spotifyId: "2bgTY4UwhfBYhGT4HUYStN" },
+    "Jeongbang Waterfall": { title: "FAKE LOVE", artist: "BTS", spotifyId: "6m1TWFMeon7ai9XLOzdbiR" },
+    "Teddy Bear Museum": { title: "Gangnam Style", artist: "PSY", spotifyId: "03UrZgTINDqvnUMbbIMhql" },
+    "Jeju Folk Village Museum": { title: "DDU-DU DDU-DU", artist: "BLACKPINK", spotifyId: "4lQsB3ERTWSNaAN1IkuNRl" },
+    "Udo Island": { title: "Kill This Love", artist: "BLACKPINK", spotifyId: "6hvczQ05jc1yGlp9zhb95V" },
+    "Seopjikoji": { title: "How You Like That", artist: "BLACKPINK", spotifyId: "4SFknyjLcyTLJFPKD2m96o" },
+    "Senso-ji Temple": { title: "Shinzou wo Sasageyo!", artist: "Linked Horizon", spotifyId: "5uraJqtCBvLpwt3VeomZdq" },
+    "Tokyo Tower": { title: "Gurenge", artist: "LiSA", spotifyId: "23DbzwNJSLo7nkSWjODMvY" },
+    "Tokyo Skytree": { title: "Lemon", artist: "Kenshi Yonezu", spotifyId: "04TshWXkhV1qkqHzf31Hn6" },
+    "Meiji Jingu Shrine": { title: "Pretender", artist: "Official HIGE DANdism", spotifyId: "15HNdxGKNCIO9pgaY4n7FU" },
+    "Shibuya Crossing": { title: "Lemon", artist: "Kenshi Yonezu", spotifyId: "04TshWXkhV1qkqHzf31Hn6" },
+    "Imperial Palace": { title: "Homura", artist: "LiSA", spotifyId: "0cSkn2l67csUljEy0EEBPn" },
+    "Ueno Park": { title: "Koi", artist: "Gen Hoshino", spotifyId: "1vNwRQj10QOLTOTyQYvD0s" },
+    "Akihabara": { title: "A Cruel Angel's Thesis", artist: "Yoko Takahashi", spotifyId: "3I2C1HT1XujaSgdf7ue0F9" },
+    "Shinjuku Gyoen": { title: "KICK BACK", artist: "Kenshi Yonezu", spotifyId: "5qqabIl2vWzo9ApSC317sa" },
+    "Harajuku Station": { title: "Idol", artist: "YOASOBI", spotifyId: "7ovUcF5uHTBRzUpB6ZOmvt" },
+    "銀座アスター 新宿賓館": { title: "Racing Into The Night", artist: "YOASOBI", spotifyId: "3dPtXHP0oXQ4HCWHsOA9js" },
+    "ASAKUSA": { title: "Sparkle", artist: "RADWIMPS", spotifyId: "4kXo8Z1t4jESCkhHw5IHGw" },
+    "Tokyo DisneySea": { title: "Zenzenzense", artist: "RADWIMPS", spotifyId: "57Hk29LVcJAaGSFYQSuOKM" },
+    "teamLab Borderless": { title: "Unravel", artist: "TK from Ling Tosite Sigure", spotifyId: "0GLyqTysS0DFoeKjURtB8s" },
+    "Osaka Castle": { title: "First Love", artist: "Hikaru Utada", spotifyId: "39HrUxcvKF3jtLz7fUDWXc" },
+    "Dotonbori": { title: "Plastic Love", artist: "Mariya Takeuchi", spotifyId: "7rU6Iebxzlvqy5t857bKFq" },
+    "Universal Studios Japan": { title: "Homura", artist: "LiSA", spotifyId: "0cSkn2l67csUljEy0EEBPn" },
+    "Shitennoji Temple Kindo": { title: "Koi", artist: "Gen Hoshino", spotifyId: "1vNwRQj10QOLTOTyQYvD0s" },
+    "Osaka Aquarium Kaiyukan": { title: "A Cruel Angel's Thesis", artist: "Yoko Takahashi", spotifyId: "3I2C1HT1XujaSgdf7ue0F9" },
+    "Sumiyoshi Taisha": { title: "KICK BACK", artist: "Kenshi Yonezu", spotifyId: "5qqabIl2vWzo9ApSC317sa" },
+    "Shinsekai": { title: "Idol", artist: "YOASOBI", spotifyId: "7ovUcF5uHTBRzUpB6ZOmvt" },
+    "Umeda Sky Building": { title: "Racing Into The Night", artist: "YOASOBI", spotifyId: "3dPtXHP0oXQ4HCWHsOA9js" },
+    "Kuromon Market": { title: "Sparkle", artist: "RADWIMPS", spotifyId: "4kXo8Z1t4jESCkhHw5IHGw" },
+    "Fukuoka Tower": { title: "Zenzenzense", artist: "RADWIMPS", spotifyId: "57Hk29LVcJAaGSFYQSuOKM" },
+    "Dazaifu Tenmangu Shrine": { title: "Unravel", artist: "TK from Ling Tosite Sigure", spotifyId: "0GLyqTysS0DFoeKjURtB8s" },
+    "Ohori Park": { title: "Shinzou wo Sasageyo!", artist: "Linked Horizon", spotifyId: "5uraJqtCBvLpwt3VeomZdq" },
+    "Canal City Hakata": { title: "Gurenge", artist: "LiSA", spotifyId: "23DbzwNJSLo7nkSWjODMvY" },
+    "Fukuoka Castle Ruins": { title: "Pretender", artist: "Official HIGE DANdism", spotifyId: "15HNdxGKNCIO9pgaY4n7FU" },
+    "Kushida Shrine": { title: "Lemon", artist: "Kenshi Yonezu", spotifyId: "04TshWXkhV1qkqHzf31Hn6" },
+    "Forbidden City": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "Great Wall Of China": { title: "Uptown Funk", artist: "Bruno Mars", spotifyId: "32OlwWuMpZ6b0aN2RZOeMS" },
+    "Temple of Heaven": { title: "Blinding Lights", artist: "The Weeknd", spotifyId: "0VjIjW4GlUZAMYd2vXMi3b" },
+    "Summer Palace": { title: "Despacito", artist: "Luis Fonsi", spotifyId: "6habFhsOp2NvshLv26DqMb" },
+    "Tian\'anmen Square": { title: "One Dance", artist: "Drake", spotifyId: "1zi7xx7UVEFkmKfv06H8x0" },
+    "Beihai Park": { title: "Perfect", artist: "Ed Sheeran", spotifyId: "0tgVpDi06FyKpA1z0VMD4v" },
+    "Ming Tombs": { title: "Closer", artist: "The Chainsmokers", spotifyId: "7BKLCZ1jbUBVqRi2FVlTVw" },
+    "798 Art Zone": { title: "Thinking Out Loud", artist: "Ed Sheeran", spotifyId: "34gCuhDGsG4bRPIf9bb02f" },
+    "Yonghegong Lama Temple": { title: "Happy", artist: "Pharrell Williams", spotifyId: "60nZcImufyMA1MKQY3dcCH" },
+    "Jingshan Park": { title: "Lean On", artist: "Major Lazer", spotifyId: "4vS8VaBwJJV5Ry7UFIQuoo" },
+    "The Bund": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "Oriental Pearl Tower": { title: "Uptown Funk", artist: "Bruno Mars", spotifyId: "32OlwWuMpZ6b0aN2RZOeMS" },
+    "Yu Garden": { title: "Blinding Lights", artist: "The Weeknd", spotifyId: "0VjIjW4GlUZAMYd2vXMi3b" },
+    "Shanghai Tower": { title: "Despacito", artist: "Luis Fonsi", spotifyId: "6habFhsOp2NvshLv26DqMb" },
+    "Nanjing Road Pedestrian Street": { title: "One Dance", artist: "Drake", spotifyId: "1zi7xx7UVEFkmKfv06H8x0" },
+    "Shanghai Museum": { title: "Perfect", artist: "Ed Sheeran", spotifyId: "0tgVpDi06FyKpA1z0VMD4v" },
+    "Jade Buddha Temple": { title: "Closer", artist: "The Chainsmokers", spotifyId: "7BKLCZ1jbUBVqRi2FVlTVw" },
+    "Former French Concession": { title: "Thinking Out Loud", artist: "Ed Sheeran", spotifyId: "34gCuhDGsG4bRPIf9bb02f" },
+    "Zhujiajiao Ancient Town": { title: "Happy", artist: "Pharrell Williams", spotifyId: "60nZcImufyMA1MKQY3dcCH" },
+    "Shanghai Disneyland": { title: "Lean On", artist: "Major Lazer", spotifyId: "4vS8VaBwJJV5Ry7UFIQuoo" },
+    "Canton Tower": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "Chen Clan Ancestral Hall": { title: "Uptown Funk", artist: "Bruno Mars", spotifyId: "32OlwWuMpZ6b0aN2RZOeMS" },
+    "Shamian Island": { title: "Blinding Lights", artist: "The Weeknd", spotifyId: "0VjIjW4GlUZAMYd2vXMi3b" },
+    "Baiyun Mountain": { title: "Despacito", artist: "Luis Fonsi", spotifyId: "6habFhsOp2NvshLv26DqMb" },
+    "Great Buddha Temple": { title: "One Dance", artist: "Drake", spotifyId: "1zi7xx7UVEFkmKfv06H8x0" },
+    "Guangdong Museum": { title: "Perfect", artist: "Ed Sheeran", spotifyId: "0tgVpDi06FyKpA1z0VMD4v" },
+    "Victoria Peak": { title: "Closer", artist: "The Chainsmokers", spotifyId: "7BKLCZ1jbUBVqRi2FVlTVw" },
+    "Tian Tan Buddha": { title: "Thinking Out Loud", artist: "Ed Sheeran", spotifyId: "34gCuhDGsG4bRPIf9bb02f" },
+    "Hong Kong Disneyland": { title: "Happy", artist: "Pharrell Williams", spotifyId: "60nZcImufyMA1MKQY3dcCH" },
+    "Ocean Park Hong Kong": { title: "Lean On", artist: "Major Lazer", spotifyId: "4vS8VaBwJJV5Ry7UFIQuoo" },
+    "Victoria Harbour": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "Wong Tai Sin Temple": { title: "Uptown Funk", artist: "Bruno Mars", spotifyId: "32OlwWuMpZ6b0aN2RZOeMS" },
+    "Star Ferry": { title: "Blinding Lights", artist: "The Weeknd", spotifyId: "0VjIjW4GlUZAMYd2vXMi3b" },
+    "Temple Street Night Market": { title: "Despacito", artist: "Luis Fonsi", spotifyId: "6habFhsOp2NvshLv26DqMb" },
+    "Ngong Ping 360 Tung Chung Station": { title: "One Dance", artist: "Drake", spotifyId: "1zi7xx7UVEFkmKfv06H8x0" },
+    "Man Mo Temple": { title: "Perfect", artist: "Ed Sheeran", spotifyId: "0tgVpDi06FyKpA1z0VMD4v" },
+    "Taipei 101": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "National Palace Museum": { title: "Despacito", artist: "Luis Fonsi", spotifyId: "6habFhsOp2NvshLv26DqMb" },
+    "Chiang Kai-Shek Memorial Hall": { title: "Perfect", artist: "Ed Sheeran", spotifyId: "0tgVpDi06FyKpA1z0VMD4v" },
+    "Longshan Temple": { title: "Counting Stars", artist: "OneRepublic", spotifyId: "2tpWsVSb9UEmDRxAl1zhX1" },
+    "Shilin Night Market": { title: "Closer", artist: "The Chainsmokers", spotifyId: "7BKLCZ1jbUBVqRi2FVlTVw" },
+    "Jiufen Old Street": { title: "Hello", artist: "Adele", spotifyId: "4sPmO7WMQUAf45kwMOtONw" },
+    "Elephant Mountain": { title: "Sugar", artist: "Maroon 5", spotifyId: "2iuZJX9X9P0GKaE93xcPjk" },
+    "Beitou Hot Spring Museum": { title: "Photograph", artist: "Ed Sheeran", spotifyId: "1HNkqx9Ahdgi1Ixy2xkKkL" },
+    "Maokong Gondola Line": { title: "Let Her Go", artist: "Passenger", spotifyId: "0JmiBCpWc1IAc0et7Xm7FL" },
+    "Sun Yat-sen Memorial Hall Loop": { title: "Havana", artist: "Camila Cabello", spotifyId: "1rfofaqEpACxVEHIZBJe6W" },
+    "Wat Arun Prang": { title: "Despacito", artist: "Luis Fonsi", spotifyId: "6habFhsOp2NvshLv26DqMb" },
+    "Wat Pho": { title: "MONEY", artist: "LISA", spotifyId: "7hxHWCCAIIxFLCzvDgnQHX" },
+    "Chatuchak Weekend Market": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "Khao San Road": { title: "Closer", artist: "The Chainsmokers", spotifyId: "7BKLCZ1jbUBVqRi2FVlTVw" },
+    "The Jim Thompson House": { title: "Faded", artist: "Alan Walker", spotifyId: "7gHs73wELdeycvS48JfIos" },
+    "Wat Saket": { title: "Something Just Like This", artist: "Coldplay & The Chainsmokers", spotifyId: "6RUKPb4LETWmmr3iAEQktW" },
+    "Lumphini Park": { title: "Rockabye", artist: "Clean Bandit", spotifyId: "5knuzwU65gJK7IF5yJsuaW" },
+    "Erawan Shrine": { title: "Alone", artist: "Alan Walker", spotifyId: "3ujORpm8Hf7QWEtfqSAZL8" },
+    "Chinatown Bangkok": { title: "Titanium", artist: "David Guetta ft. Sia", spotifyId: "0lHAMNU8RGiIObScrsRgmP" },
+    "Patong Beach": { title: "LALISA", artist: "LISA", spotifyId: "1yZAy74E1VDkpFsAA1CfPj" },
+    "Blu Monkey Phuket Phangnga Road": { title: "MONEY", artist: "LISA", spotifyId: "7hxHWCCAIIxFLCzvDgnQHX" },
+    "Kata Beach": { title: "Despacito", artist: "Luis Fonsi", spotifyId: "6habFhsOp2NvshLv26DqMb" },
+    "Phuket Old Town Hostel": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "Phi Phi Islands": { title: "Closer", artist: "The Chainsmokers", spotifyId: "7BKLCZ1jbUBVqRi2FVlTVw" },
+    "Phang Nga Bay": { title: "Faded", artist: "Alan Walker", spotifyId: "7gHs73wELdeycvS48JfIos" },
+    "Wat Chaithararam": { title: "Something Just Like This", artist: "Coldplay & The Chainsmokers", spotifyId: "6RUKPb4LETWmmr3iAEQktW" },
+    "Wat Phrathat Doi Suthep": { title: "Rockabye", artist: "Clean Bandit", spotifyId: "5knuzwU65gJK7IF5yJsuaW" },
+    "Chiang Mai Night Bazaar": { title: "Alone", artist: "Alan Walker", spotifyId: "3ujORpm8Hf7QWEtfqSAZL8" },
+    "Wat Phra Singh Waramahavihan": { title: "Titanium", artist: "David Guetta ft. Sia", spotifyId: "0lHAMNU8RGiIObScrsRgmP" },
+    "Elephant Nature Park": { title: "LALISA", artist: "LISA", spotifyId: "1yZAy74E1VDkpFsAA1CfPj" },
+    "Old City Chiang Mai": { title: "MONEY", artist: "LISA", spotifyId: "7hxHWCCAIIxFLCzvDgnQHX" },
+    "doi inthanon": { title: "Despacito", artist: "Luis Fonsi", spotifyId: "6habFhsOp2NvshLv26DqMb" },
+    "Marina Bay Sands": { title: "Blinding Lights", artist: "The Weeknd", spotifyId: "0VjIjW4GlUZAMYd2vXMi3b" },
+    "Gardens by the Bay": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "Sentosa Island": { title: "Uptown Funk", artist: "Bruno Mars", spotifyId: "32OlwWuMpZ6b0aN2RZOeMS" },
+    "Singapore Zoo": { title: "Can't Stop the Feeling!", artist: "Justin Timberlake", spotifyId: "6JV2JOEocMgcZxYSZelKcc" },
+    "Merlion Park": { title: "Happy", artist: "Pharrell Williams", spotifyId: "60nZcImufyMA1MKQY3dcCH" },
+    "Orchard Road": { title: "Shut Up and Dance", artist: "WALK THE MOON", spotifyId: "4kbj5MwxO1bq9wjT5g9HaA" },
+    "Hostel, Chinatown, Singapore": { title: "Shake It Off", artist: "Taylor Swift", spotifyId: "0cqRj7pUJDkTCEsJkx8snD" },
+    "little india singapore": { title: "24K Magic", artist: "Bruno Mars", spotifyId: "6b8Be6ljOzmkOmFslEb23P" },
+    "Universal Studios Singapore": { title: "Don't Start Now", artist: "Dua Lipa", spotifyId: "3PfIrDoz19wz7qK7tYeu62" },
+    "Clarke Quay": { title: "Levitating", artist: "Dua Lipa", spotifyId: "463CkQjx2Zk1yXoBuierM9" },
+    "Notre Dame Cathedral": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "Ben Thanh Market": { title: "Despacito", artist: "Luis Fonsi", spotifyId: "6habFhsOp2NvshLv26DqMb" },
+    "Địa đạo Củ Chi": { title: "See You Again", artist: "Wiz Khalifa ft. Charlie Puth", spotifyId: "2JzZzZUQj3Qff7wapcbKjc" },
+    "War Remnants Museum": { title: "Closer", artist: "The Chainsmokers", spotifyId: "7BKLCZ1jbUBVqRi2FVlTVw" },
+    "Independence Palace": { title: "Perfect", artist: "Ed Sheeran", spotifyId: "0tgVpDi06FyKpA1z0VMD4v" },
+    "Saigon Central Post Office": { title: "Something Just Like This", artist: "Coldplay", spotifyId: "6RUKPb4LETWmmr3iAEQktW" },
+    "Jade Emperor Pagoda": { title: "Faded", artist: "Alan Walker", spotifyId: "7gHs73wELdeycvS48JfIos" },
+    "Hoàn Kiếm Lake": { title: "Let Me Love You", artist: "DJ Snake", spotifyId: "0lYBSQXN6rCTvUZvg9S0lU" },
+    "Ho Chi Minh Mausoleum": { title: "Cold Water", artist: "Major Lazer", spotifyId: "6DNtNfH8hXkqOX1sjqmI7p" },
+    "Temple of Literature": { title: "Cheap Thrills", artist: "Sia", spotifyId: "27SdWb2rFzO6GWiYDBTD9j" },
+    "Old Quarter Hotel Hanoi": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "Ha Long Bay": { title: "Despacito", artist: "Luis Fonsi", spotifyId: "6habFhsOp2NvshLv26DqMb" },
+    "Chùa Một Cột": { title: "See You Again", artist: "Wiz Khalifa ft. Charlie Puth", spotifyId: "2JzZzZUQj3Qff7wapcbKjc" },
+    "Tran Quoc Pagoda": { title: "Closer", artist: "The Chainsmokers", spotifyId: "7BKLCZ1jbUBVqRi2FVlTVw" },
+    "Big Ben": { title: "London Calling", artist: "The Clash", spotifyId: "5jzma6gCzYtKB1DbEwFZKH" },
+    "Tower of London": { title: "Bohemian Rhapsody", artist: "Queen", spotifyId: "4u7EnebtmKWzUH433cf5Qv" },
+    "British Museum": { title: "Wonderwall", artist: "Oasis", spotifyId: "1qPbGZqppFwLwcBC1JQ6Vr" },
+    "Buckingham Palace": { title: "Viva La Vida", artist: "Coldplay", spotifyId: "1mea3bSkSGXuIRvnydlB5b" },
+    "The London Eye": { title: "Don't Look Back in Anger", artist: "Oasis", spotifyId: "7ppPZa3TRUSGKaks9wH7VT" },
+    "Tower Bridge": { title: "Yellow", artist: "Coldplay", spotifyId: "3AJwUDP919kvQ9QcozQPxg" },
+    "Westminster Abbey": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "St Paul\'s Cathedral": { title: "Someone Like You", artist: "Adele", spotifyId: "1zwMYTA5nlNjZxYrvBB2pV" },
+    "Hyde Park": { title: "Rolling in the Deep", artist: "Adele", spotifyId: "6IAZHEBUIGJ6NJKxxOBIEr" },
+    "Trafalgar Square": { title: "A Day In The Life", artist: "The Beatles", spotifyId: "0hKRSZhUGEhKU6aNSPBACZ" },
+    "Piccadilly Circus": { title: "Hey Jude", artist: "The Beatles", spotifyId: "0aym2LBJBk9DAYuHHutrIl" },
+    "The Shard": { title: "We Will Rock You", artist: "Queen", spotifyId: "4pbJqGIASGPr0ZpGpnWkDn" },
+    "Natural History Museum": { title: "Don't Stop Me Now", artist: "Queen", spotifyId: "7hQJA50XrCWABAu5v6QZ4i" },
+    "Edinburgh Castle": { title: "Fix You", artist: "Coldplay", spotifyId: "7LVHVU3tWfcxj5aiPFEW4Q" },
+    "The Royal Mile": { title: "The Scientist", artist: "Coldplay", spotifyId: "75JFxkI2RXiU7L9VXzMkle" },
+    "Arthur\'s Seat": { title: "Clocks", artist: "Coldplay", spotifyId: "449JWQHBPLQRXsbTcXq88Q" },
+    "Palace of Holyroodhouse": { title: "Mr. Brightside", artist: "The Killers", spotifyId: "3n3Ppam7vgaVa1iaRUc9Lp" },
+    "National Museum of Scotland": { title: "Watermelon Sugar", artist: "Harry Styles", spotifyId: "6UelLqGlWMcVH1E5c4H7lY" },
+    "Calton Hill": { title: "As It Was", artist: "Harry Styles", spotifyId: "4LRPiXqCikLlN15c3yImP7" },
+    "Eiffel Tower": { title: "La Vie en Rose", artist: "Edith Piaf", spotifyId: "6By5EZtl0GKQuRZBZbk1LU" },
+    "Louvre Museum": { title: "Non, Je Ne Regrette Rien", artist: "Edith Piaf", spotifyId: "3dkIE8P7hvl3tHl9KSb6dA" },
+    "Cathedral of Notre-Dame de Paris": { title: "Sous le ciel de Paris", artist: "Edith Piaf", spotifyId: "4cTdq6cM0KZLxLq8JzRAFd" },
+    "Arc de Triomphe": { title: "Alors On Danse", artist: "Stromae", spotifyId: "1TrSi7jo2ZrsGzLvVdfR8b" },
+    "Champs-Élysées": { title: "Chandelier", artist: "Sia", spotifyId: "4VrWlk8IQxevMvERoX08iC" },
+    "Sacré-Cœur Basilica": { title: "Lady Marmalade", artist: "Christina Aguilera", spotifyId: "5StXroDq4Wq4Om8E8g3htD" },
+    "Orsay Museum": { title: "Get Lucky", artist: "Daft Punk", spotifyId: "2Foc5Q5nqNiosCNqttzHof" },
+    "Palace of Versailles": { title: "One More Time", artist: "Daft Punk", spotifyId: "0DiWol3AO6WpXZgp0goxAV" },
+    "Moulin Rouge": { title: "Around the World", artist: "Daft Punk", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Montmartre": { title: "Papaoutai", artist: "Stromae", spotifyId: "34dx8DACTJsc3rsJdaEIQw" },
+    "Luxembourg Gardens": { title: "Je Veux", artist: "Zaz", spotifyId: "1ybA1UsPDg028HBBNmGDRf" },
+    "Sainte-Chapelle": { title: "Formidable", artist: "Stromae", spotifyId: "7Gln068n6gkUJ7LlIM1MiS" },
+    "Promenade des Anglais": { title: "La Vie en Rose", artist: "Edith Piaf", spotifyId: "6By5EZtl0GKQuRZBZbk1LU" },
+    "ibis Styles Nice Centre Gare": { title: "Non, Je Ne Regrette Rien", artist: "Edith Piaf", spotifyId: "3dkIE8P7hvl3tHl9KSb6dA" },
+    "Castle Hill": { title: "Sous le ciel de Paris", artist: "Edith Piaf", spotifyId: "4cTdq6cM0KZLxLq8JzRAFd" },
+    "Muséum d\'Histoire Naturelle de Nice": { title: "Alors On Danse", artist: "Stromae", spotifyId: "1TrSi7jo2ZrsGzLvVdfR8b" },
+    "Musée Marc Chagall": { title: "Chandelier", artist: "Sia", spotifyId: "4VrWlk8IQxevMvERoX08iC" },
+    "Colosseum Bar": { title: "Volare", artist: "Dean Martin", spotifyId: "3zQdYlDWpPqVcqhYSul1va" },
+    "Vatican City": { title: "Con Te Partiro", artist: "Andrea Bocelli", spotifyId: "7zrpoAJte9o12TzawqgdD0" },
+    "Trevi Fountain": { title: "That's Amore", artist: "Dean Martin", spotifyId: "4I4aQGNJ2HufloNtB65nxR" },
+    "Pantheon": { title: "Nessun Dorma", artist: "Luciano Pavarotti", spotifyId: "1TbuDl6GklIG7zy5fSiNni" },
+    "Roman Forum": { title: "O Sole Mio", artist: "Luciano Pavarotti", spotifyId: "4yKXfJ2IvlmMhmK6OyOOi1" },
+    "St. Peter\'s Basilica": { title: "La donna e mobile", artist: "Luciano Pavarotti", spotifyId: "5k8M2z8rvonPXGAskSUqoU" },
+    "Sistine Chapel": { title: "Felicita", artist: "Al Bano & Romina Power", spotifyId: "7sXTcibuNYugjjYNfgf2kY" },
+    "Inn At The Spanish Steps": { title: "Gloria", artist: "Umberto Tozzi", spotifyId: "3OzVbCyXBkYMb623G4O0MW" },
+    "Piazza Navona": { title: "Zitti E Buoni", artist: "Maneskin", spotifyId: "1lWWoec2z1j88GRblI5anV" },
+    "Castle of the Holy Angel": { title: "Beggin'", artist: "Maneskin", spotifyId: "3Wrjm47oTz2sjIgck11l5e" },
+    "Villa Borghese": { title: "I Wanna Be Your Slave", artist: "Maneskin", spotifyId: "4pt5fDVTg5GhEvEtlz9dKk" },
+    "Milan Cathedral View": { title: "Coraline", artist: "Maneskin", spotifyId: "7HMz8o0m7ASQ3ImFPfhWTY" },
+    "Galleria Vittorio Emanuele II": { title: "Volare", artist: "Dean Martin", spotifyId: "3zQdYlDWpPqVcqhYSul1va" },
+    "Museum of the Last Supper": { title: "Con Te Partiro", artist: "Andrea Bocelli", spotifyId: "7zrpoAJte9o12TzawqgdD0" },
+    "Sforza Castle": { title: "That's Amore", artist: "Dean Martin", spotifyId: "4I4aQGNJ2HufloNtB65nxR" },
+    "La Scala": { title: "Nessun Dorma", artist: "Luciano Pavarotti", spotifyId: "1TbuDl6GklIG7zy5fSiNni" },
+    "Pinacoteca di Brera": { title: "O Sole Mio", artist: "Luciano Pavarotti", spotifyId: "4yKXfJ2IvlmMhmK6OyOOi1" },
+    "Porta Nuova Food District": { title: "La donna e mobile", artist: "Luciano Pavarotti", spotifyId: "5k8M2z8rvonPXGAskSUqoU" },
+    "Saint Mark\'s Square": { title: "Felicita", artist: "Al Bano & Romina Power", spotifyId: "7sXTcibuNYugjjYNfgf2kY" },
+    "Rialto Bridge": { title: "Gloria", artist: "Umberto Tozzi", spotifyId: "3OzVbCyXBkYMb623G4O0MW" },
+    "Canal Grande": { title: "Zitti E Buoni", artist: "Maneskin", spotifyId: "1lWWoec2z1j88GRblI5anV" },
+    "Doge\'s Palace": { title: "Beggin'", artist: "Maneskin", spotifyId: "3Wrjm47oTz2sjIgck11l5e" },
+    "St Mark\'s Basilica": { title: "I Wanna Be Your Slave", artist: "Maneskin", spotifyId: "4pt5fDVTg5GhEvEtlz9dKk" },
+    "Burano Island": { title: "Coraline", artist: "Maneskin", spotifyId: "7HMz8o0m7ASQ3ImFPfhWTY" },
+    "Faro di Murano": { title: "Volare", artist: "Dean Martin", spotifyId: "3zQdYlDWpPqVcqhYSul1va" },
+    "The St. Regis Florence": { title: "Con Te Partiro", artist: "Andrea Bocelli", spotifyId: "7zrpoAJte9o12TzawqgdD0" },
+    "Uffizi Gallery": { title: "That's Amore", artist: "Dean Martin", spotifyId: "4I4aQGNJ2HufloNtB65nxR" },
+    "Ponte Vecchio": { title: "Nessun Dorma", artist: "Luciano Pavarotti", spotifyId: "1TbuDl6GklIG7zy5fSiNni" },
+    "Piazzale Michelangelo": { title: "O Sole Mio", artist: "Luciano Pavarotti", spotifyId: "4yKXfJ2IvlmMhmK6OyOOi1" },
+    "Pitti Palace": { title: "La donna e mobile", artist: "Luciano Pavarotti", spotifyId: "5k8M2z8rvonPXGAskSUqoU" },
+    "Gallery of the Academy": { title: "Felicita", artist: "Al Bano & Romina Power", spotifyId: "7sXTcibuNYugjjYNfgf2kY" },
+    "Royal Palace of Madrid": { title: "Waka Waka", artist: "Shakira", spotifyId: "2Cd9iWfcOpGDHLz6tVA3G4" },
+    "Museo Nacional del Prado": { title: "Despacito", artist: "Luis Fonsi", spotifyId: "6habFhsOp2NvshLv26DqMb" },
+    "Plaza Mayor": { title: "Bailando", artist: "Enrique Iglesias", spotifyId: "6jzoyCGqNbHPpdlgwTiSgi" },
+    "Retiro Park": { title: "La Bicicleta", artist: "Shakira & Carlos Vives", spotifyId: "43it4kot08akLzFIEMhXNN" },
+    "Puerta del Sol": { title: "Hips Don't Lie", artist: "Shakira", spotifyId: "3ZFTkvIE7kyPt6Nu3PEa7V" },
+    "Metro Gran Vía": { title: "Whenever, Wherever", artist: "Shakira", spotifyId: "2lnzGkdtDj5mtlcOW2yRtG" },
+    "Reina Sofía Shuttle": { title: "Me Enamore", artist: "Shakira", spotifyId: "4qknM1pQz53QOyfDVTjcM9" },
+    "Santiago Bernabéu Stadium": { title: "Vivir Mi Vida", artist: "Marc Anthony", spotifyId: "3QHMxEOAGD51PDlbFPHLyJ" },
+    "The Basilica of the Sagrada Familia": { title: "La Camisa Negra", artist: "Juanes", spotifyId: "2EM9zpAc7PVeoAydmbfVIL" },
+    "Park Güell": { title: "Livin la Vida Loca", artist: "Ricky Martin", spotifyId: "0Ph6L4l8dYUuXFmb71Ajnd" },
+    "La Rambla": { title: "Waka Waka", artist: "Shakira", spotifyId: "2Cd9iWfcOpGDHLz6tVA3G4" },
+    "Casa Batlló": { title: "Despacito", artist: "Luis Fonsi", spotifyId: "6habFhsOp2NvshLv26DqMb" },
+    "La Pedrera": { title: "Bailando", artist: "Enrique Iglesias", spotifyId: "5M830cD7MNeiiwIGHzH9TV" },
+    "Gothic Quarter": { title: "La Bicicleta", artist: "Shakira & Carlos Vives", spotifyId: "3qySQF26oRPw8DwxgYhxLk" },
+    "La Boqueria Food Market": { title: "Hips Don't Lie", artist: "Shakira", spotifyId: "3ZFTkvIE7kyPt6Nu3PEa7V" },
+    "Camp Nou": { title: "Whenever, Wherever", artist: "Shakira", spotifyId: "2lnzGkdtDj5mtlcOW2yRtG" },
+    "Barceloneta Beach": { title: "Me Enamore", artist: "Shakira", spotifyId: "4qknM1pQz53QOyfDVTjcM9" },
+    "Montjuïc Mountain": { title: "Vivir Mi Vida", artist: "Marc Anthony", spotifyId: "3QHMxEOAGD51PDlbFPHLyJ" },
+    "Römerberg": { title: "99 Luftballons", artist: "Nena", spotifyId: "3LSYdtuuvYmo0ejG2pOLBA" },
+    "Frankfurt Cathedral": { title: "Rock Me Amadeus", artist: "Falco", spotifyId: "5Z01UMMf7V1o0MzF86s6WJ" },
+    "Palmengarten": { title: "Take on Me", artist: "a-ha", spotifyId: "2WfaOiMkCvy7F5fcp2zZ8L" },
+    "Main Tower": { title: "The Final Countdown", artist: "Europe", spotifyId: "7c5lMuvtz2gddhDyG5MjB6" },
+    "Städel Museum": { title: "Blue (Da Ba Dee)", artist: "Eiffel 65", spotifyId: "00wuAhZkp4CkkGNC40Ybc2" },
+    "Marienplatz": { title: "Sandstorm", artist: "Darude", spotifyId: "6Sy9BUbgFse0n0LPA5lwy5" },
+    "Nymphenburg Palace": { title: "Levels", artist: "Avicii", spotifyId: "4jzHxqxfVX26GYsaxQBJf1" },
+    "English Garden": { title: "Wake Me Up", artist: "Avicii", spotifyId: "0nrRP2bk19rLc0orkWPQk2" },
+    "BMW Museum": { title: "99 Luftballons", artist: "Nena", spotifyId: "3LSYdtuuvYmo0ejG2pOLBA" },
+    "Castle Eigentum GmbH": { title: "Rock Me Amadeus", artist: "Falco", spotifyId: "5Z01UMMf7V1o0MzF86s6WJ" },
+    "Cathedral of Our Dear Lady": { title: "Take on Me", artist: "a-ha", spotifyId: "2WfaOiMkCvy7F5fcp2zZ8L" },
+    "Viktualienmarkt": { title: "The Final Countdown", artist: "Europe", spotifyId: "7c5lMuvtz2gddhDyG5MjB6" },
+    "Brandenburg gate": { title: "Blue (Da Ba Dee)", artist: "Eiffel 65", spotifyId: "00wuAhZkp4CkkGNC40Ybc2" },
+    "Berlin Wall Memorial": { title: "Sandstorm", artist: "Darude", spotifyId: "6Sy9BUbgFse0n0LPA5lwy5" },
+    "Reichstag building": { title: "Levels", artist: "Avicii", spotifyId: "4jzHxqxfVX26GYsaxQBJf1" },
+    "Museum Island": { title: "Wake Me Up", artist: "Avicii", spotifyId: "0nrRP2bk19rLc0orkWPQk2" },
+    "Checkpoint Charlie": { title: "99 Luftballons", artist: "Nena", spotifyId: "3LSYdtuuvYmo0ejG2pOLBA" },
+    "Berlin Cathedral": { title: "Rock Me Amadeus", artist: "Falco", spotifyId: "5Z01UMMf7V1o0MzF86s6WJ" },
+    "East Side Gallery": { title: "Take on Me", artist: "a-ha", spotifyId: "2WfaOiMkCvy7F5fcp2zZ8L" },
+    "Alexanderplatz": { title: "The Final Countdown", artist: "Europe", spotifyId: "7c5lMuvtz2gddhDyG5MjB6" },
+    "Anne Frank House": { title: "Levels", artist: "Avicii", spotifyId: "4jzHxqxfVX26GYsaxQBJf1" },
+    "Van Gogh Museum": { title: "Wake Me Up", artist: "Avicii", spotifyId: "0nrRP2bk19rLc0orkWPQk2" },
+    "Rijksmuseum": { title: "Titanium", artist: "David Guetta ft. Sia", spotifyId: "0lHAMNU8RGiIObScrsRgmP" },
+    "Royal Palace of Amsterdam": { title: "Animals", artist: "Martin Garrix", spotifyId: "0A9mHc7oYUoCECqByV8cQR" },
+    "Dam": { title: "Tsunami", artist: "DVBBS & Borgeous", spotifyId: "0vZCG0H9KhtU7K8MEUVAoV" },
+    "Vondelpark": { title: "Lean On", artist: "Major Lazer & DJ Snake", spotifyId: "4vS8VaBwJJV5Ry7UFIQuoo" },
+    "De Jordaan": { title: "Scared to Be Lonely", artist: "Martin Garrix", spotifyId: "3ebXMykcMXOcLeJ9xZ17XH" },
+    "Amsterdam Canal Cruises": { title: "In the Name of Love", artist: "Martin Garrix", spotifyId: "6Xhbrtw5PNo9NAgPdhOBHE" },
+    "Heineken Experience": { title: "Fade", artist: "Alan Walker", spotifyId: "2lfPecqFbH8X4lHSpTxt8l" },
+    "Schönbrunn Palace,": { title: "Rock Me Amadeus", artist: "Falco", spotifyId: "5Z01UMMf7V1o0MzF86s6WJ" },
+    "St. Stephen\'s Cathedral": { title: "The Blue Danube", artist: "Johann Strauss II", spotifyId: "3dNtie8oeJVVWImQFfjjXO" },
+    "Upper Belvedere": { title: "99 Luftballons", artist: "Nena", spotifyId: "3LSYdtuuvYmo0ejG2pOLBA" },
+    "Hofburg": { title: "Take on Me", artist: "a-ha", spotifyId: "2WfaOiMkCvy7F5fcp2zZ8L" },
+    "Vienna State Opera": { title: "The Final Countdown", artist: "Europe", spotifyId: "7c5lMuvtz2gddhDyG5MjB6" },
+    "Wiener Prater": { title: "Vienna", artist: "Billy Joel", spotifyId: "4U45aEWtQhrm8A5mxPaFZ7" },
+    "Vienna Museum of Art History": { title: "Waltz No. 2", artist: "Dmitri Shostakovich", spotifyId: "57mwtMPahz8DBJF3HH7wxo" },
+    "Charles Bridge": { title: "The Moldau", artist: "Bedrich Smetana", spotifyId: "6cquW73WemPok56XlDWxNy" },
+    "Prague Castle": { title: "Take on Me", artist: "a-ha", spotifyId: "2WfaOiMkCvy7F5fcp2zZ8L" },
+    "Old Town Square": { title: "99 Luftballons", artist: "Nena", spotifyId: "3LSYdtuuvYmo0ejG2pOLBA" },
+    "Prague Astronomical Clock": { title: "The Final Countdown", artist: "Europe", spotifyId: "7c5lMuvtz2gddhDyG5MjB6" },
+    "St. Vitus Cathedral": { title: "Sandstorm", artist: "Darude", spotifyId: "6Sy9BUbgFse0n0LPA5lwy5" },
+    "Wenceslas Square Hotel": { title: "Levels", artist: "Avicii", spotifyId: "4jzHxqxfVX26GYsaxQBJf1" },
+    "Lennon Wall": { title: "Mr. Brightside", artist: "The Killers", spotifyId: "3n3Ppam7vgaVa1iaRUc9Lp" },
+    "Statue of Liberty": { title: "Empire State of Mind", artist: "JAY-Z, Alicia Keys", spotifyId: "2iUXsYOEPhVqEBwsqP70rE" },
+    "Empire State Building": { title: "New York, New York", artist: "Frank Sinatra", spotifyId: "7qbP7oWlVkOnlvoiQ1GJp6" },
+    "Central Park Mall": { title: "New York State of Mind", artist: "Billy Joel", spotifyId: "6yjKlmm7vOszkXEUku1EM1" },
+    "Times Square": { title: "Welcome to New York", artist: "Taylor Swift", spotifyId: "10nqz67NQWWa7XPq7ycihi" },
+    "Brooklyn Bridge": { title: "Brooklyn Baby", artist: "Lana Del Rey", spotifyId: "1NZs6n6hl8UuMaX0UC0YTz" },
+    "Metropolitan Museum of Art": { title: "Hotel California", artist: "Eagles", spotifyId: "40riOy7x9W7GXjyGp4pjAv" },
+    "One World Trade Center": { title: "California Gurls", artist: "Katy Perry", spotifyId: "6KOEK6SeCEZOQkLj5M1PxH" },
+    "Grand Central Terminal": { title: "California Dreamin'", artist: "The Mamas & The Papas", spotifyId: "63rva3TBizr6x1Yp5uwKfD" },
+    "Rockefeller Center": { title: "City of Stars", artist: "Ryan Gosling, Emma Stone", spotifyId: "3YRCqOhFifThpSRFJ1VWFM" },
+    "401 Broadway": { title: "Viva Las Vegas", artist: "Elvis Presley", spotifyId: "5Q7ayTarb9Tpmkik5cVMug" },
+    "Saks Fifth Avenue": { title: "Sweet Home Alabama", artist: "Lynyrd Skynyrd", spotifyId: "7e89621JPkKaeDSTQ3avtg" },
+    "Museum of Modern Art": { title: "Take Me Home, Country Roads", artist: "John Denver", spotifyId: "1YYhDizHx7PnDhAhko6cDS" },
+    "Hollywood Sign": { title: "Uptown Funk", artist: "Bruno Mars", spotifyId: "32OlwWuMpZ6b0aN2RZOeMS" },
+    "Universal Studios Hollywood": { title: "Happy", artist: "Pharrell Williams", spotifyId: "60nZcImufyMA1MKQY3dcCH" },
+    "Santa Monica Pier": { title: "Blinding Lights", artist: "The Weeknd", spotifyId: "0VjIjW4GlUZAMYd2vXMi3b" },
+    "Griffith Observatory": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "Hollywood Walk of Fame": { title: "Anti-Hero", artist: "Taylor Swift", spotifyId: "0V3wPSX9ygBnCm8psDIegu" },
+    "J. Paul Getty Museum": { title: "Cruel Summer", artist: "Taylor Swift", spotifyId: "1BxfuPKGuaTgP7aM0Bbdwr" },
+    "Venice Beach": { title: "Heat Waves", artist: "Glass Animals", spotifyId: "3USxtqRwSYz57Ewm6wWRMp" },
+    "Style Beverly Hills": { title: "Sunflower", artist: "Post Malone & Swae Lee", spotifyId: "3KkXRkHbMCARz0aVfEt68P" },
+    "Disneyland Park": { title: "Counting Stars", artist: "OneRepublic", spotifyId: "2tpWsVSb9UEmDRxAl1zhX1" },
+    "The Grove": { title: "High Hopes", artist: "Panic! At The Disco", spotifyId: "1rqqCSm0Qe4I9rUvWncaom" },
+    "Golden Gate Bridge": { title: "Hotline Bling", artist: "Drake", spotifyId: "0wwPcA6wtMf6HUMpIRdeP7" },
+    "Alcatraz Island": { title: "One Dance", artist: "Drake", spotifyId: "1zi7xx7UVEFkmKfv06H8x0" },
+    "Fisherman\'s Wharf": { title: "golden hour", artist: "JVKE", spotifyId: "5odlY52u43F5BjByhxg7wg" },
+    "Pier 39": { title: "Empire State of Mind", artist: "JAY-Z, Alicia Keys", spotifyId: "2iUXsYOEPhVqEBwsqP70rE" },
+    "Lombard Street": { title: "New York, New York", artist: "Frank Sinatra", spotifyId: "7qbP7oWlVkOnlvoiQ1GJp6" },
+    "Chinatown San Francisco": { title: "New York State of Mind", artist: "Billy Joel", spotifyId: "6yjKlmm7vOszkXEUku1EM1" },
+    "Powell Street Cable Car Turnaround": { title: "Welcome to New York", artist: "Taylor Swift", spotifyId: "10nqz67NQWWa7XPq7ycihi" },
+    "Golden Gate Park": { title: "Brooklyn Baby", artist: "Lana Del Rey", spotifyId: "1NZs6n6hl8UuMaX0UC0YTz" },
+    "Palace of Fine Arts": { title: "Hotel California", artist: "Eagles", spotifyId: "40riOy7x9W7GXjyGp4pjAv" },
+    "The Las Vegas Strip": { title: "California Gurls", artist: "Katy Perry", spotifyId: "6KOEK6SeCEZOQkLj5M1PxH" },
+    "Fountains of Bellagio": { title: "California Dreamin'", artist: "The Mamas & The Papas", spotifyId: "63rva3TBizr6x1Yp5uwKfD" },
+    "Fremont Street Experience": { title: "City of Stars", artist: "Ryan Gosling, Emma Stone", spotifyId: "3YRCqOhFifThpSRFJ1VWFM" },
+    "Grand Canyon": { title: "Viva Las Vegas", artist: "Elvis Presley", spotifyId: "5Q7ayTarb9Tpmkik5cVMug" },
+    "Hoover Dam": { title: "Sweet Home Alabama", artist: "Lynyrd Skynyrd", spotifyId: "7e89621JPkKaeDSTQ3avtg" },
+    "The Venetian Resort Las Vegas": { title: "Take Me Home, Country Roads", artist: "John Denver", spotifyId: "1YYhDizHx7PnDhAhko6cDS" },
+    "High Roller Observation Wheel": { title: "Uptown Funk", artist: "Bruno Mars", spotifyId: "32OlwWuMpZ6b0aN2RZOeMS" },
+    "South Beach": { title: "Happy", artist: "Pharrell Williams", spotifyId: "60nZcImufyMA1MKQY3dcCH" },
+    "Wynwood Arts District": { title: "Blinding Lights", artist: "The Weeknd", spotifyId: "0VjIjW4GlUZAMYd2vXMi3b" },
+    "HistoryMiami Museum": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "Wynwood Walls": { title: "Anti-Hero", artist: "Taylor Swift", spotifyId: "0V3wPSX9ygBnCm8psDIegu" },
+    "Little Havana": { title: "Cruel Summer", artist: "Taylor Swift", spotifyId: "1BxfuPKGuaTgP7aM0Bbdwr" },
+    "Everglades National Park": { title: "Heat Waves", artist: "Glass Animals", spotifyId: "3USxtqRwSYz57Ewm6wWRMp" },
+    "Walt Disney World Resort": { title: "Sunflower", artist: "Post Malone & Swae Lee", spotifyId: "3KkXRkHbMCARz0aVfEt68P" },
+    "Universal Orlando Resort": { title: "Counting Stars", artist: "OneRepublic", spotifyId: "2tpWsVSb9UEmDRxAl1zhX1" },
+    "SeaWorld Orlando": { title: "High Hopes", artist: "Panic! At The Disco", spotifyId: "1rqqCSm0Qe4I9rUvWncaom" },
+    "Kennedy Space Center Fcu": { title: "Hotline Bling", artist: "Drake", spotifyId: "0wwPcA6wtMf6HUMpIRdeP7" },
+    "Magic Kingdom Park": { title: "One Dance", artist: "Drake", spotifyId: "1zi7xx7UVEFkmKfv06H8x0" },
+    "Epcot": { title: "golden hour", artist: "JVKE", spotifyId: "5odlY52u43F5BjByhxg7wg" },
+    "Lincoln Memorial": { title: "Empire State of Mind", artist: "JAY-Z, Alicia Keys", spotifyId: "2iUXsYOEPhVqEBwsqP70rE" },
+    "Washington Monument": { title: "New York, New York", artist: "Frank Sinatra", spotifyId: "7qbP7oWlVkOnlvoiQ1GJp6" },
+    "The White House": { title: "New York State of Mind", artist: "Billy Joel", spotifyId: "6yjKlmm7vOszkXEUku1EM1" },
+    "United States Capitol": { title: "Welcome to New York", artist: "Taylor Swift", spotifyId: "10nqz67NQWWa7XPq7ycihi" },
+    "National Mall": { title: "Brooklyn Baby", artist: "Lana Del Rey", spotifyId: "1NZs6n6hl8UuMaX0UC0YTz" },
+    "Smithsonian Institution Building": { title: "Hotel California", artist: "Eagles", spotifyId: "40riOy7x9W7GXjyGp4pjAv" },
+    "Thomas Jefferson Memorial": { title: "California Gurls", artist: "Katy Perry", spotifyId: "6KOEK6SeCEZOQkLj5M1PxH" },
+    "Arlington National Cemetery": { title: "California Dreamin'", artist: "The Mamas & The Papas", spotifyId: "63rva3TBizr6x1Yp5uwKfD" },
+    "Sydney Opera House": { title: "Down Under", artist: "Men At Work", spotifyId: "46RVKt5Edm1zl0rXhPJZxz" },
+    "Sydney Harbour Bridge": { title: "Somebody That I Used to Know", artist: "Gotye", spotifyId: "1qDrWA6lyx8cLECdZE7TV7" },
+    "Bondi Beach": { title: "Torn", artist: "Natalie Imbruglia", spotifyId: "3ywzBUkk3b616VzM4I5PzL" },
+    "Darling Harbour": { title: "Chandelier", artist: "Sia", spotifyId: "4VrWlk8IQxevMvERoX08iC" },
+    "Taronga Zoo": { title: "Cheap Thrills", artist: "Sia", spotifyId: "27SdWb2rFzO6GWiYDBTD9j" },
+    "Royal Botanic Garden": { title: "Dance Monkey", artist: "Tones And I", spotifyId: "2XU0oxnq2qxCpomAAuJY8K" },
+    "The Rocks": { title: "Never Be the Same", artist: "Camila Cabello", spotifyId: "4eWQlBRaTjPPUlzacqEeoQ" },
+    "Manly Beach": { title: "The Middle", artist: "Zedd, Maren Morris, Grey", spotifyId: "2ARqIya5NAuvFVHSN3bL0m" },
+    "Federation Square": { title: "Down Under", artist: "Men At Work", spotifyId: "46RVKt5Edm1zl0rXhPJZxz" },
+    "Melbourne Cricket Ground": { title: "Somebody That I Used to Know", artist: "Gotye", spotifyId: "1qDrWA6lyx8cLECdZE7TV7" },
+    "Royal Botanic Gardens": { title: "Torn", artist: "Natalie Imbruglia", spotifyId: "3ywzBUkk3b616VzM4I5PzL" },
+    "Queen Victoria Market": { title: "Chandelier", artist: "Sia", spotifyId: "4VrWlk8IQxevMvERoX08iC" },
+    "St Kilda Beach": { title: "Cheap Thrills", artist: "Sia", spotifyId: "27SdWb2rFzO6GWiYDBTD9j" },
+    "Ovolo Laneways": { title: "Dance Monkey", artist: "Tones And I", spotifyId: "2XU0oxnq2qxCpomAAuJY8K" },
+    "Great Northern Hotel": { title: "Never Be the Same", artist: "Camila Cabello", spotifyId: "4eWQlBRaTjPPUlzacqEeoQ" },
+    "Burj Khalifa": { title: "Lean On", artist: "Major Lazer & DJ Snake", spotifyId: "4vS8VaBwJJV5Ry7UFIQuoo" },
+    "Dubai Mall": { title: "One Dance", artist: "Drake", spotifyId: "1zi7xx7UVEFkmKfv06H8x0" },
+    "Palm Jumeirah": { title: "Faded", artist: "Alan Walker", spotifyId: "7gHs73wELdeycvS48JfIos" },
+    "Burj Al Arab": { title: "Despacito", artist: "Luis Fonsi", spotifyId: "6habFhsOp2NvshLv26DqMb" },
+    "dubai marina": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "Gold Souk": { title: "Blinding Lights", artist: "The Weeknd", spotifyId: "0VjIjW4GlUZAMYd2vXMi3b" },
+    "Dubai Frame": { title: "Uptown Funk", artist: "Bruno Mars", spotifyId: "32OlwWuMpZ6b0aN2RZOeMS" },
+    "Jumeirah Beach": { title: "This Is What You Came For", artist: "Calvin Harris ft. Rihanna", spotifyId: "0azC730Exh71aQlOt9Zj3y" },
+    "Museum of the Future": { title: "Titanium", artist: "David Guetta ft. Sia", spotifyId: "0lHAMNU8RGiIObScrsRgmP" },
+    "Dubai Creek": { title: "Don't You Worry Child", artist: "Swedish House Mafia", spotifyId: "3bH4HzoZZFq8UpZmI2AMgV" },
+    "Old City Hagia Sophia Hotel": { title: "Despacito", artist: "Luis Fonsi", spotifyId: "6habFhsOp2NvshLv26DqMb" },
+    "Blue Mosque": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "Topkapı Palace": { title: "Blinding Lights", artist: "The Weeknd", spotifyId: "0VjIjW4GlUZAMYd2vXMi3b" },
+    "Grand Bazaar": { title: "Uptown Funk", artist: "Bruno Mars", spotifyId: "32OlwWuMpZ6b0aN2RZOeMS" },
+    "Galata Tower": { title: "Happy", artist: "Pharrell Williams", spotifyId: "60nZcImufyMA1MKQY3dcCH" },
+    "Bosphorus": { title: "Counting Stars", artist: "OneRepublic", spotifyId: "2tpWsVSb9UEmDRxAl1zhX1" },
+    "Basilica Cistern": { title: "Closer", artist: "The Chainsmokers", spotifyId: "7BKLCZ1jbUBVqRi2FVlTVw" },
+    "Dolmabahçe Palace": { title: "Faded", artist: "Alan Walker", spotifyId: "7gHs73wELdeycvS48JfIos" },
+    "Spice Bazaar": { title: "Something Just Like This", artist: "Coldplay & The Chainsmokers", spotifyId: "6RUKPb4LETWmmr3iAEQktW" },
+    "İstiklal Avenue": { title: "Let Me Love You", artist: "DJ Snake", spotifyId: "0lYBSQXN6rCTvUZvg9S0lU" },
+    "Great Pyramids of Giza": { title: "Walk Like an Egyptian", artist: "The Bangles", spotifyId: "5L6HNuXN71bfeuKXYtRasF" },
+    "The Egyptian Museum": { title: "Desert Rose", artist: "Sting", spotifyId: "0QFqIyJJ5BdOHyKBVW90I6" },
+    "Great Sphinx of Giza": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "Khan El Khalili Cafe": { title: "Despacito", artist: "Luis Fonsi", spotifyId: "6habFhsOp2NvshLv26DqMb" },
+    "The Saladin Citadel of Cairo": { title: "Blinding Lights", artist: "The Weeknd", spotifyId: "0VjIjW4GlUZAMYd2vXMi3b" },
+    "Al Azhar Mosque": { title: "Uptown Funk", artist: "Bruno Mars", spotifyId: "32OlwWuMpZ6b0aN2RZOeMS" },
+    "The Nile River": { title: "Happy", artist: "Pharrell Williams", spotifyId: "60nZcImufyMA1MKQY3dcCH" },
+};
+
+const defaultAirportMusic = {
+    "ICN": { title: "Dynamite", artist: "BTS", spotifyId: "0t1kP63rueHleOhQkYSXFY" },
+    "GMP": { title: "Dynamite", artist: "BTS", spotifyId: "0t1kP63rueHleOhQkYSXFY" },
+    "PUS": { title: "Dynamite", artist: "BTS", spotifyId: "0t1kP63rueHleOhQkYSXFY" },
+    "CJU": { title: "Dynamite", artist: "BTS", spotifyId: "0t1kP63rueHleOhQkYSXFY" },
+    "NRT": { title: "Gurenge", artist: "LiSA", spotifyId: "23DbzwNJSLo7nkSWjODMvY" },
+    "HND": { title: "Gurenge", artist: "LiSA", spotifyId: "23DbzwNJSLo7nkSWjODMvY" },
+    "KIX": { title: "Gurenge", artist: "LiSA", spotifyId: "23DbzwNJSLo7nkSWjODMvY" },
+    "FUK": { title: "Gurenge", artist: "LiSA", spotifyId: "23DbzwNJSLo7nkSWjODMvY" },
+    "PEK": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "PVG": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "CAN": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "HKG": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "TPE": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "BKK": { title: "LALISA", artist: "LISA", spotifyId: "1yZAy74E1VDkpFsAA1CfPj" },
+    "HKT": { title: "LALISA", artist: "LISA", spotifyId: "1yZAy74E1VDkpFsAA1CfPj" },
+    "CNX": { title: "LALISA", artist: "LISA", spotifyId: "1yZAy74E1VDkpFsAA1CfPj" },
+    "SIN": { title: "Blinding Lights", artist: "The Weeknd", spotifyId: "0VjIjW4GlUZAMYd2vXMi3b" },
+    "SGN": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "HAN": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "LHR": { title: "London Calling", artist: "The Clash", spotifyId: "5jzma6gCzYtKB1DbEwFZKH" },
+    "EDI": { title: "London Calling", artist: "The Clash", spotifyId: "5jzma6gCzYtKB1DbEwFZKH" },
+    "CDG": { title: "La Vie en Rose", artist: "Edith Piaf", spotifyId: "6By5EZtl0GKQuRZBZbk1LU" },
+    "NCE": { title: "La Vie en Rose", artist: "Edith Piaf", spotifyId: "6By5EZtl0GKQuRZBZbk1LU" },
+    "FCO": { title: "Volare", artist: "Dean Martin", spotifyId: "3zQdYlDWpPqVcqhYSul1va" },
+    "MXP": { title: "Volare", artist: "Dean Martin", spotifyId: "3zQdYlDWpPqVcqhYSul1va" },
+    "VCE": { title: "Volare", artist: "Dean Martin", spotifyId: "3zQdYlDWpPqVcqhYSul1va" },
+    "FLR": { title: "Volare", artist: "Dean Martin", spotifyId: "3zQdYlDWpPqVcqhYSul1va" },
+    "MAD": { title: "Waka Waka", artist: "Shakira", spotifyId: "2Cd9iWfcOpGDHLz6tVA3G4" },
+    "BCN": { title: "Waka Waka", artist: "Shakira", spotifyId: "2Cd9iWfcOpGDHLz6tVA3G4" },
+    "FRA": { title: "99 Luftballons", artist: "Nena", spotifyId: "3LSYdtuuvYmo0ejG2pOLBA" },
+    "MUC": { title: "99 Luftballons", artist: "Nena", spotifyId: "3LSYdtuuvYmo0ejG2pOLBA" },
+    "BER": { title: "99 Luftballons", artist: "Nena", spotifyId: "3LSYdtuuvYmo0ejG2pOLBA" },
+    "AMS": { title: "Levels", artist: "Avicii", spotifyId: "4jzHxqxfVX26GYsaxQBJf1" },
+    "VIE": { title: "Rock Me Amadeus", artist: "Falco", spotifyId: "5Z01UMMf7V1o0MzF86s6WJ" },
+    "PRG": { title: "The Moldau", artist: "Bedrich Smetana", spotifyId: "6cquW73WemPok56XlDWxNy" },
+    "JFK": { title: "Empire State of Mind", artist: "JAY-Z, Alicia Keys", spotifyId: "2iUXsYOEPhVqEBwsqP70rE" },
+    "LAX": { title: "Empire State of Mind", artist: "JAY-Z, Alicia Keys", spotifyId: "2iUXsYOEPhVqEBwsqP70rE" },
+    "SFO": { title: "Empire State of Mind", artist: "JAY-Z, Alicia Keys", spotifyId: "2iUXsYOEPhVqEBwsqP70rE" },
+    "LAS": { title: "Empire State of Mind", artist: "JAY-Z, Alicia Keys", spotifyId: "2iUXsYOEPhVqEBwsqP70rE" },
+    "MIA": { title: "Empire State of Mind", artist: "JAY-Z, Alicia Keys", spotifyId: "2iUXsYOEPhVqEBwsqP70rE" },
+    "MCO": { title: "Empire State of Mind", artist: "JAY-Z, Alicia Keys", spotifyId: "2iUXsYOEPhVqEBwsqP70rE" },
+    "IAD": { title: "Empire State of Mind", artist: "JAY-Z, Alicia Keys", spotifyId: "2iUXsYOEPhVqEBwsqP70rE" },
+    "SYD": { title: "Down Under", artist: "Men At Work", spotifyId: "46RVKt5Edm1zl0rXhPJZxz" },
+    "MEL": { title: "Down Under", artist: "Men At Work", spotifyId: "46RVKt5Edm1zl0rXhPJZxz" },
+    "DXB": { title: "Lean On", artist: "Major Lazer & DJ Snake", spotifyId: "4vS8VaBwJJV5Ry7UFIQuoo" },
+    "IST": { title: "Despacito", artist: "Luis Fonsi", spotifyId: "6habFhsOp2NvshLv26DqMb" },
+    "CAI": { title: "Walk Like an Egyptian", artist: "The Bangles", spotifyId: "5L6HNuXN71bfeuKXYtRasF" },
+};
+
+// 국가별 대표 음악 (해당 국가 가수의 유명한 곡)
+const countryMusic = {
+    "Korea": { title: "Dynamite", artist: "BTS", spotifyId: "0t1kP63rueHleOhQkYSXFY" },
+    "Japan": { title: "Gurenge", artist: "LiSA", spotifyId: "23DbzwNJSLo7nkSWjODMvY" },
+    "China": { title: "Tian Mi Mi", artist: "Teresa Teng", spotifyId: "4rphoYrdTc13gFZGgjEk44" },
+    "Hong Kong": { title: "Monica", artist: "Leslie Cheung", spotifyId: "1B9OQxCuWdWlyVICqoGcut" },
+    "Taiwan": { title: "Dao Xiang", artist: "Jay Chou", spotifyId: "69pyHCoBn4Ki0BzDJ2xPGI" },
+    "Thailand": { title: "LALISA", artist: "LISA", spotifyId: "1yZAy74E1VDkpFsAA1CfPj" },
+    "Singapore": { title: "Home", artist: "Kit Chan", spotifyId: "1vo8399T9sWFZ9vbrEcTL5" },
+    "Malaysia": { title: "Negaraku", artist: "Malaysian Traditional", spotifyId: "5O57159fWfCsuyDoSHL5YI" },
+    "Vietnam": { title: "See Tinh", artist: "Hoang Thuy Linh", spotifyId: "3bZGGKrMQLDGg18y2QqKFF" },
+    "Philippines": { title: "Anak", artist: "Freddie Aguilar", spotifyId: "6sJyD4XrxVSbdOIUoUc6qm" },
+    "Indonesia": { title: "Kangen", artist: "Dewa 19", spotifyId: "5LqanqJSmZwbwPtIi2RwTb" },
+    "India": { title: "Jai Ho", artist: "A.R. Rahman", spotifyId: "4L9GjflAckf3yTNKRkgELa" },
+    "United Arab Emirates": { title: "Ahwak", artist: "Hussain Al Jassmi", spotifyId: "3Fs5PAuGDSeQ9iA3FY38kT" },
+    "Turkey": { title: "Simarik", artist: "Tarkan", spotifyId: "6vEL7E8TGzrxuxbrgdlkLL" },
+    "United Kingdom": { title: "Shape of You", artist: "Ed Sheeran", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "France": { title: "La Vie en Rose", artist: "Edith Piaf", spotifyId: "6By5EZtl0GKQuRZBZbk1LU" },
+    "Germany": { title: "99 Luftballons", artist: "Nena", spotifyId: "3LSYdtuuvYmo0ejG2pOLBA" },
+    "Italy": { title: "Volare", artist: "Dean Martin", spotifyId: "3zQdYlDWpPqVcqhYSul1va" },
+    "Spain": { title: "Waka Waka", artist: "Shakira", spotifyId: "2Cd9iWfcOpGDHLz6tVA3G4" },
+    "Netherlands": { title: "Levels", artist: "Avicii", spotifyId: "4jzHxqxfVX26GYsaxQBJf1" },
+    "Belgium": { title: "Alors on danse", artist: "Stromae", spotifyId: "5pxqhXLyxa1V6CVbj3fClQ" },
+    "Switzerland": { title: "The Show Must Go On", artist: "DJ BoBo", spotifyId: "7M2wk27EePpYr9TH3uZY1r" },
+    "Austria": { title: "Rock Me Amadeus", artist: "Falco", spotifyId: "5Z01UMMf7V1o0MzF86s6WJ" },
+    "Czech Republic": { title: "The Moldau", artist: "Bedrich Smetana", spotifyId: "6cquW73WemPok56XlDWxNy" },
+    "Poland": { title: "Kazachok", artist: "Polish Folk", spotifyId: "238WHRoztXuBHIhVVOk4oJ" },
+    "Russia": { title: "Korobeiniki", artist: "Russian Folk", spotifyId: "6CxWweyu61N9WSpMQ3oyGS" },
+    "Greece": { title: "Zorba the Greek", artist: "Mikis Theodorakis", spotifyId: "30Lj5KKGd8IUEK0s5N3ccN" },
+    "Portugal": { title: "Fado Portugues", artist: "Amalia Rodrigues", spotifyId: "5YUdTlVWSST9MXsmm7J83O" },
+    "Ireland": { title: "Galway Girl", artist: "Ed Sheeran", spotifyId: "0afhq8XCExXpqazXczTSve" },
+    "Norway": { title: "Take On Me", artist: "a-ha", spotifyId: "2WfaOiMkCvy7F5fcp2zZ8L" },
+    "Sweden": { title: "Dancing Queen", artist: "ABBA", spotifyId: "0GjEhVFGZW8afUYGChu3Rr" },
+    "Denmark": { title: "Barbie Girl", artist: "Aqua", spotifyId: "5ZrDlcxIDZyjOzHdYW1ydr" },
+    "Finland": { title: "Hard Rock Hallelujah", artist: "Lordi", spotifyId: "7sZTvm0Sx8umbyQViTE2Qc" },
+    "United States": { title: "Empire State of Mind", artist: "JAY-Z, Alicia Keys", spotifyId: "2iUXsYOEPhVqEBwsqP70rE" },
+    "Canada": { title: "Call Me Maybe", artist: "Carly Rae Jepsen", spotifyId: "20I6sIOMTCkB6w7ryavxtO" },
+    "Mexico": { title: "La Bamba", artist: "Ritchie Valens", spotifyId: "438hZtQVaeeO2E49nJM5nk" },
+    "Brazil": { title: "The Girl from Ipanema", artist: "Stan Getz & Joao Gilberto", spotifyId: "6gfKHUGFBRiGe3bqmnOqFR" },
+    "Argentina": { title: "Maria Maria", artist: "Santana", spotifyId: "2sftOWIaCIogRjeWbHWuBE" },
+    "Australia": { title: "Down Under", artist: "Men At Work", spotifyId: "46RVKt5Edm1zl0rXhPJZxz" },
+    "New Zealand": { title: "Royals", artist: "Lorde", spotifyId: "2dLLR6qlu5UJ5gk0dKz0h3" },
+    "South Africa": { title: "Pata Pata", artist: "Miriam Makeba", spotifyId: "1BLXxFPDL2BT37nHKD7KrA" },
+    "Egypt": { title: "Walk Like an Egyptian", artist: "The Bangles", spotifyId: "5L6HNuXN71bfeuKXYtRasF" },
+    "Morocco": { title: "Aicha", artist: "Khaled", spotifyId: "6qMigKASABJSDFTiVWmvQJ" },
+    "Qatar": { title: "Hayya Hayya", artist: "Trinidad Cardona", spotifyId: "7vAJiDFrFtMYVOrZbOw7jj" },
+    "Saudi Arabia": { title: "Ya Leil Ya Ein", artist: "Najwa Karam", spotifyId: "3eCbEUIsmLtD6fmZiROZPC" },
+    "Israel": { title: "Golden Boy", artist: "Nadav Guedj", spotifyId: "6YWFr8BHQrRL4b7RwuqS36" },
+    "Maldives": { title: "Dhivehi Raajje", artist: "Maldivian Artists", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Sri Lanka": { title: "Manike Mage Hithe", artist: "Yohani", spotifyId: "73fXPtSK5jS0MaGUdGDUqJ" },
+    "Nepal": { title: "Resham Firiri", artist: "Nepali Folk", spotifyId: "7AV3R5VM4nO2qCrprE8S1p" },
+    "Bangladesh": { title: "Amar Sonar Bangla", artist: "Rabindranath Tagore", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "Pakistan": { title: "Pasoori", artist: "Ali Sethi & Shae Gill", spotifyId: "2dLLR6qlu5UJ5gk0dKz0h3" },
+    "Cambodia": { title: "Sinn Sisamouth Songs", artist: "Sinn Sisamouth", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Laos": { title: "Champa Muang Lao", artist: "Lao Folk", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Myanmar": { title: "Kabar Ma Kyay Bu", artist: "Myanmar Folk", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Brunei": { title: "Allah Peliharakan Sultan", artist: "Brunei National", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Uzbekistan": { title: "Qora Ko'zim", artist: "Uzbek Folk", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Kazakhstan": { title: "Dimash Songs", artist: "Dimash Kudaibergen", spotifyId: "5PJEi2dbSm2iQalWiV7NjZ" },
+    "Iceland": { title: "Volcano", artist: "Sigur Ros", spotifyId: "6CxWweyu61N9WSpMQ3oyGS" },
+    "Hungary": { title: "Nox Songs", artist: "Nox", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Romania": { title: "Dragostea Din Tei", artist: "O-Zone", spotifyId: "5O2P9iiztwhomNh8xkR9lJ" },
+    "Bulgaria": { title: "Momchil Songs", artist: "Bulgarian Folk", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Croatia": { title: "My Friend", artist: "2Cellos", spotifyId: "41B5pgb2nOO4QYXAOaAQGm" },
+    "Serbia": { title: "Lane Moje", artist: "Zeljko Joksimovic", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Slovenia": { title: "Amaya", artist: "Slovenia Artists", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Slovakia": { title: "Slovak Songs", artist: "Slovak Folk", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Ukraine": { title: "Stefania", artist: "Kalush Orchestra", spotifyId: "3Sb94Vh0dIcOtZb84SDLhK" },
+    "Malta": { title: "7th Wonder", artist: "Ira Losco", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Cyprus": { title: "Fuego", artist: "Eleni Foureira", spotifyId: "62aP9fBQKYKxi7PDXwcUAS" },
+    "Luxembourg": { title: "Rock Songs", artist: "Luxembourg Artists", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Estonia": { title: "Everybody", artist: "Tanel Padar", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Latvia": { title: "I Wanna", artist: "Marie N", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Lithuania": { title: "We Are The Winners", artist: "LT United", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Chile": { title: "Gracias a la Vida", artist: "Violeta Parra", spotifyId: "5U7MyRNbuZrWkyAI4bm3Ja" },
+    "Peru": { title: "El Condor Pasa", artist: "Simon & Garfunkel", spotifyId: "1eN42Q7IWRzRBq8eW2Y2TE" },
+    "Colombia": { title: "Waka Waka", artist: "Shakira", spotifyId: "2Cd9iWfcOpGDHLz6tVA3G4" },
+    "Ecuador": { title: "Ecuador", artist: "Ecuadorian Folk", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Cuba": { title: "Guantanamera", artist: "Celia Cruz", spotifyId: "6bNZH4O72jD4L5hga6DwHj" },
+    "Jamaica": { title: "One Love", artist: "Bob Marley", spotifyId: "63nrZL7wQuOeFB59joA1iq" },
+    "Dominican Republic": { title: "Darte un Beso", artist: "Prince Royce", spotifyId: "1R5TwHpEPrgaSyZQElNH0k" },
+    "Panama": { title: "Suavemente", artist: "Elvis Crespo", spotifyId: "13hBG1wU8XBglEMKCOj9T6" },
+    "Costa Rica": { title: "Limon y Sal", artist: "Julieta Venegas", spotifyId: "7dITAq1YP5e0kTcaDq4YWI" },
+    "Kenya": { title: "Jambo Bwana", artist: "Them Mushrooms", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Nigeria": { title: "Essence", artist: "Wizkid", spotifyId: "4Li2WHPkuyCdtmokzW2007" },
+    "Ethiopia": { title: "Tizita", artist: "Ethiopian Jazz", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Tanzania": { title: "African Songs", artist: "Tanzania Artists", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Mauritius": { title: "Sega Music", artist: "Mauritius Folk", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Tunisia": { title: "Ya Rayah", artist: "Rachid Taha", spotifyId: "7lDkxudGbSDeFynir5lUJV" },
+    "Jordan": { title: "Arabic Pop", artist: "Jordan Artists", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Lebanon": { title: "Mosh Maakoul", artist: "Najwa Karam", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Kuwait": { title: "Sheikhah", artist: "Nabeel Shuail", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Bahrain": { title: "Khaleeji Songs", artist: "Bahrain Artists", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Oman": { title: "Omani Folk", artist: "Oman Traditional", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Fiji": { title: "Isa Lei", artist: "Fiji Traditional", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Papua New Guinea": { title: "PNG Songs", artist: "PNG Folk", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" },
+    "Mongolia": { title: "Mongolian Throat Singing", artist: "The Hu", spotifyId: "4YV9G5dIiOBGtWNG6AMRgG" },
+    "Macau": { title: "Macau Pop", artist: "Macau Artists", spotifyId: "7qiZfU4dY1lWllzX7mPBI3" },
+    "Scotland": { title: "Flower of Scotland", artist: "The Corries", spotifyId: "6C4LXC9UFH1IKiHYOp0BiJ" }
+};
+
+// 공항 코드로 국가 찾기 함수
+function getCountryMusicForAirport(airportCode) {
+    if (!airportsData || !airportsData.airports) return null;
+
+    for (const region of Object.keys(airportsData.airports)) {
+        for (const country of Object.keys(airportsData.airports[region])) {
+            const countryData = airportsData.airports[region][country];
+            const found = countryData.airports.find(a => a.code === airportCode);
+            if (found) {
+                // 국가명으로 음악 찾기
+                return countryMusic[country] || null;
+            }
+        }
+    }
+    return null;
+}
+
+        // Current airport for music
+        let currentAirportCode = '';
+
+        // Show music section with Spotify embed - 관광지별 다른 음악
+        function showMusicPlayer(placeName, airportCode) {
+            const section = document.getElementById('music-section');
+            const player = document.getElementById('music-player');
+
+            // 관광지 이름에서 영어 부분만 추출 (중첩 괄호 포함 제거)
+            let cleanName = placeName;
+            let prev;
+            do {
+                prev = cleanName;
+                cleanName = cleanName.replace(/\s*\([^)]*\)/g, '');
+            } while (cleanName !== prev);
+            cleanName = cleanName.trim();
+
+            // 관광지별 음악 찾기 (정확한 매칭만 사용)
+            let music = null;
+            for (const [key, value] of Object.entries(attractionMusic)) {
+                if (cleanName.toLowerCase().includes(key.toLowerCase())) {
+                    music = value;
+                    break;
+                }
+            }
+
+            // 없으면 공항 기본 음악 사용
+            if (!music) {
+                music = defaultAirportMusic[airportCode];
+            }
+
+            // 그래도 없으면 공항의 국가를 찾아서 국가별 음악 사용
+            if (!music && airportCode) {
+                const countryMusic = getCountryMusicForAirport(airportCode);
+                if (countryMusic) {
+                    music = countryMusic;
+                }
+            }
+
+            // 최종 fallback
+            if (!music) {
+                music = { title: "Around the World", artist: "Daft Punk", spotifyId: "1pKYYY0dkg23sQQXi0Q5zN" };
+            }
+
+            if (music && music.spotifyId) {
+                section.style.display = 'block';
+                player.innerHTML = `
+                    <div class="music-player-container" style="flex-direction:column;gap:10px;">
+                        <div class="music-info" style="text-align:center;">
+                            <div class="music-title">${music.title}</div>
+                            <div class="music-artist">${music.artist}</div>
+                        </div>
+                        <iframe
+                            style="border-radius:12px"
+                            src="https://open.spotify.com/embed/track/${music.spotifyId}?utm_source=generator&theme=0"
+                            width="100%"
+                            height="152"
+                            frameBorder="0"
+                            allowfullscreen=""
+                            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                `;
+            } else {
+                section.style.display = 'none';
+            }
+        }
+
+        // Initialize
+        initMap();
+        loadData();
+    </script>
+</body>
+</html>

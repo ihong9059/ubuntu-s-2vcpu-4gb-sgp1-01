@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel English - 사용 가이드</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: white;
+            padding: 20px;
+        }
+        .container { max-width: 800px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #e94560;
+            margin-bottom: 30px;
+        }
+        header h1 { font-size: 1.8em; color: #e94560; }
+        header p { color: #aaa; margin-top: 5px; }
+
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            color: #4ecca3;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+            font-size: 1.3em;
+        }
+        .section h3 {
+            color: #e94560;
+            margin: 20px 0 10px;
+            font-size: 1.1em;
+        }
+        .section p {
+            color: #ccc;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        .section ul {
+            margin-left: 20px;
+            color: #ccc;
+        }
+        .section li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        .step-card {
+            display: flex;
+            gap: 15px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+        .step-number {
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+        .step-content h4 {
+            color: #4ecca3;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+        .step-content p {
+            color: #aaa;
+            font-size: 0.95em;
+        }
+
+        .tip-box {
+            background: rgba(78, 204, 163, 0.15);
+            border-left: 4px solid #4ecca3;
+            padding: 15px 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 15px 0;
+        }
+        .tip-box .title {
+            color: #4ecca3;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .tip-box p {
+            color: #ccc;
+            font-size: 0.95em;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .feature-item {
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        .feature-item .icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .feature-item .title {
+            color: #4ecca3;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .feature-item .desc {
+            color: #888;
+            font-size: 0.85em;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #4ecca3, #45b7aa);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .back-btn:hover { opacity: 0.9; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+        th { color: #4ecca3; background: rgba(0,0,0,0.2); }
+        td { color: #ccc; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📖 사용 가이드</h1>
+            <p>Travel English 완벽 활용법</p>
+        </header>
+
+        <!-- 소개 -->
+        <div class="section">
+            <h2>🌍 Travel English란?</h2>
+            <p>Travel English는 실제 해외여행 상황에서 사용하는 영어 회화를 게임처럼 학습할 수 있는 웹앱입니다.</p>
+            <p>공항 출발부터 귀국까지, 여행의 모든 순간에 필요한 영어 표현을 상황별로 연습할 수 있습니다.</p>
+
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="icon">🎮</div>
+                    <div class="title">게임형 학습</div>
+                    <div class="desc">선택지를 고르며 진행하는 인터랙티브 학습</div>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">🔊</div>
+                    <div class="title">음성 지원</div>
+                    <div class="desc">원어민 발음으로 듣고 따라하기</div>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">📍</div>
+                    <div class="title">실제 상황</div>
+                    <div class="desc">공항, 호텔, 레스토랑 등 실제 장소</div>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">📊</div>
+                    <div class="title">진행 추적</div>
+                    <div class="desc">학습 현황과 통계 확인</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 시작하기 -->
+        <div class="section">
+            <h2>🚀 시작하기</h2>
+
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>도착지 선택</h4>
+                    <p>여행하고 싶은 도시를 선택하세요. 지역별 탭(유럽, 아시아, 미주, 오세아니아)으로 필터링할 수 있습니다. 현재는 암스테르담만 이용 가능하며, 다른 도시는 순차적으로 추가됩니다.</p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>예산 선택</h4>
+                    <p>여행 예산에 따라 시나리오가 달라집니다.</p>
+                    <ul>
+                        <li><strong>최저가:</strong> 저가항공, 호스텔, 길거리 음식 위주</li>
+                        <li><strong>절감형:</strong> 일반항공, 게스트하우스, 로컬 식당</li>
+                        <li><strong>일반:</strong> 직항, 호텔, 레스토랑</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>여행 목적 선택</h4>
+                    <p>목적에 따라 다른 상황과 표현을 학습합니다.</p>
+                    <ul>
+                        <li><strong>관광:</strong> 관광지, 맛집, 사진 촬영 관련</li>
+                        <li><strong>배낭여행:</strong> 저예산, 현지 체험 중심</li>
+                        <li><strong>출장:</strong> 비즈니스 미팅, 호텔 체크인</li>
+                        <li><strong>가족여행:</strong> 아이 동반, 안전 관련 표현</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>학습 시작</h4>
+                    <p>모든 선택이 완료되면 "학습 시작" 버튼이 활성화됩니다. 버튼을 클릭하면 학습 페이지로 이동합니다.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 학습 화면 -->
+        <div class="section">
+            <h2>📚 학습 화면 사용법</h2>
+
+            <h3>화면 구성</h3>
+            <table>
+                <tr>
+                    <th>영역</th>
+                    <th>설명</th>
+                </tr>
+                <tr>
+                    <td>상단 진행바</td>
+                    <td>전체 시나리오 중 현재 진행 상황 표시</td>
+                </tr>
+                <tr>
+                    <td>장소/상황</td>
+                    <td>현재 어디서 어떤 상황인지 설명</td>
+                </tr>
+                <tr>
+                    <td>NPC 대화</td>
+                    <td>상대방(직원, 현지인 등)이 하는 말</td>
+                </tr>
+                <tr>
+                    <td>선택지</td>
+                    <td>내가 할 수 있는 대답들 (정답이 여러 개일 수 있음)</td>
+                </tr>
+            </table>
+
+            <h3>선택지 사용법</h3>
+            <p>각 선택지에는 두 가지 버튼이 있습니다:</p>
+            <ul>
+                <li><strong>선택지 텍스트 클릭:</strong> 해당 답변을 선택합니다</li>
+                <li><strong>🔊 버튼 클릭:</strong> 해당 문장의 발음을 들을 수 있습니다</li>
+            </ul>
+
+            <div class="tip-box">
+                <div class="title">💡 학습 팁</div>
+                <p>정답을 선택하기 전에 먼저 🔊 버튼으로 발음을 들어보세요. 소리를 들으며 문장을 따라 읽으면 학습 효과가 높아집니다!</p>
+            </div>
+
+            <h3>정답과 오답</h3>
+            <ul>
+                <li><strong>정답 선택 시:</strong> 초록색으로 표시되며 다음 장면으로 진행됩니다</li>
+                <li><strong>오답 선택 시:</strong> 빨간색으로 표시되고, 올바른 답을 다시 선택할 수 있습니다</li>
+                <li><strong>복수 정답:</strong> 일부 상황에서는 여러 답이 정답일 수 있습니다</li>
+            </ul>
+        </div>
+
+        <!-- 시나리오 구성 -->
+        <div class="section">
+            <h2>🗺️ 시나리오 구성</h2>
+            <p>하나의 여행 시나리오는 다음과 같은 카테고리로 구성됩니다:</p>
+
+            <table>
+                <tr>
+                    <th>카테고리</th>
+                    <th>예시 상황</th>
+                </tr>
+                <tr>
+                    <td>🛫 공항 출발</td>
+                    <td>체크인, 보안검색, 탑승</td>
+                </tr>
+                <tr>
+                    <td>✈️ 기내</td>
+                    <td>좌석 찾기, 음료 주문, 입국신고서</td>
+                </tr>
+                <tr>
+                    <td>🛬 입국/도착</td>
+                    <td>입국심사, 수하물 찾기, 환전</td>
+                </tr>
+                <tr>
+                    <td>🏨 호텔</td>
+                    <td>체크인, 객실 문의, 체크아웃</td>
+                </tr>
+                <tr>
+                    <td>🏛️ 관광지</td>
+                    <td>티켓 구매, 가이드 투어, 사진 요청</td>
+                </tr>
+                <tr>
+                    <td>🍽️ 식당</td>
+                    <td>예약, 주문, 계산</td>
+                </tr>
+                <tr>
+                    <td>🛒 쇼핑</td>
+                    <td>가격 문의, 사이즈 교환, 면세</td>
+                </tr>
+                <tr>
+                    <td>🚇 교통</td>
+                    <td>길 찾기, 대중교통, 택시</td>
+                </tr>
+                <tr>
+                    <td>🚨 비상상황</td>
+                    <td>분실물, 약국, 응급상황</td>
+                </tr>
+                <tr>
+                    <td>🛫 귀국</td>
+                    <td>면세점, 탑승, 세관신고</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 통계 페이지 -->
+        <div class="section">
+            <h2>📊 통계 페이지</h2>
+            <p>메인 화면의 "통계" 버튼을 클릭하면 현재 시나리오의 상세 정보를 볼 수 있습니다:</p>
+            <ul>
+                <li>총 Scene 수, 여행 일수, 장소 수, 선택지 수</li>
+                <li>카테고리별 Scene 분포 차트</li>
+                <li>일자별 Scene 목록</li>
+                <li>전체 Scene 상세 테이블</li>
+            </ul>
+        </div>
+
+        <!-- FAQ -->
+        <div class="section">
+            <h2>❓ 자주 묻는 질문</h2>
+
+            <h3>Q. 음성이 나오지 않아요</h3>
+            <p>브라우저 설정에서 음성 재생이 허용되어 있는지 확인하세요. 일부 모바일 브라우저에서는 무음 모드 해제가 필요합니다.</p>
+
+            <h3>Q. 다른 도시는 언제 추가되나요?</h3>
+            <p>파리, 도쿄, 뉴욕 등 인기 도시부터 순차적으로 추가될 예정입니다.</p>
+
+            <h3>Q. 오프라인에서도 사용할 수 있나요?</h3>
+            <p>현재는 인터넷 연결이 필요합니다. 향후 오프라인 모드 지원을 검토 중입니다.</p>
+
+            <h3>Q. 학습 기록이 저장되나요?</h3>
+            <p>현재 버전에서는 브라우저를 닫으면 진행 상황이 초기화됩니다. 향후 로그인 기능과 함께 학습 기록 저장 기능이 추가될 예정입니다.</p>
+        </div>
+
+        <!-- 문의 -->
+        <div class="section">
+            <h2>📧 문의 및 피드백</h2>
+            <p>버그 신고, 기능 제안, 또는 기타 문의사항이 있으시면 언제든 연락해 주세요.</p>
+            <div class="tip-box">
+                <div class="title">개선 제안 환영</div>
+                <p>더 나은 학습 경험을 위해 여러분의 의견을 기다립니다!</p>
+            </div>
+        </div>
+
+        <a href="/" class="back-btn">← 학습하러 가기</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "api_keys": {
+    "claude": "",
+    "openai": "",
+    "gemini": ""
+  },
+  "preferences": {
+    "default_provider": "claude",
+    "default_model": {},
+    "system_prompt": "You are a helpful AI assistant.",
+    "default_mode": "smart"
+  }
+}

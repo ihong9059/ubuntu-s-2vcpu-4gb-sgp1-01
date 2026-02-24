@@ -1,0 +1,85 @@
+/* SKZ AI - Markdown rendering styles */
+
+.message-text p { margin: 0 0 8px 0; }
+.message-text p:last-child { margin-bottom: 0; }
+.message-text strong { color: var(--member-color-light); }
+.message-text em { color: var(--accent-light); }
+
+.message-text ul, .message-text ol {
+    margin: 4px 0;
+    padding-left: 20px;
+}
+
+.message-text li { margin: 2px 0; }
+
+.message-text pre {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px;
+    overflow-x: auto;
+    margin: 8px 0;
+    font-size: 13px;
+}
+
+.message-text code {
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 13px;
+}
+
+.message-text :not(pre) > code {
+    background: var(--bg-primary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.message-text blockquote {
+    border-left: 3px solid var(--member-color);
+    padding-left: 12px;
+    margin: 8px 0;
+    color: var(--text-secondary);
+}
+
+.message-text a {
+    color: var(--member-color-light);
+    text-decoration: none;
+}
+
+.message-text a:hover { text-decoration: underline; }
+
+.message-text table {
+    border-collapse: collapse;
+    margin: 8px 0;
+    width: 100%;
+}
+
+.message-text th, .message-text td {
+    border: 1px solid var(--border-color);
+    padding: 6px 10px;
+    font-size: 13px;
+}
+
+.message-text th {
+    background: var(--bg-tertiary);
+}
+
+.message-text h1, .message-text h2, .message-text h3 {
+    margin: 12px 0 6px 0;
+    color: var(--text-primary);
+}
+
+.message-text h1 { font-size: 18px; }
+.message-text h2 { font-size: 16px; }
+.message-text h3 { font-size: 14px; }
+
+.message-text hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 12px 0;
+}
+
+.message-text img {
+    max-width: 100%;
+    border-radius: 8px;
+}

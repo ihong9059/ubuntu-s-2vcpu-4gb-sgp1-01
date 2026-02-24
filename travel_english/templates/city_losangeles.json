@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "losangeles",
+  "cityName": "LA",
+  "country": "미국",
+  "description": "할리우드와 해변, 엔터테인먼트의 수도",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_LAX_001",
+      "category": "landmark",
+      "day": 2,
+      "location": "할리우드 사인",
+      "situation": "세계에서 가장 유명한 사인을 본다",
+      "npcDialog": "The Hollywood Sign is best from Griffith Observatory! Built in 1923 for real estate ads. Each letter is 45 feet tall. Best photos at golden hour!",
+      "npcDialogKo": "할리우드 사인은 그리피스 천문대에서 제일 잘 보여요! 1923년 부동산 광고로 세워졌어요. 각 글자가 45피트예요. 골든아워에 사진 최고!",
+      "playerResponse": {
+        "choices": [
+          {"text": "45 feet per letter! It's bigger than I imagined.", "correct": true},
+          {"text": "Built for real estate? That's funny history!", "correct": true},
+          {"text": "It's just letters on a hill.", "correct": false},
+          {"text": "I can see it in movies.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_002",
+      "category": "culture",
+      "day": 2,
+      "location": "할리우드 명예의 거리",
+      "situation": "스타들의 별을 찾아본다",
+      "npcDialog": "Walk of Fame has over 2,700 stars! Look for your favorite celebrity. The stars are for movies, TV, music, radio, and theater. Any favorites?",
+      "npcDialogKo": "명예의 거리에 2,700개 넘는 별이 있어요! 좋아하는 유명인 찾아보세요. 영화, TV, 음악, 라디오, 연극 별이에요. 좋아하는 사람 있어요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "2,700 stars! Where's Michael Jackson's star?", "correct": true},
+          {"text": "I want to find my favorite actor's star!", "correct": true},
+          {"text": "It's just stars on the ground.", "correct": false},
+          {"text": "I don't follow celebrities.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_003",
+      "category": "landmark",
+      "day": 3,
+      "location": "산타모니카 피어",
+      "situation": "해변과 유원지를 즐긴다",
+      "npcDialog": "Santa Monica Pier! The Ferris wheel is solar-powered. Ride the carousel from 1922. Pacific Park has rollercoasters! And the beach is right there!",
+      "npcDialogKo": "산타모니카 피어예요! 대관람차가 태양광이에요. 1922년 회전목마 타보세요. 퍼시픽 파크에 롤러코스터! 바로 옆이 해변이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Solar-powered Ferris wheel! Very California.", "correct": true},
+          {"text": "A carousel from 1922! Is it the original?", "correct": true},
+          {"text": "Piers are all the same.", "correct": false},
+          {"text": "Amusement rides are for kids.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_004",
+      "category": "food",
+      "day": 3,
+      "location": "인앤아웃 버거",
+      "situation": "캘리포니아 명물 버거를 먹는다",
+      "npcDialog": "In-N-Out is a California icon! Try the Double-Double. Ask for Animal Style - special sauce, grilled onions, extra pickles. Secret menu!",
+      "npcDialogKo": "인앤아웃은 캘리포니아 상징이에요! 더블더블 드셔보세요. 애니멀 스타일로 - 특제 소스, 그릴드 어니언, 피클 추가. 시크릿 메뉴예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Animal Style! I love secret menu items.", "correct": true},
+          {"text": "Double-Double sounds perfect. What's in it?", "correct": true},
+          {"text": "Fast food is unhealthy.", "correct": false},
+          {"text": "I prefer McDonald's.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_005",
+      "category": "culture",
+      "day": 4,
+      "location": "유니버설 스튜디오",
+      "situation": "영화 테마파크를 즐긴다",
+      "npcDialog": "Universal Studios Hollywood! The studio tour shows real film sets. Harry Potter, Jurassic World, The Simpsons - which world first?",
+      "npcDialogKo": "유니버설 스튜디오 할리우드! 스튜디오 투어에서 실제 영화 세트를 봐요. 해리포터, 쥬라기 월드, 심슨 - 어느 세계 먼저요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Harry Potter first! I want to try butterbeer!", "correct": true},
+          {"text": "The studio tour with real sets sounds amazing!", "correct": true},
+          {"text": "Theme parks are too crowded.", "correct": false},
+          {"text": "I'm too old for theme parks.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_006",
+      "category": "landmark",
+      "day": 4,
+      "location": "베니스 비치",
+      "situation": "독특한 해변 문화를 체험한다",
+      "npcDialog": "Venice Beach is LA's eccentric side! Muscle Beach gym, street performers, Abbot Kinney shops. The boardwalk has amazing people watching!",
+      "npcDialogKo": "베니스 비치는 LA의 별난 면이에요! 머슬 비치 짐, 거리 공연자, 애벗 키니 상점들. 보드워크에서 사람 구경 끝내줘요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Muscle Beach! I've seen it in so many movies.", "correct": true},
+          {"text": "Venice looks so creative and free-spirited!", "correct": true},
+          {"text": "Venice seems too weird.", "correct": false},
+          {"text": "I prefer quiet beaches.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_007",
+      "category": "culture",
+      "day": 5,
+      "location": "게티 센터",
+      "situation": "무료 미술관을 방문한다",
+      "npcDialog": "Getty Center is free! Van Gogh, Monet, Rembrandt. The architecture by Richard Meier is stunning. Take the tram up - great city views!",
+      "npcDialogKo": "게티 센터는 무료예요! 반 고흐, 모네, 렘브란트. 리처드 마이어 건축이 끝내줘요. 트램 타고 올라가요 - 시티 뷰 좋아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Free admission with Van Gogh! This is amazing!", "correct": true},
+          {"text": "The building looks like a work of art itself.", "correct": true},
+          {"text": "Art museums are boring.", "correct": false},
+          {"text": "Free means low quality.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_008",
+      "category": "food",
+      "day": 5,
+      "location": "멕시칸 타코 트럭",
+      "situation": "LA의 진짜 타코를 맛본다",
+      "npcDialog": "LA has the best tacos outside Mexico! Al pastor, carnitas, or carne asada? Cilantro, onion, lime, and salsa verde. Street tacos are the real deal!",
+      "npcDialogKo": "LA에 멕시코 밖 최고 타코가 있어요! 알 파스토르, 카르니타스, 카르네 아사다? 고수, 양파, 라임, 살사 베르데. 스트릿 타코가 진짜예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Al pastor please! I love pineapple with pork.", "correct": true},
+          {"text": "Street tacos! What makes LA tacos special?", "correct": true},
+          {"text": "Food trucks seem unsanitary.", "correct": false},
+          {"text": "I don't like Mexican food.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_009",
+      "category": "shopping",
+      "day": 6,
+      "location": "로데오 드라이브",
+      "situation": "비벌리힐스 명품거리를 구경한다",
+      "npcDialog": "Rodeo Drive is luxury central! Chanel, Gucci, Louis Vuitton. Window shopping is free! The Pretty Woman bench is here for photos.",
+      "npcDialogKo": "로데오 드라이브는 럭셔리 중심지! 샤넬, 구찌, 루이비통. 아이쇼핑은 무료예요! 귀여운 여인 벤치에서 사진 찍어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Pretty Woman was filmed here! Where's the bench?", "correct": true},
+          {"text": "Window shopping is fun! The displays are art.", "correct": true},
+          {"text": "Luxury brands are overpriced.", "correct": false},
+          {"text": "I can't afford anything here.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_010",
+      "category": "landmark",
+      "day": 6,
+      "location": "그리피스 천문대",
+      "situation": "천문대에서 LA 야경을 본다",
+      "npcDialog": "Griffith Observatory has the best LA views! Free entry, free telescopes at night. The planetarium shows are awesome. Stay for sunset and city lights!",
+      "npcDialogKo": "그리피스 천문대 LA 전망 최고예요! 무료 입장, 밤에 무료 망원경. 플라네타리움 쇼 끝내줘요. 일몰과 야경까지 있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Free telescopes! Can I see the Hollywood Sign too?", "correct": true},
+          {"text": "Sunset to city lights - I'll stay the whole evening!", "correct": true},
+          {"text": "Observatories are for scientists.", "correct": false},
+          {"text": "I can see the city from anywhere.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_011",
+      "category": "food",
+      "day": 7,
+      "location": "더 그로브 푸드홀",
+      "situation": "다양한 LA 음식을 맛본다",
+      "npcDialog": "The Grove has everything! Farmers Market since 1934. Korean BBQ tacos, acai bowls, LA's best donuts. Fusion food was invented here!",
+      "npcDialogKo": "더 그로브에 다 있어요! 1934년부터 파머스 마켓. 한국식 BBQ 타코, 아사이볼, LA 최고 도넛. 퓨전 푸드가 여기서 탄생했어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Korean BBQ tacos! Only in LA!", "correct": true},
+          {"text": "Farmers Market since 1934! What's the must-try?", "correct": true},
+          {"text": "Fusion food isn't authentic.", "correct": false},
+          {"text": "Food halls are confusing.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_012",
+      "category": "culture",
+      "day": 7,
+      "location": "디즈니랜드",
+      "situation": "세계 최초 디즈니 테마파크를 방문한다",
+      "npcDialog": "Disneyland - the original! Walt Disney walked these streets. Star Wars: Galaxy's Edge is incredible. The fireworks show is magical!",
+      "npcDialogKo": "디즈니랜드 - 원조예요! 월트 디즈니가 이 거리를 걸었어요. 스타워즈: 갤럭시스 엣지가 대단해요. 불꽃놀이 쇼가 마법 같아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The original Disneyland! What ride should I do first?", "correct": true},
+          {"text": "Galaxy's Edge! Can I build my own lightsaber?", "correct": true},
+          {"text": "Disney is too commercial.", "correct": false},
+          {"text": "Theme parks are exhausting.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_013",
+      "category": "landmark",
+      "day": 3,
+      "location": "말리부 해변",
+      "situation": "유명인들의 해변을 방문한다",
+      "npcDialog": "Malibu is celebrity beach! Drive Pacific Coast Highway for amazing views. Zuma Beach is beautiful. You might spot movie stars!",
+      "npcDialogKo": "말리부는 셀럽 해변이에요! 퍼시픽 코스트 하이웨이 드라이브 경치 끝내줘요. 주마 비치가 예뻐요. 영화배우 볼 수도 있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "PCH drive! I've seen it in so many movies.", "correct": true},
+          {"text": "Celebrity spotting would be exciting!", "correct": true},
+          {"text": "Beaches are all the same.", "correct": false},
+          {"text": "I don't care about celebrities.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_014",
+      "category": "transport",
+      "day": 2,
+      "location": "렌터카 업체",
+      "situation": "LA에서 차를 렌트한다",
+      "npcDialog": "Welcome! A car is essential in LA. Compact or SUV? GPS included. Convertible for the PCH? Remember - traffic is real, plan extra time!",
+      "npcDialogKo": "환영해요! LA에서 차는 필수예요. 컴팩트? SUV? GPS 포함이에요. PCH 드라이브에 컨버터블? 기억하세요 - 교통체증 심하니까 시간 여유 두세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Convertible for the coast! Perfect for LA.", "correct": true},
+          {"text": "How bad is the traffic really?", "correct": true},
+          {"text": "I'll just use Uber.", "correct": false},
+          {"text": "Driving is stressful.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_015",
+      "category": "culture",
+      "day": 5,
+      "location": "워너 브라더스 스튜디오",
+      "situation": "영화 스튜디오 투어를 한다",
+      "npcDialog": "Warner Bros Studio Tour! See Friends Central Perk, Batman sets, Harry Potter props. You might see actual filming! Very exclusive experience.",
+      "npcDialogKo": "워너 브라더스 스튜디오 투어! 프렌즈 센트럴 퍼크, 배트맨 세트, 해리포터 소품 봐요. 실제 촬영 볼 수도 있어요! 아주 특별한 경험이에요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Central Perk! Can I sit on the couch?", "correct": true},
+          {"text": "Actual filming! Do we need to be quiet?", "correct": true},
+          {"text": "Studio tours are just walking.", "correct": false},
+          {"text": "I've seen enough movies.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_016",
+      "category": "food",
+      "day": 4,
+      "location": "한인타운 식당",
+      "situation": "LA 코리아타운에서 한식을 먹는다",
+      "npcDialog": "LA Koreatown is the largest outside Korea! Our KBBQ is 24 hours. Unlimited meat and banchan. Soju? This is like Seoul!",
+      "npcDialogKo": "LA 코리아타운이 한국 외 최대예요! 저희 한국 BBQ는 24시간이에요. 무한리필 고기와 반찬. 소주요? 여기가 서울 같아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "24-hour KBBQ! Only in Koreatown.", "correct": true},
+          {"text": "Feels like Seoul! What banchan do you have?", "correct": true},
+          {"text": "Why eat Korean food in America?", "correct": false},
+          {"text": "BBQ is too smoky.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_017",
+      "category": "landmark",
+      "day": 8,
+      "location": "다저 스타디움",
+      "situation": "메이저리그 야구 경기를 관람한다",
+      "npcDialog": "Dodger Stadium is baseball heaven! Hot dogs, Dodger Dogs are famous. Get there early for batting practice. The sunset over the field is iconic!",
+      "npcDialogKo": "다저 스타디움은 야구 천국이에요! 핫도그, 다저 도그가 유명해요. 배팅 연습 보려면 일찍 가세요. 경기장 위 일몰이 아이콘이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Dodger Dogs! That's the true baseball experience.", "correct": true},
+          {"text": "Sunset at the stadium sounds beautiful!", "correct": true},
+          {"text": "Baseball is too slow.", "correct": false},
+          {"text": "I don't follow American sports.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_018",
+      "category": "shopping",
+      "day": 6,
+      "location": "멜로즈 애비뉴",
+      "situation": "힙한 거리에서 쇼핑한다",
+      "npcDialog": "Melrose is LA's hippest street! Vintage shops, sneaker stores, and the famous Paul Smith pink wall. Perfect for Instagram. Very LA!",
+      "npcDialogKo": "멜로즈는 LA에서 가장 힙한 거리예요! 빈티지숍, 스니커즈 가게, 유명한 폴 스미스 핑크 벽. 인스타그램 딱이에요. 아주 LA다워요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The pink wall! I've seen it everywhere on Instagram.", "correct": true},
+          {"text": "Vintage and sneakers? My kind of shopping!", "correct": true},
+          {"text": "Hipster areas are too try-hard.", "correct": false},
+          {"text": "I don't care about Instagram.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_019",
+      "category": "culture",
+      "day": 7,
+      "location": "할리우드 볼",
+      "situation": "야외 음악당에서 공연을 본다",
+      "npcDialog": "Hollywood Bowl is iconic! Outdoor amphitheater under the stars. Bring a picnic! Classical, rock, pop - everyone plays here. Only in LA!",
+      "npcDialogKo": "할리우드 볼은 아이콘이에요! 별 아래 야외 원형극장. 피크닉 가져오세요! 클래식, 록, 팝 - 모두가 여기서 공연해요. LA에서만!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Picnic at a concert! That's so California.", "correct": true},
+          {"text": "Under the stars! What's playing tonight?", "correct": true},
+          {"text": "Outdoor venues have bad sound.", "correct": false},
+          {"text": "I prefer indoor concerts.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_LAX_020",
+      "category": "food",
+      "day": 8,
+      "location": "해변 레스토랑",
+      "situation": "마지막 밤 캘리포니아 디너를 즐긴다",
+      "npcDialog": "Your last LA sunset! California cuisine - fresh, local, healthy. Fish tacos, craft cocktails, and that ocean view. See you again soon - this is LA!",
+      "npcDialogKo": "LA 마지막 일몰이네요! 캘리포니아 요리 - 신선하고, 로컬, 건강해요. 피쉬 타코, 크래프트 칵테일, 그 오션 뷰. 또 오세요 - 여기가 LA예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Perfect way to end the trip! I'll miss this view.", "correct": true},
+          {"text": "Fish tacos at sunset - so California!", "correct": true},
+          {"text": "Healthy food is bland.", "correct": false},
+          {"text": "I prefer traditional restaurants.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

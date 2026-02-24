@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "vienna",
+  "cityName": "비엔나",
+  "country": "오스트리아",
+  "description": "음악과 예술의 수도, 합스부르크 왕조의 화려한 유산",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_VIE_001",
+      "category": "landmark",
+      "day": 2,
+      "location": "쇤브룬 궁전",
+      "situation": "합스부르크 왕가의 여름 궁전을 관람한다",
+      "npcDialog": "Schönbrunn has 1,441 rooms! The Imperial Tour covers 22 rooms. Don't miss the gardens - they're free and stunning!",
+      "npcDialogKo": "쇤브룬에는 1,441개의 방이 있어요! 임페리얼 투어는 22개 방을 봐요. 정원 놓치지 마세요 - 무료인데 멋져요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "1,441 rooms? That's incredible!", "correct": true},
+          {"text": "I'll definitely explore the gardens too.", "correct": true},
+          {"text": "22 rooms is too many to see.", "correct": false},
+          {"text": "I don't like palaces.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_002",
+      "category": "music",
+      "day": 3,
+      "location": "비엔나 국립 오페라하우스",
+      "situation": "세계적인 오페라 하우스에서 공연을 관람한다",
+      "npcDialog": "The Vienna State Opera is legendary! Standing tickets are only €15 and available 80 minutes before. What would you like to see?",
+      "npcDialogKo": "비엔나 국립 오페라는 전설이에요! 입석은 15유로고 공연 80분 전에 사요. 뭘 보고 싶으세요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Standing tickets for €15? What a deal!", "correct": true},
+          {"text": "What opera is playing tonight?", "correct": true},
+          {"text": "Opera is too long and boring.", "correct": false},
+          {"text": "I don't understand opera.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_003",
+      "category": "food",
+      "day": 3,
+      "location": "전통 카페하우스",
+      "situation": "비엔나 커피 문화를 체험한다",
+      "npcDialog": "Vienna's café culture is UNESCO heritage! Try Wiener Melange - it's like cappuccino. And Sachertorte - our famous chocolate cake!",
+      "npcDialogKo": "비엔나 카페 문화는 유네스코 유산이에요! 비너 멜랑주 드세요 - 카푸치노 비슷해요. 자허토르테도요 - 유명한 초콜릿 케이크!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I must try the authentic Sachertorte!", "correct": true},
+          {"text": "Vienna's coffee culture is world famous!", "correct": true},
+          {"text": "I prefer Starbucks.", "correct": false},
+          {"text": "Coffee and cake is too much.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_004",
+      "category": "art",
+      "day": 4,
+      "location": "벨베데레 궁전",
+      "situation": "클림트의 '키스'를 감상한다",
+      "npcDialog": "Klimt's 'The Kiss' is here! It's Austria's most famous painting. The palace gardens have beautiful city views too.",
+      "npcDialogKo": "클림트의 '키스'가 여기 있어요! 오스트리아에서 가장 유명한 그림이에요. 궁전 정원에서 도시 전망도 멋져요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I've always wanted to see 'The Kiss' in person!", "correct": true},
+          {"text": "Klimt's gold leaf technique is incredible.", "correct": true},
+          {"text": "I've seen it online already.", "correct": false},
+          {"text": "Modern art is confusing.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_005",
+      "category": "landmark",
+      "day": 2,
+      "location": "성 슈테판 대성당",
+      "situation": "비엔나의 상징적인 대성당을 방문한다",
+      "npcDialog": "St. Stephen's has the most beautiful Gothic tower! Climb 343 steps for amazing views, or take the elevator to the north tower.",
+      "npcDialogKo": "성 슈테판은 가장 아름다운 고딕 탑이 있어요! 343계단 오르면 전망이 끝내줘요, 아니면 북쪽 탑 엘리베이터 타세요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll climb all 343 steps for the view!", "correct": true},
+          {"text": "The Gothic architecture is stunning.", "correct": true},
+          {"text": "Churches are all the same.", "correct": false},
+          {"text": "I'll skip the tower climb.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_006",
+      "category": "food",
+      "day": 4,
+      "location": "슈니첼 레스토랑",
+      "situation": "정통 비엔나 슈니첼을 먹는다",
+      "npcDialog": "Real Wiener Schnitzel must be veal, pounded thin, and bigger than the plate! Served with potato salad and lingonberry jam.",
+      "npcDialogKo": "진짜 비너 슈니첼은 송아지고기를 얇게 두드려서 접시보다 크게! 감자 샐러드와 링곤베리 잼이랑 나와요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Bigger than the plate? I'm ready!", "correct": true},
+          {"text": "What makes Vienna's schnitzel different?", "correct": true},
+          {"text": "Veal is too expensive.", "correct": false},
+          {"text": "I don't eat fried food.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_007",
+      "category": "music",
+      "day": 5,
+      "location": "모차르트하우스",
+      "situation": "모차르트가 살았던 집을 방문한다",
+      "npcDialog": "Mozart lived here when he composed 'The Marriage of Figaro'! Three floors of exhibits about his Vienna years.",
+      "npcDialogKo": "모차르트가 '피가로의 결혼'을 작곡할 때 여기 살았어요! 3층에 걸쳐 비엔나 시절 전시가 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Walking where Mozart walked is amazing!", "correct": true},
+          {"text": "Did he compose other famous works here?", "correct": true},
+          {"text": "I don't know Mozart's music.", "correct": false},
+          {"text": "Old houses are boring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_008",
+      "category": "culture",
+      "day": 3,
+      "location": "호프부르크 궁전",
+      "situation": "합스부르크 왕궁을 둘러본다",
+      "npcDialog": "Hofburg was the Habsburg residence for 600 years! See the Imperial Apartments, Silver Collection, and Sisi Museum all in one ticket.",
+      "npcDialogKo": "호프부르크는 600년간 합스부르크 왕가의 거처였어요! 황실 아파트, 은 컬렉션, 시시 박물관 한 티켓으로 다 보세요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "The Sisi Museum sounds fascinating!", "correct": true},
+          {"text": "600 years of history in one place.", "correct": true},
+          {"text": "Too many museums in one.", "correct": false},
+          {"text": "Royal history doesn't interest me.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_009",
+      "category": "transport",
+      "day": 2,
+      "location": "링슈트라세",
+      "situation": "비엔나의 환상 도로를 따라 산책한다",
+      "npcDialog": "The Ringstraße circles the old city! Tram 1 and 2 go around it. All major buildings are along this boulevard.",
+      "npcDialogKo": "링슈트라세는 구시가지를 둘러싸요! 1번과 2번 트램이 한 바퀴 돌아요. 주요 건물이 다 이 대로에 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "A tram tour around the ring sounds perfect!", "correct": true},
+          {"text": "Which buildings should I look out for?", "correct": true},
+          {"text": "I'd rather take a taxi.", "correct": false},
+          {"text": "Walking is tiring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_010",
+      "category": "food",
+      "day": 5,
+      "location": "나슈마르크트",
+      "situation": "비엔나의 유명한 시장을 구경한다",
+      "npcDialog": "Naschmarkt has been here since the 16th century! Fresh produce, international foods, and the best falafel in Vienna!",
+      "npcDialogKo": "나슈마르크트는 16세기부터 있었어요! 신선한 농산물, 세계 음식, 비엔나 최고의 팔라펠이 있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I love exploring food markets!", "correct": true},
+          {"text": "What local specialties should I try?", "correct": true},
+          {"text": "Markets are too crowded.", "correct": false},
+          {"text": "I prefer supermarkets.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_011",
+      "category": "art",
+      "day": 4,
+      "location": "미술사 박물관",
+      "situation": "세계적인 미술 컬렉션을 감상한다",
+      "npcDialog": "The Kunsthistorisches Museum has Bruegel, Vermeer, Raphael! The building itself is a work of art. Don't miss the Egyptian collection.",
+      "npcDialogKo": "미술사 박물관에는 브뤼헬, 베르메르, 라파엘이 있어요! 건물 자체도 예술 작품이에요. 이집트 컬렉션 놓치지 마세요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Vermeer and Raphael in one place? Amazing!", "correct": true},
+          {"text": "The building does look like a palace.", "correct": true},
+          {"text": "Old paintings are boring.", "correct": false},
+          {"text": "I don't know these artists.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_012",
+      "category": "entertainment",
+      "day": 4,
+      "location": "프라터 공원",
+      "situation": "대관람차를 타고 비엔나 전망을 즐긴다",
+      "npcDialog": "The Riesenrad is from 1897! Featured in many movies. The slow rotation gives you 15 minutes of panoramic views.",
+      "npcDialogKo": "리젠라드는 1897년 것이에요! 많은 영화에 나왔어요. 천천히 도는 15분 동안 파노라마 전망을 봐요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "A 127-year-old Ferris wheel? So historic!", "correct": true},
+          {"text": "Which movies featured this wheel?", "correct": true},
+          {"text": "Ferris wheels are for kids.", "correct": false},
+          {"text": "I'm afraid of heights.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_013",
+      "category": "music",
+      "day": 5,
+      "location": "비엔나 소년 합창단",
+      "situation": "세계적으로 유명한 소년 합창단 공연을 관람한다",
+      "npcDialog": "Vienna Boys' Choir performs Sundays at the Chapel! Book early - tickets sell out fast. They've been singing since 1498!",
+      "npcDialogKo": "비엔나 소년 합창단은 일요일 채플에서 공연해요! 일찍 예약하세요 - 금방 매진돼요. 1498년부터 노래해왔어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Over 500 years of tradition! Incredible.", "correct": true},
+          {"text": "How do I book tickets?", "correct": true},
+          {"text": "Children's choirs aren't impressive.", "correct": false},
+          {"text": "Church music is dull.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_014",
+      "category": "food",
+      "day": 3,
+      "location": "호이리게",
+      "situation": "비엔나 와인 선술집에서 와인을 즐긴다",
+      "npcDialog": "Heuriger is uniquely Viennese! New wine with cold cuts and local cheese. The vineyards are right in the city!",
+      "npcDialogKo": "호이리게는 비엔나만의 것이에요! 햇포도주에 콜드 컷과 로컬 치즈. 포도밭이 도시 안에 있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Vineyards in the city? That's unique!", "correct": true},
+          {"text": "I'd love to try the new wine!", "correct": true},
+          {"text": "I don't drink wine.", "correct": false},
+          {"text": "Cold cuts aren't a real meal.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_015",
+      "category": "shopping",
+      "day": 4,
+      "location": "케른트너 거리",
+      "situation": "비엔나의 메인 쇼핑 거리를 산책한다",
+      "npcDialog": "Kärntner Straße is Vienna's main shopping street! From luxury brands to Mozart chocolates. Street performers everywhere!",
+      "npcDialogKo": "케른트너 거리는 비엔나 메인 쇼핑 거리예요! 명품부터 모차르트 초콜릿까지. 거리 공연자도 많아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Mozart chocolates sound like perfect souvenirs!", "correct": true},
+          {"text": "I love watching street performers.", "correct": true},
+          {"text": "Shopping streets are all the same.", "correct": false},
+          {"text": "I don't like crowds.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_016",
+      "category": "history",
+      "day": 5,
+      "location": "황제의 무덤",
+      "situation": "합스부르크 황제들의 무덤을 방문한다",
+      "npcDialog": "Imperial Crypt holds 150 Habsburgs! Marie Antoinette's mother is here. The elaborate coffins tell stories of power.",
+      "npcDialogKo": "황제의 지하실에 150명의 합스부르크가 있어요! 마리 앙투아네트의 어머니도 여기 있어요. 정교한 관이 권력의 이야기를 해요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Marie Antoinette's mother? I didn't know that!", "correct": true},
+          {"text": "The Habsburg history is fascinating.", "correct": true},
+          {"text": "Visiting tombs is morbid.", "correct": false},
+          {"text": "Dead royals don't interest me.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_017",
+      "category": "local",
+      "day": 3,
+      "location": "비엔나 숲",
+      "situation": "도시 근교의 아름다운 숲을 방문한다",
+      "npcDialog": "Vienna Woods inspired Strauss's waltz! Take the train to Grinzing for hiking and wine. Beethoven walked these paths too.",
+      "npcDialogKo": "비엔나 숲은 슈트라우스의 왈츠에 영감을 줬어요! 그린칭까지 기차 타고 하이킹과 와인을. 베토벤도 이 길을 걸었어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Walking where Beethoven walked!", "correct": true},
+          {"text": "Hiking and wine sounds perfect.", "correct": true},
+          {"text": "I don't like nature.", "correct": false},
+          {"text": "That's too far from the city.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_018",
+      "category": "culture",
+      "day": 2,
+      "location": "스페인 승마학교",
+      "situation": "리피차너 말의 공연을 관람한다",
+      "npcDialog": "The Spanish Riding School has trained Lipizzaner horses since 1572! Morning training is cheaper than the full gala performance.",
+      "npcDialogKo": "스페인 승마학교는 1572년부터 리피차너 말을 훈련했어요! 오전 훈련은 정규 공연보다 저렴해요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Morning training sounds like a great option!", "correct": true},
+          {"text": "Horses dancing to classical music? Amazing!", "correct": true},
+          {"text": "Horse shows are cruel.", "correct": false},
+          {"text": "I'm not interested in horses.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_019",
+      "category": "art",
+      "day": 5,
+      "location": "훈데르트바서 하우스",
+      "situation": "유니크한 건축물을 감상한다",
+      "npcDialog": "Hundertwasser hated straight lines! This colorful building has trees growing from windows. The museum across the street has more of his work.",
+      "npcDialogKo": "훈데르트바서는 직선을 싫어했어요! 이 컬러풀한 건물은 창문에서 나무가 자라요. 건너편 박물관에 작품이 더 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Trees growing from buildings? So creative!", "correct": true},
+          {"text": "His philosophy on architecture is fascinating.", "correct": true},
+          {"text": "It looks chaotic and ugly.", "correct": false},
+          {"text": "Normal buildings are better.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_VIE_020",
+      "category": "food",
+      "day": 5,
+      "location": "데멜 카페",
+      "situation": "황실 제과점에서 디저트를 먹는다",
+      "npcDialog": "Demel has been the Imperial bakery since 1786! Try the Kaiserschmarrn - Emperor Franz Josef's favorite pancake dessert.",
+      "npcDialogKo": "데멜은 1786년부터 황실 제과점이었어요! 카이저슈마른 드세요 - 프란츠 요제프 황제가 좋아한 팬케이크 디저트예요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "The Emperor's favorite dessert? I must try it!", "correct": true},
+          {"text": "An Imperial bakery since 1786 - incredible history.", "correct": true},
+          {"text": "Old bakeries are overrated.", "correct": false},
+          {"text": "I don't eat dessert.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

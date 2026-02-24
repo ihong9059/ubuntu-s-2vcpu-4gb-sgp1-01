@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "singapore",
+  "cityName": "싱가포르",
+  "country": "싱가포르",
+  "description": "미래도시와 다문화, 청결함과 맛의 천국",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_SIN_001",
+      "category": "landmark",
+      "day": 2,
+      "location": "마리나 베이 샌즈",
+      "situation": "세계적인 호텔 전망대에 오른다",
+      "npcDialog": "Welcome to SkyPark! The infinity pool is for hotel guests only, but the observation deck has the same amazing views. 57 floors high!",
+      "npcDialogKo": "스카이파크에 오신 걸 환영해요! 인피니티 풀은 호텔 투숙객만인데, 전망대에서도 같은 뷰예요. 57층 높이!",
+      "playerResponse": {
+        "choices": [
+          {"text": "57 floors! The view must be incredible!", "correct": true},
+          {"text": "When is the best time for photos?", "correct": true},
+          {"text": "Why can't I use the pool?", "correct": false},
+          {"text": "I don't like heights.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_002",
+      "category": "landmark",
+      "day": 2,
+      "location": "가든스 바이 더 베이",
+      "situation": "수퍼트리 그로브를 방문한다",
+      "npcDialog": "The Supertrees are solar-powered! At night they light up - the Garden Rhapsody show is at 7:45 and 8:45pm. The skywalk between trees is amazing!",
+      "npcDialogKo": "수퍼트리는 태양광이에요! 밤에 조명이 켜져요 - 가든 랩소디 쇼가 7:45, 8:45에 있어요. 나무 사이 스카이워크가 끝내줘요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Solar-powered trees! Singapore is so innovative.", "correct": true},
+          {"text": "I'll come back for the light show tonight!", "correct": true},
+          {"text": "Fake trees aren't impressive.", "correct": false},
+          {"text": "Why would I pay to walk on trees?", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_003",
+      "category": "food",
+      "day": 3,
+      "location": "호커 센터",
+      "situation": "현지인들의 푸드코트에서 식사한다",
+      "npcDialog": "Maxwell Food Centre is legendary! Try chicken rice - it won a Michelin star! Only $5! Or laksa, char kway teow, satay... What you like?",
+      "npcDialogKo": "맥스웰 푸드 센터는 전설이에요! 치킨 라이스 드셔보세요 - 미슐랭 스타 받았어요! 5달러만! 락사, 차귀테오, 사테도 있어요. 뭐 좋아하세요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Michelin star for $5! I'll have the chicken rice!", "correct": true},
+          {"text": "What's laksa like? I've never tried it.", "correct": true},
+          {"text": "Food courts are low quality.", "correct": false},
+          {"text": "This place looks too simple.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_004",
+      "category": "culture",
+      "day": 3,
+      "location": "차이나타운",
+      "situation": "중국 전통거리를 탐험한다",
+      "npcDialog": "Chinatown has temples, shophouses, and amazing food! Buddha Tooth Relic Temple is beautiful. The night market has great souvenirs!",
+      "npcDialogKo": "차이나타운에 사원, 숍하우스, 맛있는 음식이 있어요! 불아사리탑이 아름다워요. 야시장에 기념품이 많아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Buddha Tooth Relic Temple sounds fascinating!", "correct": true},
+          {"text": "I love the colorful shophouses! So photogenic.", "correct": true},
+          {"text": "Every city has a Chinatown.", "correct": false},
+          {"text": "I'm not interested in temples.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_005",
+      "category": "landmark",
+      "day": 4,
+      "location": "센토사 섬",
+      "situation": "엔터테인먼트 섬을 방문한다",
+      "npcDialog": "Sentosa has beaches, Universal Studios, and the Merlion! Take the cable car for great views. Or the free Sentosa Express monorail!",
+      "npcDialogKo": "센토사에 해변, 유니버설 스튜디오, 머라이언이 있어요! 케이블카 타면 경치 좋아요. 아니면 무료 센토사 익스프레스 모노레일!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Universal Studios sounds fun! What rides are best?", "correct": true},
+          {"text": "I'll take the cable car for the views!", "correct": true},
+          {"text": "Theme parks are for kids.", "correct": false},
+          {"text": "Why is there a Merlion everywhere?", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_006",
+      "category": "food",
+      "day": 4,
+      "location": "칠리 크랩 레스토랑",
+      "situation": "싱가포르 국민요리를 맛본다",
+      "npcDialog": "Chilli crab is Singapore's national dish! Not too spicy - more sweet and savory. Order mantou buns to soak up the sauce. Very messy but delicious!",
+      "npcDialogKo": "칠리 크랩은 싱가포르 국민요리예요! 너무 안 매워요 - 달콤하고 고소해요. 만터우 빵 시켜서 소스 찍어 드세요. 지저분하지만 맛있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll get the mantou buns! Don't want to waste any sauce.", "correct": true},
+          {"text": "Messy is fine - that's how you know it's good!", "correct": true},
+          {"text": "I don't like eating with my hands.", "correct": false},
+          {"text": "Crab is too much work.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_007",
+      "category": "culture",
+      "day": 5,
+      "location": "리틀 인디아",
+      "situation": "인도 문화지구를 방문한다",
+      "npcDialog": "Little India is so colorful! Sri Veeramakaliamman Temple is stunning. Try the banana leaf curry for lunch. Tekka Market has fresh flowers and spices!",
+      "npcDialogKo": "리틀 인디아는 아주 알록달록해요! 스리 비라마칼리아만 사원이 멋져요. 점심으로 바나나 잎 커리 드셔보세요. 테카 마켓에 생화와 향신료가 있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Banana leaf curry! How do I eat it properly?", "correct": true},
+          {"text": "The colors here are incredible! So vibrant.", "correct": true},
+          {"text": "Too many colors hurt my eyes.", "correct": false},
+          {"text": "I don't like Indian food.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_008",
+      "category": "shopping",
+      "day": 5,
+      "location": "오차드 로드",
+      "situation": "싱가포르 최대 쇼핑거리에서 쇼핑한다",
+      "npcDialog": "Orchard Road has every brand you can imagine! ION, Ngee Ann City, Takashimaya... Great for window shopping too. The air conditioning is very nice!",
+      "npcDialogKo": "오차드 로드에 상상할 수 있는 모든 브랜드가 있어요! ION, 니앤 시티, 다카시마야... 아이쇼핑도 좋아요. 에어컨이 아주 시원해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Air conditioning is perfect in this heat!", "correct": true},
+          {"text": "Which mall has the best sales?", "correct": true},
+          {"text": "Singapore is too expensive.", "correct": false},
+          {"text": "I don't like shopping.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_009",
+      "category": "landmark",
+      "day": 6,
+      "location": "머라이언 공원",
+      "situation": "싱가포르 상징을 배경으로 사진을 찍는다",
+      "npcDialog": "The Merlion represents Singapore! Half lion, half fish. The big one spouts water. Best photos from across the river with Marina Bay Sands behind!",
+      "npcDialogKo": "머라이언은 싱가포르의 상징이에요! 반은 사자, 반은 물고기. 큰 건 물을 뿜어요. 마리나 베이 샌즈 배경으로 강 건너서 찍으면 제일 예뻐요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Thanks for the photo tip! The skyline is amazing.", "correct": true},
+          {"text": "Half lion, half fish - what's the legend behind it?", "correct": true},
+          {"text": "It's just a fountain.", "correct": false},
+          {"text": "Merlion statues are everywhere.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_010",
+      "category": "food",
+      "day": 6,
+      "location": "카야 토스트 카페",
+      "situation": "싱가포르 전통 아침을 즐긴다",
+      "npcDialog": "Kaya toast is our traditional breakfast! Toast with kaya jam and butter, soft-boiled eggs with soy sauce, and kopi! The eggs are runny - mix them!",
+      "npcDialogKo": "카야 토스트는 전통 아침이에요! 카야잼과 버터 바른 토스트, 간장 넣은 반숙 계란, 코피! 계란이 흐물해요 - 섞으세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Runny eggs with soy sauce! That's unique.", "correct": true},
+          {"text": "What's kaya jam made of?", "correct": true},
+          {"text": "Runny eggs are undercooked.", "correct": false},
+          {"text": "I prefer Western breakfast.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_011",
+      "category": "culture",
+      "day": 7,
+      "location": "아랍 스트리트",
+      "situation": "말레이-아랍 문화지구를 탐험한다",
+      "npcDialog": "Kampong Glam is the Malay-Arab quarter! Sultan Mosque is beautiful. Haji Lane has trendy boutiques and street art. Great for photos!",
+      "npcDialogKo": "캄퐁 글램은 말레이-아랍 지구예요! 술탄 모스크가 아름다워요. 하지 레인에 트렌디한 부티크와 거리 예술이 있어요. 사진 찍기 좋아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Street art and boutiques! My kind of neighborhood.", "correct": true},
+          {"text": "Can I visit the mosque as a tourist?", "correct": true},
+          {"text": "Trendy shops are overpriced.", "correct": false},
+          {"text": "I'm not interested in mosques.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_012",
+      "category": "landmark",
+      "day": 7,
+      "location": "나이트 사파리",
+      "situation": "세계 최초의 야간 동물원을 방문한다",
+      "npcDialog": "Night Safari is the world's first nocturnal zoo! Tram ride through 7 zones. See animals active at night - leopards, elephants, flying squirrels!",
+      "npcDialogKo": "나이트 사파리는 세계 최초 야간 동물원이에요! 트램 타고 7개 존을 지나요. 밤에 활동하는 동물들 - 표범, 코끼리, 날다람쥐!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Animals at night! That's such a unique concept.", "correct": true},
+          {"text": "Can we walk through the zones too?", "correct": true},
+          {"text": "Zoos at night seem dangerous.", "correct": false},
+          {"text": "I can see animals in a regular zoo.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_013",
+      "category": "food",
+      "day": 3,
+      "location": "락사 스탠드",
+      "situation": "스파이시 코코넛 누들을 맛본다",
+      "npcDialog": "Laksa is spicy coconut curry noodles! Singapore style is richer than Penang. We add prawns, fishcake, and cockles. How spicy you want?",
+      "npcDialogKo": "락사는 매운 코코넛 커리 국수예요! 싱가포르 스타일이 페낭보다 진해요. 새우, 어묵, 조개를 넣어요. 얼마나 맵게요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Medium spicy please! The color is beautiful.", "correct": true},
+          {"text": "What's the difference from Penang laksa?", "correct": true},
+          {"text": "Curry noodles sound weird.", "correct": false},
+          {"text": "I don't eat shellfish.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_014",
+      "category": "transport",
+      "day": 2,
+      "location": "MRT 지하철",
+      "situation": "싱가포르 지하철을 이용한다",
+      "npcDialog": "MRT is very clean and efficient! No eating, drinking, or durian allowed. Buy an EZ-Link card for convenience. Fines are heavy for breaking rules!",
+      "npcDialogKo": "MRT는 아주 깨끗하고 효율적이에요! 음식, 음료, 두리안 금지예요. EZ-Link 카드 사면 편해요. 규칙 어기면 벌금이 세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "No durian allowed! Singapore is famous for strict rules.", "correct": true},
+          {"text": "Where can I buy an EZ-Link card?", "correct": true},
+          {"text": "No eating seems too strict.", "correct": false},
+          {"text": "Rules everywhere are annoying.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_015",
+      "category": "culture",
+      "day": 4,
+      "location": "싱가포르 국립박물관",
+      "situation": "싱가포르의 역사를 배운다",
+      "npcDialog": "The National Museum tells Singapore's story! From fishing village to global city in 60 years. The multimedia exhibits are very interactive!",
+      "npcDialogKo": "국립박물관에서 싱가포르 이야기를 해요! 어촌에서 글로벌 도시까지 60년 만에. 멀티미디어 전시가 아주 인터랙티브해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "60 years! Singapore's development is amazing.", "correct": true},
+          {"text": "I love interactive exhibits! Where should I start?", "correct": true},
+          {"text": "History is boring.", "correct": false},
+          {"text": "60 years isn't that old.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_016",
+      "category": "food",
+      "day": 5,
+      "location": "뉴턴 푸드 센터",
+      "situation": "야외 호커 센터에서 저녁을 먹는다",
+      "npcDialog": "Newton is Singapore's famous outdoor hawker! Been in Crazy Rich Asians movie! Satay, BBQ stingray, carrot cake... What looks good to you?",
+      "npcDialogKo": "뉴턴은 유명한 야외 호커예요! 크레이지 리치 아시안 영화에 나왔어요! 사테, BBQ 가오리, 캐럿 케이크... 뭐가 맛있어 보여요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Crazy Rich Asians! I'll have what they had!", "correct": true},
+          {"text": "BBQ stingray sounds adventurous! I'll try it.", "correct": true},
+          {"text": "Outdoor eating is too hot.", "correct": false},
+          {"text": "I don't eat stingray.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_017",
+      "category": "shopping",
+      "day": 6,
+      "location": "부기스 스트리트",
+      "situation": "저렴한 쇼핑거리에서 쇼핑한다",
+      "npcDialog": "Bugis Street is budget shopping paradise! Clothes, accessories, souvenirs - all cheap! Bargaining is expected. Start at half price!",
+      "npcDialogKo": "부기스 스트리트는 예산 쇼핑 천국이에요! 옷, 악세서리, 기념품 - 다 저렴해요! 흥정 당연히 해요. 반값부터 시작하세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Start at half price - got it! Any negotiation tips?", "correct": true},
+          {"text": "I love a good bargain! Let's go!", "correct": true},
+          {"text": "Cheap means low quality.", "correct": false},
+          {"text": "Bargaining is uncomfortable.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_018",
+      "category": "landmark",
+      "day": 8,
+      "location": "클라크 키",
+      "situation": "강변 나이트라이프를 즐긴다",
+      "npcDialog": "Clarke Quay is party central! Bars, restaurants, clubs along the river. The old warehouses are now entertainment venues. Very lively at night!",
+      "npcDialogKo": "클라크 키는 파티 중심지예요! 바, 레스토랑, 클럽이 강을 따라 있어요. 옛 창고들이 지금은 오락 시설이에요. 밤에 아주 활기차요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The converted warehouses look amazing!", "correct": true},
+          {"text": "What's the best bar for cocktails?", "correct": true},
+          {"text": "Nightlife is too loud.", "correct": false},
+          {"text": "I prefer quiet evenings.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_019",
+      "category": "culture",
+      "day": 7,
+      "location": "싱가포르 식물원",
+      "situation": "유네스코 세계유산을 산책한다",
+      "npcDialog": "Singapore Botanic Gardens is UNESCO World Heritage! Free entry! The National Orchid Garden has 1,000 orchid species. Very peaceful place.",
+      "npcDialogKo": "싱가포르 식물원은 유네스코 세계유산이에요! 무료 입장! 국립 난초 정원에 1,000종의 난초가 있어요. 아주 평화로운 곳이에요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "1,000 orchid species! The colors must be incredible.", "correct": true},
+          {"text": "Free entry and UNESCO! That's rare.", "correct": true},
+          {"text": "Flowers all look the same.", "correct": false},
+          {"text": "Gardens are boring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_SIN_020",
+      "category": "food",
+      "day": 8,
+      "location": "싱가포르 레스토랑",
+      "situation": "마지막 밤 다문화 디너를 즐긴다",
+      "npcDialog": "Your last night! Try our peranakan set - Nyonya cuisine combines Chinese and Malay! Or end with our famous Singapore Sling cocktail!",
+      "npcDialogKo": "마지막 밤이네요! 페라나칸 세트 드셔보세요 - 뇨냐 요리는 중국과 말레이 융합이에요! 아니면 유명한 싱가포르 슬링 칵테일로 마무리!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Peranakan sounds fascinating! What dishes are included?", "correct": true},
+          {"text": "Singapore Sling to end the trip! Where was it invented?", "correct": true},
+          {"text": "I prefer simple food.", "correct": false},
+          {"text": "Fusion food isn't authentic.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

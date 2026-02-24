@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAM AI v2 - Architecture Report</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0f0f1a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        /* ── Header ── */
+        .report-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 20px;
+            border: 1px solid #2a2a4a;
+        }
+        .report-header h1 {
+            font-size: 36px;
+            color: #e94560;
+            margin-bottom: 8px;
+        }
+        .report-header p {
+            color: #8888aa;
+            font-size: 16px;
+        }
+        .report-header .date {
+            margin-top: 12px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        /* ── Section ── */
+        .section {
+            margin-bottom: 60px;
+        }
+        .section-title {
+            font-size: 24px;
+            color: #e94560;
+            margin-bottom: 8px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2a2a4a;
+        }
+        .section-desc {
+            color: #8888aa;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        /* ── Flow Diagram: Overall ── */
+        .flow-overall {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            padding: 30px 20px;
+            background: #12121f;
+            border-radius: 16px;
+            border: 1px solid #2a2a4a;
+        }
+        .flow-box {
+            padding: 18px 32px;
+            border-radius: 14px;
+            text-align: center;
+            min-width: 240px;
+            position: relative;
+        }
+        .flow-box .label { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+        .flow-box .name { font-size: 18px; font-weight: 700; }
+        .flow-box .desc { font-size: 12px; color: #888; margin-top: 4px; }
+
+        .flow-user { background: linear-gradient(135deg, #1b3a5c, #0f3460); border: 2px solid #1e5f99; }
+        .flow-user .name { color: #5dade2; }
+        .flow-frontend { background: linear-gradient(135deg, #2d1f4e, #1a1040); border: 2px solid #6c3fa0; }
+        .flow-frontend .name { color: #a78bfa; }
+        .flow-backend { background: linear-gradient(135deg, #1f3a2a, #0f2a1a); border: 2px solid #2d8a56; }
+        .flow-backend .name { color: #4ecdc4; }
+        .flow-dispatcher { background: linear-gradient(135deg, #3a2a1f, #2a1a0f); border: 2px solid #d4943a; }
+        .flow-dispatcher .name { color: #f0b860; }
+
+        .flow-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 6px 0;
+            color: #444;
+        }
+        .flow-arrow .arrow-line {
+            width: 2px;
+            height: 20px;
+            background: #444;
+        }
+        .flow-arrow .arrow-head {
+            width: 0; height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid #444;
+        }
+        .flow-arrow .arrow-label {
+            font-size: 11px;
+            color: #666;
+            margin: 2px 0;
+        }
+
+        /* ── Provider Cards (4-column) ── */
+        .provider-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 10px;
+        }
+        .provider-card {
+            border-radius: 14px;
+            padding: 20px 16px;
+            text-align: center;
+            border: 2px solid;
+            position: relative;
+        }
+        .provider-card .provider-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 900;
+        }
+        .provider-card .provider-name { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+        .provider-card .provider-type { font-size: 11px; color: #888; margin-bottom: 10px; }
+        .provider-card .provider-detail { font-size: 12px; color: #999; line-height: 1.5; text-align: left; }
+        .provider-card .provider-models { margin-top: 10px; }
+        .provider-card .model-tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.06);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #aaa;
+            margin: 2px;
+        }
+
+        .card-ollama { background: #121820; border-color: #2a5a8a; }
+        .card-ollama .provider-icon { background: #1a3a5a; color: #5dade2; }
+        .card-ollama .provider-name { color: #5dade2; }
+
+        .card-claude { background: #1a1218; border-color: #8a4a2a; }
+        .card-claude .provider-icon { background: #3a2218; color: #e8845a; }
+        .card-claude .provider-name { color: #e8845a; }
+
+        .card-gpt { background: #121a18; border-color: #2a7a5a; }
+        .card-gpt .provider-icon { background: #183a2a; color: #4ecdc4; }
+        .card-gpt .provider-name { color: #4ecdc4; }
+
+        .card-gemini { background: #181218; border-color: #6a3a8a; }
+        .card-gemini .provider-icon { background: #2a1a3a; color: #a78bfa; }
+        .card-gemini .provider-name { color: #a78bfa; }
+
+        /* ── Branching arrows to 4 providers ── */
+        .branch-connector {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            height: 50px;
+            position: relative;
+            margin-top: 6px;
+        }
+        .branch-connector svg {
+            width: 100%;
+            height: 50px;
+        }
+
+        /* ── Sequence Diagram ── */
+        .sequence {
+            background: #12121f;
+            border-radius: 16px;
+            border: 1px solid #2a2a4a;
+            padding: 30px;
+            overflow-x: auto;
+        }
+        .seq-row {
+            display: flex;
+            align-items: stretch;
+            margin-bottom: 0;
+            min-height: 52px;
+        }
+        .seq-actor {
+            width: 110px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+            position: relative;
+        }
+        .seq-actor::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            height: 50%;
+            background: #2a2a4a;
+        }
+        .seq-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 6px 10px;
+            position: relative;
+        }
+        .seq-msg {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+        .seq-line {
+            flex: 1;
+            height: 2px;
+            position: relative;
+        }
+        .seq-line .line { height: 2px; width: 100%; }
+        .seq-line .head {
+            position: absolute;
+            right: -1px;
+            top: -4px;
+            width: 0; height: 0;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+        }
+        .seq-line.right .head { border-left: 8px solid; right: -1px; }
+        .seq-line.left .head { border-right: 8px solid; left: -1px; right: auto; }
+        .seq-line.dashed .line { background: repeating-linear-gradient(90deg, #888 0 6px, transparent 6px 12px); }
+        .seq-text {
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 11px;
+            padding: 1px 8px;
+            border-radius: 4px;
+        }
+        .seq-step {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #e94560;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* ── Step-by-step diagram ── */
+        .steps-visual {
+            background: #12121f;
+            border-radius: 16px;
+            border: 1px solid #2a2a4a;
+            padding: 40px 30px;
+        }
+        .step-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            margin-bottom: 36px;
+            position: relative;
+        }
+        .step-row:last-child { margin-bottom: 0; }
+        .step-row::before {
+            content: '';
+            position: absolute;
+            left: 23px;
+            top: 48px;
+            bottom: -36px;
+            width: 2px;
+            background: #2a2a4a;
+        }
+        .step-row:last-child::before { display: none; }
+
+        .step-num {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        .step-body {
+            flex: 1;
+            padding-top: 4px;
+        }
+        .step-title {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .step-detail {
+            font-size: 13px;
+            color: #888;
+            line-height: 1.6;
+        }
+        .step-files {
+            margin-top: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .step-file {
+            background: rgba(255,255,255,0.06);
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-family: 'Consolas', monospace;
+            color: #aaa;
+        }
+
+        .step1 .step-num { background: #1a3a5a; color: #5dade2; }
+        .step1 .step-title { color: #5dade2; }
+        .step2 .step-num { background: #2d1f4e; color: #a78bfa; }
+        .step2 .step-title { color: #a78bfa; }
+        .step3 .step-num { background: #1f3a2a; color: #4ecdc4; }
+        .step3 .step-title { color: #4ecdc4; }
+        .step4 .step-num { background: #3a2a1f; color: #f0b860; }
+        .step4 .step-title { color: #f0b860; }
+        .step5 .step-num { background: #3a1f2a; color: #e94560; }
+        .step5 .step-title { color: #e94560; }
+        .step6 .step-num { background: #1a3a2a; color: #27ae60; }
+        .step6 .step-title { color: #27ae60; }
+
+        /* ── Data flow table ── */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            background: #12121f;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #2a2a4a;
+        }
+        .data-table th {
+            background: #1a1a2e;
+            padding: 12px 16px;
+            text-align: left;
+            color: #e94560;
+            font-size: 13px;
+            font-weight: 600;
+            border-bottom: 2px solid #2a2a4a;
+        }
+        .data-table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #1e1e32;
+            color: #ccc;
+        }
+        .data-table tr:last-child td { border-bottom: none; }
+        .data-table .file-col { font-family: 'Consolas', monospace; color: #a78bfa; font-size: 13px; }
+        .data-table .role-col { color: #f0b860; font-weight: 600; }
+
+        /* ── Comparison table ── */
+        .compare-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        .compare-card {
+            background: #12121f;
+            border-radius: 14px;
+            border: 1px solid #2a2a4a;
+            padding: 20px;
+        }
+        .compare-card h4 {
+            font-size: 15px;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #2a2a4a;
+        }
+        .compare-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            padding: 4px 0;
+            color: #999;
+        }
+        .compare-item .val { color: #e0e0e0; font-weight: 600; }
+        .badge-local { background: #1a3a2a; color: #4ecdc4; padding: 2px 8px; border-radius: 4px; font-size: 11px; }
+        .badge-cloud { background: #3a1a2a; color: #e94560; padding: 2px 8px; border-radius: 4px; font-size: 11px; }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .provider-row { grid-template-columns: repeat(2, 1fr); }
+            .compare-grid { grid-template-columns: repeat(2, 1fr); }
+            body { padding: 20px 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Header -->
+        <div class="report-header">
+            <h1>SAM AI v2</h1>
+            <p>Architecture & Role Distribution Report</p>
+            <p style="color:#666; margin-top:4px;">작업 지시부터 AI 응답까지 — 전체 흐름 시각화</p>
+            <div class="date">2026-02-09</div>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- Section 1: Overall Flow -->
+        <!-- ════════════════════════════════════════ -->
+        <div class="section">
+            <h2 class="section-title">1. 전체 흐름도</h2>
+            <p class="section-desc">사용자가 메시지를 보내면 어떤 경로로 AI 응답이 돌아오는지 보여줍니다.</p>
+
+            <div class="flow-overall">
+                <!-- User -->
+                <div class="flow-box flow-user">
+                    <div class="label">사용자</div>
+                    <div class="name">iPad / PC Browser</div>
+                    <div class="desc">메시지 입력 + 프로바이더 선택</div>
+                </div>
+
+                <div class="flow-arrow">
+                    <div class="arrow-line"></div>
+                    <div class="arrow-label">HTTP POST + JSON</div>
+                    <div class="arrow-line"></div>
+                    <div class="arrow-head"></div>
+                </div>
+
+                <!-- Frontend -->
+                <div class="flow-box flow-frontend">
+                    <div class="label">프론트엔드</div>
+                    <div class="name">SPA (HTML + JS)</div>
+                    <div class="desc">XHR SSE 스트리밍 요청 전송</div>
+                </div>
+
+                <div class="flow-arrow">
+                    <div class="arrow-line"></div>
+                    <div class="arrow-label">POST /api/chat (SSE)</div>
+                    <div class="arrow-line"></div>
+                    <div class="arrow-head"></div>
+                </div>
+
+                <!-- Backend -->
+                <div class="flow-box flow-backend">
+                    <div class="label">백엔드</div>
+                    <div class="name">Flask Server (port 5050)</div>
+                    <div class="desc">대화 관리 + 스트리밍 중계</div>
+                </div>
+
+                <div class="flow-arrow">
+                    <div class="arrow-line"></div>
+                    <div class="arrow-label">provider routing</div>
+                    <div class="arrow-line"></div>
+                    <div class="arrow-head"></div>
+                </div>
+
+                <!-- Dispatcher -->
+                <div class="flow-box flow-dispatcher">
+                    <div class="label">라우터</div>
+                    <div class="name">AI Dispatcher</div>
+                    <div class="desc">선택된 프로바이더로 요청 분배</div>
+                </div>
+
+                <!-- Branch arrows (SVG) -->
+                <div class="branch-connector">
+                    <svg viewBox="0 0 800 50" preserveAspectRatio="xMidYMid meet">
+                        <!-- Center vertical line -->
+                        <line x1="400" y1="0" x2="400" y2="15" stroke="#d4943a" stroke-width="2"/>
+                        <!-- Horizontal line -->
+                        <line x1="100" y1="15" x2="700" y2="15" stroke="#d4943a" stroke-width="2"/>
+                        <!-- 4 drop lines -->
+                        <line x1="100" y1="15" x2="100" y2="42" stroke="#5dade2" stroke-width="2"/>
+                        <line x1="300" y1="15" x2="300" y2="42" stroke="#e8845a" stroke-width="2"/>
+                        <line x1="500" y1="15" x2="500" y2="42" stroke="#4ecdc4" stroke-width="2"/>
+                        <line x1="700" y1="15" x2="700" y2="42" stroke="#a78bfa" stroke-width="2"/>
+                        <!-- Arrowheads -->
+                        <polygon points="94,40 100,50 106,40" fill="#5dade2"/>
+                        <polygon points="294,40 300,50 306,40" fill="#e8845a"/>
+                        <polygon points="494,40 500,50 506,40" fill="#4ecdc4"/>
+                        <polygon points="694,40 700,50 706,40" fill="#a78bfa"/>
+                    </svg>
+                </div>
+
+                <!-- 4 Provider Cards -->
+                <div class="provider-row">
+                    <div class="provider-card card-ollama">
+                        <div class="provider-icon">O</div>
+                        <div class="provider-name">Ollama</div>
+                        <div class="provider-type"><span class="badge-local">LOCAL</span></div>
+                        <div class="provider-detail">
+                            로컬 PC에서 실행되는 AI.<br>
+                            인터넷 불필요, 무료, 빠름.<br>
+                            가벼운 질문에 적합.
+                        </div>
+                        <div class="provider-models">
+                            <span class="model-tag">gemma3:4b</span>
+                            <span class="model-tag">qwen2.5-coder:7b</span>
+                        </div>
+                    </div>
+
+                    <div class="provider-card card-claude">
+                        <div class="provider-icon">C</div>
+                        <div class="provider-name">Claude</div>
+                        <div class="provider-type"><span class="badge-cloud">CLOUD API</span></div>
+                        <div class="provider-detail">
+                            Anthropic의 최신 AI.<br>
+                            긴 문맥 이해, 코딩, 분석에 탁월.<br>
+                            API 키 필요.
+                        </div>
+                        <div class="provider-models">
+                            <span class="model-tag">claude-sonnet-4</span>
+                            <span class="model-tag">claude-haiku-4</span>
+                        </div>
+                    </div>
+
+                    <div class="provider-card card-gpt">
+                        <div class="provider-icon">G</div>
+                        <div class="provider-name">GPT</div>
+                        <div class="provider-type"><span class="badge-cloud">CLOUD API</span></div>
+                        <div class="provider-detail">
+                            OpenAI의 GPT 시리즈.<br>
+                            범용 AI, 대화/창작에 강점.<br>
+                            API 키 필요.
+                        </div>
+                        <div class="provider-models">
+                            <span class="model-tag">gpt-4o</span>
+                            <span class="model-tag">gpt-4o-mini</span>
+                            <span class="model-tag">gpt-4.1</span>
+                        </div>
+                    </div>
+
+                    <div class="provider-card card-gemini">
+                        <div class="provider-icon">G</div>
+                        <div class="provider-name">Gemini</div>
+                        <div class="provider-type"><span class="badge-cloud">CLOUD API</span></div>
+                        <div class="provider-detail">
+                            Google의 Gemini AI.<br>
+                            멀티모달, 검색 연동에 강점.<br>
+                            API 키 필요.
+                        </div>
+                        <div class="provider-models">
+                            <span class="model-tag">gemini-2.0-flash</span>
+                            <span class="model-tag">gemini-2.5-pro</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- Section 2: Step by Step -->
+        <!-- ════════════════════════════════════════ -->
+        <div class="section">
+            <h2 class="section-title">2. 단계별 처리 과정</h2>
+            <p class="section-desc">사용자가 "안녕하세요"를 입력하고 Claude를 선택했을 때, 내부에서 일어나는 일.</p>
+
+            <div class="steps-visual">
+                <!-- Step 1 -->
+                <div class="step-row step1">
+                    <div class="step-num">1</div>
+                    <div class="step-body">
+                        <div class="step-title">사용자 입력</div>
+                        <div class="step-detail">
+                            사용자가 메시지를 입력하고 전송 버튼을 누릅니다.<br>
+                            프론트엔드가 선택된 <strong>프로바이더</strong>(Claude)와 <strong>모델</strong>(claude-sonnet-4)을 확인합니다.
+                        </div>
+                        <div class="step-files">
+                            <span class="step-file">chat.js → sendMessage()</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step-row step2">
+                    <div class="step-num">2</div>
+                    <div class="step-body">
+                        <div class="step-title">대화 생성 & SSE 요청</div>
+                        <div class="step-detail">
+                            대화가 없으면 새 대화를 생성합니다 (POST /api/conversations).<br>
+                            XHR로 <strong>POST /api/chat</strong>에 SSE 스트리밍 요청을 보냅니다.<br>
+                            전송 데이터: <code>{ conversation_id, message, provider: "claude", model }</code>
+                        </div>
+                        <div class="step-files">
+                            <span class="step-file">api.js → chatStream()</span>
+                            <span class="step-file">api.js → createConversation()</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step-row step3">
+                    <div class="step-num">3</div>
+                    <div class="step-body">
+                        <div class="step-title">서버: 메시지 저장 & 스레드 생성</div>
+                        <div class="step-detail">
+                            Flask 서버가 요청을 수신합니다.<br>
+                            ① 사용자 메시지를 대화 파일에 <strong>저장</strong> (JSON)<br>
+                            ② 전체 대화 이력을 AI 메시지 형식으로 변환<br>
+                            ③ 별도 <strong>스레드</strong>에서 AI 호출 시작 (메인 스레드는 SSE 스트리밍 담당)
+                        </div>
+                        <div class="step-files">
+                            <span class="step-file">app.py → chat()</span>
+                            <span class="step-file">conversation_manager.py → add_message()</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="step-row step4">
+                    <div class="step-num">4</div>
+                    <div class="step-body">
+                        <div class="step-title">AI Dispatcher → Claude 서비스</div>
+                        <div class="step-detail">
+                            AI Dispatcher가 <strong>"claude"</strong>를 확인하고 ClaudeService로 라우팅합니다.<br>
+                            ① API 키 확인 (config.json에서 로드)<br>
+                            ② 메시지를 Anthropic 형식으로 변환 (system은 별도 파라미터)<br>
+                            ③ <strong>anthropic SDK</strong>의 stream API 호출<br>
+                            ④ 토큰 단위로 yield (제너레이터)
+                        </div>
+                        <div class="step-files">
+                            <span class="step-file">ai_dispatcher.py → stream_chat()</span>
+                            <span class="step-file">claude_service.py → stream_chat()</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="step-row step5">
+                    <div class="step-num">5</div>
+                    <div class="step-body">
+                        <div class="step-title">실시간 스트리밍 전송</div>
+                        <div class="step-detail">
+                            AI가 생성한 토큰이 <strong>Queue</strong>를 통해 SSE 스트림으로 전달됩니다.<br>
+                            각 토큰: <code>data: {"token": "안녕"}</code> 형식으로 전송.<br>
+                            프론트엔드가 실시간으로 화면에 표시하며 커서가 깜빡입니다.
+                        </div>
+                        <div class="step-files">
+                            <span class="step-file">app.py → sse_stream()</span>
+                            <span class="step-file">chat.js → appendToken()</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="step-row step6">
+                    <div class="step-num">6</div>
+                    <div class="step-body">
+                        <div class="step-title">완료 & 저장</div>
+                        <div class="step-detail">
+                            AI 응답이 끝나면:<br>
+                            ① 전체 응답 텍스트를 대화 파일에 <strong>저장</strong><br>
+                            ② 첫 번째 대화면 자동으로 <strong>제목 생성</strong><br>
+                            ③ <code>data: {"done": true}</code> 전송<br>
+                            ④ 프론트엔드에서 마크다운 렌더링 + 코드블록 하이라이트 적용
+                        </div>
+                        <div class="step-files">
+                            <span class="step-file">app.py → _save_response()</span>
+                            <span class="step-file">chat.js → finalizeStream()</span>
+                            <span class="step-file">markdown.js → render()</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- Section 3: Role of Each File -->
+        <!-- ════════════════════════════════════════ -->
+        <div class="section">
+            <h2 class="section-title">3. 파일별 역할 분담</h2>
+            <p class="section-desc">각 파일이 어떤 역할을 담당하는지 정리합니다.</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>파일</th>
+                        <th>역할</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="role-col">진입점</td>
+                        <td class="file-col">app.py</td>
+                        <td>Flask 서버, API 라우트 정의, SSE 스트리밍 중계, 중단 처리</td>
+                    </tr>
+                    <tr>
+                        <td class="role-col">설정</td>
+                        <td class="file-col">config.py</td>
+                        <td>포트, URL, 기본 모델 등 상수 정의</td>
+                    </tr>
+                    <tr>
+                        <td class="role-col">라우터</td>
+                        <td class="file-col">ai_dispatcher.py</td>
+                        <td>프로바이더 이름 → 서비스 객체 매핑, 상태 조회</td>
+                    </tr>
+                    <tr>
+                        <td class="role-col">AI 서비스</td>
+                        <td class="file-col">claude_service.py</td>
+                        <td>Anthropic API 호출, 메시지 형식 변환, 스트리밍 yield</td>
+                    </tr>
+                    <tr>
+                        <td class="role-col">AI 서비스</td>
+                        <td class="file-col">openai_service.py</td>
+                        <td>OpenAI API 호출, 스트리밍 yield</td>
+                    </tr>
+                    <tr>
+                        <td class="role-col">AI 서비스</td>
+                        <td class="file-col">gemini_service.py</td>
+                        <td>Google Gemini API 호출, history 변환, 스트리밍 yield</td>
+                    </tr>
+                    <tr>
+                        <td class="role-col">AI 서비스</td>
+                        <td class="file-col">ollama_service.py</td>
+                        <td>로컬 Ollama HTTP 호출 (urllib), 스트리밍 yield</td>
+                    </tr>
+                    <tr>
+                        <td class="role-col">데이터</td>
+                        <td class="file-col">conversation_manager.py</td>
+                        <td>대화 CRUD, JSON 파일 저장, UUID 검증</td>
+                    </tr>
+                    <tr>
+                        <td class="role-col">데이터</td>
+                        <td class="file-col">config_manager.py</td>
+                        <td>API 키 저장/로드/마스킹, 사용자 환경설정</td>
+                    </tr>
+                    <tr>
+                        <td class="role-col">UI</td>
+                        <td class="file-col">index.html</td>
+                        <td>SPA 쉘 — 사이드바, 채팅영역, 설정 모달</td>
+                    </tr>
+                    <tr>
+                        <td class="role-col">UI 통신</td>
+                        <td class="file-col">api.js</td>
+                        <td>XHR SSE 스트리밍, REST API 호출 래퍼</td>
+                    </tr>
+                    <tr>
+                        <td class="role-col">UI 채팅</td>
+                        <td class="file-col">chat.js</td>
+                        <td>메시지 버블 생성, 스트리밍 표시, 전송/중단</td>
+                    </tr>
+                    <tr>
+                        <td class="role-col">UI 대화목록</td>
+                        <td class="file-col">conversations.js</td>
+                        <td>사이드바 대화 목록 렌더링, 이름변경/삭제</td>
+                    </tr>
+                    <tr>
+                        <td class="role-col">UI 렌더링</td>
+                        <td class="file-col">markdown.js</td>
+                        <td>마크다운→HTML 변환, 코드 하이라이트, 복사 버튼</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- Section 4: Provider Comparison -->
+        <!-- ════════════════════════════════════════ -->
+        <div class="section">
+            <h2 class="section-title">4. AI 프로바이더 비교</h2>
+            <p class="section-desc">각 AI의 특성과 사용 시나리오를 비교합니다.</p>
+
+            <div class="compare-grid">
+                <div class="compare-card">
+                    <h4 style="color:#5dade2;">Ollama <span class="badge-local">LOCAL</span></h4>
+                    <div class="compare-item"><span>위치</span><span class="val">내 PC</span></div>
+                    <div class="compare-item"><span>비용</span><span class="val">무료</span></div>
+                    <div class="compare-item"><span>인터넷</span><span class="val">불필요</span></div>
+                    <div class="compare-item"><span>속도</span><span class="val">PC 사양 의존</span></div>
+                    <div class="compare-item"><span>프라이버시</span><span class="val">완벽 (로컬)</span></div>
+                    <div class="compare-item"><span>추천 용도</span><span class="val">간단한 질문, 테스트</span></div>
+                </div>
+                <div class="compare-card">
+                    <h4 style="color:#e8845a;">Claude <span class="badge-cloud">CLOUD</span></h4>
+                    <div class="compare-item"><span>위치</span><span class="val">Anthropic 서버</span></div>
+                    <div class="compare-item"><span>비용</span><span class="val">유료 (API 키)</span></div>
+                    <div class="compare-item"><span>인터넷</span><span class="val">필요</span></div>
+                    <div class="compare-item"><span>속도</span><span class="val">빠름</span></div>
+                    <div class="compare-item"><span>강점</span><span class="val">코딩, 분석, 긴 문맥</span></div>
+                    <div class="compare-item"><span>추천 용도</span><span class="val">코드 작성, 문서 분석</span></div>
+                </div>
+                <div class="compare-card">
+                    <h4 style="color:#4ecdc4;">GPT <span class="badge-cloud">CLOUD</span></h4>
+                    <div class="compare-item"><span>위치</span><span class="val">OpenAI 서버</span></div>
+                    <div class="compare-item"><span>비용</span><span class="val">유료 (API 키)</span></div>
+                    <div class="compare-item"><span>인터넷</span><span class="val">필요</span></div>
+                    <div class="compare-item"><span>속도</span><span class="val">빠름</span></div>
+                    <div class="compare-item"><span>강점</span><span class="val">범용, 창작, 대화</span></div>
+                    <div class="compare-item"><span>추천 용도</span><span class="val">일반 질문, 글쓰기</span></div>
+                </div>
+                <div class="compare-card">
+                    <h4 style="color:#a78bfa;">Gemini <span class="badge-cloud">CLOUD</span></h4>
+                    <div class="compare-item"><span>위치</span><span class="val">Google 서버</span></div>
+                    <div class="compare-item"><span>비용</span><span class="val">유료 (API 키)</span></div>
+                    <div class="compare-item"><span>인터넷</span><span class="val">필요</span></div>
+                    <div class="compare-item"><span>속도</span><span class="val">빠름</span></div>
+                    <div class="compare-item"><span>강점</span><span class="val">멀티모달, 검색 연동</span></div>
+                    <div class="compare-item"><span>추천 용도</span><span class="val">정보 검색, 요약</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- Section 5: Data Flow Diagram -->
+        <!-- ════════════════════════════════════════ -->
+        <div class="section">
+            <h2 class="section-title">5. 데이터 저장 구조</h2>
+            <p class="section-desc">대화와 설정이 어디에 어떻게 저장되는지 보여줍니다.</p>
+
+            <div class="steps-visual" style="padding:30px;">
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px;">
+                    <!-- Conversations -->
+                    <div style="background:#1a1a2e; border-radius:12px; padding:20px; border:1px solid #2a2a4a;">
+                        <h4 style="color:#4ecdc4; margin-bottom:12px;">data/conversations/</h4>
+                        <div style="font-family:Consolas,monospace; font-size:13px; color:#aaa; line-height:1.8;">
+                            <div style="color:#666;">// 대화별 JSON 파일</div>
+                            <div><span style="color:#a78bfa;">a5e202d2-...json</span></div>
+                            <div style="margin-left:16px;">
+                                <span style="color:#f0b860;">id</span>: "a5e202d2-..."<br>
+                                <span style="color:#f0b860;">title</span>: "안녕하세요..."<br>
+                                <span style="color:#f0b860;">messages</span>: [<br>
+                                <span style="margin-left:16px;color:#5dade2;">{role:"user", content:"..."}</span><br>
+                                <span style="margin-left:16px;color:#e8845a;">{role:"assistant", content:"...",<br>
+                                <span style="margin-left:32px;">provider:"claude", model:"..."}</span></span><br>
+                                ]
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Config -->
+                    <div style="background:#1a1a2e; border-radius:12px; padding:20px; border:1px solid #2a2a4a;">
+                        <h4 style="color:#e94560; margin-bottom:12px;">data/config.json</h4>
+                        <div style="font-family:Consolas,monospace; font-size:13px; color:#aaa; line-height:1.8;">
+                            <div style="color:#666;">// 전체 설정 파일</div>
+                            <div>
+                                <span style="color:#f0b860;">api_keys</span>: {<br>
+                                <span style="margin-left:16px;color:#e8845a;">claude</span>: "sk-ant-..."<br>
+                                <span style="margin-left:16px;color:#4ecdc4;">openai</span>: "sk-..."<br>
+                                <span style="margin-left:16px;color:#a78bfa;">gemini</span>: "AI..."<br>
+                                }<br>
+                                <span style="color:#f0b860;">preferences</span>: {<br>
+                                <span style="margin-left:16px;">default_provider</span>: "ollama"<br>
+                                <span style="margin-left:16px;">system_prompt</span>: "..."<br>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════════ -->
+        <!-- Section 6: How Streaming Works -->
+        <!-- ════════════════════════════════════════ -->
+        <div class="section">
+            <h2 class="section-title">6. SSE 스트리밍 원리</h2>
+            <p class="section-desc">실시간 응답이 어떻게 한 글자씩 화면에 나타나는지 설명합니다.</p>
+
+            <div class="steps-visual" style="padding:30px;">
+                <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:20px; text-align:center;">
+                    <!-- Thread -->
+                    <div style="background:#1f3a2a; border:1px solid #2d8a56; border-radius:12px; padding:20px;">
+                        <div style="font-size:28px; margin-bottom:8px;">&#9881;</div>
+                        <h4 style="color:#4ecdc4; margin-bottom:8px;">AI 스레드</h4>
+                        <div style="font-size:12px; color:#888; text-align:left;">
+                            별도 스레드에서 AI API를 호출합니다.<br><br>
+                            토큰이 생성될 때마다 <strong style="color:#4ecdc4;">Queue</strong>에 넣습니다.<br><br>
+                            <code style="background:rgba(0,0,0,0.3); padding:2px 6px; border-radius:4px; font-size:11px;">
+                                q.put(('token', '안녕'))
+                            </code>
+                        </div>
+                    </div>
+
+                    <!-- Queue -->
+                    <div style="background:#3a2a1f; border:1px solid #d4943a; border-radius:12px; padding:20px;">
+                        <div style="font-size:28px; margin-bottom:8px;">&#128230;</div>
+                        <h4 style="color:#f0b860; margin-bottom:8px;">Queue (중계)</h4>
+                        <div style="font-size:12px; color:#888; text-align:left;">
+                            스레드 간 안전한 데이터 전달 통로.<br><br>
+                            AI 스레드 → Queue → SSE 스트림<br><br>
+                            <div style="font-family:monospace; font-size:11px; margin-top:8px;">
+                                <div style="background:rgba(0,0,0,0.3); padding:4px 8px; border-radius:4px; margin:3px 0;">('token', '안녕')</div>
+                                <div style="background:rgba(0,0,0,0.3); padding:4px 8px; border-radius:4px; margin:3px 0;">('token', '하세요')</div>
+                                <div style="background:rgba(0,0,0,0.3); padding:4px 8px; border-radius:4px; margin:3px 0;">('done', None)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SSE -->
+                    <div style="background:#2d1f4e; border:1px solid #6c3fa0; border-radius:12px; padding:20px;">
+                        <div style="font-size:28px; margin-bottom:8px;">&#128225;</div>
+                        <h4 style="color:#a78bfa; margin-bottom:8px;">SSE 스트림</h4>
+                        <div style="font-size:12px; color:#888; text-align:left;">
+                            Queue에서 꺼내 SSE 형식으로 전송합니다.<br><br>
+                            브라우저가 XHR onprogress로 수신.<br><br>
+                            <div style="font-family:monospace; font-size:11px; margin-top:8px;">
+                                <div style="background:rgba(0,0,0,0.3); padding:4px 8px; border-radius:4px; margin:3px 0; color:#a78bfa;">data: {"token":"안녕"}</div>
+                                <div style="background:rgba(0,0,0,0.3); padding:4px 8px; border-radius:4px; margin:3px 0; color:#a78bfa;">data: {"token":"하세요"}</div>
+                                <div style="background:rgba(0,0,0,0.3); padding:4px 8px; border-radius:4px; margin:3px 0; color:#4ecdc4;">data: {"done":true}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align:center; margin-top:24px; padding:16px; background:rgba(233,69,96,0.1); border:1px solid rgba(233,69,96,0.3); border-radius:10px;">
+                    <span style="color:#e94560; font-weight:700;">왜 이렇게 복잡한가?</span>
+                    <span style="color:#888; font-size:13px; margin-left:8px;">
+                        iPad Safari는 EventSource(GET만 지원)를 사용할 수 없어서, XHR POST + SSE 방식을 사용합니다.
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align:center; padding:40px 0 20px; color:#444; font-size:13px;">
+            SAM AI v2 Architecture Report &middot; Generated 2026-02-09
+        </div>
+
+    </div>
+</body>
+</html>

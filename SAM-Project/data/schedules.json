@@ -1,0 +1,21 @@
+{
+    "birthdays": [
+        {"member": "bangchan", "name": "방찬", "date": "10-03", "emoji": "🐺"},
+        {"member": "leeknow", "name": "리노", "date": "10-25", "emoji": "🐱"},
+        {"member": "changbin", "name": "창빈", "date": "08-11", "emoji": "🐷"},
+        {"member": "hyunjin", "name": "현진", "date": "03-20", "emoji": "🦊"},
+        {"member": "han", "name": "한", "date": "09-14", "emoji": "🐿️"},
+        {"member": "felix", "name": "필릭스", "date": "09-15", "emoji": "🌞"},
+        {"member": "seungmin", "name": "승민", "date": "09-22", "emoji": "🐶"},
+        {"member": "i_n", "name": "아이엔", "date": "02-08", "emoji": "🦊"},
+        {"member": "skz", "name": "Stray Kids 데뷔일", "date": "03-25", "emoji": "🎉"}
+    ],
+    "events": [
+        {
+            "title": "dominATE World Tour",
+            "type": "concert",
+            "date": "2025-07-01",
+            "emoji": "🎵"
+        }
+    ]
+}

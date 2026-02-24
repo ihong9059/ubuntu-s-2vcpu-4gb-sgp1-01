@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "barcelona",
+  "cityName": "바르셀로나",
+  "country": "스페인",
+  "description": "가우디의 예술과 지중해 해변, 축구와 타파스의 도시",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_BCN_001",
+      "category": "landmark",
+      "day": 2,
+      "location": "사그라다 파밀리아",
+      "situation": "가우디의 미완성 걸작을 관람한다",
+      "npcDialog": "Hola! La Sagrada Familia has been under construction since 1882! Book tickets online to skip the 2-hour queue. The towers have amazing views!",
+      "npcDialogKo": "올라! 사그라다 파밀리아는 1882년부터 공사 중이에요! 온라인 예매하면 2시간 줄을 안 서요. 타워 경치가 끝내줘요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Since 1882? When will it be finished?", "correct": true},
+          {"text": "I booked online! Which tower has better views?", "correct": true},
+          {"text": "Why isn't it finished yet?", "correct": false},
+          {"text": "Churches are all the same.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_002",
+      "category": "culture",
+      "day": 2,
+      "location": "구엘 공원",
+      "situation": "가우디의 모자이크 공원을 탐험한다",
+      "npcDialog": "Park Güell is Gaudí's masterpiece! The mosaic lizard is the most photographed. Monumental Zone needs tickets, but the rest is free!",
+      "npcDialogKo": "구엘 공원은 가우디 걸작이에요! 모자이크 도마뱀이 가장 인기 있어요. 기념 구역은 티켓 필요하지만 나머지는 무료예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I want to see the famous lizard! Is it crowded?", "correct": true},
+          {"text": "The mosaics are incredible! Is this all recycled materials?", "correct": true},
+          {"text": "Why do I need tickets for a park?", "correct": false},
+          {"text": "Mosaics are old-fashioned.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_003",
+      "category": "food",
+      "day": 3,
+      "location": "라 보케리아 시장",
+      "situation": "유럽 최고의 식품시장에서 먹거리를 탐험한다",
+      "npcDialog": "Welcome to La Boqueria! Try fresh fruit juice, jamón ibérico, or seafood! The market has been here since 1217. Sample everything!",
+      "npcDialogKo": "라 보케리아에 오신 걸 환영해요! 과일 주스, 하몽 이베리코, 해산물 맛보세요! 이 시장은 1217년부터 있었어요. 다 시식하세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Since 1217! I'll try the jamón ibérico first.", "correct": true},
+          {"text": "The colors are amazing! What fresh juice do you recommend?", "correct": true},
+          {"text": "Markets are too crowded.", "correct": false},
+          {"text": "I don't eat street food.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_004",
+      "category": "landmark",
+      "day": 3,
+      "location": "람블라스 거리",
+      "situation": "바르셀로나의 메인 거리를 산책한다",
+      "npcDialog": "Las Ramblas is Barcelona's heart! 1.2 km of street performers, flower stalls, and cafes. Watch your belongings though - pickpockets love tourists!",
+      "npcDialogKo": "람블라스는 바르셀로나의 심장이에요! 1.2km의 거리 예술가, 꽃가게, 카페. 소지품 조심하세요 - 소매치기가 관광객 좋아해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Thanks for the warning! I'll keep my bag in front.", "correct": true},
+          {"text": "The street performers are amazing! Can I tip them?", "correct": true},
+          {"text": "Pickpockets are everywhere anyway.", "correct": false},
+          {"text": "Walking is tiring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_005",
+      "category": "food",
+      "day": 4,
+      "location": "타파스 바",
+      "situation": "스페인 타파스를 즐긴다",
+      "npcDialog": "Hola! Ready for tapas? Patatas bravas, gambas al ajillo, croquetas, jamón... In Spain we share everything! What would you like to start?",
+      "npcDialogKo": "올라! 타파스 준비됐어요? 파타타스 브라바스, 감바스 알 아히요, 크로케타스, 하몽... 스페인에선 나눠 먹어요! 뭐부터 할까요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Patatas bravas and gambas al ajillo please!", "correct": true},
+          {"text": "What's your most popular tapa?", "correct": true},
+          {"text": "I don't like sharing food.", "correct": false},
+          {"text": "These portions are too small.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_006",
+      "category": "culture",
+      "day": 4,
+      "location": "캄프 누",
+      "situation": "FC 바르셀로나 스타디움을 방문한다",
+      "npcDialog": "Welcome to Camp Nou! Home of FC Barcelona and 99,000 fans! The museum has all the trophies. Would you like the stadium tour?",
+      "npcDialogKo": "캄프 누에 오신 걸 환영해요! FC 바르셀로나와 99,000 팬의 홈이에요! 박물관에 모든 트로피가 있어요. 스타디움 투어 하실래요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Yes! I want to see where Messi played!", "correct": true},
+          {"text": "Can I take photos on the pitch?", "correct": true},
+          {"text": "I don't follow soccer.", "correct": false},
+          {"text": "99,000 is too many people.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_007",
+      "category": "landmark",
+      "day": 5,
+      "location": "바르셀로네타 해변",
+      "situation": "지중해 해변에서 휴식한다",
+      "npcDialog": "Barceloneta Beach! The Mediterranean is perfect today. You can rent a sunbed and umbrella. The chiringuitos serve great paella and sangria!",
+      "npcDialogKo": "바르셀로네타 해변이에요! 오늘 지중해가 완벽해요. 선베드와 파라솔 빌릴 수 있어요. 치링기토에서 빠에야와 상그리아가 맛있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Paella on the beach sounds perfect!", "correct": true},
+          {"text": "I'll take a sunbed. How much for the day?", "correct": true},
+          {"text": "Beaches are too sandy.", "correct": false},
+          {"text": "I don't like the sun.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_008",
+      "category": "food",
+      "day": 5,
+      "location": "해변 레스토랑",
+      "situation": "정통 빠에야를 주문한다",
+      "npcDialog": "Our paella is cooked over wood fire! Seafood, mixed, or vegetarian? It takes 20 minutes to prepare fresh. Sangria while you wait?",
+      "npcDialogKo": "빠에야는 장작불에 요리해요! 해산물, 믹스, 채식? 신선하게 만들어서 20분 걸려요. 기다리며 상그리아 하실래요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Seafood paella please! And yes to sangria!", "correct": true},
+          {"text": "What makes your paella special?", "correct": true},
+          {"text": "20 minutes is too long to wait.", "correct": false},
+          {"text": "I prefer rice from a box.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_009",
+      "category": "culture",
+      "day": 6,
+      "location": "플라멩코 공연장",
+      "situation": "열정적인 플라멩코를 관람한다",
+      "npcDialog": "Flamenco is passion! The show includes guitar, singing, and dancing. Tablao shows are intimate - only 50 seats. Dinner show or just the performance?",
+      "npcDialogKo": "플라멩코는 열정이에요! 공연에 기타, 노래, 춤이 있어요. 타블라오 공연은 친밀해요 - 50석뿐이에요. 디너쇼? 공연만?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Dinner show sounds amazing! What time does it start?", "correct": true},
+          {"text": "50 seats means great views! I'll take it.", "correct": true},
+          {"text": "Dancing shows are boring.", "correct": false},
+          {"text": "I don't understand Spanish music.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_010",
+      "category": "landmark",
+      "day": 6,
+      "location": "카사 바트요",
+      "situation": "가우디의 환상적인 건축물을 탐험한다",
+      "npcDialog": "Casa Batlló is Gaudí's House of Bones! The facade looks like the sea. Our augmented reality guide brings the rooms to life. Magic!",
+      "npcDialogKo": "카사 바트요는 가우디의 뼈의 집이에요! 파사드가 바다 같아요. 증강현실 가이드가 방을 살려내요. 마법이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Augmented reality sounds cool! How does it work?", "correct": true},
+          {"text": "The colors are incredible! Did Gaudí design everything?", "correct": true},
+          {"text": "The building looks weird.", "correct": false},
+          {"text": "AR is just a gimmick.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_011",
+      "category": "shopping",
+      "day": 7,
+      "location": "고딕 지구",
+      "situation": "좁은 골목길에서 쇼핑한다",
+      "npcDialog": "The Gothic Quarter has shops from medieval times! Unique boutiques, artisan workshops. Our handmade espadrilles are traditional Catalan!",
+      "npcDialogKo": "고딕 지구에는 중세 시대부터 가게가 있어요! 독특한 부티크, 장인 공방. 수제 에스파드리유가 전통 카탈루냐예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Handmade espadrilles! Can I try them on?", "correct": true},
+          {"text": "These narrow streets are so charming!", "correct": true},
+          {"text": "Handmade means expensive.", "correct": false},
+          {"text": "I prefer big shopping malls.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_012",
+      "category": "food",
+      "day": 7,
+      "location": "츄레리아",
+      "situation": "츄로스와 핫초코를 맛본다",
+      "npcDialog": "Churros con chocolate! Our chocolate is thick - you dip the churros. This is how Barcelona does breakfast! Or a midnight snack!",
+      "npcDialogKo": "츄로스 콘 초콜라테! 초콜릿이 진해요 - 츄로스를 찍어 드세요. 바르셀로나식 아침이에요! 아니면 야식!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The chocolate is so thick! This is amazing!", "correct": true},
+          {"text": "Churros for breakfast? I could get used to this!", "correct": true},
+          {"text": "This is too sweet for me.", "correct": false},
+          {"text": "I prefer donuts.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_013",
+      "category": "landmark",
+      "day": 8,
+      "location": "몬주익 언덕",
+      "situation": "케이블카를 타고 언덕에 오른다",
+      "npcDialog": "Montjuïc has the best views of Barcelona! Take the cable car up. The castle, gardens, and Olympic Stadium are all here. Magic Fountain show at night!",
+      "npcDialogKo": "몬주익은 바르셀로나 최고 전망이에요! 케이블카 타고 올라가세요. 성, 정원, 올림픽 스타디움이 다 여기 있어요. 밤엔 분수쇼!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Cable car sounds fun! When is the fountain show?", "correct": true},
+          {"text": "The 1992 Olympics! I'd love to see the stadium.", "correct": true},
+          {"text": "Cable cars are scary.", "correct": false},
+          {"text": "I'm not interested in views.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_014",
+      "category": "culture",
+      "day": 3,
+      "location": "피카소 미술관",
+      "situation": "피카소의 초기 작품을 감상한다",
+      "npcDialog": "Picasso spent his formative years in Barcelona! Our museum has 4,251 works. The Blue Period paintings are particularly moving.",
+      "npcDialogKo": "피카소가 바르셀로나에서 성장했어요! 박물관에 4,251점이 있어요. 청색 시대 그림이 특히 감동적이에요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "4,251 works! Where should I start?", "correct": true},
+          {"text": "I love the Blue Period! Which room are they in?", "correct": true},
+          {"text": "Picasso's art is too abstract.", "correct": false},
+          {"text": "Art museums are tiring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_015",
+      "category": "food",
+      "day": 4,
+      "location": "와인 바",
+      "situation": "카바와 스페인 와인을 시음한다",
+      "npcDialog": "Cava is Catalonia's sparkling wine! Similar to champagne but different grapes. We also have excellent Rioja and Priorat. Salud!",
+      "npcDialogKo": "카바는 카탈루냐 스파클링 와인이에요! 샴페인과 비슷하지만 다른 포도예요. 리오하와 프리오라트도 훌륭해요. 살루드!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'd love to try Cava! How is it different from champagne?", "correct": true},
+          {"text": "Salud! What food pairs well with Cava?", "correct": true},
+          {"text": "Champagne is better than Cava.", "correct": false},
+          {"text": "I don't like sparkling wine.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_016",
+      "category": "landmark",
+      "day": 5,
+      "location": "라 페드레라",
+      "situation": "가우디의 석조 건물을 관람한다",
+      "npcDialog": "La Pedrera means 'the quarry' - look at the wavy stone! The rooftop has warrior chimneys. Night visits include a glass of cava!",
+      "npcDialogKo": "라 페드레라는 '채석장'이란 뜻이에요 - 물결치는 돌 보세요! 옥상에 전사 굴뚝이 있어요. 나이트 투어엔 카바가 포함!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Night visit with cava sounds perfect!", "correct": true},
+          {"text": "Warrior chimneys? That sounds unique!", "correct": true},
+          {"text": "The building looks unfinished.", "correct": false},
+          {"text": "I've seen enough Gaudí.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_017",
+      "category": "transport",
+      "day": 2,
+      "location": "지하철",
+      "situation": "바르셀로나 메트로를 이용한다",
+      "npcDialog": "The Metro is the easiest way around! T-Casual card gives you 10 trips. Works on metro, bus, and tram. Much cheaper than single tickets!",
+      "npcDialogKo": "메트로가 가장 편해요! T-캐주얼 카드로 10회 탈 수 있어요. 메트로, 버스, 트램에서 다 써요. 편도보다 훨씬 저렴해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "T-Casual sounds convenient! Where can I buy one?", "correct": true},
+          {"text": "Does it work for the airport train too?", "correct": true},
+          {"text": "Public transport is confusing.", "correct": false},
+          {"text": "I'll just take taxis.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_018",
+      "category": "food",
+      "day": 6,
+      "location": "메르카트 산타 카테리나",
+      "situation": "현지인들의 시장을 방문한다",
+      "npcDialog": "Santa Caterina is where locals shop! Less touristy than Boqueria. Amazing fresh fish, Catalan cheeses, and the roof is a Gaudí-inspired mosaic!",
+      "npcDialogKo": "산타 카테리나는 현지인 시장이에요! 보케리아보다 관광객 적어요. 신선한 생선, 카탈루냐 치즈, 지붕이 가우디풍 모자이크예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I love that it's more local! What cheese should I try?", "correct": true},
+          {"text": "Even the roof is art! Barcelona is amazing.", "correct": true},
+          {"text": "If there are fewer tourists, it must be worse.", "correct": false},
+          {"text": "Markets smell like fish.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_019",
+      "category": "culture",
+      "day": 7,
+      "location": "팔라우 드 라 무시카",
+      "situation": "모더니즘 콘서트 홀을 방문한다",
+      "npcDialog": "Palau de la Música is UNESCO World Heritage! The stained glass ceiling is breathtaking. We have concerts most evenings - classical, jazz, flamenco!",
+      "npcDialogKo": "팔라우 드 라 무시카는 유네스코 세계유산이에요! 스테인드글라스 천장이 숨막혀요. 대부분 저녁에 콘서트해요 - 클래식, 재즈, 플라멩코!",
+      "playerResponse": {
+        "choices": [
+          {"text": "UNESCO World Heritage! Are there evening tickets available?", "correct": true},
+          {"text": "The ceiling is incredible! Can I take photos?", "correct": true},
+          {"text": "Classical music is boring.", "correct": false},
+          {"text": "I'm not into architecture.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BCN_020",
+      "category": "food",
+      "day": 8,
+      "location": "보른 지구",
+      "situation": "마지막 밤 칵테일을 즐긴다",
+      "npcDialog": "El Born is where we party! This bar is famous for gin tonics. Barcelona loves gin - we have 50 varieties! What's your favorite?",
+      "npcDialogKo": "엘 보른은 파티 지구예요! 이 바는 진토닉으로 유명해요. 바르셀로나는 진을 사랑해요 - 50가지 있어요! 뭘 좋아하세요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "50 varieties! Recommend something local please.", "correct": true},
+          {"text": "I love a good gin tonic! What's popular here?", "correct": true},
+          {"text": "Gin is too strong for me.", "correct": false},
+          {"text": "I don't drink alcohol.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

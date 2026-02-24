@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "berlin",
+  "cityName": "베를린",
+  "country": "독일",
+  "description": "역사와 예술이 숨쉬는 독일의 수도, 분단과 통일의 상징",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_BER_001",
+      "category": "landmark",
+      "day": 2,
+      "location": "브란덴부르크 문",
+      "situation": "베를린의 상징적인 문 앞에서 사진을 찍는다",
+      "npcDialog": "Das ist das Brandenburger Tor! This gate symbolizes German reunification. Would you like a photo in front of it?",
+      "npcDialogKo": "브란덴부르크 문이에요! 독일 통일의 상징이죠. 앞에서 사진 찍어드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Yes, please! It's more impressive than I imagined.", "correct": true},
+          {"text": "Can you tell me more about its history?", "correct": true},
+          {"text": "It's just an old gate.", "correct": false},
+          {"text": "I don't care about history.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_002",
+      "category": "history",
+      "day": 2,
+      "location": "베를린 장벽 기념관",
+      "situation": "장벽의 흔적과 역사를 둘러본다",
+      "npcDialog": "This section of the Wall remains as a memorial. The East Side Gallery has amazing murals. Have you seen the famous 'Fraternal Kiss' painting?",
+      "npcDialogKo": "이 구간의 장벽이 기념관으로 남아있어요. 이스트 사이드 갤러리에 멋진 벽화가 있어요. '형제의 키스' 그림 보셨어요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Not yet! Where can I find it?", "correct": true},
+          {"text": "The history here is so moving.", "correct": true},
+          {"text": "Why keep this ugly wall?", "correct": false},
+          {"text": "I don't understand German history.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_003",
+      "category": "food",
+      "day": 3,
+      "location": "커리부르스트 가판대",
+      "situation": "베를린의 명물 커리부르스트를 먹는다",
+      "npcDialog": "Currywurst mit Pommes? Our secret curry sauce recipe is 50 years old! Extra spicy or regular?",
+      "npcDialogKo": "커리부르스트에 감자튀김요? 저희 커리 소스 비법은 50년 됐어요! 매운맛 아님 보통맛?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Regular please! This is my first time trying it.", "correct": true},
+          {"text": "I'll try extra spicy! I love spicy food.", "correct": true},
+          {"text": "This looks unhealthy.", "correct": false},
+          {"text": "Why curry on sausage?", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_004",
+      "category": "museum",
+      "day": 3,
+      "location": "박물관 섬",
+      "situation": "페르가몬 박물관에서 고대 유물을 관람한다",
+      "npcDialog": "The Pergamon Altar is breathtaking! Museum Island has 5 world-class museums. Which one would you like to visit first?",
+      "npcDialogKo": "페르가몬 제단은 정말 멋져요! 박물관 섬에는 5개의 세계적인 박물관이 있어요. 어디부터 가실래요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "The Pergamon Museum! I want to see the Ishtar Gate.", "correct": true},
+          {"text": "Is there a combined ticket for all museums?", "correct": true},
+          {"text": "Five museums? That's too many.", "correct": false},
+          {"text": "Old artifacts are boring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_005",
+      "category": "transport",
+      "day": 2,
+      "location": "U반 역",
+      "situation": "베를린 지하철을 이용한다",
+      "npcDialog": "You need a Tageskarte for unlimited daily travel. Validate your ticket before boarding! Inspectors give heavy fines.",
+      "npcDialogKo": "하루 무제한 이용은 타게스카르테가 필요해요. 승차 전에 티켓 꼭 개찰하세요! 검표원이 큰 벌금 물려요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Where do I validate the ticket?", "correct": true},
+          {"text": "I'll take a day pass, please.", "correct": true},
+          {"text": "I'll just ride without a ticket.", "correct": false},
+          {"text": "Fines don't apply to tourists.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_006",
+      "category": "nightlife",
+      "day": 4,
+      "location": "클럽 거리",
+      "situation": "세계적으로 유명한 베를린 클럽 문화를 체험한다",
+      "npcDialog": "Berlin's club scene is legendary! Berghain is famous but hard to get in. Want me to recommend some alternatives?",
+      "npcDialogKo": "베를린 클럽 씬은 전설이에요! 베르그하인은 유명하지만 들어가기 어려워요. 다른 곳 추천해드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Yes, please! What are some good alternatives?", "correct": true},
+          {"text": "What's the dress code for clubs here?", "correct": true},
+          {"text": "Clubs are too loud.", "correct": false},
+          {"text": "I don't dance.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_007",
+      "category": "landmark",
+      "day": 3,
+      "location": "체크포인트 찰리",
+      "situation": "냉전 시대의 검문소를 방문한다",
+      "npcDialog": "This was the famous crossing point between East and West Berlin. The museum nearby tells incredible escape stories.",
+      "npcDialogKo": "동베를린과 서베를린 사이 유명한 검문소였어요. 근처 박물관에 놀라운 탈출 이야기가 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'd love to learn about the escape stories!", "correct": true},
+          {"text": "Is the museum included in the museum pass?", "correct": true},
+          {"text": "This looks like a tourist trap.", "correct": false},
+          {"text": "Cold War stuff is old news.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_008",
+      "category": "food",
+      "day": 4,
+      "location": "터키 케밥 가게",
+      "situation": "베를린 스타일 되너 케밥을 먹는다",
+      "npcDialog": "Döner Kebab was invented here in Berlin! Lamb or chicken? With everything and extra garlic sauce?",
+      "npcDialogKo": "되너 케밥은 베를린에서 시작됐어요! 양고기 아님 치킨? 모든 재료에 마늘 소스 추가요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Lamb with everything, please! Extra sauce sounds great.", "correct": true},
+          {"text": "I didn't know Döner was from Berlin!", "correct": true},
+          {"text": "I only eat American fast food.", "correct": false},
+          {"text": "Street food looks unsanitary.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_009",
+      "category": "shopping",
+      "day": 4,
+      "location": "KaDeWe 백화점",
+      "situation": "유럽 최대 백화점에서 쇼핑한다",
+      "npcDialog": "KaDeWe's food hall is spectacular! Six floors of gourmet paradise. The rooftop restaurant has amazing views too.",
+      "npcDialogKo": "KaDeWe 식품관은 장관이에요! 6층에 걸친 미식 천국이죠. 옥상 레스토랑 전망도 끝내줘요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Six floors of food? I have to see this!", "correct": true},
+          {"text": "Can you recommend the best floor to visit?", "correct": true},
+          {"text": "Department stores are all the same.", "correct": false},
+          {"text": "I don't like fancy stores.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_010",
+      "category": "culture",
+      "day": 5,
+      "location": "포츠담 광장",
+      "situation": "현대적으로 재건된 광장을 산책한다",
+      "npcDialog": "This area was completely destroyed in WWII and rebuilt after reunification. The Sony Center architecture is stunning!",
+      "npcDialogKo": "이 지역은 2차 세계대전에 완전히 파괴되었다가 통일 후 재건되었어요. 소니 센터 건축이 멋져요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The contrast between old and new is fascinating.", "correct": true},
+          {"text": "Where can I learn more about the reconstruction?", "correct": true},
+          {"text": "Modern buildings are ugly.", "correct": false},
+          {"text": "I prefer old cities.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_011",
+      "category": "art",
+      "day": 3,
+      "location": "이스트 사이드 갤러리",
+      "situation": "베를린 장벽의 야외 갤러리를 감상한다",
+      "npcDialog": "This is the longest remaining section of the Wall - 1.3km of murals! Artists from around the world painted here after reunification.",
+      "npcDialogKo": "장벽 중 가장 긴 구간이에요 - 1.3km의 벽화가 있어요! 통일 후 전세계 예술가들이 그렸어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "This outdoor gallery is incredible!", "correct": true},
+          {"text": "Which mural is the most famous?", "correct": true},
+          {"text": "It's just graffiti.", "correct": false},
+          {"text": "Why preserve the Wall?", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_012",
+      "category": "food",
+      "day": 5,
+      "location": "독일 전통 레스토랑",
+      "situation": "슈니첼과 독일 맥주를 즐긴다",
+      "npcDialog": "Willkommen! Try our Wiener Schnitzel with potato salad. And of course, a fresh Berliner Weisse - it's Berlin's signature beer!",
+      "npcDialogKo": "환영합니다! 비엔나 슈니첼에 감자 샐러드 드세요. 그리고 베를리너 바이세 - 베를린 대표 맥주예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Schnitzel and local beer sounds perfect!", "correct": true},
+          {"text": "What makes Berliner Weisse special?", "correct": true},
+          {"text": "I don't eat fried food.", "correct": false},
+          {"text": "German food is too heavy.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_013",
+      "category": "history",
+      "day": 4,
+      "location": "유대인 기념관",
+      "situation": "홀로코스트 추모비를 방문한다",
+      "npcDialog": "The Memorial to the Murdered Jews of Europe is deeply moving. Please walk through the stelae in silence and reflect.",
+      "npcDialogKo": "유럽 학살 유대인 추모비는 정말 감동적이에요. 조용히 비석 사이를 걸으며 묵념해주세요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll pay my respects quietly.", "correct": true},
+          {"text": "This is an important place to remember history.", "correct": true},
+          {"text": "Why so serious?", "correct": false},
+          {"text": "Can I take selfies here?", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_014",
+      "category": "nature",
+      "day": 5,
+      "location": "티어가르텐",
+      "situation": "베를린 중심부의 대형 공원을 산책한다",
+      "npcDialog": "Tiergarten is Berlin's Central Park! You can rent a boat at the lake or grab a beer at the garden cafes.",
+      "npcDialogKo": "티어가르텐은 베를린의 센트럴파크예요! 호수에서 보트 빌리거나 가든 카페에서 맥주 마실 수 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "A boat ride sounds lovely!", "correct": true},
+          {"text": "Perfect weather for a walk in the park.", "correct": true},
+          {"text": "Parks are boring.", "correct": false},
+          {"text": "I'd rather stay indoors.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_015",
+      "category": "culture",
+      "day": 5,
+      "location": "프리드리히슈트라세",
+      "situation": "베를린의 메인 쇼핑 거리를 구경한다",
+      "npcDialog": "Friedrichstraße is great for shopping! From luxury brands to local boutiques. The French Quarter nearby has lovely cafes too.",
+      "npcDialogKo": "프리드리히슈트라세는 쇼핑 좋아요! 명품부터 현지 부티크까지. 근처 프렌치 쿼터 카페도 좋아요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'd love to explore both areas!", "correct": true},
+          {"text": "Any local designers you'd recommend?", "correct": true},
+          {"text": "Shopping streets are all the same.", "correct": false},
+          {"text": "I don't like walking.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_016",
+      "category": "entertainment",
+      "day": 4,
+      "location": "TV 타워",
+      "situation": "베를린 TV 타워 전망대에 올라간다",
+      "npcDialog": "The TV Tower offers 360-degree views of Berlin! On a clear day, you can see 40km. There's also a revolving restaurant.",
+      "npcDialogKo": "TV 타워에서 베를린 360도 전망을 볼 수 있어요! 맑은 날에는 40km까지 보여요. 회전 레스토랑도 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Wow, 360-degree views! I'm excited.", "correct": true},
+          {"text": "How long is the wait for the elevator?", "correct": true},
+          {"text": "I'm afraid of heights.", "correct": false},
+          {"text": "It's not worth the ticket price.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_017",
+      "category": "market",
+      "day": 3,
+      "location": "마우어파크 벼룩시장",
+      "situation": "일요일 벼룩시장에서 보물 찾기를 한다",
+      "npcDialog": "Sundays at Mauerpark are magical! Flea market, karaoke in the amphitheater, street food. Pure Berlin vibes!",
+      "npcDialogKo": "일요일 마우어파크는 마법이에요! 벼룩시장, 야외 가라오케, 길거리 음식. 진짜 베를린 분위기!",
+      "playerResponse": {
+        "choices": [
+          {"text": "This sounds like the authentic Berlin experience!", "correct": true},
+          {"text": "Karaoke in the amphitheater? I have to see that!", "correct": true},
+          {"text": "Flea markets are just old junk.", "correct": false},
+          {"text": "I don't like crowded places.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_018",
+      "category": "local",
+      "day": 2,
+      "location": "크로이츠베르크 지역",
+      "situation": "힙한 동네를 탐험한다",
+      "npcDialog": "Kreuzberg is Berlin's coolest neighborhood! Street art everywhere, amazing Turkish food, and the best coffee shops.",
+      "npcDialogKo": "크로이츠베르크는 베를린에서 가장 힙한 동네예요! 거리 예술, 터키 음식, 최고의 커피숍!",
+      "playerResponse": {
+        "choices": [
+          {"text": "This neighborhood has such great energy!", "correct": true},
+          {"text": "Where's the best coffee shop around here?", "correct": true},
+          {"text": "It looks too hipster for me.", "correct": false},
+          {"text": "I prefer tourist areas.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_019",
+      "category": "history",
+      "day": 4,
+      "location": "라이히스탁 건물",
+      "situation": "독일 연방의회 건물과 유리 돔을 방문한다",
+      "npcDialog": "The glass dome represents transparency in democracy. You need to register online for free entry. The views are spectacular!",
+      "npcDialogKo": "유리 돔은 민주주의의 투명성을 상징해요. 무료 입장은 온라인 사전 등록 필요해요. 전망 끝내줘요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I registered online! Can't wait to see the dome.", "correct": true},
+          {"text": "The symbolism of the glass dome is brilliant.", "correct": true},
+          {"text": "Government buildings are boring.", "correct": false},
+          {"text": "I don't want to register anywhere.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BER_020",
+      "category": "food",
+      "day": 5,
+      "location": "길거리 음식 거리",
+      "situation": "다양한 국제 음식을 즐긴다",
+      "npcDialog": "Berlin is a melting pot of cuisines! Vietnamese, Middle Eastern, Korean - you can find anything here. What are you in the mood for?",
+      "npcDialogKo": "베를린은 다양한 요리의 용광로예요! 베트남, 중동, 한국 음식 - 다 있어요. 뭐 드시고 싶으세요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Surprise me with your favorite!", "correct": true},
+          {"text": "I'd love to try something I can't get back home.", "correct": true},
+          {"text": "I only eat food I know.", "correct": false},
+          {"text": "International food isn't authentic.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "toronto",
+  "cityName": "토론토",
+  "country": "캐나다",
+  "description": "북미에서 가장 다문화적인 도시, 나이아가라 폭포의 관문",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_TOR_001",
+      "category": "landmark",
+      "day": 2,
+      "location": "CN 타워",
+      "situation": "캐나다의 상징적인 타워를 방문한다",
+      "npcDialog": "CN Tower was world's tallest for 34 years! Glass floor at 342m, EdgeWalk outside at 356m. Brave enough for the walk?",
+      "npcDialogKo": "CN 타워는 34년간 세계 최고층이었어요! 342m에 유리 바닥, 356m에 엣지워크 외부 산책. 걸을 용기 있으세요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "EdgeWalk sounds terrifying but amazing!", "correct": true},
+          {"text": "I'll try the glass floor first!", "correct": true},
+          {"text": "I'm afraid of heights.", "correct": false},
+          {"text": "Just a tall tower.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_002",
+      "category": "nature",
+      "day": 3,
+      "location": "나이아가라 폭포",
+      "situation": "세계적으로 유명한 폭포를 방문한다",
+      "npcDialog": "Niagara Falls is 90 minutes from Toronto! Hornblower boat gets you soaking wet. Canadian side has the best views of all three falls!",
+      "npcDialogKo": "나이아가라 폭포는 토론토에서 90분이에요! 혼블로워 보트 타면 흠뻑 젖어요. 캐나다 쪽에서 세 폭포 다 제일 잘 보여요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Getting soaked by the falls sounds fun!", "correct": true},
+          {"text": "Canadian side is the best? Good choice!", "correct": true},
+          {"text": "It's just a waterfall.", "correct": false},
+          {"text": "90 minutes is too far.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_003",
+      "category": "culture",
+      "day": 2,
+      "location": "켄싱턴 마켓",
+      "situation": "다문화 빈티지 마켓을 탐험한다",
+      "npcDialog": "Kensington Market is Toronto's bohemian heart! Vintage shops, global foods, street art. Pedestrian Sundays in summer are magical!",
+      "npcDialogKo": "켄싱턴 마켓은 토론토의 보헤미안 심장이에요! 빈티지 샵, 세계 음식, 거리 예술. 여름 보행자 일요일이 마법이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Bohemian markets are my favorite!", "correct": true},
+          {"text": "Global foods in one place? Perfect!", "correct": true},
+          {"text": "Too chaotic for me.", "correct": false},
+          {"text": "I prefer organized malls.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_004",
+      "category": "food",
+      "day": 4,
+      "location": "세인트 로렌스 마켓",
+      "situation": "세계 최고의 식품 시장을 방문한다",
+      "npcDialog": "St. Lawrence Market was named world's best food market! The peameal bacon sandwich is Toronto's signature. Saturday farmers market since 1803!",
+      "npcDialogKo": "세인트 로렌스 마켓은 세계 최고의 식품 시장으로 뽑혔어요! 피밀 베이컨 샌드위치가 토론토 대표예요. 1803년부터 토요 파머스 마켓!",
+      "playerResponse": {
+        "choices": [
+          {"text": "World's best food market? High expectations!", "correct": true},
+          {"text": "I must try the peameal bacon sandwich!", "correct": true},
+          {"text": "Markets are overrated.", "correct": false},
+          {"text": "I don't eat bacon.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_005",
+      "category": "entertainment",
+      "day": 4,
+      "location": "로저스 센터",
+      "situation": "블루제이스 야구 경기를 관람한다",
+      "npcDialog": "Rogers Centre has a retractable roof! Blue Jays games are a Toronto tradition. Get a beer and hot dog - classic ballpark experience!",
+      "npcDialogKo": "로저스 센터는 개폐식 지붕이 있어요! 블루제이스 경기는 토론토 전통이에요. 맥주와 핫도그 사세요 - 클래식 야구장 경험!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Retractable roof is so cool!", "correct": true},
+          {"text": "Baseball with beer and hot dogs - perfect!", "correct": true},
+          {"text": "I don't understand baseball.", "correct": false},
+          {"text": "Sports games are boring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_006",
+      "category": "culture",
+      "day": 3,
+      "location": "로열 온타리오 박물관",
+      "situation": "캐나다 최대 박물관을 관람한다",
+      "npcDialog": "ROM is Canada's largest museum! The crystal addition is striking. Dinosaurs, ancient Egypt, Indigenous art - all under one roof!",
+      "npcDialogKo": "ROM은 캐나다 최대 박물관이에요! 크리스탈 증축이 인상적이에요. 공룡, 고대 이집트, 원주민 예술 - 한 지붕 아래 다 있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The crystal architecture is amazing!", "correct": true},
+          {"text": "Dinosaurs and ancient Egypt together!", "correct": true},
+          {"text": "Museums are boring.", "correct": false},
+          {"text": "One museum is enough.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_007",
+      "category": "local",
+      "day": 4,
+      "location": "디스틸러리 디스트릭트",
+      "situation": "빅토리아 시대 산업 건물이 변신한 예술 지구를 방문한다",
+      "npcDialog": "Distillery District is beautifully preserved Victorian industrial! Art galleries, craft breweries, no cars allowed. The Christmas market is famous!",
+      "npcDialogKo": "디스틸러리 디스트릭트는 빅토리아 시대 산업 건물이 아름답게 보존됐어요! 아트 갤러리, 크래프트 브루어리, 차 없어요. 크리스마스 마켓 유명해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Car-free and historic - perfect combo!", "correct": true},
+          {"text": "Craft breweries in old factories? Love it!", "correct": true},
+          {"text": "Industrial buildings are ugly.", "correct": false},
+          {"text": "I prefer modern areas.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_008",
+      "category": "food",
+      "day": 2,
+      "location": "리틀 이탈리아",
+      "situation": "토론토의 이탈리안 지역에서 식사한다",
+      "npcDialog": "Little Italy on College Street is authentic! Fresh pasta, wood-fired pizza, gelato. Patio season is the best time to visit!",
+      "npcDialogKo": "콜리지 스트리트 리틀 이탈리아는 정통이에요! 신선한 파스타, 화덕 피자, 젤라토. 파티오 시즌이 방문 최적기예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Patio dining in Little Italy sounds perfect!", "correct": true},
+          {"text": "Fresh pasta and gelato - yes please!", "correct": true},
+          {"text": "I can get Italian food anywhere.", "correct": false},
+          {"text": "I prefer other cuisines.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_009",
+      "category": "nature",
+      "day": 5,
+      "location": "토론토 아일랜드",
+      "situation": "페리를 타고 섬 공원에 간다",
+      "npcDialog": "Toronto Islands are 15 minutes by ferry! Car-free oasis with skyline views. Rent bikes, have a picnic, best city escape!",
+      "npcDialogKo": "토론토 아일랜드는 페리로 15분이에요! 차 없는 오아시스에 스카이라인 뷰. 자전거 빌리고, 피크닉하고, 최고의 도시 탈출!",
+      "playerResponse": {
+        "choices": [
+          {"text": "15 minutes to a car-free island? Perfect!", "correct": true},
+          {"text": "Skyline views from the island sound amazing.", "correct": true},
+          {"text": "Islands are boring.", "correct": false},
+          {"text": "I don't like ferries.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_010",
+      "category": "shopping",
+      "day": 3,
+      "location": "이튼 센터",
+      "situation": "캐나다 최대 쇼핑몰을 방문한다",
+      "npcDialog": "Eaton Centre is downtown's mega mall! Glass galleria inspired by Milan. Over 250 stores - you could spend all day here!",
+      "npcDialogKo": "이튼 센터는 다운타운 메가 쇼핑몰이에요! 밀라노에서 영감받은 유리 갤러리아. 250개 넘는 매장 - 하루 종일 있을 수 있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Milan-inspired architecture? Impressive!", "correct": true},
+          {"text": "250 stores should keep me busy!", "correct": true},
+          {"text": "Malls are all the same.", "correct": false},
+          {"text": "I prefer outdoor shopping.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_011",
+      "category": "culture",
+      "day": 5,
+      "location": "차이나타운",
+      "situation": "북미 최대 규모의 차이나타운을 방문한다",
+      "npcDialog": "Toronto's Chinatown is massive! Dim sum, herbalists, karaoke. Spadina and Dundas intersection is the heart - so vibrant!",
+      "npcDialogKo": "토론토 차이나타운은 거대해요! 딤섬, 한의원, 노래방. 스파다이나와 던다스 교차로가 중심이에요 - 정말 활기차요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Massive Chinatown sounds exciting!", "correct": true},
+          {"text": "I want to try authentic dim sum.", "correct": true},
+          {"text": "Chinatowns are all the same.", "correct": false},
+          {"text": "Too crowded for me.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_012",
+      "category": "local",
+      "day": 2,
+      "location": "퀸 스트리트 웨스트",
+      "situation": "토론토의 힙한 쇼핑 거리를 산책한다",
+      "npcDialog": "Queen West is Toronto's coolest strip! Independent boutiques, vintage stores, street art. Graffiti Alley is a must-see!",
+      "npcDialogKo": "퀸 웨스트는 토론토에서 가장 쿨한 거리예요! 독립 부티크, 빈티지 숍, 거리 예술. 그래피티 앨리 꼭 가세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Graffiti Alley sounds amazing!", "correct": true},
+          {"text": "Independent boutiques are my thing.", "correct": true},
+          {"text": "Hipster areas aren't for me.", "correct": false},
+          {"text": "I prefer chain stores.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_013",
+      "category": "food",
+      "day": 4,
+      "location": "코리아타운",
+      "situation": "토론토 한인타운에서 식사한다",
+      "npcDialog": "Toronto's Koreatown is on Bloor West! 24-hour BBQ, karaoke, fried chicken and beer - chimaek is huge here!",
+      "npcDialogKo": "토론토 코리아타운은 블루어 웨스트에 있어요! 24시간 BBQ, 노래방, 치킨과 맥주 - 치맥이 여기서 대세예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "24-hour Korean BBQ? Amazing!", "correct": true},
+          {"text": "Chimaek is always a good choice!", "correct": true},
+          {"text": "I can get Korean food back home.", "correct": false},
+          {"text": "I don't eat Korean food.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_014",
+      "category": "nature",
+      "day": 3,
+      "location": "하이 파크",
+      "situation": "토론토 최대 공원에서 산책한다",
+      "npcDialog": "High Park has a free zoo! Cherry blossoms in spring rival DC. The llamas and capybaras are surprisingly popular with kids!",
+      "npcDialogKo": "하이 파크에 무료 동물원이 있어요! 봄 벚꽃은 DC에 필적해요. 라마와 카피바라가 아이들에게 인기예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Free zoo with capybaras? So cute!", "correct": true},
+          {"text": "Cherry blossoms rivaling DC sounds beautiful.", "correct": true},
+          {"text": "City parks are boring.", "correct": false},
+          {"text": "I prefer bigger zoos.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_015",
+      "category": "entertainment",
+      "day": 5,
+      "location": "리플리 수족관",
+      "situation": "CN 타워 옆 수족관을 방문한다",
+      "npcDialog": "Ripley's Aquarium has Canada's largest underwater tunnel! Sharks swim right over you. The jellyfish exhibit is hypnotic!",
+      "npcDialogKo": "리플리 수족관에 캐나다 최대 수중 터널이 있어요! 상어가 바로 위로 수영해요. 해파리 전시가 최면 걸려요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Sharks swimming overhead? Thrilling!", "correct": true},
+          {"text": "Jellyfish exhibits are mesmerizing.", "correct": true},
+          {"text": "Aquariums are sad for fish.", "correct": false},
+          {"text": "I've seen enough aquariums.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_016",
+      "category": "food",
+      "day": 3,
+      "location": "그릭타운",
+      "situation": "다나포스 지역 그리스 음식을 먹는다",
+      "npcDialog": "Greektown on the Danforth is authentic! Souvlaki, gyros, saganaki cheese on fire. Taste of the Danforth festival is legendary!",
+      "npcDialogKo": "다나포스 그릭타운은 정통이에요! 수블라키, 기로스, 불붙은 사가나키 치즈. 다나포스 맛 축제가 전설이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Cheese on fire? That's a show!", "correct": true},
+          {"text": "Authentic Greek food sounds delicious.", "correct": true},
+          {"text": "I don't like Greek food.", "correct": false},
+          {"text": "Ethnic neighborhoods all seem the same.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_017",
+      "category": "culture",
+      "day": 4,
+      "location": "아가 칸 박물관",
+      "situation": "이슬람 예술 박물관을 관람한다",
+      "npcDialog": "Aga Khan Museum has stunning Islamic art! The building by Fumihiko Maki is a masterpiece. The gardens are for peaceful reflection.",
+      "npcDialogKo": "아가 칸 박물관에 놀라운 이슬람 예술이 있어요! 후미히코 마키가 설계한 건물이 걸작이에요. 정원은 평화로운 성찰을 위해 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "The architecture alone is worth visiting.", "correct": true},
+          {"text": "Islamic art is so intricate and beautiful.", "correct": true},
+          {"text": "I'm not interested in religious art.", "correct": false},
+          {"text": "Never heard of this museum.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_018",
+      "category": "nightlife",
+      "day": 5,
+      "location": "킹 웨스트",
+      "situation": "토론토 클럽 지역을 방문한다",
+      "npcDialog": "King West is Toronto's party district! Rooftop bars, dance clubs, celebrity sightings during TIFF. Dress to impress!",
+      "npcDialogKo": "킹 웨스트는 토론토 파티 지역이에요! 루프탑 바, 댄스 클럽, TIFF 때 셀럽 목격. 멋지게 입으세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Rooftop bars sound perfect!", "correct": true},
+          {"text": "I'll dress up for King West!", "correct": true},
+          {"text": "Clubs aren't my scene.", "correct": false},
+          {"text": "I prefer quiet evenings.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_019",
+      "category": "local",
+      "day": 2,
+      "location": "세인트 로렌스 이웃",
+      "situation": "토론토에서 가장 오래된 지역을 산책한다",
+      "npcDialog": "St. Lawrence is where Toronto began! Historic buildings, the Flatiron, covered market. Sunday antique market is treasure hunting!",
+      "npcDialogKo": "세인트 로렌스는 토론토가 시작된 곳이에요! 역사적 건물, 플랫아이언, 실내 마켓. 일요일 골동품 시장은 보물찾기예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Toronto's historic heart! Must explore.", "correct": true},
+          {"text": "Antique treasure hunting sounds fun!", "correct": true},
+          {"text": "Old neighborhoods are boring.", "correct": false},
+          {"text": "I don't like antiques.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOR_020",
+      "category": "food",
+      "day": 5,
+      "location": "리틀 인디아",
+      "situation": "제라드 인디아 바자에서 인도 음식을 먹는다",
+      "npcDialog": "Gerrard India Bazaar is authentic! Biryanis, samosas, chai. Sari shops and Bollywood music - you'll feel like you're in Delhi!",
+      "npcDialogKo": "제라드 인디아 바자는 정통이에요! 비리야니, 사모사, 차이. 사리 가게와 볼리우드 음악 - 델리에 온 느낌이 들 거예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Feeling like Delhi in Toronto!", "correct": true},
+          {"text": "I love authentic Indian food.", "correct": true},
+          {"text": "Indian food is too spicy.", "correct": false},
+          {"text": "I prefer Western food.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Page</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #1a1a2e; color: white; }
+        .status { padding: 10px; margin: 5px 0; border-radius: 5px; }
+        .ok { background: green; }
+        .fail { background: red; }
+        .loading { background: orange; }
+        #log { background: #333; padding: 10px; margin-top: 20px; white-space: pre-wrap; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <h2>World Tour Vocab - Debug</h2>
+
+    <div id="results"></div>
+    <div id="log"></div>
+
+    <script>
+        const results = document.getElementById('results');
+        const log = document.getElementById('log');
+
+        function addLog(msg) {
+            log.textContent += msg + '\n';
+        }
+
+        function addResult(name, ok, detail) {
+            const div = document.createElement('div');
+            div.className = 'status ' + (ok ? 'ok' : 'fail');
+            div.textContent = name + ': ' + (ok ? 'OK' : 'FAIL') + (detail ? ' - ' + detail : '');
+            results.appendChild(div);
+        }
+
+        addLog('User Agent: ' + navigator.userAgent);
+        addLog('Screen: ' + screen.width + 'x' + screen.height);
+        addLog('Window: ' + window.innerWidth + 'x' + window.innerHeight);
+        addLog('');
+
+        // Test 1: Leaflet CSS
+        const testCSS = document.createElement('link');
+        testCSS.rel = 'stylesheet';
+        testCSS.href = 'leaflet.css';
+        testCSS.onload = () => addResult('Leaflet CSS', true);
+        testCSS.onerror = () => addResult('Leaflet CSS', false);
+        document.head.appendChild(testCSS);
+
+        // Test 2: Leaflet JS
+        const testJS = document.createElement('script');
+        testJS.src = 'leaflet.js';
+        testJS.onload = () => {
+            addResult('Leaflet JS', true);
+            addResult('L object exists', typeof L !== 'undefined');
+
+            // Test map creation
+            try {
+                const mapDiv = document.createElement('div');
+                mapDiv.id = 'test-map';
+                mapDiv.style.width = '300px';
+                mapDiv.style.height = '200px';
+                document.body.appendChild(mapDiv);
+
+                const map = L.map('test-map').setView([0, 0], 2);
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png').addTo(map);
+                addResult('Map creation', true);
+                addLog('Map created successfully');
+            } catch(e) {
+                addResult('Map creation', false, e.message);
+                addLog('Map error: ' + e.message);
+            }
+        };
+        testJS.onerror = () => addResult('Leaflet JS', false);
+        document.head.appendChild(testJS);
+
+        // Test 3: Cities data
+        const testCities = document.createElement('script');
+        testCities.src = 'cities_1.js';
+        testCities.onload = () => {
+            addResult('cities_1.js', true);
+            addResult('cities1 array', typeof cities1 !== 'undefined', cities1 ? cities1.length + ' cities' : '');
+        };
+        testCities.onerror = () => addResult('cities_1.js', false);
+        document.head.appendChild(testCities);
+
+        // Test 4: Vocab data
+        const testVocab = document.createElement('script');
+        testVocab.src = 'vocab_beginner.js';
+        testVocab.onload = () => {
+            addResult('vocab_beginner.js', true);
+            addResult('vocabBeginner array', typeof vocabBeginner !== 'undefined', vocabBeginner ? vocabBeginner.length + ' words' : '');
+        };
+        testVocab.onerror = () => addResult('vocab_beginner.js', false);
+        document.head.appendChild(testVocab);
+    </script>
+</body>
+</html>

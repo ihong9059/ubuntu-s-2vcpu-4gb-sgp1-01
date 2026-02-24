@@ -1,0 +1,20 @@
+{
+  "id": "e8d25c51-9b11-4be4-9d76-a5e5565cf1f6",
+  "title": "안녕",
+  "member_id": "bangchan",
+  "created_at": "2026-02-13T02:30:41.428106",
+  "updated_at": "2026-02-13T02:30:43.986411",
+  "messages": [
+    {
+      "role": "user",
+      "content": "안녕",
+      "timestamp": "2026-02-13T02:30:42.008905"
+    },
+    {
+      "role": "assistant",
+      "content": "STAY~ 안녕! 👋 갑자기 이렇게 인사하니까 뭔가 Chan's Room 시작하는 기분이다, right? 😉 잘 지내고 있었어? 궁금했어~",
+      "timestamp": "2026-02-13T02:30:43.985890",
+      "member_id": "bangchan"
+    }
+  ]
+}

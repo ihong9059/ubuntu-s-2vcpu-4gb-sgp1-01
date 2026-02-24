@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "tokyo",
+  "cityName": "도쿄",
+  "country": "일본",
+  "description": "전통과 초현대가 공존하는 도쿄의 독특한 문화와 경험",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_TOK_001",
+      "category": "transport",
+      "day": 2,
+      "location": "도쿄역",
+      "situation": "복잡한 도쿄 지하철 노선도를 보며 길을 찾는다",
+      "npcDialog": "Sumimasen! Need help? Tokyo subway can be confusing. Where are you trying to go? I can show you the right line.",
+      "npcDialogKo": "스미마센! 도움이 필요하세요? 도쿄 지하철이 복잡해요. 어디 가세요? 맞는 노선 알려드릴게요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Arigatou! I'm trying to get to Shibuya. Which line should I take?", "correct": true},
+          {"text": "Thank you! Is there an English map available?", "correct": true},
+          {"text": "Why is this subway so complicated?", "correct": false},
+          {"text": "I'll figure it out myself.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_002",
+      "category": "landmark",
+      "day": 2,
+      "location": "시부야 스크램블 교차로",
+      "situation": "세계에서 가장 바쁜 교차로에서 사진을 찍는다",
+      "npcDialog": "This is Shibuya Crossing! 3,000 people cross at once. Best photo spot is from Starbucks on 2nd floor!",
+      "npcDialogKo": "여기가 시부야 교차로예요! 한 번에 3,000명이 건너요. 최고의 사진 스팟은 2층 스타벅스예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "3,000 people! That's incredible! I want to cross it myself!", "correct": true},
+          {"text": "Great tip! I'll check out the Starbucks view first.", "correct": true},
+          {"text": "It's just a crosswalk.", "correct": false},
+          {"text": "Too many people for me.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_003",
+      "category": "food",
+      "day": 3,
+      "location": "라멘 가게",
+      "situation": "자동 식권 발매기에서 라멘을 주문한다",
+      "npcDialog": "Irasshaimase! First, buy ticket from machine. Choose your ramen, noodle firmness, and toppings. Katame is firm, futsu is regular.",
+      "npcDialogKo": "이랏샤이마세! 먼저 기계에서 식권 사세요. 라멘, 면 굵기, 토핑 고르세요. 카타메는 단단하게, 후츠는 보통이에요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll try tonkotsu ramen with futsu noodles. What toppings are popular?", "correct": true},
+          {"text": "This ticket machine is interesting! Can I get extra chashu?", "correct": true},
+          {"text": "Why can't I just order from a person?", "correct": false},
+          {"text": "This is too complicated.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_004",
+      "category": "culture",
+      "day": 4,
+      "location": "센소지(아사쿠사)",
+      "situation": "도쿄에서 가장 오래된 절을 방문한다",
+      "npcDialog": "Welcome to Senso-ji Temple! Please purify your hands at the fountain first. You can draw an omikuji - fortune slip - for 100 yen.",
+      "npcDialogKo": "센소지에 오신 것을 환영해요! 먼저 분수에서 손을 정화하세요. 100엔에 오미쿠지 - 점괘 - 를 뽑을 수 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'd love to try the fortune slip! How do I purify my hands properly?", "correct": true},
+          {"text": "This temple is beautiful! What's the history behind it?", "correct": true},
+          {"text": "Fortune telling is superstition.", "correct": false},
+          {"text": "100 yen for a piece of paper?", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_005",
+      "category": "shopping",
+      "day": 3,
+      "location": "아키하바라",
+      "situation": "전자제품과 애니메이션 상점을 둘러본다",
+      "npcDialog": "Akihabara! Electronics, anime, manga, games - paradise for otaku! This figure is limited edition. Tax free for tourists!",
+      "npcDialogKo": "아키하바라예요! 전자제품, 애니메이션, 만화, 게임 - 오타쿠 천국이에요! 이 피규어는 한정판이에요. 관광객 면세!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Limited edition? That's tempting! How does tax-free work?", "correct": true},
+          {"text": "This place is amazing! Where can I find retro games?", "correct": true},
+          {"text": "Anime stuff is for kids.", "correct": false},
+          {"text": "Everything here is overpriced.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_006",
+      "category": "food",
+      "day": 5,
+      "location": "츠키지 외시장",
+      "situation": "신선한 스시를 맛본다",
+      "npcDialog": "Fresh sushi from Tsukiji! Tuna, salmon, uni - sea urchin, very special! Chef prepares in front of you.",
+      "npcDialogKo": "츠키지의 신선한 스시예요! 참치, 연어, 우니 - 성게, 아주 특별해요! 셰프가 눈앞에서 만들어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I've never tried uni before! Is it an acquired taste?", "correct": true},
+          {"text": "Omakase please! I want the chef's selection.", "correct": true},
+          {"text": "Raw fish looks dangerous.", "correct": false},
+          {"text": "I only eat cooked food.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_007",
+      "category": "activity",
+      "day": 4,
+      "location": "도쿄 스카이트리",
+      "situation": "세계에서 가장 높은 전파탑 전망대에 올라간다",
+      "npcDialog": "Tokyo Skytree - 634 meters! Two observation decks at 350m and 450m. On clear days, you can see Mt. Fuji!",
+      "npcDialogKo": "도쿄 스카이트리 - 634미터예요! 350m와 450m에 전망대가 있어요. 맑은 날엔 후지산이 보여요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "634 meters! Can I go to the top deck? I hope Mt. Fuji is visible!", "correct": true},
+          {"text": "What's the best time to visit for the view?", "correct": true},
+          {"text": "That's too high for me.", "correct": false},
+          {"text": "Observation decks are all the same.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_008",
+      "category": "culture",
+      "day": 6,
+      "location": "하라주쿠",
+      "situation": "독특한 패션과 거리 문화를 체험한다",
+      "npcDialog": "Harajuku fashion! Kawaii style, cosplay, street fashion. Takeshita Street is famous for crepes and unique shops!",
+      "npcDialogKo": "하라주쿠 패션이에요! 카와이 스타일, 코스프레, 스트리트 패션. 타케시타 거리는 크레이프와 독특한 가게로 유명해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The fashion here is so creative! Can I take photos with the cosplayers?", "correct": true},
+          {"text": "I want to try a Harajuku crepe! What flavor is popular?", "correct": true},
+          {"text": "These outfits are too strange for me.", "correct": false},
+          {"text": "This is just for teenagers.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_009",
+      "category": "food",
+      "day": 2,
+      "location": "콘비니(편의점)",
+      "situation": "일본 편의점의 다양한 음식을 탐험한다",
+      "npcDialog": "Japanese konbini! Onigiri, bento, hot foods fresh 24 hours. This egg sandwich - tamago sando - very popular!",
+      "npcDialogKo": "일본 콘비니예요! 오니기리, 벤또, 핫푸드 24시간 신선해요. 이 계란 샌드위치 - 타마고 산도 - 아주 인기예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Convenience store food looks so good here! What's the best onigiri flavor?", "correct": true},
+          {"text": "I'll try the tamago sando! Japanese convenience stores are amazing!", "correct": true},
+          {"text": "Convenience store food isn't real food.", "correct": false},
+          {"text": "I prefer proper restaurants.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_010",
+      "category": "activity",
+      "day": 5,
+      "location": "메이지 신궁",
+      "situation": "도심 속 거대한 숲과 신사를 방문한다",
+      "npcDialog": "Meiji Shrine in the middle of Tokyo! 170,000 trees donated from all over Japan. Please bow before entering the torii gate.",
+      "npcDialogKo": "도쿄 한가운데 메이지 신궁이에요! 일본 전역에서 기증한 17만 그루의 나무예요. 토리이 앞에서 인사하고 들어가세요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "It's so peaceful here! I can't believe we're in Tokyo!", "correct": true},
+          {"text": "How do I properly show respect at the shrine?", "correct": true},
+          {"text": "It's just a park with a building.", "correct": false},
+          {"text": "I don't follow Shinto.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_011",
+      "category": "activity",
+      "day": 7,
+      "location": "Robot Restaurant",
+      "situation": "독특한 로봇 쇼를 관람한다",
+      "npcDialog": "Robot Restaurant show starting soon! Robots, dancers, neon lights - very crazy, very Tokyo! No photos during performance.",
+      "npcDialogKo": "로봇 레스토랑 쇼 곧 시작해요! 로봇, 댄서, 네온 조명 - 아주 미쳤어요, 아주 도쿄다워요! 공연 중 사진 금지예요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "This looks absolutely wild! I've heard so much about this place!", "correct": true},
+          {"text": "Only in Tokyo! How long is the show?", "correct": true},
+          {"text": "This seems too weird for me.", "correct": false},
+          {"text": "Robots performing? That's silly.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_012",
+      "category": "shopping",
+      "day": 6,
+      "location": "긴자",
+      "situation": "고급 쇼핑가에서 백화점을 둘러본다",
+      "npcDialog": "Ginza - Tokyo's luxury district! Department stores open at 10. Basement food halls - depachika - are famous for gifts!",
+      "npcDialogKo": "긴자 - 도쿄의 럭셔리 지구예요! 백화점은 10시에 열어요. 지하 식품관 - 데파치카 - 가 선물로 유명해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Depachika sounds amazing! What kind of gifts can I find there?", "correct": true},
+          {"text": "I'd love to see the luxury shops! Is window shopping okay?", "correct": true},
+          {"text": "Ginza is too expensive for me.", "correct": false},
+          {"text": "Shopping isn't my thing.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_013",
+      "category": "food",
+      "day": 4,
+      "location": "이자카야",
+      "situation": "일본식 주점에서 술과 안주를 즐긴다",
+      "npcDialog": "Welcome to izakaya! Japanese pub style. We have yakitori, edamame, gyoza. Beer or sake? Nomihoudai - all you can drink - available!",
+      "npcDialogKo": "이자카야에 오신 것을 환영해요! 일본식 주점이에요. 야키토리, 에다마메, 교자 있어요. 맥주? 사케? 노미호다이 - 무한리필 - 가능해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll start with a beer and yakitori! What cuts do you recommend?", "correct": true},
+          {"text": "Nomihoudai sounds tempting! How long is the time limit?", "correct": true},
+          {"text": "I don't drink alcohol.", "correct": false},
+          {"text": "Pubs are too noisy.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_014",
+      "category": "activity",
+      "day": 3,
+      "location": "온천/센토",
+      "situation": "일본식 목욕탕 문화를 체험한다",
+      "npcDialog": "Please wash thoroughly before entering the bath. Tattoos... some places don't allow, but we have private baths available.",
+      "npcDialogKo": "탕에 들어가기 전에 깨끗이 씻으세요. 문신은... 일부 곳에선 안 되는데 개인 탕이 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'd love to try a traditional bath! What's the proper etiquette?", "correct": true},
+          {"text": "A private bath sounds perfect. How do I book one?", "correct": true},
+          {"text": "Bathing with strangers is weird.", "correct": false},
+          {"text": "I'll just shower at the hotel.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_015",
+      "category": "landmark",
+      "day": 7,
+      "location": "도쿄타워",
+      "situation": "도쿄의 상징적인 랜드마크를 방문한다",
+      "npcDialog": "Tokyo Tower! Inspired by Eiffel Tower but taller - 333 meters! Night illumination is beautiful. Observation deck this way.",
+      "npcDialogKo": "도쿄타워예요! 에펠탑에서 영감받았지만 더 높아요 - 333미터! 야간 조명이 아름다워요. 전망대는 이쪽이에요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Taller than Eiffel Tower? Interesting! Is the night view worth coming back for?", "correct": true},
+          {"text": "I've seen so many anime with Tokyo Tower! Can I go to the top?", "correct": true},
+          {"text": "It's just a copy of the Eiffel Tower.", "correct": false},
+          {"text": "I've already been to the Skytree.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_016",
+      "category": "shopping",
+      "day": 8,
+      "location": "돈키호테",
+      "situation": "돈키호테에서 일본 기념품을 쇼핑한다",
+      "npcDialog": "Don Quijote - everything in one store! Snacks, cosmetics, electronics, costumes. Open 24 hours! Tax free counter upstairs.",
+      "npcDialogKo": "돈키호테 - 한 가게에 모든 게 있어요! 과자, 화장품, 전자제품, 의상. 24시간 영업! 면세 카운터는 위층이에요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "This store is overwhelming! What Japanese snacks do you recommend?", "correct": true},
+          {"text": "24 hours? Perfect for late-night shopping! Where's the cosmetics section?", "correct": true},
+          {"text": "This store is too chaotic.", "correct": false},
+          {"text": "I don't need souvenirs.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_017",
+      "category": "activity",
+      "day": 5,
+      "location": "카라오케 박스",
+      "situation": "일본식 카라오케를 체험한다",
+      "npcDialog": "Karaoke box! Private room for you. 2 hours? Drinks included. We have English, Korean, Japanese songs. Microphone here!",
+      "npcDialogKo": "카라오케 박스예요! 프라이빗 룸이에요. 2시간요? 음료 포함이에요. 영어, 한국어, 일본어 노래 있어요. 마이크 여기요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "A private room - perfect! Do you have K-pop songs too?", "correct": true},
+          {"text": "Karaoke in Japan - I have to try this! How does the system work?", "correct": true},
+          {"text": "I can't sing.", "correct": false},
+          {"text": "Karaoke is embarrassing.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_018",
+      "category": "food",
+      "day": 6,
+      "location": "덴푸라 전문점",
+      "situation": "바삭한 덴푸라를 맛본다",
+      "npcDialog": "Fresh tempura! Shrimp, vegetables, fish - all fried to perfection. Dip in tentsuyu sauce. Counter seats to watch the chef!",
+      "npcDialogKo": "신선한 덴푸라예요! 새우, 야채, 생선 - 완벽하게 튀겼어요. 텐츠유 소스에 찍어 드세요. 카운터석에서 셰프를 보세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll sit at the counter! What's the most popular item?", "correct": true},
+          {"text": "The tempura looks so light and crispy! Is there a set menu?", "correct": true},
+          {"text": "Fried food is unhealthy.", "correct": false},
+          {"text": "I've had tempura before.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_019",
+      "category": "culture",
+      "day": 8,
+      "location": "스모 경기장",
+      "situation": "스모 경기를 관람한다",
+      "npcDialog": "Sumo match today! Ancient Japanese sport. The wrestlers throw salt for purification. Very exciting atmosphere!",
+      "npcDialogKo": "오늘 스모 경기가 있어요! 고대 일본 스포츠예요. 역도들이 정화를 위해 소금을 뿌려요. 분위기가 아주 흥미로워요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I've always wanted to see sumo live! What are the rules?", "correct": true},
+          {"text": "The salt throwing ritual sounds fascinating! Where should I sit?", "correct": true},
+          {"text": "Sumo looks boring.", "correct": false},
+          {"text": "Why would I watch wrestling?", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_TOK_020",
+      "category": "food",
+      "day": 7,
+      "location": "마차 카페",
+      "situation": "말차 디저트 전문점을 방문한다",
+      "npcDialog": "Matcha specialty cafe! Green tea ice cream, matcha parfait, matcha tiramisu. All made with Uji matcha from Kyoto!",
+      "npcDialogKo": "말차 전문 카페예요! 녹차 아이스크림, 말차 파르페, 말차 티라미수. 모두 교토의 우지 말차로 만들었어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Matcha everything! I'll try the parfait. Is the matcha very bitter?", "correct": true},
+          {"text": "Uji matcha is supposed to be the best! What do you recommend?", "correct": true},
+          {"text": "Green tea flavor is too strong for me.", "correct": false},
+          {"text": "I prefer regular desserts.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

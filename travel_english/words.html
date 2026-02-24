@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel English - 단어 학습</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #e94560;
+            margin-bottom: 20px;
+        }
+        header h1 { font-size: 1.8em; color: #e94560; }
+        header p { color: #aaa; margin-top: 5px; }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .nav-links a {
+            color: #4ecca3;
+            text-decoration: none;
+            padding: 5px 15px;
+            border: 1px solid #4ecca3;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        .nav-links a:hover { background: rgba(78, 204, 163, 0.2); }
+
+        .stats-bar {
+            background: rgba(78, 204, 163, 0.15);
+            border: 1px solid #4ecca3;
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 1.5em; font-weight: bold; color: #4ecca3; }
+        .stat-label { font-size: 0.8em; color: #888; }
+
+        .mode-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .mode-tab {
+            padding: 10px 25px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 25px;
+            color: #aaa;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .mode-tab:hover { background: rgba(255,255,255,0.2); }
+        .mode-tab.active { background: #e94560; color: white; }
+
+        .search-box {
+            margin-bottom: 20px;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #4ecca3;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1em;
+        }
+        .search-box input::placeholder { color: #888; }
+        .search-box input:focus { outline: none; background: rgba(255,255,255,0.15); }
+
+        /* 단어 목록 모드 */
+        .word-list { display: none; }
+        .word-list.active { display: block; }
+
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .word-card {
+            padding: 15px;
+            background: rgba(255,255,255,0.08);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .word-card:hover { background: rgba(255,255,255,0.15); border-color: #4ecca3; }
+        .word-card.learned { border-color: #4ecca3; background: rgba(78, 204, 163, 0.15); }
+        .word-card .word { font-size: 1.1em; font-weight: bold; color: #fff; }
+        .word-card .count { font-size: 0.75em; color: #888; margin-top: 5px; }
+        .word-card .check { color: #4ecca3; font-size: 0.8em; margin-top: 5px; }
+
+        /* 플래시카드 모드 */
+        .flashcard-mode { display: none; text-align: center; }
+        .flashcard-mode.active { display: block; }
+
+        .flashcard {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid #4ecca3;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 20px auto;
+            max-width: 500px;
+            min-height: 250px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .flashcard:hover { transform: scale(1.02); }
+        .flashcard .word-display {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #4ecca3;
+            margin-bottom: 20px;
+        }
+        .flashcard .example {
+            display: none;
+            text-align: left;
+            padding: 15px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .flashcard.flipped .example { display: block; }
+        .flashcard .example .en { color: #fff; font-size: 1.1em; margin-bottom: 10px; }
+        .flashcard .example .ko { color: #aaa; font-size: 0.95em; }
+        .flashcard .example .location { color: #e94560; font-size: 0.8em; margin-top: 10px; }
+        .flashcard .hint { color: #888; font-size: 0.9em; margin-top: 15px; }
+        .flashcard.flipped .hint { display: none; }
+
+        .flashcard-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .fc-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .fc-btn.know { background: #4ecca3; color: #000; }
+        .fc-btn.dont-know { background: #e94560; color: white; }
+        .fc-btn.skip { background: rgba(255,255,255,0.2); color: #aaa; }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            height: 8px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4ecca3, #38b2ac);
+            transition: width 0.3s;
+        }
+
+        /* 퀴즈 모드 */
+        .quiz-mode { display: none; text-align: center; }
+        .quiz-mode.active { display: block; }
+
+        .quiz-card {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid #e94560;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        .quiz-question {
+            font-size: 1.1em;
+            color: #aaa;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .quiz-question .blank {
+            color: #e94560;
+            font-weight: bold;
+            padding: 2px 20px;
+            border-bottom: 2px solid #e94560;
+        }
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .quiz-option {
+            padding: 15px;
+            background: rgba(255,255,255,0.08);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            color: #fff;
+            transition: all 0.2s;
+        }
+        .quiz-option:hover { background: rgba(255,255,255,0.15); border-color: #4ecca3; }
+        .quiz-option.correct { background: rgba(78, 204, 163, 0.3); border-color: #4ecca3; }
+        .quiz-option.wrong { background: rgba(233, 69, 96, 0.3); border-color: #e94560; }
+        .quiz-option.disabled { pointer-events: none; }
+
+        .quiz-result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+        .quiz-result.show { display: block; }
+        .quiz-result.correct { background: rgba(78, 204, 163, 0.2); color: #4ecca3; }
+        .quiz-result.wrong { background: rgba(233, 69, 96, 0.2); color: #e94560; }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .page-btn {
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 5px;
+            color: #aaa;
+            cursor: pointer;
+        }
+        .page-btn:hover { background: rgba(255,255,255,0.2); }
+        .page-btn.active { background: #4ecca3; color: #000; }
+        .page-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .word-detail-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+        }
+        .word-detail-modal.show { display: flex; }
+        .word-detail {
+            background: #1a1a2e;
+            border: 2px solid #4ecca3;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .word-detail h2 { color: #4ecca3; font-size: 2em; margin-bottom: 10px; }
+        .word-detail .word-count { color: #888; margin-bottom: 20px; }
+        .word-detail h3 { color: #e94560; margin: 15px 0 10px; font-size: 1em; }
+        .word-detail .example-item {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .word-detail .example-item .en { color: #fff; margin-bottom: 8px; }
+        .word-detail .example-item .ko { color: #aaa; font-size: 0.9em; }
+        .word-detail .example-item .loc { color: #e94560; font-size: 0.8em; margin-top: 8px; }
+        .word-detail .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #e94560;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .word-detail .learn-btn {
+            width: 100%;
+            padding: 12px;
+            background: #4ecca3;
+            border: none;
+            border-radius: 10px;
+            color: #000;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .word-detail .learn-btn.learned { background: #666; color: #aaa; }
+
+        @media (max-width: 600px) {
+            .quiz-options { grid-template-columns: 1fr; }
+            .flashcard .word-display { font-size: 2em; }
+            .word-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Travel English 단어장</h1>
+            <p>여행에서 자주 쓰이는 영어 단어 학습</p>
+            <div class="nav-links">
+                <a href="/">🏠 홈</a>
+                
+            </div>
+        </header>
+
+        <div class="stats-bar">
+            <div class="stat-item"><div class="stat-value" id="stat-total">0</div><div class="stat-label">전체 단어</div></div>
+            <div class="stat-item"><div class="stat-value" id="stat-learned">0</div><div class="stat-label">학습 완료</div></div>
+            <div class="stat-item"><div class="stat-value" id="stat-percent">0%</div><div class="stat-label">진행률</div></div>
+            <div class="stat-item"><div class="stat-value" id="stat-today">0</div><div class="stat-label">오늘 학습</div></div>
+        </div>
+
+        <div class="mode-tabs">
+            <button class="mode-tab active" onclick="setMode('list')">📋 단어 목록</button>
+            <button class="mode-tab" onclick="setMode('flashcard')">🎴 플래시카드</button>
+            <button class="mode-tab" onclick="setMode('quiz')">❓ 퀴즈</button>
+        </div>
+
+        <!-- 단어 목록 모드 -->
+        <div class="word-list active" id="list-mode">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="🔍 단어 검색..." oninput="filterWords()">
+            </div>
+            <div class="word-grid" id="word-grid"></div>
+            <div class="pagination" id="pagination"></div>
+        </div>
+
+        <!-- 플래시카드 모드 -->
+        <div class="flashcard-mode" id="flashcard-mode">
+            <div class="progress-bar"><div class="progress-fill" id="fc-progress"></div></div>
+            <p style="color: #888; margin-bottom: 10px;"><span id="fc-current">0</span> / <span id="fc-total">0</span></p>
+
+            <div class="flashcard" id="flashcard" onclick="flipCard()">
+                <div class="word-display" id="fc-word">welcome</div>
+                <div class="hint">👆 클릭하여 예문 보기</div>
+                <div class="example" id="fc-example">
+                    <div class="en" id="fc-en"></div>
+                    <div class="ko" id="fc-ko"></div>
+                    <div class="location" id="fc-loc"></div>
+                </div>
+            </div>
+
+            <div class="flashcard-controls">
+                <button class="fc-btn dont-know" onclick="fcAnswer(false)">❌ 모름</button>
+                <button class="fc-btn skip" onclick="fcSkip()">⏭️ 건너뛰기</button>
+                <button class="fc-btn know" onclick="fcAnswer(true)">✅ 알아요</button>
+            </div>
+        </div>
+
+        <!-- 퀴즈 모드 -->
+        <div class="quiz-mode" id="quiz-mode">
+            <div class="progress-bar"><div class="progress-fill" id="quiz-progress"></div></div>
+            <p style="color: #888; margin-bottom: 10px;">점수: <span id="quiz-score">0</span> / <span id="quiz-total">0</span></p>
+
+            <div class="quiz-card">
+                <div class="quiz-question" id="quiz-question">
+                    문장이 여기에 표시됩니다.
+                </div>
+                <div class="quiz-options" id="quiz-options"></div>
+                <div class="quiz-result" id="quiz-result"></div>
+            </div>
+
+            <button class="fc-btn skip" onclick="nextQuiz()" id="next-quiz-btn" style="display: none;">다음 문제 →</button>
+        </div>
+    </div>
+
+    <div class="word-detail-modal" id="word-modal">
+        <div class="word-detail" style="position: relative;">
+            <button class="close-btn" onclick="closeModal()">✕</button>
+            <h2 id="modal-word">word</h2>
+            <div class="word-count" id="modal-count">시나리오에서 100회 등장</div>
+            <h3>📝 예문</h3>
+            <div id="modal-examples"></div>
+            <button class="learn-btn" id="modal-learn-btn" onclick="toggleLearned()">✅ 학습 완료로 표시</button>
+        </div>
+    </div>
+
+    <script>
+        let words = [];
+        let learnedWords = JSON.parse(localStorage.getItem('travel_words_learned') || '[]');
+        let todayCount = parseInt(localStorage.getItem('travel_words_today') || '0');
+        let todayDate = localStorage.getItem('travel_words_date') || '';
+
+        let currentMode = 'list';
+        let currentPage = 1;
+        let filteredWords = [];
+        const perPage = 40;
+
+        // 플래시카드 상태
+        let fcIndex = 0;
+        let fcWords = [];
+
+        // 퀴즈 상태
+        let quizIndex = 0;
+        let quizScore = 0;
+        let quizWords = [];
+        let quizAnswered = false;
+
+        // 오늘 날짜 체크
+        const today = new Date().toDateString();
+        if (todayDate !== today) {
+            todayCount = 0;
+            localStorage.setItem('travel_words_today', '0');
+            localStorage.setItem('travel_words_date', today);
+        }
+
+        async function init() {
+            try {
+                const res = await fetch('/words_data.json');
+                words = await res.json();
+                filteredWords = [...words];
+                updateStats();
+                renderWordList();
+            } catch (e) {
+                console.error('단어 데이터 로드 실패:', e);
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('stat-total').textContent = words.length;
+            document.getElementById('stat-learned').textContent = learnedWords.length;
+            const percent = words.length > 0 ? Math.round(learnedWords.length / words.length * 100) : 0;
+            document.getElementById('stat-percent').textContent = percent + '%';
+            document.getElementById('stat-today').textContent = todayCount;
+        }
+
+        function setMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.mode-tab[onclick="setMode('${mode}')"]`).classList.add('active');
+
+            document.getElementById('list-mode').classList.remove('active');
+            document.getElementById('flashcard-mode').classList.remove('active');
+            document.getElementById('quiz-mode').classList.remove('active');
+            document.getElementById(mode + '-mode').classList.add('active');
+
+            if (mode === 'flashcard') initFlashcard();
+            if (mode === 'quiz') initQuiz();
+        }
+
+        // 단어 목록
+        function filterWords() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            filteredWords = words.filter(w => w.word.includes(query));
+            currentPage = 1;
+            renderWordList();
+        }
+
+        function renderWordList() {
+            const grid = document.getElementById('word-grid');
+            const start = (currentPage - 1) * perPage;
+            const pageWords = filteredWords.slice(start, start + perPage);
+
+            grid.innerHTML = pageWords.map(w => `
+                <div class="word-card ${learnedWords.includes(w.word) ? 'learned' : ''}" onclick="showWordDetail('${w.word}')">
+                    <div class="word">${w.word}</div>
+                    <div class="count">${w.count}회 등장</div>
+                    ${learnedWords.includes(w.word) ? '<div class="check">✓ 학습완료</div>' : ''}
+                </div>
+            `).join('');
+
+            renderPagination();
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredWords.length / perPage);
+            const pagination = document.getElementById('pagination');
+
+            let html = '';
+            html += `<button class="page-btn" onclick="goPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>◀</button>`;
+
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === 1 || i === totalPages || (i >= currentPage - 2 && i <= currentPage + 2)) {
+                    html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goPage(${i})">${i}</button>`;
+                } else if (i === currentPage - 3 || i === currentPage + 3) {
+                    html += '<span style="color:#888">...</span>';
+                }
+            }
+
+            html += `<button class="page-btn" onclick="goPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>▶</button>`;
+            pagination.innerHTML = html;
+        }
+
+        function goPage(page) {
+            const totalPages = Math.ceil(filteredWords.length / perPage);
+            if (page < 1 || page > totalPages) return;
+            currentPage = page;
+            renderWordList();
+            window.scrollTo(0, 0);
+        }
+
+        // 단어 상세
+        let currentWord = null;
+        function showWordDetail(word) {
+            currentWord = words.find(w => w.word === word);
+            if (!currentWord) return;
+
+            document.getElementById('modal-word').textContent = currentWord.word;
+            document.getElementById('modal-count').textContent = `시나리오에서 ${currentWord.count}회 등장`;
+
+            const examplesHtml = currentWord.examples.map(ex => `
+                <div class="example-item">
+                    <div class="en">${ex.en}</div>
+                    <div class="ko">${ex.ko}</div>
+                    <div class="loc">📍 ${ex.location}</div>
+                </div>
+            `).join('');
+            document.getElementById('modal-examples').innerHTML = examplesHtml || '<p style="color:#888">예문이 없습니다.</p>';
+
+            const btn = document.getElementById('modal-learn-btn');
+            if (learnedWords.includes(word)) {
+                btn.textContent = '✓ 학습 완료됨';
+                btn.classList.add('learned');
+            } else {
+                btn.textContent = '✅ 학습 완료로 표시';
+                btn.classList.remove('learned');
+            }
+
+            document.getElementById('word-modal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('word-modal').classList.remove('show');
+        }
+
+        function toggleLearned() {
+            if (!currentWord) return;
+            const word = currentWord.word;
+            const idx = learnedWords.indexOf(word);
+
+            if (idx > -1) {
+                learnedWords.splice(idx, 1);
+            } else {
+                learnedWords.push(word);
+                todayCount++;
+                localStorage.setItem('travel_words_today', todayCount.toString());
+            }
+
+            localStorage.setItem('travel_words_learned', JSON.stringify(learnedWords));
+            updateStats();
+            renderWordList();
+            showWordDetail(word);
+        }
+
+        // 플래시카드
+        function initFlashcard() {
+            // 학습 안 한 단어 우선
+            fcWords = words.filter(w => !learnedWords.includes(w.word));
+            if (fcWords.length === 0) fcWords = [...words];
+            fcWords = shuffle(fcWords).slice(0, 20);
+            fcIndex = 0;
+            // 컨트롤 버튼 복원
+            document.querySelector('.flashcard-controls').innerHTML = `
+                <button class="fc-btn dont-know" onclick="fcAnswer(false)">❌ 모름</button>
+                <button class="fc-btn skip" onclick="fcSkip()">⏭️ 건너뛰기</button>
+                <button class="fc-btn know" onclick="fcAnswer(true)">✅ 알아요</button>
+            `;
+            document.querySelector('.flashcard .hint').textContent = '👆 클릭하여 예문 보기';
+            showFlashcard();
+        }
+
+        function showFlashcard() {
+            if (fcIndex >= fcWords.length) {
+                document.getElementById('fc-word').textContent = '🎉 완료!';
+                document.getElementById('flashcard').classList.remove('flipped');
+                document.getElementById('fc-example').innerHTML = '<p style="color:#aaa;">20개 단어 학습을 마쳤습니다.</p>';
+                document.querySelector('.flashcard .hint').textContent = '';
+                document.querySelector('.flashcard-controls').innerHTML = `
+                    <button class="fc-btn know" onclick="continueFlashcard()">➡️ 다음 20개</button>
+                    <button class="fc-btn skip" onclick="initFlashcard()">🔄 처음부터</button>
+                    <button class="fc-btn dont-know" onclick="setMode('list')">📋 목록으로</button>
+                `;
+                return;
+            }
+
+            const w = fcWords[fcIndex];
+            document.getElementById('fc-word').textContent = w.word;
+            document.getElementById('fc-current').textContent = fcIndex + 1;
+            document.getElementById('fc-total').textContent = fcWords.length;
+            document.getElementById('fc-progress').style.width = ((fcIndex + 1) / fcWords.length * 100) + '%';
+
+            if (w.examples && w.examples.length > 0) {
+                document.getElementById('fc-en').textContent = w.examples[0].en;
+                document.getElementById('fc-ko').textContent = w.examples[0].ko;
+                document.getElementById('fc-loc').textContent = '📍 ' + w.examples[0].location;
+            } else {
+                document.getElementById('fc-en').textContent = '';
+                document.getElementById('fc-ko').textContent = '예문이 없습니다.';
+                document.getElementById('fc-loc').textContent = '';
+            }
+
+            document.getElementById('flashcard').classList.remove('flipped');
+        }
+
+        function flipCard() {
+            document.getElementById('flashcard').classList.toggle('flipped');
+        }
+
+        function fcAnswer(know) {
+            const w = fcWords[fcIndex];
+            if (know && !learnedWords.includes(w.word)) {
+                learnedWords.push(w.word);
+                todayCount++;
+                localStorage.setItem('travel_words_learned', JSON.stringify(learnedWords));
+                localStorage.setItem('travel_words_today', todayCount.toString());
+                updateStats();
+            }
+            fcIndex++;
+            showFlashcard();
+        }
+
+        function fcSkip() {
+            fcIndex++;
+            showFlashcard();
+        }
+
+        function continueFlashcard() {
+            // 이미 학습한 단어 제외하고 다음 20개
+            const remaining = words.filter(w => !learnedWords.includes(w.word) && !fcWords.some(fw => fw.word === w.word));
+            if (remaining.length === 0) {
+                // 모두 학습했으면 전체에서 다시
+                fcWords = shuffle([...words]).slice(0, 20);
+            } else {
+                fcWords = shuffle(remaining).slice(0, 20);
+            }
+            fcIndex = 0;
+            // 컨트롤 버튼 복원
+            document.querySelector('.flashcard-controls').innerHTML = `
+                <button class="fc-btn dont-know" onclick="fcAnswer(false)">❌ 모름</button>
+                <button class="fc-btn skip" onclick="fcSkip()">⏭️ 건너뛰기</button>
+                <button class="fc-btn know" onclick="fcAnswer(true)">✅ 알아요</button>
+            `;
+            document.querySelector('.flashcard .hint').textContent = '👆 클릭하여 예문 보기';
+            showFlashcard();
+        }
+
+        // 퀴즈
+        function initQuiz() {
+            quizWords = shuffle([...words]).slice(0, 10);
+            quizIndex = 0;
+            quizScore = 0;
+            showQuiz();
+        }
+
+        function showQuiz() {
+            if (quizIndex >= quizWords.length) {
+                document.getElementById('quiz-question').innerHTML = `
+                    <div style="font-size:2em; margin-bottom:20px;">🎉 퀴즈 완료!</div>
+                    <div style="font-size:1.5em; color:#4ecca3;">${quizScore} / ${quizWords.length} 정답</div>
+                `;
+                document.getElementById('quiz-options').innerHTML = '';
+                document.getElementById('quiz-result').classList.remove('show');
+                document.getElementById('next-quiz-btn').style.display = 'none';
+                setTimeout(() => {
+                    document.getElementById('quiz-options').innerHTML = `
+                        <button class="fc-btn know" onclick="initQuiz()" style="grid-column: span 2;">🔄 다시 도전</button>
+                    `;
+                }, 500);
+                return;
+            }
+
+            quizAnswered = false;
+            const w = quizWords[quizIndex];
+
+            document.getElementById('quiz-score').textContent = quizScore;
+            document.getElementById('quiz-total').textContent = quizIndex;
+            document.getElementById('quiz-progress').style.width = ((quizIndex + 1) / quizWords.length * 100) + '%';
+
+            // 예문에서 해당 단어를 빈칸으로
+            if (w.examples && w.examples.length > 0) {
+                const ex = w.examples[0];
+                const regex = new RegExp('\\b' + w.word + '\\b', 'gi');
+                const blankedEn = ex.en.replace(regex, '<span class="blank">______</span>');
+                document.getElementById('quiz-question').innerHTML = `
+                    <div style="margin-bottom:15px;">${blankedEn}</div>
+                    <div style="color:#888; font-size:0.9em;">${ex.ko}</div>
+                `;
+            } else {
+                document.getElementById('quiz-question').innerHTML = `다음 중 올바른 단어는?`;
+            }
+
+            // 보기 4개 생성
+            const options = [w.word];
+            const otherWords = words.filter(ow => ow.word !== w.word);
+            while (options.length < 4 && otherWords.length > 0) {
+                const rand = otherWords.splice(Math.floor(Math.random() * otherWords.length), 1)[0];
+                options.push(rand.word);
+            }
+            shuffle(options);
+
+            document.getElementById('quiz-options').innerHTML = options.map(opt => `
+                <div class="quiz-option" onclick="checkQuiz('${opt}', '${w.word}')">${opt}</div>
+            `).join('');
+
+            document.getElementById('quiz-result').classList.remove('show');
+            document.getElementById('next-quiz-btn').style.display = 'none';
+        }
+
+        function checkQuiz(selected, correct) {
+            if (quizAnswered) return;
+            quizAnswered = true;
+
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(opt => {
+                opt.classList.add('disabled');
+                if (opt.textContent === correct) opt.classList.add('correct');
+                if (opt.textContent === selected && selected !== correct) opt.classList.add('wrong');
+            });
+
+            const result = document.getElementById('quiz-result');
+            if (selected === correct) {
+                quizScore++;
+                result.textContent = '✅ 정답입니다!';
+                result.className = 'quiz-result show correct';
+            } else {
+                result.textContent = `❌ 오답! 정답은 "${correct}" 입니다.`;
+                result.className = 'quiz-result show wrong';
+            }
+
+            document.getElementById('next-quiz-btn').style.display = 'inline-block';
+        }
+
+        function nextQuiz() {
+            quizIndex++;
+            showQuiz();
+        }
+
+        function shuffle(arr) {
+            const a = [...arr];
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        document.getElementById('word-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        init();
+    </script>
+</body>
+</html>

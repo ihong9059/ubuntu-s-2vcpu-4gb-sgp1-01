@@ -1,0 +1,56 @@
+{
+  "id": "c197ac76-07a1-4d5b-90a6-296a6fd0d086",
+  "title": "지금 git hub에 대한 질문과 내용이 남아있나요?",
+  "created_at": "2026-02-12T12:24:36.395598",
+  "updated_at": "2026-02-12T12:24:45.810381",
+  "messages": [
+    {
+      "role": "user",
+      "content": "지금 git hub에 대한 질문과 내용이 남아있나요?",
+      "timestamp": "2026-02-12T12:24:36.573293"
+    },
+    {
+      "role": "assistant",
+      "smart_mode": true,
+      "synthesized": "현재 우리 대화에는 GitHub에 대한 이전 질문이나 내용이 남아있지 않습니다. 이것이 우리 대화의 시작점이며, 이전 대화 내용은 영구적으로 저장되지 않습니다.\n\n하지만 GitHub에 대한 풍부한 지식을 가지고 있으니, 궁금한 점이 있으시면 언제든지 새롭게 질문해 주세요! GitHub 사용법, Git 명령어, 버전 관리, 협업 방법, 프로젝트 호스팅 등 어떤 내용이든 자세히 도움을 드릴 수 있습니다.",
+      "contributions": [
+        {
+          "provider": "claude",
+          "model": "claude-sonnet-4-20250514",
+          "tokens": 166,
+          "percent": 32
+        },
+        {
+          "provider": "openai",
+          "model": "gpt-4o",
+          "tokens": 126,
+          "percent": 25
+        },
+        {
+          "provider": "gemini",
+          "model": "gemini-2.5-flash",
+          "tokens": 221,
+          "percent": 43
+        }
+      ],
+      "raw_responses": [
+        {
+          "provider": "claude",
+          "model": "claude-sonnet-4-20250514",
+          "content": "아니요, 현재 우리 대화에는 GitHub에 대한 이전 질문이나 내용이 남아있지 않습니다. \n\n이것이 우리 대화의 시작점입니다. GitHub에 대해 궁금한 것이 있으시다면 언제든지 질문해 주세요! \n\nGitHub 사용법, Git 명령어, 버전 관리, 협업 방법 등 무엇이든 도움을 드릴 수 있습니다."
+        },
+        {
+          "provider": "openai",
+          "model": "gpt-4o",
+          "content": "네, GitHub에 대한 질문을 하실 경우 제가 도와드릴 수 있습니다. GitHub는 소프트웨어 개발 프로젝트를 호스팅하고 버전 관리를 지원하는 플랫폼입니다. 특정 주제나 문제에 대해 더 알고 싶으시면 무엇이든 질문해 주세요!"
+        },
+        {
+          "provider": "gemini",
+          "model": "gemini-2.5-flash",
+          "content": "지금 이 대화에서 GitHub와 관련된 이전 질문이나 내용이 남아있지는 않습니다.\n\n저는 이전 대화 내용을 영구적으로 저장하지 않으므로, 만약 이전에 GitHub에 대해 질문하셨더라도 현재 저에게 남아있는 내용은 없습니다.\n\n하지만 GitHub에 대한 **풍부한 지식**을 가지고 있으니, 궁금한 점이 있으시면 언제든지 **새롭게 질문해주세요!** 어떤 내용이든 자세히 설명해 드릴 수 있습니다."
+        }
+      ],
+      "timestamp": "2026-02-12T12:24:45.807385"
+    }
+  ]
+}

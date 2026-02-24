@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "bangkok",
+  "cityName": "방콕",
+  "country": "태국",
+  "description": "화려한 사원, 길거리 음식, 활기찬 야시장의 도시",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_BKK_001",
+      "category": "landmark",
+      "day": 2,
+      "location": "왓 프라깨우 (에메랄드 사원)",
+      "situation": "방콕 최고의 사원을 관람한다",
+      "npcDialog": "Sawadee ka! The Emerald Buddha is Thailand's most sacred image. Please dress respectfully - no shorts or sleeveless. Cover your shoulders!",
+      "npcDialogKo": "사와디카! 에메랄드 부처는 태국에서 가장 신성해요. 복장 조심하세요 - 반바지, 민소매 안 돼요. 어깨 가리세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I brought a cover-up. The temple is beautiful!", "correct": true},
+          {"text": "What's the history of the Emerald Buddha?", "correct": true},
+          {"text": "Why so many rules?", "correct": false},
+          {"text": "I don't want to cover up.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_002",
+      "category": "landmark",
+      "day": 2,
+      "location": "왕궁",
+      "situation": "화려한 태국 왕궁을 둘러본다",
+      "npcDialog": "The Grand Palace was home to Thai kings for 150 years! The architecture mixes Thai, Chinese, and European styles. Very unique!",
+      "npcDialogKo": "왕궁은 150년간 태국 왕들의 집이었어요! 건축이 태국, 중국, 유럽 스타일이 섞여 있어요. 아주 독특해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The gold details are stunning! Still royal residence?", "correct": true},
+          {"text": "I love the mix of styles! Very unique indeed.", "correct": true},
+          {"text": "Gold is too flashy.", "correct": false},
+          {"text": "Palaces are all the same.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_003",
+      "category": "food",
+      "day": 3,
+      "location": "길거리 음식",
+      "situation": "팟타이를 주문한다",
+      "npcDialog": "Pad Thai! Thailand's famous noodle! Shrimp or chicken? I add peanuts, lime, chili. Not too spicy for foreigner, na ka?",
+      "npcDialogKo": "팟타이! 태국 유명한 국수예요! 새우? 치킨? 땅콩, 라임, 고추 넣어요. 외국인이라 안 맵게 해드릴까요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "Shrimp please! And I can handle some spice!", "correct": true},
+          {"text": "What makes your pad thai special?", "correct": true},
+          {"text": "Street food looks dirty.", "correct": false},
+          {"text": "I only eat at restaurants.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_004",
+      "category": "transport",
+      "day": 3,
+      "location": "툭툭",
+      "situation": "삼륜 택시를 타고 이동한다",
+      "npcDialog": "Tuk tuk! Where you go? 100 baht to Khao San Road! Fast and fun, better than taxi in traffic. You like sightseeing on the way?",
+      "npcDialogKo": "툭툭! 어디 가세요? 카오산 로드까지 100바트! 교통체증에 택시보다 빠르고 재밌어요. 가면서 구경할래요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "100 baht sounds fair! Let's go!", "correct": true},
+          {"text": "Can we negotiate? How about 80 baht?", "correct": true},
+          {"text": "Tuk tuks look dangerous.", "correct": false},
+          {"text": "That's too expensive.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_005",
+      "category": "shopping",
+      "day": 4,
+      "location": "짜뚜짝 주말시장",
+      "situation": "세계 최대 야외시장에서 쇼핑한다",
+      "npcDialog": "Chatuchak has 15,000 stalls! Clothes, antiques, pets, food - everything! Start early, it gets hot. Don't forget to bargain!",
+      "npcDialogKo": "짜뚜짝에 15,000개 점포가 있어요! 옷, 골동품, 애완동물, 음식 - 다 있어요! 일찍 시작하세요, 더워져요. 흥정 잊지 마세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "15,000 stalls! Any tips for navigating?", "correct": true},
+          {"text": "I love bargaining! What's a good starting offer?", "correct": true},
+          {"text": "Markets are too overwhelming.", "correct": false},
+          {"text": "Bargaining is rude.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_006",
+      "category": "food",
+      "day": 4,
+      "location": "망고 스티키 라이스 가판대",
+      "situation": "태국 전통 디저트를 맛본다",
+      "npcDialog": "Mango sticky rice! Best Thai dessert! Fresh mango, coconut cream, sweet sticky rice. We pick mango fresh every morning. Very sweet, very good!",
+      "npcDialogKo": "망고 스티키 라이스! 최고의 태국 디저트예요! 신선한 망고, 코코넛 크림, 달콤한 찹쌀. 매일 아침 망고를 따요. 아주 달고 맛있어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The mango looks perfect! I'll take one!", "correct": true},
+          {"text": "Fresh every morning! That's why it's so delicious.", "correct": true},
+          {"text": "Too much sugar for me.", "correct": false},
+          {"text": "Mangoes don't go with rice.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_007",
+      "category": "culture",
+      "day": 5,
+      "location": "태국 마사지",
+      "situation": "전통 태국 마사지를 받는다",
+      "npcDialog": "Welcome! Thai massage is 2,000 years old! We stretch and press energy lines. One hour or two hours? First time? Start with one hour, ka.",
+      "npcDialogKo": "환영해요! 태국 마사지는 2,000년 역사예요! 스트레칭하고 에너지 라인을 눌러요. 1시간? 2시간? 처음이면 1시간으로 시작하세요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "One hour sounds perfect. Is it painful?", "correct": true},
+          {"text": "2,000 years of tradition! I'm excited to try.", "correct": true},
+          {"text": "Massage seems unnecessary.", "correct": false},
+          {"text": "I don't like strangers touching me.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_008",
+      "category": "landmark",
+      "day": 5,
+      "location": "왓 아룬",
+      "situation": "새벽 사원에서 일몰을 본다",
+      "npcDialog": "Wat Arun - Temple of Dawn! Best at sunset actually - the light makes the porcelain tiles glow! You can climb the steep stairs to the top.",
+      "npcDialogKo": "왓 아룬 - 새벽 사원이에요! 사실 일몰이 제일 예뻐요 - 빛이 도자기 타일을 빛나게 해요! 가파른 계단 타고 꼭대기에 갈 수 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "The tiles are beautiful! I'll climb up for sunset.", "correct": true},
+          {"text": "Temple of Dawn at sunset - that's ironic and beautiful!", "correct": true},
+          {"text": "The stairs look too steep.", "correct": false},
+          {"text": "I've seen enough temples.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_009",
+      "category": "food",
+      "day": 6,
+      "location": "톰얌꿍 레스토랑",
+      "situation": "매운 새우 수프를 주문한다",
+      "npcDialog": "Tom Yum Goong! Spicy and sour with big prawns! How spicy you want? Thai spicy or foreigner spicy? Thai spicy is VERY hot!",
+      "npcDialogKo": "톰얌꿍! 큰 새우 들어간 맵고 신 수프예요! 얼마나 맵게요? 태국 스타일? 외국인 스타일? 태국 스타일은 아주 매워요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll try Thai spicy! I love a challenge!", "correct": true},
+          {"text": "Foreigner spicy please - I want to taste the flavors!", "correct": true},
+          {"text": "I don't like spicy food at all.", "correct": false},
+          {"text": "Soup is not a real meal.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_010",
+      "category": "shopping",
+      "day": 6,
+      "location": "아시아티크 더 리버프론트",
+      "situation": "강변 야시장에서 저녁을 보낸다",
+      "npcDialog": "Asiatique is Bangkok's best night market! On the river, very romantic. Shops, restaurants, Ferris wheel! Free boat from Saphan Taksin!",
+      "npcDialogKo": "아시아티크는 방콕 최고 야시장이에요! 강변이라 아주 로맨틱해요. 상점, 레스토랑, 대관람차! 사판 탁신에서 무료 보트!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Free boat ride! What time is the last one back?", "correct": true},
+          {"text": "A Ferris wheel by the river sounds magical!", "correct": true},
+          {"text": "Night markets are too crowded.", "correct": false},
+          {"text": "Free things are never good.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_011",
+      "category": "transport",
+      "day": 3,
+      "location": "차오프라야 강",
+      "situation": "수상버스를 타고 이동한다",
+      "npcDialog": "Chao Phraya Express Boat! Only 15 baht, beats the traffic! Stops at Grand Palace, Wat Arun, many piers. Hold on tight, it's fast!",
+      "npcDialogKo": "차오프라야 익스프레스 보트! 15바트면 교통체증 안 걸려요! 왕궁, 왓 아룬, 많은 선착장에 서요. 꽉 잡아요, 빨라요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "15 baht! That's so cheap! Which pier for Wat Arun?", "correct": true},
+          {"text": "Traveling by river is so unique! I love it.", "correct": true},
+          {"text": "Boats make me seasick.", "correct": false},
+          {"text": "Public boats are too crowded.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_012",
+      "category": "food",
+      "day": 7,
+      "location": "그린 커리 레스토랑",
+      "situation": "태국 커리를 주문한다",
+      "npcDialog": "Green, red, or yellow curry? Green is coconut and basil - most popular! Red is spicier, yellow is milder. All come with jasmine rice!",
+      "npcDialogKo": "그린, 레드, 옐로우 커리? 그린은 코코넛과 바질 - 가장 인기! 레드가 더 맵고, 옐로우가 순해요. 다 재스민 라이스랑 나와요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Green curry please! I love coconut and basil.", "correct": true},
+          {"text": "What meat options do you have?", "correct": true},
+          {"text": "Curry is too spicy for me.", "correct": false},
+          {"text": "I prefer Japanese curry.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_013",
+      "category": "culture",
+      "day": 7,
+      "location": "무에타이 경기장",
+      "situation": "태국 전통 격투기를 관람한다",
+      "npcDialog": "Muay Thai - the art of eight limbs! Fists, elbows, knees, shins all weapons. Very exciting! Ringside or regular seats? Ringside is close!",
+      "npcDialogKo": "무에타이 - 여덟 가지 무기의 예술! 주먹, 팔꿈치, 무릎, 정강이 다 무기예요. 아주 신나요! 링사이드? 일반석? 링사이드가 가까워요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Ringside please! I want to see the action up close!", "correct": true},
+          {"text": "Eight limbs! The technique must be incredible.", "correct": true},
+          {"text": "Fighting sports are too violent.", "correct": false},
+          {"text": "I'm not interested in sports.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_014",
+      "category": "landmark",
+      "day": 4,
+      "location": "왓 포",
+      "situation": "거대한 와불상을 관람한다",
+      "npcDialog": "Wat Pho has the Reclining Buddha - 46 meters long! The feet are inlaid with mother of pearl. Also birthplace of Thai massage!",
+      "npcDialogKo": "왓 포에 와불상이 있어요 - 46미터예요! 발에 자개가 박혀 있어요. 태국 마사지 발상지이기도 해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "46 meters! That's huge! Can I see the feet up close?", "correct": true},
+          {"text": "Birthplace of Thai massage! Do they offer massages here?", "correct": true},
+          {"text": "Buddha statues are all the same.", "correct": false},
+          {"text": "That seems exaggerated.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_015",
+      "category": "shopping",
+      "day": 5,
+      "location": "MBK 센터",
+      "situation": "대형 쇼핑몰에서 쇼핑한다",
+      "npcDialog": "MBK Center has everything! Electronics, clothes, phone accessories. Bargaining is okay here too! 8 floors of shopping. Start from top!",
+      "npcDialogKo": "MBK 센터에 다 있어요! 전자제품, 옷, 폰 악세서리. 여기도 흥정 가능해요! 8층 쇼핑. 위에서 시작하세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "8 floors! I better wear comfortable shoes.", "correct": true},
+          {"text": "Good to know I can bargain here too!", "correct": true},
+          {"text": "Malls are all the same.", "correct": false},
+          {"text": "I prefer brand stores.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_016",
+      "category": "food",
+      "day": 8,
+      "location": "카오산 로드",
+      "situation": "배낭여행자 거리에서 음식을 즐긴다",
+      "npcDialog": "Khao San Road! Backpacker paradise! Street food, cheap beer, live music! Try the fried insects - crickets are crunchy! Very protein!",
+      "npcDialogKo": "카오산 로드! 배낭여행자 천국! 길거리 음식, 싼 맥주, 라이브 음악! 곤충 튀김 드셔보세요 - 귀뚜라미가 바삭해요! 단백질 많아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll try the crickets! When in Thailand!", "correct": true},
+          {"text": "The atmosphere here is amazing! What's the best beer?", "correct": true},
+          {"text": "Eating insects is disgusting.", "correct": false},
+          {"text": "This street is too touristy.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_017",
+      "category": "culture",
+      "day": 6,
+      "location": "짐 톰슨 하우스",
+      "situation": "태국 실크의 역사를 배운다",
+      "npcDialog": "Jim Thompson revived Thai silk industry! His house is a museum now - beautiful teak buildings. He mysteriously disappeared in 1967!",
+      "npcDialogKo": "짐 톰슨이 태국 실크 산업을 부활시켰어요! 그의 집이 지금 박물관이에요 - 아름다운 티크 건물. 1967년에 미스터리하게 사라졌어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Mysteriously disappeared? Tell me more!", "correct": true},
+          {"text": "The teak house is beautiful! Is silk sold here?", "correct": true},
+          {"text": "Silk is too expensive.", "correct": false},
+          {"text": "I'm not interested in old houses.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_018",
+      "category": "landmark",
+      "day": 8,
+      "location": "스카이 바",
+      "situation": "루프탑 바에서 야경을 감상한다",
+      "npcDialog": "Welcome to the sky! 63rd floor views of Bangkok. Famous from Hangover 2 movie! Dress code: smart casual. No shorts or sandals please.",
+      "npcDialogKo": "하늘에 오신 걸 환영해요! 63층에서 방콕 야경을. 행오버 2에서 유명해졌어요! 복장: 스마트 캐주얼. 반바지, 샌들 안 돼요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "The Hangover 2! I remember that scene! What cocktail do you recommend?", "correct": true},
+          {"text": "The view is incredible! Worth dressing up for.", "correct": true},
+          {"text": "Dress codes are too strict.", "correct": false},
+          {"text": "Rooftop bars are overrated.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_019",
+      "category": "transport",
+      "day": 2,
+      "location": "BTS 스카이트레인",
+      "situation": "고가 전철을 이용한다",
+      "npcDialog": "BTS Skytrain is air-conditioned and fast! Buy Rabbit card for discounts. Connects malls, hotels, river. Avoid rush hour - very crowded!",
+      "npcDialogKo": "BTS 스카이트레인은 에어컨에 빨라요! 래빗 카드 사면 할인돼요. 쇼핑몰, 호텔, 강 연결해요. 러시아워 피하세요 - 아주 혼잡해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Air-conditioned! Perfect for Bangkok heat. Where do I get a Rabbit card?", "correct": true},
+          {"text": "The train runs above traffic - so efficient!", "correct": true},
+          {"text": "Cards are too complicated.", "correct": false},
+          {"text": "I prefer taxis.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_BKK_020",
+      "category": "food",
+      "day": 8,
+      "location": "태국 레스토랑",
+      "situation": "마지막 밤 디너를 즐긴다",
+      "npcDialog": "Last night in Bangkok! Let me recommend the best - larb salad, massaman curry, mango sticky rice for dessert. Chok dee ka - good luck!",
+      "npcDialogKo": "방콕 마지막 밤이네요! 추천해드릴게요 - 랍 샐러드, 마싸만 커리, 디저트로 망고 스티키 라이스. 촉 디 카 - 행운을 빌어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll have it all! A perfect Thai feast!", "correct": true},
+          {"text": "Chok dee! This trip has been amazing.", "correct": true},
+          {"text": "That's too much food.", "correct": false},
+          {"text": "I want Western food for my last night.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

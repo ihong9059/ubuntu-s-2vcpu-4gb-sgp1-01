@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "dubai",
+  "cityName": "두바이",
+  "country": "UAE",
+  "description": "초현대적 건축과 럭셔리, 사막과 바다가 만나는 곳",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_DXB_001",
+      "category": "landmark",
+      "day": 2,
+      "location": "부르즈 칼리파",
+      "situation": "세계 최고층 건물을 방문한다",
+      "npcDialog": "Welcome to Burj Khalifa - 828 meters tall! At the Top observation on 124th floor, or At the Top SKY on 148th. Sunset is magical. Book ahead!",
+      "npcDialogKo": "부르즈 칼리파에 오신 걸 환영해요 - 828미터! 앳더탑 전망대는 124층, 앳더탑 스카이는 148층. 일몰이 마법 같아요. 미리 예약하세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "828 meters! I'll go to the 148th floor for best views.", "correct": true},
+          {"text": "What time is sunset today?", "correct": true},
+          {"text": "It's just a tall building.", "correct": false},
+          {"text": "I don't like heights.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_002",
+      "category": "shopping",
+      "day": 2,
+      "location": "두바이 몰",
+      "situation": "세계 최대 쇼핑몰을 탐험한다",
+      "npcDialog": "Dubai Mall is the world's largest! Over 1,200 shops. We have an aquarium, ice rink, and dinosaur skeleton! The fountain show outside is free!",
+      "npcDialogKo": "두바이 몰은 세계 최대예요! 1,200개 넘는 상점. 수족관, 아이스링크, 공룡 골격도 있어요! 바깥 분수쇼는 무료예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "An aquarium in a mall! That's incredible.", "correct": true},
+          {"text": "When is the fountain show?", "correct": true},
+          {"text": "Malls are all the same.", "correct": false},
+          {"text": "Too big to explore.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_003",
+      "category": "culture",
+      "day": 3,
+      "location": "사막 사파리",
+      "situation": "아라비아 사막에서 모험을 즐긴다",
+      "npcDialog": "Desert safari includes dune bashing in 4x4! Then BBQ dinner, camel rides, henna, and belly dancing at the camp. Sunset in the desert is unforgettable!",
+      "npcDialogKo": "사막 사파리에 4x4 듄 베싱 포함! 캠프에서 바베큐 저녁, 낙타 타기, 헤나, 벨리댄싱. 사막의 일몰은 잊지 못해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Dune bashing sounds thrilling! Is it scary?", "correct": true},
+          {"text": "Sunset in the desert! I'll bring my camera.", "correct": true},
+          {"text": "Deserts are just sand.", "correct": false},
+          {"text": "I don't like adventurous activities.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_004",
+      "category": "landmark",
+      "day": 3,
+      "location": "팜 주메이라",
+      "situation": "인공섬의 아틀란티스 호텔을 방문한다",
+      "npcDialog": "Palm Jumeirah is the world's largest man-made island! Take the monorail for views. Atlantis hotel has an amazing aquaventure waterpark!",
+      "npcDialogKo": "팜 주메이라는 세계 최대 인공섬이에요! 모노레일 타면 경치 좋아요. 아틀란티스 호텔에 아쿠아벤처 워터파크가 끝내줘요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Man-made island! Dubai's engineering is amazing.", "correct": true},
+          {"text": "The waterpark looks fun! Is it included?", "correct": true},
+          {"text": "Artificial islands aren't natural.", "correct": false},
+          {"text": "Waterparks are for kids.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_005",
+      "category": "food",
+      "day": 4,
+      "location": "아랍 레스토랑",
+      "situation": "전통 아랍 음식을 맛본다",
+      "npcDialog": "Welcome! Try our mezze platter - hummus, falafel, tabbouleh. Then shawarma or grilled lamb. Arabic coffee and dates to finish. Ahlan wa sahlan!",
+      "npcDialogKo": "환영해요! 메제 플래터 드셔보세요 - 후무스, 팔라펠, 타불레. 그다음 샤와르마나 그릴드 램. 아랍 커피와 대추야자로 마무리. 아흘란 와 사흘란!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I love mezze! What makes your hummus special?", "correct": true},
+          {"text": "Arabic coffee - is it different from regular coffee?", "correct": true},
+          {"text": "Middle Eastern food is too oily.", "correct": false},
+          {"text": "I don't like lamb.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_006",
+      "category": "shopping",
+      "day": 4,
+      "location": "골드 수크",
+      "situation": "금시장에서 쇼핑한다",
+      "npcDialog": "Gold Souk has tons of gold! Prices by weight, not design. Bargaining is expected. We also have diamonds and pearls. What are you looking for?",
+      "npcDialogKo": "골드 수크에 금이 엄청나요! 가격은 무게로, 디자인 아니에요. 흥정 당연히 해요. 다이아몬드와 진주도 있어요. 뭐 찾으세요?",
+      "playerResponse": {
+        "choices": [
+          {"text": "The gold is stunning! How does bargaining work here?", "correct": true},
+          {"text": "Can I compare prices between shops?", "correct": true},
+          {"text": "Gold is overrated.", "correct": false},
+          {"text": "I don't trust souks.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_007",
+      "category": "landmark",
+      "day": 5,
+      "location": "두바이 마리나",
+      "situation": "초고층 빌딩 숲에서 요트를 탄다",
+      "npcDialog": "Dubai Marina is stunning! Dinner cruise, speedboat tour, or luxury yacht. The skyscrapers light up at night. Best views from the water!",
+      "npcDialogKo": "두바이 마리나는 멋져요! 디너 크루즈, 스피드보트 투어, 럭셔리 요트. 밤에 고층빌딩에 불이 켜져요. 물에서 전망이 최고예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Dinner cruise sounds romantic! What's included?", "correct": true},
+          {"text": "The skyline at night must be incredible!", "correct": true},
+          {"text": "Boat tours are boring.", "correct": false},
+          {"text": "I prefer land activities.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_008",
+      "category": "culture",
+      "day": 5,
+      "location": "점퍼 모스크",
+      "situation": "이슬람 문화를 체험한다",
+      "npcDialog": "Jumeirah Mosque welcomes visitors! We offer cultural tours explaining Islam. Please dress modestly - we provide abayas. Photography is allowed!",
+      "npcDialogKo": "점퍼 모스크는 방문객을 환영해요! 이슬람을 설명하는 문화 투어가 있어요. 단정하게 입으세요 - 아바야 제공해요. 사진 촬영 가능해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'd love to learn about the culture! What will the tour cover?", "correct": true},
+          {"text": "The architecture is beautiful! When is the next tour?", "correct": true},
+          {"text": "Religious places aren't for me.", "correct": false},
+          {"text": "I don't want to cover up.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_009",
+      "category": "food",
+      "day": 6,
+      "location": "스카이다이닝 레스토랑",
+      "situation": "고층 레스토랑에서 식사한다",
+      "npcDialog": "Dining at 555 meters! Our restaurant rotates 360 degrees. Seven-course tasting menu. The sunset views are spectacular. Smart dress required.",
+      "npcDialogKo": "555미터에서 식사해요! 레스토랑이 360도 회전해요. 7코스 테이스팅 메뉴. 일몰 전망이 장관이에요. 스마트 복장 필수예요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Rotating restaurant! How long for a full rotation?", "correct": true},
+          {"text": "Dining at 555 meters - what an experience!", "correct": true},
+          {"text": "Expensive restaurants are overrated.", "correct": false},
+          {"text": "I prefer casual dining.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_010",
+      "category": "landmark",
+      "day": 6,
+      "location": "미라클 가든",
+      "situation": "세계 최대 꽃정원을 방문한다",
+      "npcDialog": "Dubai Miracle Garden has 50 million flowers! The Emirates A380 plane made of flowers is famous. Only open November to May - it's too hot otherwise!",
+      "npcDialogKo": "두바이 미라클 가든에 5천만 송이 꽃이 있어요! 꽃으로 만든 에미레이츠 A380 비행기가 유명해요. 11월~5월만 열어요 - 그 외엔 너무 더워요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "50 million flowers! The colors must be incredible.", "correct": true},
+          {"text": "A plane made of flowers? I need to see that!", "correct": true},
+          {"text": "Flowers are boring.", "correct": false},
+          {"text": "Gardens are all the same.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_011",
+      "category": "shopping",
+      "day": 7,
+      "location": "스파이스 수크",
+      "situation": "향신료 시장을 탐험한다",
+      "npcDialog": "Spice Souk smells amazing! Saffron, frankincense, dried fruits. We have authentic Arabic incense - oud. Makes your home smell like Dubai!",
+      "npcDialogKo": "스파이스 수크 냄새가 끝내줘요! 사프란, 유향, 건과일. 정통 아랍 향 - 우드가 있어요. 집에서 두바이 향기가 나요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The aromas are incredible! What's oud?", "correct": true},
+          {"text": "I'd love to buy some saffron! Is it real?", "correct": true},
+          {"text": "Spice markets are too strong smelling.", "correct": false},
+          {"text": "I can buy spices at home.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_012",
+      "category": "culture",
+      "day": 7,
+      "location": "올드 두바이 (알 파히디)",
+      "situation": "역사지구를 탐험한다",
+      "npcDialog": "Al Fahidi is old Dubai! Wind towers, art galleries, museums. The Creek was the trading heart. Take an abra boat - only 1 dirham! Very traditional!",
+      "npcDialogKo": "알 파히디는 올드 두바이예요! 윈드 타워, 갤러리, 박물관. 크릭이 무역 중심지였어요. 아브라 보트 타세요 - 1디르함뿐! 아주 전통적이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "1 dirham boat ride! That's amazing value.", "correct": true},
+          {"text": "Wind towers are so clever - natural air conditioning!", "correct": true},
+          {"text": "Old areas are run down.", "correct": false},
+          {"text": "I prefer modern Dubai.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_013",
+      "category": "landmark",
+      "day": 4,
+      "location": "두바이 프레임",
+      "situation": "거대한 액자 건물에 오른다",
+      "npcDialog": "Dubai Frame is 150 meters tall! One side shows old Dubai, other side new Dubai. The glass floor at the top is thrilling. Perfect for photos!",
+      "npcDialogKo": "두바이 프레임은 150미터예요! 한쪽은 올드 두바이, 다른 쪽은 뉴 두바이. 꼭대기 유리 바닥이 스릴 있어요. 사진 찍기 딱이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Old and new Dubai in one view! Brilliant concept.", "correct": true},
+          {"text": "Glass floor! Is it really safe?", "correct": true},
+          {"text": "It's just a big frame.", "correct": false},
+          {"text": "Glass floors are scary.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_014",
+      "category": "food",
+      "day": 3,
+      "location": "카페",
+      "situation": "아랍 커피와 대추야자를 맛본다",
+      "npcDialog": "Arabic coffee is our hospitality tradition! Light roast with cardamom, served in small cups. Always drink with right hand. Dates balance the bitterness!",
+      "npcDialogKo": "아랍 커피는 우리 환대 전통이에요! 카다몬 넣은 약배전, 작은 컵에 나와요. 항상 오른손으로 마셔요. 대추야자가 쓴맛을 중화해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Cardamom coffee sounds unique! I'll try it.", "correct": true},
+          {"text": "Right hand - I'll remember that cultural tip!", "correct": true},
+          {"text": "I prefer espresso.", "correct": false},
+          {"text": "Dates are too sweet.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_015",
+      "category": "landmark",
+      "day": 8,
+      "location": "버즈 알 아랍",
+      "situation": "7성급 호텔을 구경한다",
+      "npcDialog": "Burj Al Arab is the world's most luxurious hotel! Sail-shaped, on its own island. Restaurant reservations include access. High tea is popular!",
+      "npcDialogKo": "버즈 알 아랍은 세계에서 가장 럭셔리한 호텔이에요! 돛 모양, 자체 섬에 있어요. 레스토랑 예약하면 입장돼요. 하이티가 인기예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "High tea at the world's most luxurious hotel! Perfect!", "correct": true},
+          {"text": "The sail shape is iconic! Best photo spot?", "correct": true},
+          {"text": "Luxury hotels are pretentious.", "correct": false},
+          {"text": "Why is it on an island?", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_016",
+      "category": "culture",
+      "day": 5,
+      "location": "스키 두바이",
+      "situation": "사막 한가운데 스키를 탄다",
+      "npcDialog": "Ski Dubai - real snow in the desert! 22,500 square meters of slopes. We provide all equipment and clothing. Penguins live here too!",
+      "npcDialogKo": "스키 두바이 - 사막에 진짜 눈이에요! 22,500평방미터 슬로프. 장비와 옷 다 제공해요. 펭귄도 살아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Real snow in the desert! Only in Dubai!", "correct": true},
+          {"text": "Penguins! Can I meet them?", "correct": true},
+          {"text": "Indoor skiing isn't real skiing.", "correct": false},
+          {"text": "This seems wasteful.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_017",
+      "category": "transport",
+      "day": 2,
+      "location": "두바이 메트로",
+      "situation": "무인 지하철을 이용한다",
+      "npcDialog": "Dubai Metro is driverless! Very clean and modern. Gold class has leather seats. Women and children have dedicated carriages. NOL card for all transport!",
+      "npcDialogKo": "두바이 메트로는 무인이에요! 아주 깨끗하고 현대적. 골드 클래스는 가죽 시트. 여성과 어린이 전용 칸 있어요. NOL 카드로 모든 교통!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Driverless! Dubai's technology is impressive.", "correct": true},
+          {"text": "Where do I get a NOL card?", "correct": true},
+          {"text": "Separate carriages seem unnecessary.", "correct": false},
+          {"text": "I prefer driving.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_018",
+      "category": "shopping",
+      "day": 6,
+      "location": "몰 오브 더 에미레이츠",
+      "situation": "또 다른 초대형 몰에서 쇼핑한다",
+      "npcDialog": "Mall of the Emirates has Ski Dubai! 630 stores, and we have all the luxury brands. The VOX cinema is incredible - gold class with bed seats!",
+      "npcDialogKo": "몰 오브 더 에미레이츠에 스키 두바이가 있어요! 630개 상점, 모든 럭셔리 브랜드. VOX 영화관이 끝내줘요 - 침대 시트 골드 클래스!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Cinema with bed seats! That sounds amazing!", "correct": true},
+          {"text": "630 stores! Where should I start?", "correct": true},
+          {"text": "Another mall is unnecessary.", "correct": false},
+          {"text": "Luxury brands are overpriced.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_019",
+      "category": "landmark",
+      "day": 7,
+      "location": "두바이 분수",
+      "situation": "세계 최대 분수쇼를 감상한다",
+      "npcDialog": "Dubai Fountain shoots water 150 meters high! Shows every 30 minutes from 6pm. Each show has different music - Arabic, pop, classical. Free to watch!",
+      "npcDialogKo": "두바이 분수는 물을 150미터까지 쏴요! 오후 6시부터 30분마다 쇼. 매번 다른 음악 - 아랍, 팝, 클래식. 무료예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "150 meters! And free? I'll watch multiple shows!", "correct": true},
+          {"text": "Which spot has the best view?", "correct": true},
+          {"text": "Fountains are boring.", "correct": false},
+          {"text": "I've seen fountains before.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_DXB_020",
+      "category": "food",
+      "day": 8,
+      "location": "두바이 레스토랑",
+      "situation": "마지막 밤 디너를 즐긴다",
+      "npcDialog": "Your last night! Try our signature dish - camel burger! Or traditional machboos rice. Finish with luqaimat - sweet dumplings. Ma'a salama!",
+      "npcDialogKo": "마지막 밤이네요! 시그니처 - 카멜 버거 드셔보세요! 아니면 전통 마치부스 라이스. 루가이맛 - 달콤한 도넛으로 마무리. 마아 살라마!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Camel burger! I have to try that!", "correct": true},
+          {"text": "Ma'a salama! This trip has been incredible.", "correct": true},
+          {"text": "Camel seems strange to eat.", "correct": false},
+          {"text": "I want normal food.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

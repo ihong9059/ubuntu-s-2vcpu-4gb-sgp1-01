@@ -1,0 +1,1314 @@
+{
+  "templateType": "purpose",
+  "description": "목적별로 명확히 구분되는 활동 상황 (1/2)",
+  "templates": {
+    "tourism": {
+      "name": "관광",
+      "description": "관광지, 맛집, 휴식",
+      "sceneCount": 20,
+      "scenes": [
+        {
+          "id": "P_TOU_001",
+          "category": "sightseeing",
+          "location": "관광지 매표소",
+          "situation": "유명 관광지 입장권 구매",
+          "npcDialog": "Welcome! Would you like an audio guide with your ticket?",
+          "npcDialogKo": "환영합니다! 티켓과 함께 오디오 가이드 원하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, do you have one in Korean?", "correct": true},
+              {"text": "How much is the audio guide?", "correct": true},
+              {"text": "Audio guides are boring.", "correct": false},
+              {"text": "I don't need a guide.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_002",
+          "category": "sightseeing",
+          "location": "관광지",
+          "situation": "사진 촬영 요청",
+          "npcDialog": "Would you like me to take your picture?",
+          "npcDialogKo": "사진 찍어드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, please! Just press this button.", "correct": true},
+              {"text": "Thank you! Could you take a few?", "correct": true},
+              {"text": "You might steal my camera.", "correct": false},
+              {"text": "My phone is too expensive.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_003",
+          "category": "sightseeing",
+          "location": "관광지",
+          "situation": "포토스팟 위치 문의",
+          "npcDialog": "Can I help you find something?",
+          "npcDialogKo": "뭔가 찾는 거 도와드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Where's the best spot for photos?", "correct": true},
+              {"text": "Where can I get the best view?", "correct": true},
+              {"text": "There's nothing worth photographing.", "correct": false},
+              {"text": "Take me to a secret place.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_004",
+          "category": "sightseeing",
+          "location": "전망대",
+          "situation": "전망대 입장",
+          "npcDialog": "The observation deck closes at 10 PM. Enjoy the view!",
+          "npcDialogKo": "전망대는 오후 10시에 닫아요. 전망 즐기세요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Great! Is sunset time around 7 today?", "correct": true},
+              {"text": "Thank you! Can I bring food up there?", "correct": true},
+              {"text": "That's too early.", "correct": false},
+              {"text": "I want to stay all night.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_005",
+          "category": "sightseeing",
+          "location": "유람선 선착장",
+          "situation": "유람선 탑승",
+          "npcDialog": "The boat tour is about 1 hour. Would you like window seats?",
+          "npcDialogKo": "보트 투어는 약 1시간이에요. 창가 좌석 원하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, please. Can we sit on the upper deck?", "correct": true},
+              {"text": "Are there any commentary in English?", "correct": true},
+              {"text": "1 hour is too short.", "correct": false},
+              {"text": "Boats make me sick.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_006",
+          "category": "shopping",
+          "location": "기념품샵",
+          "situation": "기념품 구매",
+          "npcDialog": "Looking for souvenirs? These are our bestsellers.",
+          "npcDialogKo": "기념품 찾으세요? 이것들이 베스트셀러예요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "What's unique to this area?", "correct": true},
+              {"text": "Do you have anything under 20 euros?", "correct": true},
+              {"text": "Souvenirs are a waste of money.", "correct": false},
+              {"text": "Everything looks cheap.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_007",
+          "category": "information",
+          "location": "관광안내소",
+          "situation": "관광안내소에서 정보 얻기",
+          "npcDialog": "How can I help you plan your day?",
+          "npcDialogKo": "오늘 계획 어떻게 도와드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "What are the must-see attractions?", "correct": true},
+              {"text": "Do you have a city map?", "correct": true},
+              {"text": "Plan everything for me.", "correct": false},
+              {"text": "I already know everything.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_008",
+          "category": "information",
+          "location": "관광지",
+          "situation": "브로셔/지도 요청",
+          "npcDialog": "Would you like any information materials?",
+          "npcDialogKo": "안내 자료 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Do you have a brochure in Korean?", "correct": true},
+              {"text": "Can I get a map of the area?", "correct": true},
+              {"text": "Paper is bad for the environment.", "correct": false},
+              {"text": "I'll just use my phone.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_009",
+          "category": "transport",
+          "location": "버스 정류장",
+          "situation": "투어버스 이용",
+          "npcDialog": "Hop-on hop-off bus? You can get off at any of our 20 stops.",
+          "npcDialogKo": "홉온홉오프 버스요? 20개 정류장 어디서든 내릴 수 있어요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Which stop is closest to the main square?", "correct": true},
+              {"text": "How often does the bus come?", "correct": true},
+              {"text": "20 stops is too many.", "correct": false},
+              {"text": "Just drive me around.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_010",
+          "category": "activity",
+          "location": "도시",
+          "situation": "야경 투어 참가",
+          "npcDialog": "Our night tour shows you the city all lit up. Interested?",
+          "npcDialogKo": "야경 투어로 조명이 켜진 도시를 보여드려요. 관심 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! What time does it start?", "correct": true},
+              {"text": "That sounds beautiful. How long is it?", "correct": true},
+              {"text": "Night tours are dangerous.", "correct": false},
+              {"text": "I'll be asleep by then.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_011",
+          "category": "sightseeing",
+          "location": "역사 유적지",
+          "situation": "역사 설명 질문",
+          "npcDialog": "This building dates back to the 17th century.",
+          "npcDialogKo": "이 건물은 17세기에 지어졌어요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Who built it originally?", "correct": true},
+              {"text": "What was it used for back then?", "correct": true},
+              {"text": "History is boring.", "correct": false},
+              {"text": "I don't care about old stuff.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_012",
+          "category": "information",
+          "location": "박물관",
+          "situation": "운영시간 문의",
+          "npcDialog": "Do you have any questions about your visit?",
+          "npcDialogKo": "방문에 대해 질문 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "What time do you close today?", "correct": true},
+              {"text": "Is the museum open on weekends?", "correct": true},
+              {"text": "You should be open 24 hours.", "correct": false},
+              {"text": "Change your hours for me.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_013",
+          "category": "information",
+          "location": "관광지",
+          "situation": "재입장 가능 여부 문의",
+          "npcDialog": "Is there anything else you'd like to know?",
+          "npcDialogKo": "다른 궁금한 점 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Can I leave and come back later?", "correct": true},
+              {"text": "Is re-entry allowed with this ticket?", "correct": true},
+              {"text": "I'll sneak back in.", "correct": false},
+              {"text": "Give me a lifetime pass.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_014",
+          "category": "sightseeing",
+          "location": "관광지",
+          "situation": "단체 사진 요청",
+          "npcDialog": "Are you traveling together? Need a group photo?",
+          "npcDialogKo": "같이 여행하세요? 단체 사진 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! Could you take one of all of us?", "correct": true},
+              {"text": "That would be great, thank you!", "correct": true},
+              {"text": "We don't like each other.", "correct": false},
+              {"text": "Mind your own business.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_015",
+          "category": "information",
+          "location": "관광안내소",
+          "situation": "추천 코스 문의",
+          "npcDialog": "How many days are you staying?",
+          "npcDialogKo": "며칠 계세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "3 days. What's the best itinerary?", "correct": true},
+              {"text": "Can you recommend a walking route?", "correct": true},
+              {"text": "Just tell me the best thing.", "correct": false},
+              {"text": "I'll figure it out myself.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_016",
+          "category": "information",
+          "location": "관광지",
+          "situation": "날씨/복장 문의",
+          "npcDialog": "Are you prepared for the tour?",
+          "npcDialogKo": "투어 준비 되셨나요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Will we be outside? Should I bring a jacket?", "correct": true},
+              {"text": "What kind of shoes should I wear?", "correct": true},
+              {"text": "I'll wear whatever I want.", "correct": false},
+              {"text": "Who cares about the weather.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_017",
+          "category": "utility",
+          "location": "관광지",
+          "situation": "화장실 위치 문의",
+          "npcDialog": "Can I help you with anything?",
+          "npcDialogKo": "도와드릴 일 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Where are the restrooms?", "correct": true},
+              {"text": "Is there a bathroom nearby?", "correct": true},
+              {"text": "I'll go anywhere.", "correct": false},
+              {"text": "There should be more restrooms.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_018",
+          "category": "utility",
+          "location": "관광지",
+          "situation": "휴게소/카페 이용",
+          "npcDialog": "Would you like to take a break?",
+          "npcDialogKo": "쉬어가시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Is there a cafe inside?", "correct": true},
+              {"text": "Where can I sit and rest?", "correct": true},
+              {"text": "I don't need breaks.", "correct": false},
+              {"text": "This place is exhausting.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_019",
+          "category": "food",
+          "location": "관광지 근처",
+          "situation": "관광지 주변 맛집 추천",
+          "npcDialog": "Looking for a good place to eat nearby?",
+          "npcDialogKo": "근처에 맛있는 곳 찾으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, what's popular with tourists?", "correct": true},
+              {"text": "Can you recommend a local favorite?", "correct": true},
+              {"text": "Food here is overpriced.", "correct": false},
+              {"text": "I only eat at my hotel.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_TOU_020",
+          "category": "sightseeing",
+          "location": "공원/광장",
+          "situation": "휴식하며 현지 분위기 즐기기",
+          "npcDialog": "Nice day to relax in the park, isn't it?",
+          "npcDialogKo": "공원에서 쉬기 좋은 날씨죠?",
+          "playerResponse": {
+            "choices": [
+              {"text": "It really is! Is it okay to sit on the grass?", "correct": true},
+              {"text": "Beautiful! Are there any cafes nearby?", "correct": true},
+              {"text": "Parks are boring.", "correct": false},
+              {"text": "I came here to shop, not relax.", "correct": false}
+            ]
+          }
+        }
+      ]
+    },
+    "backpacking": {
+      "name": "배낭여행",
+      "description": "저예산, 현지체험",
+      "sceneCount": 20,
+      "scenes": [
+        {
+          "id": "P_BAC_001",
+          "category": "accommodation",
+          "location": "호스텔 라운지",
+          "situation": "호스텔 분위기 문의",
+          "npcDialog": "First time staying at a hostel?",
+          "npcDialogKo": "호스텔 처음이세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! Is it usually lively here?", "correct": true},
+              {"text": "What's the vibe like at night?", "correct": true},
+              {"text": "Hostels seem scary.", "correct": false},
+              {"text": "I prefer luxury hotels.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_002",
+          "category": "social",
+          "location": "호스텔 공용공간",
+          "situation": "다른 여행자와 정보 교환",
+          "npcDialog": "Where are you heading next?",
+          "npcDialogKo": "다음은 어디로 가세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'm thinking about Paris. Any tips?", "correct": true},
+              {"text": "Not sure yet. What do you recommend?", "correct": true},
+              {"text": "That's none of your business.", "correct": false},
+              {"text": "I don't talk to strangers.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_003",
+          "category": "transport",
+          "location": "도로변",
+          "situation": "히치하이킹 시도",
+          "npcDialog": "Need a ride? Where are you going?",
+          "npcDialogKo": "차 필요하세요? 어디 가세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'm trying to get to the next town. Can you help?", "correct": true},
+              {"text": "How far are you going?", "correct": true},
+              {"text": "Take me wherever.", "correct": false},
+              {"text": "I don't trust drivers.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_004",
+          "category": "accommodation",
+          "location": "현지인 집",
+          "situation": "카우치서핑 호스트 만남",
+          "npcDialog": "Welcome! Make yourself at home. Here's your couch.",
+          "npcDialogKo": "환영해요! 편하게 있어요. 여기가 당신 자리예요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Thank you so much for hosting me!", "correct": true},
+              {"text": "This is so kind of you. Can I help with anything?", "correct": true},
+              {"text": "This couch looks old.", "correct": false},
+              {"text": "I expected a bed.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_005",
+          "category": "social",
+          "location": "거리/술집",
+          "situation": "현지인과 교류",
+          "npcDialog": "You're not from around here, are you? Where are you from?",
+          "npcDialogKo": "여기 사람 아니죠? 어디서 왔어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'm from Korea! Is this your hometown?", "correct": true},
+              {"text": "I'm traveling through. What's this area like?", "correct": true},
+              {"text": "Why do you want to know?", "correct": false},
+              {"text": "Don't talk to me.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_006",
+          "category": "activity",
+          "location": "거리",
+          "situation": "무료 이벤트/축제 참가",
+          "npcDialog": "There's a free concert tonight at the square!",
+          "npcDialogKo": "오늘 밤 광장에서 무료 콘서트 있어요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "That sounds great! What time does it start?", "correct": true},
+              {"text": "Free? I'm definitely going!", "correct": true},
+              {"text": "Free things are usually bad.", "correct": false},
+              {"text": "I don't like concerts.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_007",
+          "category": "activity",
+          "location": "거리",
+          "situation": "길거리 공연 관람",
+          "npcDialog": "Enjoying the street performance?",
+          "npcDialogKo": "길거리 공연 즐기고 계세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! They're really talented!", "correct": true},
+              {"text": "It's amazing! Should I tip them?", "correct": true},
+              {"text": "They're blocking the road.", "correct": false},
+              {"text": "This is just noise.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_008",
+          "category": "food",
+          "location": "로컬 술집",
+          "situation": "현지 술집에서 어울리기",
+          "npcDialog": "What'll it be? We have local craft beer on tap.",
+          "npcDialogKo": "뭘로 드릴까요? 지역 수제 맥주 있어요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'll try the local beer. What do you recommend?", "correct": true},
+              {"text": "What's the cheapest drink?", "correct": true},
+              {"text": "I only drink expensive wine.", "correct": false},
+              {"text": "Your bar looks dirty.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_009",
+          "category": "information",
+          "location": "호스텔",
+          "situation": "숨은 명소 문의",
+          "npcDialog": "Looking for something off the beaten path?",
+          "npcDialogKo": "관광객이 잘 모르는 곳 찾으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! Where do locals hang out?", "correct": true},
+              {"text": "Any hidden gems you'd recommend?", "correct": true},
+              {"text": "I only go to famous places.", "correct": false},
+              {"text": "Hidden places are hidden for a reason.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_010",
+          "category": "accommodation",
+          "location": "호스텔",
+          "situation": "장기 숙박 할인 협상",
+          "npcDialog": "How long are you planning to stay?",
+          "npcDialogKo": "얼마나 묵을 계획이세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Maybe a week. Do you offer any discounts for longer stays?", "correct": true},
+              {"text": "Is there a weekly rate?", "correct": true},
+              {"text": "Give me the lowest price.", "correct": false},
+              {"text": "I might leave tomorrow.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_011",
+          "category": "utility",
+          "location": "호스텔",
+          "situation": "세탁 시설 이용",
+          "npcDialog": "Need to do some laundry?",
+          "npcDialogKo": "빨래할 곳 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! Where's the laundry room?", "correct": true},
+              {"text": "How much does a load cost?", "correct": true},
+              {"text": "Wash my clothes for me.", "correct": false},
+              {"text": "I'll wear dirty clothes.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_012",
+          "category": "utility",
+          "location": "기차역",
+          "situation": "다음 도시로 이동할 버스 알아보기",
+          "npcDialog": "Where are you headed next?",
+          "npcDialogKo": "다음 어디로 가세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "What's the cheapest way to get to Berlin?", "correct": true},
+              {"text": "When's the next bus to Prague?", "correct": true},
+              {"text": "Just tell me where to go.", "correct": false},
+              {"text": "I hate planning.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_013",
+          "category": "transport",
+          "location": "국경",
+          "situation": "국경 통과",
+          "npcDialog": "Passport please. Where are you traveling from?",
+          "npcDialogKo": "여권 보여주세요. 어디서 오셨어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'm traveling from the Netherlands. Here's my passport.", "correct": true},
+              {"text": "I've been backpacking through Europe.", "correct": true},
+              {"text": "Why do you need my passport?", "correct": false},
+              {"text": "I don't believe in borders.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_014",
+          "category": "information",
+          "location": "대사관",
+          "situation": "비자 연장 문의",
+          "npcDialog": "How can I help you today?",
+          "npcDialogKo": "오늘 어떻게 도와드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'd like to ask about extending my visa.", "correct": true},
+              {"text": "What documents do I need for a visa extension?", "correct": true},
+              {"text": "Just extend it for me.", "correct": false},
+              {"text": "Visas are too complicated.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_015",
+          "category": "utility",
+          "location": "휴대폰 가게",
+          "situation": "저렴한 SIM 카드 구매",
+          "npcDialog": "Need a local SIM card?",
+          "npcDialogKo": "현지 SIM 카드 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "What's your cheapest data plan?", "correct": true},
+              {"text": "How much data do I get for 10 euros?", "correct": true},
+              {"text": "SIM cards should be free.", "correct": false},
+              {"text": "I don't need phone.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_016",
+          "category": "utility",
+          "location": "호스텔",
+          "situation": "충전기 빌리기",
+          "npcDialog": "Forgot something?",
+          "npcDialogKo": "뭔가 잊으셨어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Do you have a charger I could borrow?", "correct": true},
+              {"text": "Is there a universal adapter at reception?", "correct": true},
+              {"text": "Give me a free charger.", "correct": false},
+              {"text": "My phone died and it's your fault.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_017",
+          "category": "utility",
+          "location": "보험 회사",
+          "situation": "여행자 보험 가입",
+          "npcDialog": "Do you have travel insurance?",
+          "npcDialogKo": "여행자 보험 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Not yet. What coverage do you offer?", "correct": true},
+              {"text": "How much is basic coverage?", "correct": true},
+              {"text": "Insurance is a scam.", "correct": false},
+              {"text": "Nothing bad will happen to me.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_018",
+          "category": "information",
+          "location": "호스텔",
+          "situation": "안전 정보 문의",
+          "npcDialog": "Heading out for the night?",
+          "npcDialogKo": "밤에 나가세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes. Are there any areas I should avoid?", "correct": true},
+              {"text": "Is it safe to walk around at night?", "correct": true},
+              {"text": "I'm not scared of anything.", "correct": false},
+              {"text": "Danger is exciting.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_019",
+          "category": "activity",
+          "location": "거리",
+          "situation": "현지 축제 참가",
+          "npcDialog": "You picked a great time to visit! The festival is this weekend!",
+          "npcDialogKo": "좋은 때 오셨네요! 이번 주말에 축제예요!",
+          "playerResponse": {
+            "choices": [
+              {"text": "Really? What's the festival about?", "correct": true},
+              {"text": "That's lucky! Where does it take place?", "correct": true},
+              {"text": "Festivals are too crowded.", "correct": false},
+              {"text": "I don't care about local culture.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BAC_020",
+          "category": "accommodation",
+          "location": "호스텔",
+          "situation": "짐 보관하고 떠나기",
+          "npcDialog": "Checking out? Need to store your bags?",
+          "npcDialogKo": "체크아웃하세요? 짐 보관 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, I'll pick them up this evening before my bus.", "correct": true},
+              {"text": "How late can I pick up my bags?", "correct": true},
+              {"text": "Watch my stuff for free.", "correct": false},
+              {"text": "I don't trust you with my bags.", "correct": false}
+            ]
+          }
+        }
+      ]
+    },
+    "business": {
+      "name": "출장",
+      "description": "비즈니스 미팅",
+      "sceneCount": 20,
+      "scenes": [
+        {
+          "id": "P_BUS_001",
+          "category": "work",
+          "location": "호텔 비즈니스센터",
+          "situation": "비즈니스센터 이용",
+          "npcDialog": "Welcome to the business center. How can I assist you?",
+          "npcDialogKo": "비즈니스센터에 오신 것을 환영합니다. 어떻게 도와드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I need to print some documents.", "correct": true},
+              {"text": "Is there a computer I can use?", "correct": true},
+              {"text": "Everything should be free.", "correct": false},
+              {"text": "Your computers look old.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_002",
+          "category": "work",
+          "location": "호텔",
+          "situation": "회의실 예약",
+          "npcDialog": "Would you like to book a meeting room?",
+          "npcDialogKo": "회의실 예약하시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, for 6 people tomorrow at 2 PM.", "correct": true},
+              {"text": "What equipment is included in the room?", "correct": true},
+              {"text": "Meeting rooms should be free.", "correct": false},
+              {"text": "I'll just use the lobby.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_003",
+          "category": "work",
+          "location": "비즈니스센터",
+          "situation": "프린터/복사 이용",
+          "npcDialog": "The printer is right there. Need help?",
+          "npcDialogKo": "프린터 저기 있어요. 도움 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "How do I print double-sided?", "correct": true},
+              {"text": "Can you help me make 10 copies?", "correct": true},
+              {"text": "Your printer is too slow.", "correct": false},
+              {"text": "Do it for me.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_004",
+          "category": "work",
+          "location": "회의실",
+          "situation": "통역 서비스 요청",
+          "npcDialog": "Will you need any interpretation services?",
+          "npcDialogKo": "통역 서비스 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, do you have a Korean interpreter?", "correct": true},
+              {"text": "How much is simultaneous interpretation?", "correct": true},
+              {"text": "Interpreters are unnecessary.", "correct": false},
+              {"text": "I speak every language.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_005",
+          "category": "social",
+          "location": "회의실",
+          "situation": "비즈니스 미팅 시작",
+          "npcDialog": "Thank you for coming. Shall we get started?",
+          "npcDialogKo": "와주셔서 감사합니다. 시작할까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Thank you for having us. Yes, let's begin.", "correct": true},
+              {"text": "It's a pleasure to be here. Please, go ahead.", "correct": true},
+              {"text": "Hurry up, I'm busy.", "correct": false},
+              {"text": "I didn't prepare anything.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_006",
+          "category": "social",
+          "location": "회의실",
+          "situation": "명함 교환",
+          "npcDialog": "Here's my business card.",
+          "npcDialogKo": "제 명함입니다.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Thank you. Here's mine as well.", "correct": true},
+              {"text": "I appreciate it. Let me give you mine.", "correct": true},
+              {"text": "I don't have cards.", "correct": false},
+              {"text": "Business cards are outdated.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_007",
+          "category": "food",
+          "location": "레스토랑",
+          "situation": "비즈니스 식사",
+          "npcDialog": "Your client has arrived. Shall I bring the menus?",
+          "npcDialogKo": "고객분이 오셨어요. 메뉴 가져다드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, please. And a bottle of wine for the table.", "correct": true},
+              {"text": "Thank you. We'll order in a few minutes.", "correct": true},
+              {"text": "Bring the cheapest stuff.", "correct": false},
+              {"text": "I'm not paying for this meal.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_008",
+          "category": "social",
+          "location": "식당",
+          "situation": "비즈니스 회식",
+          "npcDialog": "Would you like to toast to the partnership?",
+          "npcDialogKo": "파트너십을 위해 건배하시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Cheers to a successful collaboration!", "correct": true},
+              {"text": "To our future partnership!", "correct": true},
+              {"text": "I don't drink.", "correct": false},
+              {"text": "Toasts are pointless.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_009",
+          "category": "shopping",
+          "location": "선물 가게",
+          "situation": "비즈니스 선물 구매",
+          "npcDialog": "Looking for a corporate gift?",
+          "npcDialogKo": "기업 선물 찾으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, something elegant for our client.", "correct": true},
+              {"text": "What do you recommend for business partners?", "correct": true},
+              {"text": "The cheapest thing will do.", "correct": false},
+              {"text": "Gifts are a waste of money.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_010",
+          "category": "utility",
+          "location": "호텔",
+          "situation": "비즈니스 복장 준비",
+          "npcDialog": "Would you like pressing service for your suit?",
+          "npcDialogKo": "정장 다림질 서비스 원하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, please. I need it by 7 AM tomorrow.", "correct": true},
+              {"text": "How long does express pressing take?", "correct": true},
+              {"text": "Wrinkles are fashionable.", "correct": false},
+              {"text": "Iron it yourself.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_011",
+          "category": "transport",
+          "location": "택시",
+          "situation": "택시 영수증 요청",
+          "npcDialog": "That'll be 35 euros.",
+          "npcDialogKo": "35유로입니다.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Can I get a receipt, please? For my expense report.", "correct": true},
+              {"text": "I need a proper receipt with the company name.", "correct": true},
+              {"text": "I don't need a receipt.", "correct": false},
+              {"text": "Just give me any paper.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_012",
+          "category": "utility",
+          "location": "레스토랑/호텔",
+          "situation": "법인카드 결제",
+          "npcDialog": "How would you like to pay?",
+          "npcDialogKo": "어떻게 결제하시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Company card, please.", "correct": true},
+              {"text": "I'll pay with my corporate credit card.", "correct": true},
+              {"text": "My company should pay directly.", "correct": false},
+              {"text": "Send the bill to my boss.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_013",
+          "category": "utility",
+          "location": "레스토랑/호텔",
+          "situation": "인보이스 요청",
+          "npcDialog": "Would you like a receipt?",
+          "npcDialogKo": "영수증 드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, and can I get a proper invoice for my company?", "correct": true},
+              {"text": "I need an invoice with VAT details.", "correct": true},
+              {"text": "Whatever receipt is fine.", "correct": false},
+              {"text": "I don't need documentation.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_014",
+          "category": "accommodation",
+          "location": "호텔",
+          "situation": "조기 체크인 요청",
+          "npcDialog": "I see you have a reservation for tonight.",
+          "npcDialogKo": "오늘 밤 예약이 있으시네요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, is early check-in possible? I have a meeting at 2.", "correct": true},
+              {"text": "I just landed. Can I get my room now?", "correct": true},
+              {"text": "Give me the room immediately.", "correct": false},
+              {"text": "Check-in times are stupid.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_015",
+          "category": "accommodation",
+          "location": "호텔",
+          "situation": "레이트 체크아웃 요청",
+          "npcDialog": "Check-out is normally at 11 AM.",
+          "npcDialogKo": "체크아웃은 보통 오전 11시입니다.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Is late checkout possible? My flight is at 8 PM.", "correct": true},
+              {"text": "Could I extend until 3 PM? I have meetings until noon.", "correct": true},
+              {"text": "I'll leave whenever I want.", "correct": false},
+              {"text": "11 AM is too early.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_016",
+          "category": "transport",
+          "location": "공항",
+          "situation": "비즈니스 라운지 이용",
+          "npcDialog": "Welcome to the business lounge. How long until your flight?",
+          "npcDialogKo": "비즈니스 라운지에 오신 것을 환영합니다. 비행기까지 얼마나 남았어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "About 2 hours. Is there a quiet area to work?", "correct": true},
+              {"text": "I have some time. Where can I take a call privately?", "correct": true},
+              {"text": "This lounge is too small.", "correct": false},
+              {"text": "I expected better.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_017",
+          "category": "work",
+          "location": "호텔 비즈니스센터",
+          "situation": "중요 서류 출력",
+          "npcDialog": "Need any help with printing?",
+          "npcDialogKo": "출력 도움 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I need to print a contract. Can you help format it?", "correct": true},
+              {"text": "Is color printing available?", "correct": true},
+              {"text": "Print everything for me.", "correct": false},
+              {"text": "This is taking too long.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_018",
+          "category": "utility",
+          "location": "우체국/호텔",
+          "situation": "택배/우편 발송",
+          "npcDialog": "Would you like to send something?",
+          "npcDialogKo": "뭔가 보내시겠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, I need to courier these documents urgently.", "correct": true},
+              {"text": "What's the fastest shipping option to Korea?", "correct": true},
+              {"text": "Shipping is too expensive.", "correct": false},
+              {"text": "Deliver it for free.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_019",
+          "category": "utility",
+          "location": "호텔",
+          "situation": "긴급 세탁 요청",
+          "npcDialog": "Do you need laundry service?",
+          "npcDialogKo": "세탁 서비스 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I need my shirt cleaned urgently. Is same-day possible?", "correct": true},
+              {"text": "I have a meeting in 4 hours. Can you clean this quickly?", "correct": true},
+              {"text": "Laundry takes too long.", "correct": false},
+              {"text": "I'll wear it dirty.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_BUS_020",
+          "category": "travel",
+          "location": "항공사",
+          "situation": "일정 변경 요청",
+          "npcDialog": "How can I help you with your booking?",
+          "npcDialogKo": "예약 관련 어떻게 도와드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I need to change my flight to tomorrow. Is that possible?", "correct": true},
+              {"text": "My meeting got extended. Can I fly out a day later?", "correct": true},
+              {"text": "Change it for free.", "correct": false},
+              {"text": "This is your fault.", "correct": false}
+            ]
+          }
+        }
+      ]
+    },
+    "study": {
+      "name": "어학연수",
+      "description": "학교, 홈스테이",
+      "sceneCount": 20,
+      "scenes": [
+        {
+          "id": "P_STU_001",
+          "category": "school",
+          "location": "어학원",
+          "situation": "학교 등록",
+          "npcDialog": "Welcome! Are you here to register for our English program?",
+          "npcDialogKo": "환영합니다! 영어 프로그램 등록하러 오셨나요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, I'd like to enroll in the intermediate course.", "correct": true},
+              {"text": "What courses do you offer for beginners?", "correct": true},
+              {"text": "I'm already fluent.", "correct": false},
+              {"text": "School is boring.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_002",
+          "category": "school",
+          "location": "어학원",
+          "situation": "수업 일정 문의",
+          "npcDialog": "Would you prefer morning or afternoon classes?",
+          "npcDialogKo": "오전반이 좋으세요 아니면 오후반이 좋으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Morning classes would be better for me.", "correct": true},
+              {"text": "What time do afternoon classes start?", "correct": true},
+              {"text": "I don't want to wake up early.", "correct": false},
+              {"text": "Both times are bad.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_003",
+          "category": "accommodation",
+          "location": "홈스테이",
+          "situation": "홈스테이 규칙 확인",
+          "npcDialog": "Let me explain our house rules. Quiet time starts at 10 PM.",
+          "npcDialogKo": "집 규칙을 설명해드릴게요. 10시부터 조용히 해주세요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "I understand. What about having friends over?", "correct": true},
+              {"text": "No problem. Is breakfast included?", "correct": true},
+              {"text": "Rules are for kids.", "correct": false},
+              {"text": "I'll do whatever I want.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_004",
+          "category": "social",
+          "location": "홈스테이",
+          "situation": "호스트 패밀리와 대화",
+          "npcDialog": "How was your first day at school?",
+          "npcDialogKo": "첫날 학교 어땠어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "It was great! The teachers are really nice.", "correct": true},
+              {"text": "A bit nervous, but I think I'll enjoy it.", "correct": true},
+              {"text": "I don't want to talk about it.", "correct": false},
+              {"text": "School was terrible.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_005",
+          "category": "school",
+          "location": "어학원",
+          "situation": "학교 시설 안내",
+          "npcDialog": "Let me show you around. Here's the cafeteria.",
+          "npcDialogKo": "안내해드릴게요. 여기가 카페테리아예요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Great! Is there a library too?", "correct": true},
+              {"text": "Where can I find the computer lab?", "correct": true},
+              {"text": "This school is too small.", "correct": false},
+              {"text": "I don't need a tour.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_006",
+          "category": "school",
+          "location": "도서관",
+          "situation": "도서관 이용",
+          "npcDialog": "Need any help finding study materials?",
+          "npcDialogKo": "학습 자료 찾는 거 도움 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, where are the English grammar books?", "correct": true},
+              {"text": "How long can I borrow books for?", "correct": true},
+              {"text": "Libraries are outdated.", "correct": false},
+              {"text": "I use the internet.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_007",
+          "category": "school",
+          "location": "학교 사무실",
+          "situation": "학생증 발급",
+          "npcDialog": "We need to take your photo for the student ID.",
+          "npcDialogKo": "학생증 사진 찍어야 해요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Sure, where should I stand?", "correct": true},
+              {"text": "Okay, when will the card be ready?", "correct": true},
+              {"text": "I don't want a photo.", "correct": false},
+              {"text": "ID cards are pointless.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_008",
+          "category": "shopping",
+          "location": "박물관/교통",
+          "situation": "학생 할인 이용",
+          "npcDialog": "Are you a student? We offer 50% off.",
+          "npcDialogKo": "학생이세요? 50% 할인해드려요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! Here's my student ID.", "correct": true},
+              {"text": "That's great! One student ticket please.", "correct": true},
+              {"text": "I'm not a real student.", "correct": false},
+              {"text": "50% isn't enough.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_009",
+          "category": "social",
+          "location": "학교",
+          "situation": "스터디 그룹 참가",
+          "npcDialog": "We have a study group meeting after class. Want to join?",
+          "npcDialogKo": "수업 후에 스터디 그룹 모임 있어요. 참가하실래요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! What topic are you studying?", "correct": true},
+              {"text": "Sounds great! What time does it start?", "correct": true},
+              {"text": "I study alone.", "correct": false},
+              {"text": "Study groups are useless.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_010",
+          "category": "school",
+          "location": "교실",
+          "situation": "숙제/과제 관련",
+          "npcDialog": "The homework is due on Friday. Any questions?",
+          "npcDialogKo": "숙제는 금요일까지예요. 질문 있어요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Should we work in groups or individually?", "correct": true},
+              {"text": "Can I email it or should I print it?", "correct": true},
+              {"text": "Homework is too much.", "correct": false},
+              {"text": "I won't do it.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_011",
+          "category": "school",
+          "location": "선생님 사무실",
+          "situation": "선생님과 상담",
+          "npcDialog": "How can I help you today?",
+          "npcDialogKo": "오늘 어떻게 도와드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "I'm having trouble with pronunciation. Any tips?", "correct": true},
+              {"text": "Could you recommend some extra exercises?", "correct": true},
+              {"text": "Your teaching is too hard.", "correct": false},
+              {"text": "I don't need help.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_012",
+          "category": "school",
+          "location": "학교 사무실",
+          "situation": "반 변경 요청",
+          "npcDialog": "How are you finding your current class level?",
+          "npcDialogKo": "현재 반 레벨은 어떠세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "It's a bit easy. Can I move to a higher level?", "correct": true},
+              {"text": "I think I need a slower-paced class.", "correct": true},
+              {"text": "All levels are the same.", "correct": false},
+              {"text": "I want the easiest class.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_013",
+          "category": "school",
+          "location": "학교 사무실",
+          "situation": "수료증 발급",
+          "npcDialog": "Congratulations on completing the course! Would you like your certificate?",
+          "npcDialogKo": "과정 수료 축하해요! 수료증 필요하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, please! Can I get an official one with a stamp?", "correct": true},
+              {"text": "Thank you! Will it show my final grade?", "correct": true},
+              {"text": "Certificates are useless.", "correct": false},
+              {"text": "I didn't really learn anything.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_014",
+          "category": "utility",
+          "location": "은행",
+          "situation": "현지 은행계좌 개설",
+          "npcDialog": "Are you here to open an account?",
+          "npcDialogKo": "계좌 개설하러 오셨나요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, I'm a student here. What documents do I need?", "correct": true},
+              {"text": "I need an account for my study abroad expenses.", "correct": true},
+              {"text": "Banks are too complicated.", "correct": false},
+              {"text": "I'll just use cash.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_015",
+          "category": "utility",
+          "location": "휴대폰 가게",
+          "situation": "핸드폰 개통",
+          "npcDialog": "Looking for a phone plan?",
+          "npcDialogKo": "폰 요금제 찾으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, I'm here for 6 months. What are my options?", "correct": true},
+              {"text": "Do you have any student plans?", "correct": true},
+              {"text": "Phones are too expensive.", "correct": false},
+              {"text": "Just give me free data.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_016",
+          "category": "work",
+          "location": "카페/상점",
+          "situation": "아르바이트 문의",
+          "npcDialog": "Can I help you with something?",
+          "npcDialogKo": "뭔가 도와드릴까요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Are you hiring? I'm a student looking for part-time work.", "correct": true},
+              {"text": "I saw your job posting. Is the position still open?", "correct": true},
+              {"text": "Pay me well.", "correct": false},
+              {"text": "I don't really want to work.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_017",
+          "category": "transport",
+          "location": "교통카드 판매소",
+          "situation": "학생 정기권 구매",
+          "npcDialog": "Would you like a student monthly pass?",
+          "npcDialogKo": "학생 월정액권 원하세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes, how much is it?", "correct": true},
+              {"text": "What zones does it cover?", "correct": true},
+              {"text": "Public transport is too expensive.", "correct": false},
+              {"text": "I'll just walk everywhere.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_018",
+          "category": "accommodation",
+          "location": "기숙사",
+          "situation": "기숙사 생활",
+          "npcDialog": "Welcome to the dormitory. Here's your room key.",
+          "npcDialogKo": "기숙사에 오신 것을 환영해요. 방 열쇠예요.",
+          "playerResponse": {
+            "choices": [
+              {"text": "Thank you! Where's the common room?", "correct": true},
+              {"text": "Are meals included?", "correct": true},
+              {"text": "The room is too small.", "correct": false},
+              {"text": "I expected better.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_019",
+          "category": "activity",
+          "location": "학교",
+          "situation": "문화체험 프로그램 신청",
+          "npcDialog": "We're organizing a cultural trip this weekend. Interested?",
+          "npcDialogKo": "이번 주말에 문화 여행이 있어요. 관심 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! Where are we going?", "correct": true},
+              {"text": "Sounds fun! How do I sign up?", "correct": true},
+              {"text": "I don't like group trips.", "correct": false},
+              {"text": "Cultural stuff is boring.", "correct": false}
+            ]
+          }
+        },
+        {
+          "id": "P_STU_020",
+          "category": "social",
+          "location": "학교/카페",
+          "situation": "언어 교환 파트너 찾기",
+          "npcDialog": "Are you interested in language exchange?",
+          "npcDialogKo": "언어 교환에 관심 있으세요?",
+          "playerResponse": {
+            "choices": [
+              {"text": "Yes! I can teach Korean if someone helps me with English.", "correct": true},
+              {"text": "That sounds great! How does it work?", "correct": true},
+              {"text": "I don't need a partner.", "correct": false},
+              {"text": "My Korean is perfect.", "correct": false}
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

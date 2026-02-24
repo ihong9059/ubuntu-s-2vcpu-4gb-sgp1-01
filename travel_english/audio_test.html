@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel English - 음성 테스트</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: white;
+            padding: 20px;
+        }
+        .container { max-width: 600px; margin: 0 auto; }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #e94560;
+            margin-bottom: 30px;
+        }
+        header h1 { font-size: 1.5em; color: #e94560; }
+        header p { color: #aaa; margin-top: 5px; font-size: 0.9em; }
+
+        .section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            color: #4ecca3;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .status-box {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .status-box.success {
+            background: rgba(78, 204, 163, 0.2);
+            border: 1px solid #4ecca3;
+        }
+        .status-box.error {
+            background: rgba(233, 69, 96, 0.2);
+            border: 1px solid #e94560;
+        }
+        .status-box.warning {
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid #ffd700;
+        }
+        .status-box .title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .status-box p {
+            font-size: 0.9em;
+            color: #ccc;
+        }
+
+        .test-btn {
+            width: 100%;
+            padding: 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .test-btn.primary {
+            background: linear-gradient(135deg, #4ecca3, #45b7aa);
+            color: white;
+        }
+        .test-btn.secondary {
+            background: rgba(255,255,255,0.1);
+            color: #4ecca3;
+            border: 1px solid #4ecca3;
+        }
+        .test-btn:hover { opacity: 0.9; transform: scale(1.02); }
+        .test-btn:active { transform: scale(0.98); }
+        .test-btn:disabled {
+            background: #555;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .test-item {
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .test-item .text {
+            flex: 1;
+        }
+        .test-item .text .en {
+            font-size: 1em;
+            margin-bottom: 3px;
+        }
+        .test-item .text .ko {
+            font-size: 0.85em;
+            color: #888;
+        }
+        .test-item .play-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            border: none;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-left: 10px;
+        }
+        .test-item .play-btn:hover { opacity: 0.9; }
+        .test-item .play-btn.playing {
+            background: linear-gradient(135deg, #4ecca3, #45b7aa);
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #333;
+        }
+        .result-item:last-child { border-bottom: none; }
+        .result-item .label { color: #888; }
+        .result-item .value { color: #4ecca3; font-weight: bold; }
+
+        .voice-list {
+            max-height: 200px;
+            overflow-y: auto;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 0.85em;
+        }
+        .voice-item {
+            padding: 5px;
+            border-bottom: 1px solid #333;
+            color: #aaa;
+        }
+        .voice-item.english {
+            color: #4ecca3;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(255,255,255,0.1);
+            color: #4ecca3;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            border: 1px solid #4ecca3;
+            margin-top: 10px;
+        }
+
+        .tips {
+            background: rgba(233, 69, 96, 0.15);
+            border-left: 4px solid #e94560;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-top: 15px;
+        }
+        .tips h3 {
+            color: #e94560;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+        .tips ul {
+            margin-left: 20px;
+            color: #ccc;
+            font-size: 0.9em;
+        }
+        .tips li { margin: 5px 0; }
+
+        #log {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 0.8em;
+            max-height: 150px;
+            overflow-y: auto;
+            color: #888;
+        }
+        #log .error { color: #e94560; }
+        #log .success { color: #4ecca3; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔊 음성 테스트</h1>
+            <p>스마트폰에서 음성이 제대로 재생되는지 확인하세요</p>
+        </header>
+
+        <!-- 시스템 상태 -->
+        <div class="section">
+            <h2>📱 시스템 상태</h2>
+            <div id="system-status"></div>
+        </div>
+
+        <!-- 빠른 테스트 -->
+        <div class="section">
+            <h2>⚡ 빠른 테스트</h2>
+            <button class="test-btn primary" onclick="quickTest()">
+                🔊 음성 테스트 시작
+            </button>
+            <p style="text-align: center; color: #888; font-size: 0.85em;">
+                버튼을 누르면 영어 문장이 재생됩니다
+            </p>
+        </div>
+
+        <!-- 개별 문장 테스트 -->
+        <div class="section">
+            <h2>📝 문장별 테스트</h2>
+            <div id="test-sentences"></div>
+        </div>
+
+        <!-- 음성 목록 -->
+        <div class="section">
+            <h2>🗣️ 사용 가능한 음성</h2>
+            <div id="voice-list" class="voice-list">
+                음성 목록을 불러오는 중...
+            </div>
+        </div>
+
+        <!-- 문제 해결 -->
+        <div class="section">
+            <h2>🔧 문제 해결</h2>
+            <div class="tips">
+                <h3>음성이 안 들릴 때</h3>
+                <ul>
+                    <li><strong>무음 모드 해제:</strong> 스마트폰의 무음/진동 모드를 해제하세요</li>
+                    <li><strong>볼륨 확인:</strong> 미디어 볼륨을 높여주세요</li>
+                    <li><strong>블루투스:</strong> 블루투스 이어폰이 연결되어 있다면 확인하세요</li>
+                    <li><strong>브라우저 권한:</strong> 브라우저의 오디오 권한을 허용하세요</li>
+                    <li><strong>다른 브라우저:</strong> Chrome, Safari 등 다른 브라우저를 시도해보세요</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 로그 -->
+        <div class="section">
+            <h2>📋 디버그 로그</h2>
+            <div id="log"></div>
+            <button class="test-btn secondary" style="margin-top: 10px;" onclick="clearLog()">
+                로그 지우기
+            </button>
+        </div>
+
+        <a href="/" class="back-btn">← 메인으로</a>
+    </div>
+
+    <script>
+        // 테스트 문장들
+        const testSentences = [
+            { en: "Hello, how are you?", ko: "안녕하세요, 어떻게 지내세요?" },
+            { en: "I would like to check in, please.", ko: "체크인하고 싶습니다." },
+            { en: "Could you take a photo for me?", ko: "사진 찍어주시겠어요?" },
+            { en: "Where is the nearest subway station?", ko: "가장 가까운 지하철역이 어디인가요?" },
+            { en: "The bill, please.", ko: "계산서 주세요." }
+        ];
+
+        let currentUtterance = null;
+        let speechSupported = false;
+        let voices = [];
+
+        // 로그 함수
+        function log(message, type = 'info') {
+            const logDiv = document.getElementById('log');
+            const time = new Date().toLocaleTimeString();
+            const className = type === 'error' ? 'error' : (type === 'success' ? 'success' : '');
+            logDiv.innerHTML += `<div class="${className}">[${time}] ${message}</div>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function clearLog() {
+            document.getElementById('log').innerHTML = '';
+            log('로그가 지워졌습니다');
+        }
+
+        // 시스템 상태 체크
+        function checkSystem() {
+            const statusDiv = document.getElementById('system-status');
+            let html = '';
+
+            // Speech API 지원 체크
+            if ('speechSynthesis' in window) {
+                speechSupported = true;
+                html += `
+                    <div class="status-box success">
+                        <div class="title">✅ Web Speech API 지원</div>
+                        <p>이 브라우저는 음성 합성을 지원합니다.</p>
+                    </div>
+                `;
+                log('Web Speech API 지원됨', 'success');
+            } else {
+                html += `
+                    <div class="status-box error">
+                        <div class="title">❌ Web Speech API 미지원</div>
+                        <p>이 브라우저는 음성 합성을 지원하지 않습니다. Chrome, Safari를 사용해주세요.</p>
+                    </div>
+                `;
+                log('Web Speech API 미지원', 'error');
+            }
+
+            // 기기 정보
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+            const isAndroid = /Android/i.test(navigator.userAgent);
+
+            let deviceType = '데스크톱';
+            if (isIOS) deviceType = 'iOS (iPhone/iPad)';
+            else if (isAndroid) deviceType = 'Android';
+            else if (isMobile) deviceType = '모바일';
+
+            html += `
+                <div class="status-box ${isMobile ? 'warning' : 'success'}">
+                    <div class="title">📱 기기: ${deviceType}</div>
+                    <p>브라우저: ${navigator.userAgent.split(' ').slice(-2).join(' ')}</p>
+                </div>
+            `;
+            log(`기기: ${deviceType}`);
+
+            // iOS 특별 안내
+            if (isIOS) {
+                html += `
+                    <div class="status-box warning">
+                        <div class="title">⚠️ iOS 사용자 안내</div>
+                        <p>iOS에서는 화면을 한 번 터치한 후에 음성이 재생됩니다. 무음 모드를 해제해주세요.</p>
+                    </div>
+                `;
+                log('iOS 감지 - 사용자 인터랙션 필요', 'warning');
+            }
+
+            statusDiv.innerHTML = html;
+        }
+
+        // 음성 목록 로드
+        function loadVoices() {
+            voices = speechSynthesis.getVoices();
+            const voiceListDiv = document.getElementById('voice-list');
+
+            if (voices.length === 0) {
+                voiceListDiv.innerHTML = '<div class="voice-item">음성을 불러오는 중... 잠시 후 다시 시도해주세요.</div>';
+                log('음성 목록 로딩 중...');
+                return;
+            }
+
+            const englishVoices = voices.filter(v => v.lang.startsWith('en'));
+            log(`총 ${voices.length}개 음성 발견, 영어 음성 ${englishVoices.length}개`, 'success');
+
+            let html = '';
+            voices.forEach(voice => {
+                const isEnglish = voice.lang.startsWith('en');
+                html += `<div class="voice-item ${isEnglish ? 'english' : ''}">${voice.name} (${voice.lang})</div>`;
+            });
+
+            voiceListDiv.innerHTML = html || '<div class="voice-item">사용 가능한 음성이 없습니다.</div>';
+        }
+
+        // 음성 재생
+        function speak(text, button = null) {
+            if (!speechSupported) {
+                log('음성 합성이 지원되지 않습니다', 'error');
+                alert('이 브라우저에서는 음성 재생이 지원되지 않습니다.');
+                return;
+            }
+
+            // 현재 재생 중이면 중지
+            if (speechSynthesis.speaking) {
+                speechSynthesis.cancel();
+                log('이전 음성 중지');
+            }
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
+
+            // 영어 음성 찾기
+            const englishVoice = voices.find(v => v.lang.startsWith('en'));
+            if (englishVoice) {
+                utterance.voice = englishVoice;
+                log(`음성 선택: ${englishVoice.name}`);
+            }
+
+            utterance.onstart = () => {
+                log(`재생 시작: "${text}"`, 'success');
+                if (button) button.classList.add('playing');
+            };
+
+            utterance.onend = () => {
+                log('재생 완료', 'success');
+                if (button) button.classList.remove('playing');
+            };
+
+            utterance.onerror = (event) => {
+                log(`재생 오류: ${event.error}`, 'error');
+                if (button) button.classList.remove('playing');
+            };
+
+            speechSynthesis.speak(utterance);
+        }
+
+        // 빠른 테스트
+        function quickTest() {
+            speak("Hello! This is a voice test for Travel English. Can you hear me clearly?");
+        }
+
+        // 문장별 테스트 UI 생성
+        function renderTestSentences() {
+            const container = document.getElementById('test-sentences');
+            container.innerHTML = testSentences.map((item, idx) => `
+                <div class="test-item">
+                    <div class="text">
+                        <div class="en">${item.en}</div>
+                        <div class="ko">${item.ko}</div>
+                    </div>
+                    <button class="play-btn" onclick="speak('${item.en.replace(/'/g, "\\'")}', this)">
+                        🔊
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // 초기화
+        function init() {
+            log('음성 테스트 페이지 로드');
+            checkSystem();
+            renderTestSentences();
+
+            if (speechSupported) {
+                // 음성 목록 로드 (비동기)
+                if (speechSynthesis.getVoices().length > 0) {
+                    loadVoices();
+                }
+                speechSynthesis.onvoiceschanged = loadVoices;
+            }
+        }
+
+        init();
+    </script>
+</body>
+</html>

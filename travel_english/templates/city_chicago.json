@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "chicago",
+  "cityName": "시카고",
+  "country": "미국",
+  "description": "건축과 음악의 도시, 딥디쉬 피자의 본고장",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_CHI_001",
+      "category": "landmark",
+      "day": 2,
+      "location": "클라우드 게이트 (더 빈)",
+      "situation": "밀레니엄 파크의 상징적인 조각상을 방문한다",
+      "npcDialog": "The Bean reflects the Chicago skyline! Take photos from different angles - it never looks the same. Walk underneath for a trippy effect!",
+      "npcDialogKo": "더 빈이 시카고 스카이라인을 반사해요! 여러 각도에서 사진 찍어요 - 다 다르게 보여요. 밑으로 걸어가면 신기해요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The reflection is mesmerizing!", "correct": true},
+          {"text": "Let me try underneath it!", "correct": true},
+          {"text": "It's just a silver bean.", "correct": false},
+          {"text": "Too many people taking photos.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_002",
+      "category": "food",
+      "day": 2,
+      "location": "딥디쉬 피자 레스토랑",
+      "situation": "시카고 명물 딥디쉬 피자를 먹는다",
+      "npcDialog": "Chicago deep dish takes 45 minutes to bake! Thick crust, chunky tomato sauce on top. One slice is a meal - trust me!",
+      "npcDialogKo": "시카고 딥디쉬는 45분 걸려 구워요! 두꺼운 크러스트, 위에 덩어리진 토마토 소스. 한 조각이 한 끼예요 - 믿으세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "45 minutes of anticipation!", "correct": true},
+          {"text": "One slice is enough? Now I'm curious.", "correct": true},
+          {"text": "Real pizza is thin crust.", "correct": false},
+          {"text": "I don't want to wait that long.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_003",
+      "category": "architecture",
+      "day": 3,
+      "location": "시카고 리버 크루즈",
+      "situation": "건축 투어 보트를 탄다",
+      "npcDialog": "Chicago architecture boat tour is world-famous! See buildings by Frank Lloyd Wright, Mies van der Rohe. The river is lined with masterpieces!",
+      "npcDialogKo": "시카고 건축 보트 투어는 세계적으로 유명해요! 프랭크 로이드 라이트, 미스 반 데어 로에 건물을 봐요. 강변에 걸작들이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Architecture from the water - perfect way to see it!", "correct": true},
+          {"text": "I recognize some of these famous buildings!", "correct": true},
+          {"text": "Buildings are just buildings.", "correct": false},
+          {"text": "I prefer walking tours.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_004",
+      "category": "culture",
+      "day": 3,
+      "location": "시카고 아트 인스티튜트",
+      "situation": "세계적인 미술관을 관람한다",
+      "npcDialog": "Art Institute is one of the world's best! Seurat's 'A Sunday on La Grande Jatte', American Gothic. The Impressionist collection is incredible!",
+      "npcDialogKo": "아트 인스티튜트는 세계 최고예요! 쇠라의 '그랑드자트 일요일', 아메리칸 고딕. 인상파 컬렉션이 끝내줘요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I've always wanted to see these in person!", "correct": true},
+          {"text": "The Impressionist collection must be amazing.", "correct": true},
+          {"text": "I don't know these artists.", "correct": false},
+          {"text": "Museums are boring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_005",
+      "category": "entertainment",
+      "day": 4,
+      "location": "네이비 피어",
+      "situation": "레이크프론트 놀이공원을 즐긴다",
+      "npcDialog": "Navy Pier is on Lake Michigan! Ferris wheel with skyline views, boat rides, fireworks in summer. It's Chicago's playground!",
+      "npcDialogKo": "네이비 피어는 미시간 호수에 있어요! 관람차에서 스카이라인 보이고, 보트 타기, 여름엔 불꽃놀이. 시카고의 놀이터예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Ferris wheel with lake and skyline views!", "correct": true},
+          {"text": "Summer fireworks sound amazing.", "correct": true},
+          {"text": "Piers are tourist traps.", "correct": false},
+          {"text": "I'm not into amusement rides.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_006",
+      "category": "music",
+      "day": 4,
+      "location": "블루스 클럽",
+      "situation": "시카고 블루스를 라이브로 듣는다",
+      "npcDialog": "Chicago is the birthplace of electric blues! Muddy Waters, Buddy Guy played here. Tonight's band is local legends - you're in for a treat!",
+      "npcDialogKo": "시카고는 일렉트릭 블루스의 발상지예요! 머디 워터스, 버디 가이가 여기서 연주했어요. 오늘 밴드는 로컬 레전드 - 최고예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Chicago blues in Chicago - perfect!", "correct": true},
+          {"text": "Local legends? I can't miss this.", "correct": true},
+          {"text": "Blues music is boring.", "correct": false},
+          {"text": "I prefer mainstream music.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_007",
+      "category": "local",
+      "day": 5,
+      "location": "리글리 필드",
+      "situation": "역사적인 야구장에서 컵스 경기를 본다",
+      "npcDialog": "Wrigley Field is from 1914! The ivy-covered outfield walls are iconic. Get a Chicago-style hot dog - no ketchup, that's the rule!",
+      "npcDialogKo": "리글리 필드는 1914년 것이에요! 담쟁이 덮인 외야 벽이 상징이에요. 시카고 핫도그 사세요 - 케첩은 금지, 규칙이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "A 110-year-old stadium? Historic!", "correct": true},
+          {"text": "No ketchup - got it!", "correct": true},
+          {"text": "Baseball is boring.", "correct": false},
+          {"text": "I don't understand American sports.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_008",
+      "category": "landmark",
+      "day": 3,
+      "location": "윌리스 타워 스카이덱",
+      "situation": "유리 바닥 전망대에서 시카고를 내려다본다",
+      "npcDialog": "Skydeck is 103 floors up! The Ledge has glass boxes extending over the edge. Step out - if you dare - for photos looking straight down!",
+      "npcDialogKo": "스카이덱은 103층이에요! 레지는 가장자리로 튀어나온 유리 박스예요. 용기 있으면 올라서서 아래 사진 찍어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Standing on glass 103 floors up? Thrilling!", "correct": true},
+          {"text": "I'll definitely try The Ledge!", "correct": true},
+          {"text": "I'm afraid of heights.", "correct": false},
+          {"text": "Glass floors are unsafe.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_009",
+      "category": "food",
+      "day": 4,
+      "location": "핫도그 스탠드",
+      "situation": "시카고식 핫도그를 먹는다",
+      "npcDialog": "Chicago-style hot dog: all-beef frank, poppy seed bun, mustard, onions, relish, tomato, pickle, peppers, celery salt. NO KETCHUP!",
+      "npcDialogKo": "시카고식 핫도그: 소고기 프랭크, 양귀비씨 번, 머스터드, 양파, 렐리쉬, 토마토, 피클, 고추, 셀러리 솔트. 케첩 NO!",
+      "playerResponse": {
+        "choices": [
+          {"text": "So many toppings! I'm excited to try it.", "correct": true},
+          {"text": "I promise - no ketchup!", "correct": true},
+          {"text": "Why all the rules about hot dogs?", "correct": false},
+          {"text": "I like ketchup on everything.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_010",
+      "category": "nature",
+      "day": 5,
+      "location": "레이크프론트 트레일",
+      "situation": "미시간 호수변을 자전거로 달린다",
+      "npcDialog": "Lakefront Trail is 18 miles along Lake Michigan! Rent a Divvy bike. Beach hopping, skyline views, Lincoln Park Zoo - all free!",
+      "npcDialogKo": "레이크프론트 트레일은 미시간 호수 따라 29km예요! 디비 자전거 빌리세요. 해변, 스카이라인, 링컨파크 동물원 - 다 무료!",
+      "playerResponse": {
+        "choices": [
+          {"text": "18 miles of lakefront views!", "correct": true},
+          {"text": "Biking to free attractions sounds perfect.", "correct": true},
+          {"text": "That's too long to bike.", "correct": false},
+          {"text": "I prefer driving.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_011",
+      "category": "shopping",
+      "day": 3,
+      "location": "매그니피센트 마일",
+      "situation": "시카고의 럭셔리 쇼핑 거리를 산책한다",
+      "npcDialog": "Magnificent Mile is Chicago's shopping mecca! Michigan Avenue has everything from flagship stores to boutiques. The Water Tower survived the Great Fire!",
+      "npcDialogKo": "매그니피센트 마일은 시카고 쇼핑 메카예요! 미시간 애비뉴에 플래그십 스토어부터 부티크까지 다 있어요. 워터 타워는 대화재에서 살아남았어요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Historic Water Tower still standing!", "correct": true},
+          {"text": "A mile of shopping - perfect!", "correct": true},
+          {"text": "Shopping streets are all the same.", "correct": false},
+          {"text": "Too commercial for me.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_012",
+      "category": "food",
+      "day": 5,
+      "location": "이탈리안 비프 샌드위치 가게",
+      "situation": "시카고 명물 이탈리안 비프를 먹는다",
+      "npcDialog": "Italian beef is pure Chicago! Thin-sliced beef, giardiniera peppers, dipped in jus. 'Wet' means extra juice - locals say that's the best way!",
+      "npcDialogKo": "이탈리안 비프는 순수 시카고예요! 얇게 썬 소고기, 지아디니에라 고추, 육즙에 담가요. '웻'은 육즙 더 - 현지인들이 최고래요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll try it 'wet' like the locals!", "correct": true},
+          {"text": "Dipped in jus sounds amazing.", "correct": true},
+          {"text": "Too messy for me.", "correct": false},
+          {"text": "I don't eat beef.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_013",
+      "category": "culture",
+      "day": 4,
+      "location": "필드 뮤지엄",
+      "situation": "자연사 박물관에서 수 화석을 본다",
+      "npcDialog": "Sue is the largest T-rex fossil ever found! Field Museum has 40 million artifacts. The Egyptian mummies are incredible too!",
+      "npcDialogKo": "수는 지금까지 발견된 가장 큰 티라노사우루스 화석이에요! 필드 뮤지엄에 4천만 점의 유물이 있어요. 이집트 미라도 끝내줘요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "The largest T-rex? Incredible!", "correct": true},
+          {"text": "40 million artifacts? I need a whole day!", "correct": true},
+          {"text": "Dinosaurs are for kids.", "correct": false},
+          {"text": "Natural history bores me.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_014",
+      "category": "local",
+      "day": 2,
+      "location": "시카고 L 트레인",
+      "situation": "고가철도로 시내를 이동한다",
+      "npcDialog": "The L is Chicago's iconic elevated train! The Loop downtown is where it circles. Ride the Brown Line for great neighborhood views!",
+      "npcDialogKo": "L은 시카고 상징 고가철도예요! 루프 다운타운에서 원을 그려요. 브라운 라인 타면 동네 전망 좋아요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Elevated trains have the best views!", "correct": true},
+          {"text": "The Loop makes navigation easy.", "correct": true},
+          {"text": "Elevated trains are noisy.", "correct": false},
+          {"text": "I prefer taxis.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_015",
+      "category": "entertainment",
+      "day": 5,
+      "location": "세컨드 시티",
+      "situation": "유명한 코미디 극장에서 공연을 본다",
+      "npcDialog": "Second City launched Tina Fey, Steve Carell, John Belushi! Improv and sketch comedy - you might see tomorrow's stars tonight!",
+      "npcDialogKo": "세컨드 시티에서 티나 페이, 스티브 카렐, 존 벨루시가 시작했어요! 즉흥극과 스케치 코미디 - 오늘 내일의 스타를 볼지도 몰라요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Where legends started! I'm excited.", "correct": true},
+          {"text": "Improv comedy is always fresh.", "correct": true},
+          {"text": "I don't understand American comedy.", "correct": false},
+          {"text": "Comedy clubs are overrated.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_016",
+      "category": "local",
+      "day": 4,
+      "location": "필슨",
+      "situation": "힙한 동네의 브루어리를 탐험한다",
+      "npcDialog": "Pilsen is Chicago's coolest neighborhood! Mexican murals, craft breweries, vintage shops. It's the creative heart of the city!",
+      "npcDialogKo": "필슨은 시카고에서 가장 힙한 동네예요! 멕시코 벽화, 크래프트 브루어리, 빈티지 샵. 도시의 창작 심장이에요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Murals and craft beer? Perfect combo!", "correct": true},
+          {"text": "I love exploring creative neighborhoods.", "correct": true},
+          {"text": "Hipster areas aren't my thing.", "correct": false},
+          {"text": "I prefer touristy areas.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_017",
+      "category": "food",
+      "day": 3,
+      "location": "개럿 팝콘",
+      "situation": "시카고 믹스 팝콘을 맛본다",
+      "npcDialog": "Garrett Popcorn's Chicago Mix is legendary! Cheese and caramel together - sounds crazy but it works. People line up around the block!",
+      "npcDialogKo": "개럿 팝콘 시카고 믹스는 전설이에요! 치즈와 카라멜이 같이 - 이상하게 들려도 맛있어요. 사람들이 블록 돌아 줄 서요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Cheese and caramel together? I'm intrigued!", "correct": true},
+          {"text": "If people line up, it must be worth it.", "correct": true},
+          {"text": "Popcorn is just a snack.", "correct": false},
+          {"text": "Sweet and savory don't mix.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_018",
+      "category": "nature",
+      "day": 5,
+      "location": "링컨 파크",
+      "situation": "무료 동물원과 온실을 방문한다",
+      "npcDialog": "Lincoln Park Zoo is completely free! One of the oldest in the US. The Conservatory nearby has tropical plants - perfect on cold days!",
+      "npcDialogKo": "링컨 파크 동물원은 완전 무료예요! 미국에서 가장 오래된 동물원 중 하나예요. 근처 온실에 열대 식물이 있어요 - 추운 날 완벽!",
+      "playerResponse": {
+        "choices": [
+          {"text": "A free zoo in the city? Amazing!", "correct": true},
+          {"text": "The conservatory sounds beautiful.", "correct": true},
+          {"text": "Zoos are unethical.", "correct": false},
+          {"text": "I've seen enough zoos.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_019",
+      "category": "culture",
+      "day": 2,
+      "location": "시카고 극장",
+      "situation": "역사적인 극장 외관에서 사진을 찍는다",
+      "npcDialog": "The Chicago Theatre sign is iconic! 'C-H-I-C-A-G-O' in lights since 1921. Catch a show or just take photos - it's a must!",
+      "npcDialogKo": "시카고 극장 사인은 상징이에요! 1921년부터 불 켜진 'C-H-I-C-A-G-O'. 공연 보거나 사진만 찍어도 - 필수예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "That illuminated sign is so classic!", "correct": true},
+          {"text": "Over 100 years of history!", "correct": true},
+          {"text": "It's just a theater sign.", "correct": false},
+          {"text": "Old theaters aren't interesting.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_CHI_020",
+      "category": "food",
+      "day": 4,
+      "location": "차이나타운",
+      "situation": "시카고 차이나타운에서 딤섬을 먹는다",
+      "npcDialog": "Chicago Chinatown is authentic! Dim sum carts on weekends, BBQ duck in the windows. The bakeries have amazing egg tarts!",
+      "npcDialogKo": "시카고 차이나타운은 정통이에요! 주말에 딤섬 카트, 창문에 BBQ 오리. 베이커리 에그타르트가 끝내줘요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Dim sum carts are the best way!", "correct": true},
+          {"text": "BBQ duck and egg tarts? I want both!", "correct": true},
+          {"text": "Chinatowns are all the same.", "correct": false},
+          {"text": "I prefer other cuisines.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

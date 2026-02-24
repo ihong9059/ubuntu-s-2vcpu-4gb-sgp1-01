@@ -1,0 +1,350 @@
+{
+  "templateType": "city",
+  "cityId": "prague",
+  "cityName": "프라하",
+  "country": "체코",
+  "description": "동화 같은 중세 도시, 100개의 첨탑이 있는 황금 도시",
+  "sceneCount": 20,
+  "scenes": [
+    {
+      "id": "CITY_PRG_001",
+      "category": "landmark",
+      "day": 2,
+      "location": "카를교",
+      "situation": "프라하의 상징적인 다리를 건넌다",
+      "npcDialog": "Charles Bridge was built in 1357! Touch the bronze statue of St. John for good luck. Best views at sunrise!",
+      "npcDialogKo": "카를교는 1357년에 지어졌어요! 성 요한 동상을 만지면 행운이 와요. 일출 때 전망이 최고예요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll definitely touch it for luck!", "correct": true},
+          {"text": "Which statue is St. John?", "correct": true},
+          {"text": "Superstitions are silly.", "correct": false},
+          {"text": "It's just an old bridge.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_002",
+      "category": "landmark",
+      "day": 2,
+      "location": "프라하 성",
+      "situation": "세계 최대의 고대 성을 관람한다",
+      "npcDialog": "Prague Castle is the largest ancient castle in the world! Don't miss St. Vitus Cathedral inside. The changing of the guard is at noon.",
+      "npcDialogKo": "프라하 성은 세계 최대의 고대 성이에요! 안에 있는 성 비투스 대성당 놓치지 마세요. 근위병 교대식은 정오예요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "The largest castle in the world? Amazing!", "correct": true},
+          {"text": "When is the best time to visit the cathedral?", "correct": true},
+          {"text": "Castles are overrated.", "correct": false},
+          {"text": "I don't like walking uphill.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_003",
+      "category": "food",
+      "day": 3,
+      "location": "전통 체코 레스토랑",
+      "situation": "스비치코바와 크네들리키를 먹는다",
+      "npcDialog": "Try our svíčková! It's beef in creamy vegetable sauce with dumplings. Pair it with a Pilsner - beer is cheaper than water here!",
+      "npcDialogKo": "스비치코바 드셔보세요! 크림 야채 소스 소고기에 만두예요. 필스너 맥주랑 같이 드세요 - 맥주가 물보다 싸요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Beer cheaper than water? I'll take both!", "correct": true},
+          {"text": "Svíčková sounds delicious. I'll try it!", "correct": true},
+          {"text": "I don't drink beer.", "correct": false},
+          {"text": "The food looks too heavy.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_004",
+      "category": "landmark",
+      "day": 2,
+      "location": "구시가지 광장",
+      "situation": "천문 시계가 있는 광장을 둘러본다",
+      "npcDialog": "The Astronomical Clock strikes every hour with a show! It's from 1410 - the world's oldest working one. Stay for the full performance!",
+      "npcDialogKo": "천문 시계는 매시간 쇼를 해요! 1410년 것 - 세계에서 가장 오래된 작동하는 시계예요. 끝까지 보세요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "600 years old and still working? Incredible!", "correct": true},
+          {"text": "What time does the next show start?", "correct": true},
+          {"text": "It's just a clock.", "correct": false},
+          {"text": "I don't want to wait.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_005",
+      "category": "culture",
+      "day": 3,
+      "location": "유대인 지구",
+      "situation": "요세포프 유대인 역사 지구를 방문한다",
+      "npcDialog": "Josefov has one of Europe's oldest synagogues. The Old Jewish Cemetery has 12,000 headstones in layers. It's deeply moving.",
+      "npcDialogKo": "요세포프에는 유럽에서 가장 오래된 회당 중 하나가 있어요. 오래된 유대인 묘지에는 12,000개 비석이 층층이 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "The history here is so significant.", "correct": true},
+          {"text": "Is there a combined ticket for all sites?", "correct": true},
+          {"text": "Cemeteries are creepy.", "correct": false},
+          {"text": "I'm not interested in religious sites.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_006",
+      "category": "food",
+      "day": 4,
+      "location": "트르들로 가게",
+      "situation": "프라하 명물 굴뚝 빵을 먹는다",
+      "npcDialog": "Trdelník is our famous chimney cake! Warm, crispy, with cinnamon sugar. Want ice cream inside? That's the Prague special!",
+      "npcDialogKo": "트르들로는 유명한 굴뚝 빵이에요! 따뜻하고, 바삭하고, 시나몬 설탕이요. 안에 아이스크림 넣을까요? 프라하 스페셜!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Ice cream inside sounds amazing!", "correct": true},
+          {"text": "Is it traditional or a tourist thing?", "correct": true},
+          {"text": "Too many calories.", "correct": false},
+          {"text": "I don't like sweets.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_007",
+      "category": "transport",
+      "day": 2,
+      "location": "트램 정류장",
+      "situation": "프라하 트램을 타고 이동한다",
+      "npcDialog": "Tram 22 is the scenic route! It passes all major sites - Castle, Old Town, river views. Buy a 24-hour pass for unlimited rides.",
+      "npcDialogKo": "22번 트램이 관광 루트예요! 성, 구시가지, 강 뷰 다 지나요. 24시간 패스로 무제한 타세요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Perfect! I'll get the 24-hour pass.", "correct": true},
+          {"text": "Tram 22 sounds like the best way to see the city!", "correct": true},
+          {"text": "I prefer taxis.", "correct": false},
+          {"text": "Public transport is confusing.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_008",
+      "category": "nightlife",
+      "day": 4,
+      "location": "맥주 스파",
+      "situation": "프라하의 유명한 맥주 스파를 체험한다",
+      "npcDialog": "Beer spa! Soak in beer, barley, and hops. It's great for your skin! And yes, you can drink unlimited beer while bathing.",
+      "npcDialogKo": "비어 스파! 맥주, 보리, 홉에서 목욕해요. 피부에 좋아요! 그리고 목욕하면서 무제한 맥주 마실 수 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Drinking beer while bathing in beer? Only in Prague!", "correct": true},
+          {"text": "Is it really good for the skin?", "correct": true},
+          {"text": "That sounds weird.", "correct": false},
+          {"text": "I don't want to smell like beer.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_009",
+      "category": "art",
+      "day": 3,
+      "location": "뮤샤 미술관",
+      "situation": "아르누보 거장 알폰스 뮤샤의 작품을 감상한다",
+      "npcDialog": "Alphonse Mucha is Prague's most famous artist! His Art Nouveau style inspired the world. The Slav Epic is his masterpiece.",
+      "npcDialogKo": "알폰스 뮤샤는 프라하의 가장 유명한 예술가예요! 그의 아르누보 스타일은 세계에 영향을 줬어요. 슬라브 서사시가 걸작이에요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "His Art Nouveau posters are iconic!", "correct": true},
+          {"text": "Where can I see the Slav Epic?", "correct": true},
+          {"text": "I don't know this artist.", "correct": false},
+          {"text": "Art museums are boring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_010",
+      "category": "shopping",
+      "day": 4,
+      "location": "하벨 시장",
+      "situation": "전통 시장에서 기념품을 구매한다",
+      "npcDialog": "Havelská Market has been here since 1232! Bohemian crystal, marionettes, garnet jewelry - all traditional Czech crafts.",
+      "npcDialogKo": "하벨 시장은 1232년부터 있었어요! 보헤미안 크리스탈, 마리오네트, 가넷 보석 - 다 전통 체코 공예품이에요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'd love to see the Bohemian crystal!", "correct": true},
+          {"text": "What's special about garnet jewelry here?", "correct": true},
+          {"text": "Market souvenirs are cheap quality.", "correct": false},
+          {"text": "I don't buy souvenirs.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_011",
+      "category": "local",
+      "day": 3,
+      "location": "존 레논 벽",
+      "situation": "평화의 메시지가 담긴 벽을 방문한다",
+      "npcDialog": "The John Lennon Wall started after his death in 1980. Beatles lyrics, peace symbols - it's constantly changing. Feel free to add your message!",
+      "npcDialogKo": "존 레논 벽은 1980년 그의 사후에 시작됐어요. 비틀즈 가사, 평화 상징 - 계속 바뀌어요. 메시지 남기셔도 돼요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "Can I really add my own message?", "correct": true},
+          {"text": "This is such a meaningful place.", "correct": true},
+          {"text": "It's just graffiti.", "correct": false},
+          {"text": "I don't know the Beatles.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_012",
+      "category": "food",
+      "day": 5,
+      "location": "전통 펍",
+      "situation": "체코 맥주의 본고장에서 다양한 맥주를 맛본다",
+      "npcDialog": "Czech Republic drinks the most beer per capita! Try Pilsner Urquell - it's the original pilsner. Or Kozel for something darker.",
+      "npcDialogKo": "체코는 1인당 맥주 소비 세계 1위예요! 필스너 우르켈 드세요 - 필스너의 원조예요. 더 진한 건 코젤이요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I'll try the original Pilsner Urquell!", "correct": true},
+          {"text": "What's the difference between Czech and German beer?", "correct": true},
+          {"text": "All beer tastes the same.", "correct": false},
+          {"text": "I only drink wine.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_013",
+      "category": "landmark",
+      "day": 4,
+      "location": "페트린 타워",
+      "situation": "프라하의 에펠탑에서 전망을 감상한다",
+      "npcDialog": "Petřín Tower looks like a mini Eiffel Tower! Take the funicular up, then climb 299 steps for panoramic views of all Prague.",
+      "npcDialogKo": "페트린 타워는 미니 에펠탑 같아요! 케이블카로 올라가서 299계단 오르면 프라하 전경이 다 보여요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "299 steps? Challenge accepted!", "correct": true},
+          {"text": "The funicular sounds like a great start.", "correct": true},
+          {"text": "Too many steps.", "correct": false},
+          {"text": "It's just a copycat tower.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_014",
+      "category": "culture",
+      "day": 5,
+      "location": "클래식 공연장",
+      "situation": "프라하에서 클래식 음악 공연을 관람한다",
+      "npcDialog": "Prague is the city of music! Mozart premiered Don Giovanni here. Tonight's performance is in a beautiful baroque church.",
+      "npcDialogKo": "프라하는 음악의 도시예요! 모차르트가 돈 조반니를 여기서 초연했어요. 오늘 공연은 아름다운 바로크 교회에서 해요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "A concert in a baroque church sounds magical!", "correct": true},
+          {"text": "I didn't know Mozart performed here.", "correct": true},
+          {"text": "Classical music is boring.", "correct": false},
+          {"text": "I prefer modern music.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_015",
+      "category": "local",
+      "day": 3,
+      "location": "프란츠 카프카 생가",
+      "situation": "카프카 관련 명소를 방문한다",
+      "npcDialog": "Kafka was born here in Prague! The rotating head sculpture downtown is amazing. His stories capture the city's mysterious atmosphere.",
+      "npcDialogKo": "카프카는 프라하에서 태어났어요! 시내에 회전하는 두상 조각이 멋져요. 그의 이야기는 도시의 신비로운 분위기를 담고 있어요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "I must see the rotating head sculpture!", "correct": true},
+          {"text": "Prague definitely has that mysterious atmosphere.", "correct": true},
+          {"text": "I don't read literature.", "correct": false},
+          {"text": "Kafka is too dark for me.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_016",
+      "category": "nature",
+      "day": 5,
+      "location": "레트나 공원",
+      "situation": "블타바 강과 다리들의 전망을 즐긴다",
+      "npcDialog": "Letná Park has the best views of the bridges! There's a giant metronome where Stalin's statue used to be. Bring a picnic!",
+      "npcDialogKo": "레트나 공원에서 다리 전망이 최고예요! 스탈린 동상 있던 자리에 거대한 메트로놈이 있어요. 피크닉 추천!",
+      "playerResponse": {
+        "choices": [
+          {"text": "A picnic with that view sounds perfect!", "correct": true},
+          {"text": "The metronome replacing Stalin is so symbolic.", "correct": true},
+          {"text": "I don't like outdoor activities.", "correct": false},
+          {"text": "Parks are boring.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_017",
+      "category": "food",
+      "day": 4,
+      "location": "홉 가든",
+      "situation": "야외 비어 가든에서 저녁을 먹는다",
+      "npcDialog": "Beer gardens are Czech culture! Try kulajda - creamy mushroom soup. And our pork knee is roasted for 8 hours!",
+      "npcDialogKo": "비어 가든은 체코 문화예요! 쿨라이다 드세요 - 크림 버섯 수프요. 돼지 무릎은 8시간 구워요!",
+      "playerResponse": {
+        "choices": [
+          {"text": "8-hour roasted pork knee? I'm in!", "correct": true},
+          {"text": "I love trying local soups.", "correct": true},
+          {"text": "I prefer indoor dining.", "correct": false},
+          {"text": "Czech food is too meaty.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_018",
+      "category": "entertainment",
+      "day": 4,
+      "location": "블랙 라이트 극장",
+      "situation": "프라하 특유의 블랙 라이트 극장을 관람한다",
+      "npcDialog": "Black light theater is uniquely Czech! Performers in black become invisible, objects float magically. No language needed to enjoy!",
+      "npcDialogKo": "블랙 라이트 극장은 체코만의 것이에요! 검은 옷 입은 배우는 안 보이고, 물체가 마법처럼 떠다녀요. 언어 몰라도 OK!",
+      "playerResponse": {
+        "choices": [
+          {"text": "That sounds like a magical experience!", "correct": true},
+          {"text": "Perfect - I don't speak Czech anyway!", "correct": true},
+          {"text": "Sounds childish.", "correct": false},
+          {"text": "I prefer normal theater.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_019",
+      "category": "local",
+      "day": 2,
+      "location": "비셰흐라드 성",
+      "situation": "관광객이 적은 프라하의 또 다른 성을 방문한다",
+      "npcDialog": "Vyšehrad is less crowded than Prague Castle! Beautiful cemetery where famous Czechs rest. Amazing river views too.",
+      "npcDialogKo": "비셰흐라드는 프라하 성보다 한적해요! 유명한 체코인들이 묻힌 아름다운 묘지도 있어요. 강 전망도 끝내줘요.",
+      "playerResponse": {
+        "choices": [
+          {"text": "Less crowded sounds perfect!", "correct": true},
+          {"text": "I'd love to escape the tourist crowds.", "correct": true},
+          {"text": "If it's not famous, why bother?", "correct": false},
+          {"text": "I only visit main attractions.", "correct": false}
+        ]
+      }
+    },
+    {
+      "id": "CITY_PRG_020",
+      "category": "shopping",
+      "day": 5,
+      "location": "스트라호프 수도원",
+      "situation": "세계에서 가장 아름다운 도서관을 방문한다",
+      "npcDialog": "Strahov Library is breathtaking! Two baroque halls with ancient books. They also brew their own beer here - monastic tradition!",
+      "npcDialogKo": "스트라호프 도서관은 숨막히게 아름다워요! 고서가 있는 바로크 홀 두 개. 여기서 맥주도 직접 양조해요 - 수도원 전통!",
+      "playerResponse": {
+        "choices": [
+          {"text": "A library and brewery in a monastery? Perfect!", "correct": true},
+          {"text": "I've heard this is one of the world's most beautiful libraries.", "correct": true},
+          {"text": "Libraries are outdated.", "correct": false},
+          {"text": "I'm not interested in old books.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

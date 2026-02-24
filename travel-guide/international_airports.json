@@ -1,0 +1,510 @@
+{
+  "meta": {
+    "title": "전세계 주요 국제공항 목록",
+    "description": "국가별 주요 국제공항 IATA 코드 및 정보",
+    "lastUpdated": "2025-02-08",
+    "totalCountries": 85,
+    "totalAirports": 350
+  },
+  "airports": {
+    "Asia": {
+      "Korea": {
+        "country_ko": "대한민국",
+        "airports": [
+          {"code": "ICN", "name": "Incheon International Airport", "name_ko": "인천국제공항", "city": "Seoul/Incheon", "city_ko": "서울/인천"},
+          {"code": "GMP", "name": "Gimpo International Airport", "name_ko": "김포국제공항", "city": "Seoul", "city_ko": "서울"},
+          {"code": "PUS", "name": "Gimhae International Airport", "name_ko": "김해국제공항", "city": "Busan", "city_ko": "부산"},
+          {"code": "CJU", "name": "Jeju International Airport", "name_ko": "제주국제공항", "city": "Jeju", "city_ko": "제주"},
+          {"code": "TAE", "name": "Daegu International Airport", "name_ko": "대구국제공항", "city": "Daegu", "city_ko": "대구"}
+        ]
+      },
+      "Japan": {
+        "country_ko": "일본",
+        "airports": [
+          {"code": "NRT", "name": "Narita International Airport", "name_ko": "나리타 국제공항", "city": "Tokyo", "city_ko": "도쿄"},
+          {"code": "HND", "name": "Haneda Airport", "name_ko": "하네다 공항", "city": "Tokyo", "city_ko": "도쿄"},
+          {"code": "KIX", "name": "Kansai International Airport", "name_ko": "간사이 국제공항", "city": "Osaka", "city_ko": "오사카"},
+          {"code": "ITM", "name": "Osaka Itami Airport", "name_ko": "오사카 이타미 공항", "city": "Osaka", "city_ko": "오사카"},
+          {"code": "NGO", "name": "Chubu Centrair International Airport", "name_ko": "주부 센트레아 국제공항", "city": "Nagoya", "city_ko": "나고야"},
+          {"code": "FUK", "name": "Fukuoka Airport", "name_ko": "후쿠오카 공항", "city": "Fukuoka", "city_ko": "후쿠오카"},
+          {"code": "CTS", "name": "New Chitose Airport", "name_ko": "신치토세 공항", "city": "Sapporo", "city_ko": "삿포로"},
+          {"code": "OKA", "name": "Naha Airport", "name_ko": "나하 공항", "city": "Okinawa", "city_ko": "오키나와"}
+        ]
+      },
+      "China": {
+        "country_ko": "중국",
+        "airports": [
+          {"code": "PEK", "name": "Beijing Capital International Airport", "name_ko": "베이징 서우두 국제공항", "city": "Beijing", "city_ko": "베이징"},
+          {"code": "PKX", "name": "Beijing Daxing International Airport", "name_ko": "베이징 다싱 국제공항", "city": "Beijing", "city_ko": "베이징"},
+          {"code": "PVG", "name": "Shanghai Pudong International Airport", "name_ko": "상하이 푸둥 국제공항", "city": "Shanghai", "city_ko": "상하이"},
+          {"code": "SHA", "name": "Shanghai Hongqiao International Airport", "name_ko": "상하이 훙차오 국제공항", "city": "Shanghai", "city_ko": "상하이"},
+          {"code": "CAN", "name": "Guangzhou Baiyun International Airport", "name_ko": "광저우 바이윈 국제공항", "city": "Guangzhou", "city_ko": "광저우"},
+          {"code": "SZX", "name": "Shenzhen Bao'an International Airport", "name_ko": "선전 바오안 국제공항", "city": "Shenzhen", "city_ko": "선전"},
+          {"code": "CTU", "name": "Chengdu Shuangliu International Airport", "name_ko": "청두 솽류 국제공항", "city": "Chengdu", "city_ko": "청두"},
+          {"code": "XIY", "name": "Xi'an Xianyang International Airport", "name_ko": "시안 셴양 국제공항", "city": "Xi'an", "city_ko": "시안"},
+          {"code": "HGH", "name": "Hangzhou Xiaoshan International Airport", "name_ko": "항저우 샤오산 국제공항", "city": "Hangzhou", "city_ko": "항저우"}
+        ]
+      },
+      "Hong Kong": {
+        "country_ko": "홍콩",
+        "airports": [
+          {"code": "HKG", "name": "Hong Kong International Airport", "name_ko": "홍콩 국제공항", "city": "Hong Kong", "city_ko": "홍콩"}
+        ]
+      },
+      "Taiwan": {
+        "country_ko": "대만",
+        "airports": [
+          {"code": "TPE", "name": "Taiwan Taoyuan International Airport", "name_ko": "타이완 타오위안 국제공항", "city": "Taipei", "city_ko": "타이페이"},
+          {"code": "TSA", "name": "Taipei Songshan Airport", "name_ko": "타이페이 쑹산 공항", "city": "Taipei", "city_ko": "타이페이"},
+          {"code": "KHH", "name": "Kaohsiung International Airport", "name_ko": "가오슝 국제공항", "city": "Kaohsiung", "city_ko": "가오슝"}
+        ]
+      },
+      "Thailand": {
+        "country_ko": "태국",
+        "airports": [
+          {"code": "BKK", "name": "Suvarnabhumi Airport", "name_ko": "수완나품 공항", "city": "Bangkok", "city_ko": "방콕"},
+          {"code": "DMK", "name": "Don Mueang International Airport", "name_ko": "돈므앙 국제공항", "city": "Bangkok", "city_ko": "방콕"},
+          {"code": "HKT", "name": "Phuket International Airport", "name_ko": "푸켓 국제공항", "city": "Phuket", "city_ko": "푸켓"},
+          {"code": "CNX", "name": "Chiang Mai International Airport", "name_ko": "치앙마이 국제공항", "city": "Chiang Mai", "city_ko": "치앙마이"}
+        ]
+      },
+      "Singapore": {
+        "country_ko": "싱가포르",
+        "airports": [
+          {"code": "SIN", "name": "Singapore Changi Airport", "name_ko": "싱가포르 창이 공항", "city": "Singapore", "city_ko": "싱가포르"}
+        ]
+      },
+      "Malaysia": {
+        "country_ko": "말레이시아",
+        "airports": [
+          {"code": "KUL", "name": "Kuala Lumpur International Airport", "name_ko": "쿠알라룸푸르 국제공항", "city": "Kuala Lumpur", "city_ko": "쿠알라룸푸르"},
+          {"code": "PEN", "name": "Penang International Airport", "name_ko": "페낭 국제공항", "city": "Penang", "city_ko": "페낭"},
+          {"code": "BKI", "name": "Kota Kinabalu International Airport", "name_ko": "코타키나발루 국제공항", "city": "Kota Kinabalu", "city_ko": "코타키나발루"}
+        ]
+      },
+      "Vietnam": {
+        "country_ko": "베트남",
+        "airports": [
+          {"code": "SGN", "name": "Tan Son Nhat International Airport", "name_ko": "떤선녓 국제공항", "city": "Ho Chi Minh City", "city_ko": "호치민"},
+          {"code": "HAN", "name": "Noi Bai International Airport", "name_ko": "노이바이 국제공항", "city": "Hanoi", "city_ko": "하노이"},
+          {"code": "DAD", "name": "Da Nang International Airport", "name_ko": "다낭 국제공항", "city": "Da Nang", "city_ko": "다낭"},
+          {"code": "CXR", "name": "Cam Ranh International Airport", "name_ko": "캄란 국제공항", "city": "Nha Trang", "city_ko": "나트랑"}
+        ]
+      },
+      "Philippines": {
+        "country_ko": "필리핀",
+        "airports": [
+          {"code": "MNL", "name": "Ninoy Aquino International Airport", "name_ko": "니노이 아키노 국제공항", "city": "Manila", "city_ko": "마닐라"},
+          {"code": "CEB", "name": "Mactan-Cebu International Airport", "name_ko": "막탄-세부 국제공항", "city": "Cebu", "city_ko": "세부"},
+          {"code": "CRK", "name": "Clark International Airport", "name_ko": "클락 국제공항", "city": "Clark", "city_ko": "클락"}
+        ]
+      },
+      "Indonesia": {
+        "country_ko": "인도네시아",
+        "airports": [
+          {"code": "CGK", "name": "Soekarno-Hatta International Airport", "name_ko": "수카르노-하타 국제공항", "city": "Jakarta", "city_ko": "자카르타"},
+          {"code": "DPS", "name": "Ngurah Rai International Airport", "name_ko": "응우라라이 국제공항", "city": "Bali", "city_ko": "발리"},
+          {"code": "SUB", "name": "Juanda International Airport", "name_ko": "주안다 국제공항", "city": "Surabaya", "city_ko": "수라바야"}
+        ]
+      },
+      "India": {
+        "country_ko": "인도",
+        "airports": [
+          {"code": "DEL", "name": "Indira Gandhi International Airport", "name_ko": "인디라 간디 국제공항", "city": "Delhi", "city_ko": "델리"},
+          {"code": "BOM", "name": "Chhatrapati Shivaji International Airport", "name_ko": "차트라파티 시바지 국제공항", "city": "Mumbai", "city_ko": "뭄바이"},
+          {"code": "BLR", "name": "Kempegowda International Airport", "name_ko": "켐페고다 국제공항", "city": "Bangalore", "city_ko": "방갈로르"},
+          {"code": "MAA", "name": "Chennai International Airport", "name_ko": "첸나이 국제공항", "city": "Chennai", "city_ko": "첸나이"},
+          {"code": "CCU", "name": "Netaji Subhas Chandra Bose International Airport", "name_ko": "네타지 수바스 찬드라 보스 국제공항", "city": "Kolkata", "city_ko": "콜카타"},
+          {"code": "HYD", "name": "Rajiv Gandhi International Airport", "name_ko": "라지브 간디 국제공항", "city": "Hyderabad", "city_ko": "하이데라바드"}
+        ]
+      },
+      "UAE": {
+        "country_ko": "아랍에미리트",
+        "airports": [
+          {"code": "DXB", "name": "Dubai International Airport", "name_ko": "두바이 국제공항", "city": "Dubai", "city_ko": "두바이"},
+          {"code": "DWC", "name": "Al Maktoum International Airport", "name_ko": "알 막툼 국제공항", "city": "Dubai", "city_ko": "두바이"},
+          {"code": "AUH", "name": "Abu Dhabi International Airport", "name_ko": "아부다비 국제공항", "city": "Abu Dhabi", "city_ko": "아부다비"},
+          {"code": "SHJ", "name": "Sharjah International Airport", "name_ko": "샤르자 국제공항", "city": "Sharjah", "city_ko": "샤르자"}
+        ]
+      },
+      "Qatar": {
+        "country_ko": "카타르",
+        "airports": [
+          {"code": "DOH", "name": "Hamad International Airport", "name_ko": "하마드 국제공항", "city": "Doha", "city_ko": "도하"}
+        ]
+      },
+      "Saudi Arabia": {
+        "country_ko": "사우디아라비아",
+        "airports": [
+          {"code": "JED", "name": "King Abdulaziz International Airport", "name_ko": "킹 압둘아지즈 국제공항", "city": "Jeddah", "city_ko": "제다"},
+          {"code": "RUH", "name": "King Khalid International Airport", "name_ko": "킹 칼리드 국제공항", "city": "Riyadh", "city_ko": "리야드"},
+          {"code": "DMM", "name": "King Fahd International Airport", "name_ko": "킹 파드 국제공항", "city": "Dammam", "city_ko": "담맘"}
+        ]
+      },
+      "Israel": {
+        "country_ko": "이스라엘",
+        "airports": [
+          {"code": "TLV", "name": "Ben Gurion International Airport", "name_ko": "벤구리온 국제공항", "city": "Tel Aviv", "city_ko": "텔아비브"}
+        ]
+      },
+      "Turkey": {
+        "country_ko": "터키",
+        "airports": [
+          {"code": "IST", "name": "Istanbul Airport", "name_ko": "이스탄불 공항", "city": "Istanbul", "city_ko": "이스탄불"},
+          {"code": "SAW", "name": "Sabiha Gokcen International Airport", "name_ko": "사비하 괵첸 국제공항", "city": "Istanbul", "city_ko": "이스탄불"},
+          {"code": "ESB", "name": "Esenboga International Airport", "name_ko": "에센보아 국제공항", "city": "Ankara", "city_ko": "앙카라"},
+          {"code": "AYT", "name": "Antalya Airport", "name_ko": "안탈리아 공항", "city": "Antalya", "city_ko": "안탈리아"}
+        ]
+      }
+    },
+    "Europe": {
+      "United Kingdom": {
+        "country_ko": "영국",
+        "airports": [
+          {"code": "LHR", "name": "London Heathrow Airport", "name_ko": "런던 히드로 공항", "city": "London", "city_ko": "런던"},
+          {"code": "LGW", "name": "London Gatwick Airport", "name_ko": "런던 개트윅 공항", "city": "London", "city_ko": "런던"},
+          {"code": "STN", "name": "London Stansted Airport", "name_ko": "런던 스탠스테드 공항", "city": "London", "city_ko": "런던"},
+          {"code": "LTN", "name": "London Luton Airport", "name_ko": "런던 루턴 공항", "city": "London", "city_ko": "런던"},
+          {"code": "LCY", "name": "London City Airport", "name_ko": "런던 시티 공항", "city": "London", "city_ko": "런던"},
+          {"code": "MAN", "name": "Manchester Airport", "name_ko": "맨체스터 공항", "city": "Manchester", "city_ko": "맨체스터"},
+          {"code": "EDI", "name": "Edinburgh Airport", "name_ko": "에든버러 공항", "city": "Edinburgh", "city_ko": "에든버러"},
+          {"code": "BHX", "name": "Birmingham Airport", "name_ko": "버밍엄 공항", "city": "Birmingham", "city_ko": "버밍엄"}
+        ]
+      },
+      "France": {
+        "country_ko": "프랑스",
+        "airports": [
+          {"code": "CDG", "name": "Paris Charles de Gaulle Airport", "name_ko": "파리 샤를 드 골 공항", "city": "Paris", "city_ko": "파리"},
+          {"code": "ORY", "name": "Paris Orly Airport", "name_ko": "파리 오를리 공항", "city": "Paris", "city_ko": "파리"},
+          {"code": "NCE", "name": "Nice Cote d'Azur Airport", "name_ko": "니스 코트다쥐르 공항", "city": "Nice", "city_ko": "니스"},
+          {"code": "LYS", "name": "Lyon-Saint Exupery Airport", "name_ko": "리옹 생텍쥐페리 공항", "city": "Lyon", "city_ko": "리옹"},
+          {"code": "MRS", "name": "Marseille Provence Airport", "name_ko": "마르세유 프로방스 공항", "city": "Marseille", "city_ko": "마르세유"}
+        ]
+      },
+      "Germany": {
+        "country_ko": "독일",
+        "airports": [
+          {"code": "FRA", "name": "Frankfurt Airport", "name_ko": "프랑크푸르트 공항", "city": "Frankfurt", "city_ko": "프랑크푸르트"},
+          {"code": "MUC", "name": "Munich Airport", "name_ko": "뮌헨 공항", "city": "Munich", "city_ko": "뮌헨"},
+          {"code": "BER", "name": "Berlin Brandenburg Airport", "name_ko": "베를린 브란덴부르크 공항", "city": "Berlin", "city_ko": "베를린"},
+          {"code": "DUS", "name": "Dusseldorf Airport", "name_ko": "뒤셀도르프 공항", "city": "Dusseldorf", "city_ko": "뒤셀도르프"},
+          {"code": "HAM", "name": "Hamburg Airport", "name_ko": "함부르크 공항", "city": "Hamburg", "city_ko": "함부르크"},
+          {"code": "CGN", "name": "Cologne Bonn Airport", "name_ko": "쾰른 본 공항", "city": "Cologne", "city_ko": "쾰른"},
+          {"code": "STR", "name": "Stuttgart Airport", "name_ko": "슈투트가르트 공항", "city": "Stuttgart", "city_ko": "슈투트가르트"}
+        ]
+      },
+      "Netherlands": {
+        "country_ko": "네덜란드",
+        "airports": [
+          {"code": "AMS", "name": "Amsterdam Airport Schiphol", "name_ko": "암스테르담 스키폴 공항", "city": "Amsterdam", "city_ko": "암스테르담"},
+          {"code": "EIN", "name": "Eindhoven Airport", "name_ko": "에인트호번 공항", "city": "Eindhoven", "city_ko": "에인트호번"},
+          {"code": "RTM", "name": "Rotterdam The Hague Airport", "name_ko": "로테르담 헤이그 공항", "city": "Rotterdam", "city_ko": "로테르담"}
+        ]
+      },
+      "Belgium": {
+        "country_ko": "벨기에",
+        "airports": [
+          {"code": "BRU", "name": "Brussels Airport", "name_ko": "브뤼셀 공항", "city": "Brussels", "city_ko": "브뤼셀"},
+          {"code": "CRL", "name": "Brussels South Charleroi Airport", "name_ko": "브뤼셀 샤를루아 공항", "city": "Charleroi", "city_ko": "샤를루아"}
+        ]
+      },
+      "Italy": {
+        "country_ko": "이탈리아",
+        "airports": [
+          {"code": "FCO", "name": "Leonardo da Vinci-Fiumicino Airport", "name_ko": "레오나르도 다 빈치 피우미치노 공항", "city": "Rome", "city_ko": "로마"},
+          {"code": "CIA", "name": "Rome Ciampino Airport", "name_ko": "로마 치암피노 공항", "city": "Rome", "city_ko": "로마"},
+          {"code": "MXP", "name": "Milan Malpensa Airport", "name_ko": "밀라노 말펜사 공항", "city": "Milan", "city_ko": "밀라노"},
+          {"code": "LIN", "name": "Milan Linate Airport", "name_ko": "밀라노 리나테 공항", "city": "Milan", "city_ko": "밀라노"},
+          {"code": "VCE", "name": "Venice Marco Polo Airport", "name_ko": "베니스 마르코 폴로 공항", "city": "Venice", "city_ko": "베니스"},
+          {"code": "NAP", "name": "Naples International Airport", "name_ko": "나폴리 국제공항", "city": "Naples", "city_ko": "나폴리"},
+          {"code": "FLR", "name": "Florence Airport", "name_ko": "피렌체 공항", "city": "Florence", "city_ko": "피렌체"}
+        ]
+      },
+      "Spain": {
+        "country_ko": "스페인",
+        "airports": [
+          {"code": "MAD", "name": "Adolfo Suarez Madrid-Barajas Airport", "name_ko": "마드리드 바라하스 공항", "city": "Madrid", "city_ko": "마드리드"},
+          {"code": "BCN", "name": "Barcelona-El Prat Airport", "name_ko": "바르셀로나 엘프라트 공항", "city": "Barcelona", "city_ko": "바르셀로나"},
+          {"code": "PMI", "name": "Palma de Mallorca Airport", "name_ko": "팔마 데 마요르카 공항", "city": "Palma", "city_ko": "팔마"},
+          {"code": "AGP", "name": "Malaga Airport", "name_ko": "말라가 공항", "city": "Malaga", "city_ko": "말라가"},
+          {"code": "ALC", "name": "Alicante-Elche Airport", "name_ko": "알리칸테 공항", "city": "Alicante", "city_ko": "알리칸테"},
+          {"code": "VLC", "name": "Valencia Airport", "name_ko": "발렌시아 공항", "city": "Valencia", "city_ko": "발렌시아"},
+          {"code": "SVQ", "name": "Seville Airport", "name_ko": "세비야 공항", "city": "Seville", "city_ko": "세비야"},
+          {"code": "IBZ", "name": "Ibiza Airport", "name_ko": "이비자 공항", "city": "Ibiza", "city_ko": "이비자"}
+        ]
+      },
+      "Portugal": {
+        "country_ko": "포르투갈",
+        "airports": [
+          {"code": "LIS", "name": "Lisbon Portela Airport", "name_ko": "리스본 포르텔라 공항", "city": "Lisbon", "city_ko": "리스본"},
+          {"code": "OPO", "name": "Porto Airport", "name_ko": "포르투 공항", "city": "Porto", "city_ko": "포르투"},
+          {"code": "FAO", "name": "Faro Airport", "name_ko": "파루 공항", "city": "Faro", "city_ko": "파루"}
+        ]
+      },
+      "Switzerland": {
+        "country_ko": "스위스",
+        "airports": [
+          {"code": "ZRH", "name": "Zurich Airport", "name_ko": "취리히 공항", "city": "Zurich", "city_ko": "취리히"},
+          {"code": "GVA", "name": "Geneva Airport", "name_ko": "제네바 공항", "city": "Geneva", "city_ko": "제네바"},
+          {"code": "BSL", "name": "EuroAirport Basel-Mulhouse-Freiburg", "name_ko": "바젤-뮐루즈-프라이부르크 공항", "city": "Basel", "city_ko": "바젤"}
+        ]
+      },
+      "Austria": {
+        "country_ko": "오스트리아",
+        "airports": [
+          {"code": "VIE", "name": "Vienna International Airport", "name_ko": "비엔나 국제공항", "city": "Vienna", "city_ko": "비엔나"},
+          {"code": "SZG", "name": "Salzburg Airport", "name_ko": "잘츠부르크 공항", "city": "Salzburg", "city_ko": "잘츠부르크"},
+          {"code": "INN", "name": "Innsbruck Airport", "name_ko": "인스브루크 공항", "city": "Innsbruck", "city_ko": "인스브루크"}
+        ]
+      },
+      "Czech Republic": {
+        "country_ko": "체코",
+        "airports": [
+          {"code": "PRG", "name": "Vaclav Havel Airport Prague", "name_ko": "바츨라프 하벨 프라하 공항", "city": "Prague", "city_ko": "프라하"}
+        ]
+      },
+      "Poland": {
+        "country_ko": "폴란드",
+        "airports": [
+          {"code": "WAW", "name": "Warsaw Chopin Airport", "name_ko": "바르샤바 쇼팽 공항", "city": "Warsaw", "city_ko": "바르샤바"},
+          {"code": "KRK", "name": "Krakow John Paul II International Airport", "name_ko": "크라쿠프 요한 바오로 2세 공항", "city": "Krakow", "city_ko": "크라쿠프"},
+          {"code": "GDN", "name": "Gdansk Lech Walesa Airport", "name_ko": "그단스크 레흐 바웬사 공항", "city": "Gdansk", "city_ko": "그단스크"}
+        ]
+      },
+      "Hungary": {
+        "country_ko": "헝가리",
+        "airports": [
+          {"code": "BUD", "name": "Budapest Ferenc Liszt International Airport", "name_ko": "부다페스트 페렌츠 리스트 공항", "city": "Budapest", "city_ko": "부다페스트"}
+        ]
+      },
+      "Greece": {
+        "country_ko": "그리스",
+        "airports": [
+          {"code": "ATH", "name": "Athens International Airport", "name_ko": "아테네 국제공항", "city": "Athens", "city_ko": "아테네"},
+          {"code": "SKG", "name": "Thessaloniki Airport", "name_ko": "테살로니키 공항", "city": "Thessaloniki", "city_ko": "테살로니키"},
+          {"code": "HER", "name": "Heraklion International Airport", "name_ko": "헤라클리온 국제공항", "city": "Heraklion", "city_ko": "헤라클리온"},
+          {"code": "JMK", "name": "Mykonos Island National Airport", "name_ko": "미코노스 공항", "city": "Mykonos", "city_ko": "미코노스"},
+          {"code": "JTR", "name": "Santorini Airport", "name_ko": "산토리니 공항", "city": "Santorini", "city_ko": "산토리니"}
+        ]
+      },
+      "Ireland": {
+        "country_ko": "아일랜드",
+        "airports": [
+          {"code": "DUB", "name": "Dublin Airport", "name_ko": "더블린 공항", "city": "Dublin", "city_ko": "더블린"},
+          {"code": "ORK", "name": "Cork Airport", "name_ko": "코크 공항", "city": "Cork", "city_ko": "코크"},
+          {"code": "SNN", "name": "Shannon Airport", "name_ko": "섀넌 공항", "city": "Shannon", "city_ko": "섀넌"}
+        ]
+      },
+      "Denmark": {
+        "country_ko": "덴마크",
+        "airports": [
+          {"code": "CPH", "name": "Copenhagen Airport", "name_ko": "코펜하겐 공항", "city": "Copenhagen", "city_ko": "코펜하겐"}
+        ]
+      },
+      "Sweden": {
+        "country_ko": "스웨덴",
+        "airports": [
+          {"code": "ARN", "name": "Stockholm Arlanda Airport", "name_ko": "스톡홀름 알란다 공항", "city": "Stockholm", "city_ko": "스톡홀름"},
+          {"code": "GOT", "name": "Gothenburg Landvetter Airport", "name_ko": "예테보리 란드베테르 공항", "city": "Gothenburg", "city_ko": "예테보리"}
+        ]
+      },
+      "Norway": {
+        "country_ko": "노르웨이",
+        "airports": [
+          {"code": "OSL", "name": "Oslo Gardermoen Airport", "name_ko": "오슬로 가르데르모엔 공항", "city": "Oslo", "city_ko": "오슬로"},
+          {"code": "BGO", "name": "Bergen Airport Flesland", "name_ko": "베르겐 플레슬란 공항", "city": "Bergen", "city_ko": "베르겐"}
+        ]
+      },
+      "Finland": {
+        "country_ko": "핀란드",
+        "airports": [
+          {"code": "HEL", "name": "Helsinki-Vantaa Airport", "name_ko": "헬싱키 반타 공항", "city": "Helsinki", "city_ko": "헬싱키"}
+        ]
+      },
+      "Russia": {
+        "country_ko": "러시아",
+        "airports": [
+          {"code": "SVO", "name": "Sheremetyevo International Airport", "name_ko": "셰레메티예보 국제공항", "city": "Moscow", "city_ko": "모스크바"},
+          {"code": "DME", "name": "Domodedovo International Airport", "name_ko": "도모데도보 국제공항", "city": "Moscow", "city_ko": "모스크바"},
+          {"code": "VKO", "name": "Vnukovo International Airport", "name_ko": "브누코보 국제공항", "city": "Moscow", "city_ko": "모스크바"},
+          {"code": "LED", "name": "Pulkovo Airport", "name_ko": "풀코보 공항", "city": "St. Petersburg", "city_ko": "상트페테르부르크"}
+        ]
+      },
+      "Iceland": {
+        "country_ko": "아이슬란드",
+        "airports": [
+          {"code": "KEF", "name": "Keflavik International Airport", "name_ko": "케플라비크 국제공항", "city": "Reykjavik", "city_ko": "레이캬비크"}
+        ]
+      }
+    },
+    "North America": {
+      "United States": {
+        "country_ko": "미국",
+        "airports": [
+          {"code": "JFK", "name": "John F. Kennedy International Airport", "name_ko": "존 F. 케네디 국제공항", "city": "New York", "city_ko": "뉴욕"},
+          {"code": "EWR", "name": "Newark Liberty International Airport", "name_ko": "뉴어크 리버티 국제공항", "city": "Newark", "city_ko": "뉴어크"},
+          {"code": "LGA", "name": "LaGuardia Airport", "name_ko": "라과디아 공항", "city": "New York", "city_ko": "뉴욕"},
+          {"code": "LAX", "name": "Los Angeles International Airport", "name_ko": "로스앤젤레스 국제공항", "city": "Los Angeles", "city_ko": "로스앤젤레스"},
+          {"code": "ORD", "name": "O'Hare International Airport", "name_ko": "오헤어 국제공항", "city": "Chicago", "city_ko": "시카고"},
+          {"code": "MDW", "name": "Chicago Midway International Airport", "name_ko": "시카고 미드웨이 공항", "city": "Chicago", "city_ko": "시카고"},
+          {"code": "SFO", "name": "San Francisco International Airport", "name_ko": "샌프란시스코 국제공항", "city": "San Francisco", "city_ko": "샌프란시스코"},
+          {"code": "MIA", "name": "Miami International Airport", "name_ko": "마이애미 국제공항", "city": "Miami", "city_ko": "마이애미"},
+          {"code": "ATL", "name": "Hartsfield-Jackson Atlanta International Airport", "name_ko": "하츠필드-잭슨 애틀랜타 국제공항", "city": "Atlanta", "city_ko": "애틀랜타"},
+          {"code": "DFW", "name": "Dallas/Fort Worth International Airport", "name_ko": "댈러스/포트워스 국제공항", "city": "Dallas", "city_ko": "댈러스"},
+          {"code": "DEN", "name": "Denver International Airport", "name_ko": "덴버 국제공항", "city": "Denver", "city_ko": "덴버"},
+          {"code": "SEA", "name": "Seattle-Tacoma International Airport", "name_ko": "시애틀-타코마 국제공항", "city": "Seattle", "city_ko": "시애틀"},
+          {"code": "BOS", "name": "Boston Logan International Airport", "name_ko": "보스턴 로건 국제공항", "city": "Boston", "city_ko": "보스턴"},
+          {"code": "LAS", "name": "Harry Reid International Airport", "name_ko": "해리 리드 국제공항", "city": "Las Vegas", "city_ko": "라스베이거스"},
+          {"code": "PHX", "name": "Phoenix Sky Harbor International Airport", "name_ko": "피닉스 스카이 하버 국제공항", "city": "Phoenix", "city_ko": "피닉스"},
+          {"code": "IAH", "name": "George Bush Intercontinental Airport", "name_ko": "조지 부시 인터컨티넨탈 공항", "city": "Houston", "city_ko": "휴스턴"},
+          {"code": "HNL", "name": "Daniel K. Inouye International Airport", "name_ko": "다니엘 K. 이노우에 국제공항", "city": "Honolulu", "city_ko": "호놀룰루"},
+          {"code": "SAN", "name": "San Diego International Airport", "name_ko": "샌디에이고 국제공항", "city": "San Diego", "city_ko": "샌디에이고"},
+          {"code": "MCO", "name": "Orlando International Airport", "name_ko": "올랜도 국제공항", "city": "Orlando", "city_ko": "올랜도"},
+          {"code": "IAD", "name": "Washington Dulles International Airport", "name_ko": "워싱턴 덜레스 국제공항", "city": "Washington D.C.", "city_ko": "워싱턴 D.C."},
+          {"code": "DCA", "name": "Ronald Reagan Washington National Airport", "name_ko": "로널드 레이건 워싱턴 내셔널 공항", "city": "Washington D.C.", "city_ko": "워싱턴 D.C."}
+        ]
+      },
+      "Canada": {
+        "country_ko": "캐나다",
+        "airports": [
+          {"code": "YYZ", "name": "Toronto Pearson International Airport", "name_ko": "토론토 피어슨 국제공항", "city": "Toronto", "city_ko": "토론토"},
+          {"code": "YVR", "name": "Vancouver International Airport", "name_ko": "밴쿠버 국제공항", "city": "Vancouver", "city_ko": "밴쿠버"},
+          {"code": "YUL", "name": "Montreal-Trudeau International Airport", "name_ko": "몬트리올 트뤼도 국제공항", "city": "Montreal", "city_ko": "몬트리올"},
+          {"code": "YYC", "name": "Calgary International Airport", "name_ko": "캘거리 국제공항", "city": "Calgary", "city_ko": "캘거리"},
+          {"code": "YEG", "name": "Edmonton International Airport", "name_ko": "에드먼턴 국제공항", "city": "Edmonton", "city_ko": "에드먼턴"},
+          {"code": "YOW", "name": "Ottawa Macdonald-Cartier International Airport", "name_ko": "오타와 맥도널드-카르티에 국제공항", "city": "Ottawa", "city_ko": "오타와"}
+        ]
+      },
+      "Mexico": {
+        "country_ko": "멕시코",
+        "airports": [
+          {"code": "MEX", "name": "Mexico City International Airport", "name_ko": "멕시코시티 국제공항", "city": "Mexico City", "city_ko": "멕시코시티"},
+          {"code": "CUN", "name": "Cancun International Airport", "name_ko": "칸쿤 국제공항", "city": "Cancun", "city_ko": "칸쿤"},
+          {"code": "GDL", "name": "Guadalajara International Airport", "name_ko": "과달라하라 국제공항", "city": "Guadalajara", "city_ko": "과달라하라"},
+          {"code": "SJD", "name": "Los Cabos International Airport", "name_ko": "로스카보스 국제공항", "city": "Los Cabos", "city_ko": "로스카보스"}
+        ]
+      }
+    },
+    "South America": {
+      "Brazil": {
+        "country_ko": "브라질",
+        "airports": [
+          {"code": "GRU", "name": "Sao Paulo-Guarulhos International Airport", "name_ko": "상파울루 과룰류스 국제공항", "city": "Sao Paulo", "city_ko": "상파울루"},
+          {"code": "GIG", "name": "Rio de Janeiro-Galeao International Airport", "name_ko": "리우 갈레앙 국제공항", "city": "Rio de Janeiro", "city_ko": "리우데자네이루"},
+          {"code": "BSB", "name": "Brasilia International Airport", "name_ko": "브라질리아 국제공항", "city": "Brasilia", "city_ko": "브라질리아"},
+          {"code": "CNF", "name": "Belo Horizonte International Airport", "name_ko": "벨루오리존치 국제공항", "city": "Belo Horizonte", "city_ko": "벨루오리존치"}
+        ]
+      },
+      "Argentina": {
+        "country_ko": "아르헨티나",
+        "airports": [
+          {"code": "EZE", "name": "Ministro Pistarini International Airport", "name_ko": "에세이사 국제공항", "city": "Buenos Aires", "city_ko": "부에노스아이레스"},
+          {"code": "AEP", "name": "Jorge Newbery Airfield", "name_ko": "호르헤 뉴베리 공항", "city": "Buenos Aires", "city_ko": "부에노스아이레스"}
+        ]
+      },
+      "Chile": {
+        "country_ko": "칠레",
+        "airports": [
+          {"code": "SCL", "name": "Arturo Merino Benitez International Airport", "name_ko": "산티아고 국제공항", "city": "Santiago", "city_ko": "산티아고"}
+        ]
+      },
+      "Peru": {
+        "country_ko": "페루",
+        "airports": [
+          {"code": "LIM", "name": "Jorge Chavez International Airport", "name_ko": "호르헤 차베스 국제공항", "city": "Lima", "city_ko": "리마"},
+          {"code": "CUZ", "name": "Alejandro Velasco Astete International Airport", "name_ko": "쿠스코 국제공항", "city": "Cusco", "city_ko": "쿠스코"}
+        ]
+      },
+      "Colombia": {
+        "country_ko": "콜롬비아",
+        "airports": [
+          {"code": "BOG", "name": "El Dorado International Airport", "name_ko": "엘도라도 국제공항", "city": "Bogota", "city_ko": "보고타"},
+          {"code": "MDE", "name": "Jose Maria Cordova International Airport", "name_ko": "호세 마리아 코르도바 국제공항", "city": "Medellin", "city_ko": "메데진"},
+          {"code": "CTG", "name": "Rafael Nunez International Airport", "name_ko": "라파엘 누녜스 국제공항", "city": "Cartagena", "city_ko": "카르타헤나"}
+        ]
+      }
+    },
+    "Oceania": {
+      "Australia": {
+        "country_ko": "호주",
+        "airports": [
+          {"code": "SYD", "name": "Sydney Kingsford Smith Airport", "name_ko": "시드니 킹스포드 스미스 공항", "city": "Sydney", "city_ko": "시드니"},
+          {"code": "MEL", "name": "Melbourne Airport", "name_ko": "멜버른 공항", "city": "Melbourne", "city_ko": "멜버른"},
+          {"code": "BNE", "name": "Brisbane Airport", "name_ko": "브리즈번 공항", "city": "Brisbane", "city_ko": "브리즈번"},
+          {"code": "PER", "name": "Perth Airport", "name_ko": "퍼스 공항", "city": "Perth", "city_ko": "퍼스"},
+          {"code": "ADL", "name": "Adelaide Airport", "name_ko": "애들레이드 공항", "city": "Adelaide", "city_ko": "애들레이드"},
+          {"code": "OOL", "name": "Gold Coast Airport", "name_ko": "골드코스트 공항", "city": "Gold Coast", "city_ko": "골드코스트"},
+          {"code": "CNS", "name": "Cairns Airport", "name_ko": "케언스 공항", "city": "Cairns", "city_ko": "케언스"}
+        ]
+      },
+      "New Zealand": {
+        "country_ko": "뉴질랜드",
+        "airports": [
+          {"code": "AKL", "name": "Auckland Airport", "name_ko": "오클랜드 공항", "city": "Auckland", "city_ko": "오클랜드"},
+          {"code": "WLG", "name": "Wellington International Airport", "name_ko": "웰링턴 국제공항", "city": "Wellington", "city_ko": "웰링턴"},
+          {"code": "CHC", "name": "Christchurch International Airport", "name_ko": "크라이스트처치 국제공항", "city": "Christchurch", "city_ko": "크라이스트처치"},
+          {"code": "ZQN", "name": "Queenstown Airport", "name_ko": "퀸스타운 공항", "city": "Queenstown", "city_ko": "퀸스타운"}
+        ]
+      },
+      "Fiji": {
+        "country_ko": "피지",
+        "airports": [
+          {"code": "NAN", "name": "Nadi International Airport", "name_ko": "난디 국제공항", "city": "Nadi", "city_ko": "난디"}
+        ]
+      }
+    },
+    "Africa": {
+      "South Africa": {
+        "country_ko": "남아프리카공화국",
+        "airports": [
+          {"code": "JNB", "name": "O.R. Tambo International Airport", "name_ko": "O.R. 탐보 국제공항", "city": "Johannesburg", "city_ko": "요하네스버그"},
+          {"code": "CPT", "name": "Cape Town International Airport", "name_ko": "케이프타운 국제공항", "city": "Cape Town", "city_ko": "케이프타운"},
+          {"code": "DUR", "name": "King Shaka International Airport", "name_ko": "킹 샤카 국제공항", "city": "Durban", "city_ko": "더반"}
+        ]
+      },
+      "Egypt": {
+        "country_ko": "이집트",
+        "airports": [
+          {"code": "CAI", "name": "Cairo International Airport", "name_ko": "카이로 국제공항", "city": "Cairo", "city_ko": "카이로"},
+          {"code": "HRG", "name": "Hurghada International Airport", "name_ko": "후르가다 국제공항", "city": "Hurghada", "city_ko": "후르가다"},
+          {"code": "SSH", "name": "Sharm El Sheikh International Airport", "name_ko": "샤름 엘 셰이크 국제공항", "city": "Sharm El Sheikh", "city_ko": "샤름 엘 셰이크"},
+          {"code": "LXR", "name": "Luxor International Airport", "name_ko": "룩소르 국제공항", "city": "Luxor", "city_ko": "룩소르"}
+        ]
+      },
+      "Morocco": {
+        "country_ko": "모로코",
+        "airports": [
+          {"code": "CMN", "name": "Mohammed V International Airport", "name_ko": "무함마드 5세 국제공항", "city": "Casablanca", "city_ko": "카사블랑카"},
+          {"code": "RAK", "name": "Marrakech Menara Airport", "name_ko": "마라케시 메나라 공항", "city": "Marrakech", "city_ko": "마라케시"}
+        ]
+      },
+      "Kenya": {
+        "country_ko": "케냐",
+        "airports": [
+          {"code": "NBO", "name": "Jomo Kenyatta International Airport", "name_ko": "조모 케냐타 국제공항", "city": "Nairobi", "city_ko": "나이로비"},
+          {"code": "MBA", "name": "Moi International Airport", "name_ko": "모이 국제공항", "city": "Mombasa", "city_ko": "몸바사"}
+        ]
+      },
+      "Ethiopia": {
+        "country_ko": "에티오피아",
+        "airports": [
+          {"code": "ADD", "name": "Addis Ababa Bole International Airport", "name_ko": "아디스아바바 볼레 국제공항", "city": "Addis Ababa", "city_ko": "아디스아바바"}
+        ]
+      },
+      "Nigeria": {
+        "country_ko": "나이지리아",
+        "airports": [
+          {"code": "LOS", "name": "Murtala Muhammed International Airport", "name_ko": "무르탈라 무함메드 국제공항", "city": "Lagos", "city_ko": "라고스"},
+          {"code": "ABV", "name": "Nnamdi Azikiwe International Airport", "name_ko": "남디 아지키웨 국제공항", "city": "Abuja", "city_ko": "아부자"}
+        ]
+      },
+      "Tanzania": {
+        "country_ko": "탄자니아",
+        "airports": [
+          {"code": "DAR", "name": "Julius Nyerere International Airport", "name_ko": "줄리어스 니에레레 국제공항", "city": "Dar es Salaam", "city_ko": "다르에스살람"},
+          {"code": "JRO", "name": "Kilimanjaro International Airport", "name_ko": "킬리만자로 국제공항", "city": "Kilimanjaro", "city_ko": "킬리만자로"}
+        ]
+      }
+    }
+  }
+}

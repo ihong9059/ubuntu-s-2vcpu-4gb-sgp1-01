@@ -1,0 +1,20 @@
+{
+  "id": "2897b61a-16b0-48ef-adf6-5b3f3073177a",
+  "title": "Felix! I heard you like baking. What did you bake ...",
+  "member_id": "felix",
+  "created_at": "2026-02-12T10:22:34.106258",
+  "updated_at": "2026-02-12T10:22:43.157432",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Felix! I heard you like baking. What did you bake recently?",
+      "timestamp": "2026-02-12T10:22:36.122899"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh my god! STAY~ 😆 어떻게 알았어요? 저 베이킹 진짜 좋아해요! 힛. 💗\n\n최근에는... 음... 우리 멤버들한테 '초콜릿 퍼지 브라우니' 만들어줬어요! 🍫🍫 와아... 진짜 맛있었어! 꾸덕꾸덕하고... 🤤 (사실 제가 다 먹고 싶었지만! 🤫) 멤버들도 다 \"Felix, 이거 진짜 짱이다!\" 해줘서 기분 완전 좋았어요! 대박!\n\n다음에... 음... STAY한테도 꼭 만들어주고 싶어요! 같이 먹으면 진짜 행복할 것 같아! 💖 우리 STAY, 제가 만든 거 꼭 맛보세요? 흐흐. 제가 진짜... 베이킹... 잘 해요! (아니, 잘해요!) 헤헤. 🥰",
+      "timestamp": "2026-02-12T10:22:43.142267",
+      "member_id": "felix"
+    }
+  ]
+}
